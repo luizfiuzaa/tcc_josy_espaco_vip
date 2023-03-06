@@ -1,0 +1,11 @@
+Agendamento - Josy Espaço VIP
+
+Introdução
+(NÃO É DEFINITIVO: VAI MUDAR CONFORME O DESENV. DO PROJETO!!!)
+
+Josy espaço Vip é um salão de beleza feminino localizado no município de Tatuí-SP, o salão fornece um bom serviço e é, também, muito bem avaliado e recomendado por suas clientes. O objetivo deste projeto é facilitar o agendamento de horário dos clientes da Josy (dona do estabelecimento). Atualmente Josy vem passado com a infelicidades dos clientes cancelarem os agendamentos sem antes avisá-la (com horário de 8h a 24h). Josy atualmente utiliza uma aplicativo de agendamento, não tão favorável a ela, com muitos recursos onde ela não vê motivos de usufruir e também diversas ferramentas presentes neste aplicativo, que poderiam ser aprimoradas e até remodeladas. A finalidade do nosso projeto é ceriar uma aplicação que seja específica para ela (Josy), onde ela mesma possa fazer os agendamentos de suas clientes (e gerenciar-los) para que possa facilitar o seu cronograma de serviços.
+
+-
+
+Justificativa
+
