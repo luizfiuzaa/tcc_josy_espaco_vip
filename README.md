@@ -2,4 +2,4 @@
 DOCUMENTAÇÃO DO TCC DO 3º ETIM DE DESENVOLVIMENTO DE SISTEMAS
 
 
-link notion: https://www.notion.so/team/3c152f1f-eac8-451e-af21-6aebe7757ee1/join
+link notion: https://www.notion.so/Teamspace-Home-59700ba8512d459a901dc9edc3dc8ec3?pvs=4
