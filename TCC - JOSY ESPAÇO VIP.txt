@@ -16,11 +16,22 @@ Por que executar o projeto?
 O projeto tem como objetivo facilitar a vida profissional da Josy, de modo que possamos agilizar o processo de agendamento e obter um melhor gerenciamento de seus serviços.
 
 Por que executar o projeto?
+O projeto visa a pragmaticidade e agilidade nos agendamentos dos serviços e no gerenciamento de clientes agendados. Também facilitará a visualização do Faturamento Mensal de seus serviços realizados 
 
 Por que ele deve ser aprovado?
+Com o projeto aprovado, todos poderão ver que a programação irá tonar mais prático o rotina e ambiente de trabalho do nosso cliente.
 
 Qual a importância desse problema/questão?
+O (problema) fazia com que os agendamentos e gerenciamento desses clientes ficasse desorganizado para a nossa cliente, tornando a rotina de trabalho dela cansativo e confuso.
 
 Quais os benefícios a serem alcançados?
+Os benefícios a serem alcançados são: pragmaticidade no agendamento/gerenciamento de serviços, visualização do Faturamento Mensal dos serviços realizados, alertas sobre os agendamentos no dia, alerta para cobrar clientes que ainda não efetivaram o pagamento do serviço usufruído
 
-2. Problema
+2. Problemas
+Os problemas citados e identificados pela nossa cliente foram:
+- Agendamento dos seus serviços quando um cliente não comparece no horário combinado;
+
+- Devido ao caso de alguns clientes não comparecerem para serem atendidos, o gerenciamento de horários fica confuso e atrapalha na prestação de seus serviços para outros clientes;
+
+- Há também o problema de inadimplência dos clientes referentes aos serviços usufruídos, seja essa inadimplência causada de forma intencional ou não intencional;
+ - - 
