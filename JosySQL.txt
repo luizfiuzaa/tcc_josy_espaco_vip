@@ -1,0 +1,59 @@
+Tabelas:
+adm{
+    #idadm
+    email
+    password
+}
+
+cliente{
+    #idcli
+    nome
+    email
+    telefone
+    endereco
+}
+
+agendamento{
+    #idagendamento
+    @idcli
+    @idservico
+    horario
+    pago
+    modo_pagamento
+}
+
+calendario{
+    #idcalendario
+    @idagendamento
+    data
+}
+
+faturamento{
+    #idfaturamento
+    @idcalendario
+    lucro_total
+
+}
+
+servicos{
+    #idservico
+    tipo
+    preco
+    tempo_servico
+}
+exemplo:
+pé 30 2h
+mao 30 1h30
+cabelo curto fino 100 2h
+cabelo curto volumoso 150 2h30
+
+mensagem_def{
+    #idmensagem
+    descricao
+}
+
+lembretes{
+    #idlembrete
+    @idmensagem
+    @idagendamento
+}
