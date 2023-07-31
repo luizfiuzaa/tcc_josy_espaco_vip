@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS `agendamento`;
 CREATE TABLE `agendamento`(
   `id_agendamento` INT NOT NULL AUTO_INCREMENT,
   `data_inicio` DATETIME NOT NULL,
-  `data_fim` DATETIME NOT NULL,
+  `data_fim` DATETIME NOT NULL
   -- foreignKeys
 );
 DROP TABLE IF EXISTS `agendamento_servicos`;
