@@ -14,6 +14,7 @@ CREATE TABLE `agendamento`(
   `id_agendamento` INT NOT NULL AUTO_INCREMENT,
   `data_inicio` DATETIME NOT NULL,
   `data_fim` DATETIME NOT NULL,
+  `estado` VARCHAR(15) NOT NULL,
   CONSTRAINT `fk_id_admin` FOREIGN KEY (id_admin) REFERENCES `Admin` (id_admin),
   CONSTRAINT `fk_id_cli` FOREIGN KEY (id_cliente) REFERENCES `Cliente` (id_cliente),
   PRIMARY KEY (`id_agendamento`)
