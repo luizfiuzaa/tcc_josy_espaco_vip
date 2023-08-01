@@ -14,16 +14,16 @@ CREATE TABLE `agendamento`(
   `id_agendamento` INT NOT NULL AUTO_INCREMENT,
   `data_inicio` DATETIME NOT NULL,
   `data_fim` DATETIME NOT NULL,
-  CONSTRAINT fk_id_admin FOREIGN KEY (id_admin) REFERENCES Admin (id_admin),
-  CONSTRAINT fk_id_cli FOREIGN KEY (id_cliente) REFERENCES Cliente (id_cliente),
+  CONSTRAINT `fk_id_admin` FOREIGN KEY (id_admin) REFERENCES `Admin` (id_admin),
+  CONSTRAINT `fk_id_cli` FOREIGN KEY (id_cliente) REFERENCES `Cliente` (id_cliente),
   PRIMARY KEY (`id_agendamento`)
 );
 
 DROP TABLE IF EXISTS `Agendamento_servicos`;
 CREATE TABLE `agendamento_servicos`(
   `id_agend_serv` INT NOT NULL, AUTO_INCREMENT
-  CONSTRAINT fk_id_serv FOREIGN KEY (id_servico) REFERENCES Servico (id_servico),
-  CONSTRAINT fk_id_agend FOREIGN KEY (id_agendamento) REFERENCES Agendamento (id_agendamento),
+  CONSTRAINT `fk_id_serv` FOREIGN KEY (id_servico) REFERENCES `Servico` (id_servico),
+  CONSTRAINT `fk_id_agend` FOREIGN KEY (id_agendamento) REFERENCES `Agendamento` (id_agendamento),
   PRIMARY KEY (`id_agend_serv`)
 );
 
@@ -39,8 +39,8 @@ CREATE TABLE `admin_Mensagem` (
     `id_admin_msg` INT NOT NULL AUTO_INCREMENT,
     `FK_Id_Msg` INT NOT NUll,
     `FK_Id_Admin` INT NOT NUll,
-  CONSTRAINT fk_id_admin FOREIGN KEY (id_admin) REFERENCES Admin (id_admin),
-  CONSTRAINT fk_id_msg FOREIGN KEY (id_msg) REFERENCES Mensagem (id_msg),
+  CONSTRAINT `fk_id_admin` FOREIGN KEY (id_admin) REFERENCES `Admin` (id_admin),
+  CONSTRAINT `fk_id_msg` FOREIGN KEY (id_msg) REFERENCES `Mensagem` (id_msg),
   PRIMARY KEY (`id_admin_msg`)
 );
 
@@ -66,7 +66,7 @@ CREATE TABLE `Mensagem_cliente` (
     `id_msg_cli` INT NOT NULL AUTO_INCREMENT,
     `Fk_id_cli` INT NOT NUll,
     `Fk_id_Msg` INT NOT NUll,
-  CONSTRAINT fk_id_cli FOREIGN KEY (id_cliente) REFERENCES Cliente (id_cliente),
-  CONSTRAINT fk_id_msg FOREIGN KEY (id_msg) REFERENCES Mensagem (id_msg),
+  CONSTRAINT `fk_id_cli` FOREIGN KEY (id_cliente) REFERENCES `Cliente` (id_cliente),
+  CONSTRAINT `fk_id_msg` FOREIGN KEY (id_msg) REFERENCES `Mensagem` (id_msg),
   PRIMARY KEY (`id_msg_cli`)
 );
