@@ -1,7 +1,0 @@
-{
-  "name": "JEV-Agenda",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
