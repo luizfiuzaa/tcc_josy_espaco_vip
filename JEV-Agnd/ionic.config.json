@@ -1,0 +1,7 @@
+{
+  "name": "JEV-Agnd",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
