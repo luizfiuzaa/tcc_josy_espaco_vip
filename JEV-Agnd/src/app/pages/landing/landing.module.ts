@@ -8,12 +8,15 @@ import { LandingPageRoutingModule } from './landing-routing.module';
 
 import { LandingPage } from './landing.page';
 
+import { CarouselModule } from '../../components/carousel/carousel.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LandingPageRoutingModule
+    LandingPageRoutingModule,
+    CarouselModule
   ],
   declarations: [LandingPage]
 })

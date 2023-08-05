@@ -11,26 +11,8 @@
     <ion-col size="11" class="cotainer-col ion-text-center">
       <ion-row>
         <ion-col>
-          <div class="carousel">
-            <div data-js="carousel__item" class="carousel__item carousel__item--visible">
-              <img src="https://images.pexels.com/photos/10593034/pexels-photo-10593034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-            </div>
-
-            <div data-js="carousel__item" class="carousel__item">
-              <img src="https://images.pexels.com/photos/7755225/pexels-photo-7755225.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-            </div>
-
-            <div data-js="carousel__item" class="carousel__item">
-              <img src="https://images.pexels.com/photos/13714797/pexels-photo-13714797.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-            </div>
-
-            <div class="carousel__actions">
-              <button data-js="carousel__button--prev" aria-label="Slide anterior" onclick="Button_prev()"></button>
-              <button data-js="carousel__button--next" aria-label="Próximo slide">
-              </button>
-            </div>
-          </div>
-
+          <app-carousel [images]="images"
+          [autoSlide]="true"></app-carousel>
         </ion-col>
       </ion-row>
     </ion-col>
