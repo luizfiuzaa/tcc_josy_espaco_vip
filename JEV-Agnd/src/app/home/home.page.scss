@@ -1,17 +1,17 @@
-#main-content > ion-header >ion-toolbar {
-  background-color: var(--ion-color-primary);
+ion-toolbar {
+  --color: #fff;
+  --background: #d819a3;
+}
+ion-button, ion-menu-button {
+  --color: #fff;
 }
 ion-list {
   ion-item {
     ion-icon {
-      color: var(--ion-color-primary);
+      color: #d819a3;
     }
     p {
       margin-left: 5%;
     }
   }
-}
-
-#logOut{
-
 }
