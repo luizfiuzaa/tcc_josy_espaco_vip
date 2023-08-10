@@ -12,7 +12,7 @@ interface carouselImage {
 })
 export class CarouselComponent implements OnInit {
 
-  @Input() images: carouselImage[] = []
+  @Input() images_carousel: carouselImage[] = []
   @Input() indicators = true;
   @Input() controls = true;
   @Input() autoSlide = false;
@@ -40,14 +40,14 @@ export class CarouselComponent implements OnInit {
 
   onPrevClick(): void {
     if (this.selectedIndex === 0) {
-      this.selectedIndex = this.images.length - 1;
+      this.selectedIndex = this.images_carousel.length - 1;
     } else {
       this.selectedIndex--;
     }
   }
 
   onNextClick(): void {
-    if (this.selectedIndex === this.images.length - 1) {
+    if (this.selectedIndex === this.images_carousel.length - 1) {
       this.selectedIndex = 0;
     } else {
       this.selectedIndex++;

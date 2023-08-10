@@ -1,20 +1,16 @@
-<div *ngIf="images && images.length > 0" class="carousel-container">
-  <img *ngFor="let image of images; let i=index" [src]="image.imageSrc" [alt]="image.imageAlt"
-    [ngClass]="{'image-active': selectedIndex === i}" class="fade">
+<div *ngIf="images_carousel && images_carousel.length > 0" class="carousel-container">
+  <img *ngFor="let image_carousel of images_carousel; let i=index" [src]="image_carousel.imageSrc"
+    [alt]="image_carousel.imageAlt" [ngClass]="{'image-active': selectedIndex === i}" class="fade">
 
   <div *ngIf="indicators" class="carousel-dot-container">
-    <span *ngFor="let dot of images; let i=index" class="dot" [ngClass]="{'active': selectedIndex === i}"
+    <span *ngFor="let dot of images_carousel; let i=index" class="dot" [ngClass]="{'active': selectedIndex === i}"
       (click)="selectImage(i)">
     </span>
   </div>
-  <button *ngIf="controls" class="btn-carousel btn-prev" 
-    (click)="onPrevClick()"
-  >
+  <button *ngIf="controls" class="btn-carousel btn-prev" (click)="onPrevClick()">
     <i class="fas fa-arrow-circle-left icon-carousel icon-prev"></i>
   </button>
-  <button *ngIf="controls" class="btn-carousel btn-next"
-    (click)="onNextClick()"
-  >
-    <i class="fas fa-arrow-circle-right icon-carousel icon-next" ></i>
+  <button *ngIf="controls" class="btn-carousel btn-next" (click)="onNextClick()">
+    <i class="fas fa-arrow-circle-right icon-carousel icon-next"></i>
   </button>
 </div>
