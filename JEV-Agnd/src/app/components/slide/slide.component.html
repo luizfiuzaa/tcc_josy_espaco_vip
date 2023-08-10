@@ -1,0 +1,25 @@
+<div class="slide">
+  <div *ngIf="images_slide && images_slide.length > 0" class="slide-container">
+    <div *ngFor="let image_slide of images_slide; let i=index;">
+      <div class="image-card">
+        <div class="images_div">
+          <img [src]="image_slide.imageSrc" [alt]="image_slide.imageAlt">
+        </div>
+        <div class="titulo">
+          <span>{{image_slide.titulo}}</span>
+        </div>
+        <div>
+          <span class="textoDesc none">{{image_slide.descricao}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="descricao">
+  </div>
+  <button class="btn-slide btn-prev_slide">
+    <ion-icon name="chevron-back-sharp" class="icon-slide" style="rotate: 180deg;"></ion-icon>
+  </button>
+  <button class="btn-slide btn-next_slide">
+    <ion-icon name="chevron-forward-sharp" class="icon-slide"></ion-icon>
+  </button>
+</div>
