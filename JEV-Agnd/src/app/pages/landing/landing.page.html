@@ -1,35 +1,33 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="header">
-      <ion-text>Logo</ion-text>
-      <ion-buttons slot="end">
-          <ion-menu-button class="menu-icon" auto-hide="false"></ion-menu-button>
-      </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar class="header">
+        <ion-text>Logo</ion-text>
+        <ion-buttons slot="end">
+            <ion-menu-button class="menu-icon" auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-row class="cotainer-row">
-      <ion-col size="12" class="cotainer-col d-flex justify-content-center">
-          <ion-row>
-              <ion-col>
-                  <ion-row>
-                      <ion-col>
-                          <app-carousel [images]="images" [autoSlide]="true"></app-carousel>
-                      </ion-col>
-                  </ion-row>
-                  <ion-row>
-                      <ion-col>
-                          
-                      </ion-col>
-                  </ion-row>
-              </ion-col>
-          </ion-row>
-      </ion-col>
-  </ion-row>
+    <ion-row class="cotainer-row">
+        <ion-col size="12" class="cotainer-col ion-text-center">
+
+            <ion-row>
+                <ion-col>
+                    <app-carousel [images_carousel]="images_carousel" [autoSlide]="true"></app-carousel>
+                </ion-col>
+            </ion-row>
+            <ion-row class="slide_images_row justify-content-center">
+                <ion-col class="slide_images_col ion-text-center" size="12">
+                    <app-slide [images_slide]="images_slide"></app-slide>
+                </ion-col>
+            </ion-row>
+
+        </ion-col>
+    </ion-row>
 </ion-content>
 
 <ion-footer [translucent]="true">
-  <ion-toolbar>
-      <ion-title>Footer Toolbar</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Footer Toolbar</ion-title>
+    </ion-toolbar>
 </ion-footer>

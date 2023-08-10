@@ -9,6 +9,7 @@ import { LandingPageRoutingModule } from './landing-routing.module';
 import { LandingPage } from './landing.page';
 
 import { CarouselModule } from '../../components/carousel/carousel.module';
+import { SlideModule } from '../../components/slide/slide.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CarouselModule } from '../../components/carousel/carousel.module';
     FormsModule,
     IonicModule,
     LandingPageRoutingModule,
-    CarouselModule
+    CarouselModule,
+    SlideModule
   ],
   declarations: [LandingPage]
 })
