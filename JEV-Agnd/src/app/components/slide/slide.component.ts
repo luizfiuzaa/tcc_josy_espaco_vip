@@ -22,20 +22,10 @@ export class SlideComponent implements OnInit {
   }
   ngAfterViewInit() {
     const div_cont = document.querySelector('.slide-container') as HTMLElement;
-    const desc = document.querySelector('.descricao') as HTMLElement;
-    const span = document.querySelectorAll('.textoDesc');
-    const img = div_cont.querySelectorAll("img");
     let firstImageWidth = 250 + 40;
     const btnPrev = document.querySelector('.btn-prev_slide') as HTMLElement;
     const btnNext = document.querySelector('.btn-next_slide') as HTMLElement;
     let inicioMov = false, prevPageX: any, prevScrollLeft: any;
-
-    img.forEach((imagem, index) =>{
-      imagem.addEventListener('click', () => {
-        desc.innerHTML = ''+ span[index].textContent;
-
-      })
-    })
 
     btnNext?.addEventListener('click', () => {
       div_cont.scrollLeft +=  firstImageWidth;
