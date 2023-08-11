@@ -1,0 +1,46 @@
+<ion-menu contentId="main-content">
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-menu-toggle>
+        <ion-title>Opções</ion-title>
+      </ion-menu-toggle>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item
+            [routerLink]="['/home']"
+            routerLinkActive="router-link-active"
+            ><ion-icon name="calendar-clear"></ion-icon>
+            <p>Agendamentos</p></ion-item
+          >
+          <ion-item
+            [routerLink]="['/clientes']"
+            routerLinkActive="router-link-active"
+            ><ion-icon name="people-sharp"></ion-icon>
+            <p>Clientes</p></ion-item
+          >
+          <ion-item [routerLink]="['/servicos']"
+            ><ion-icon name="cut-sharp"></ion-icon>
+            <p>Serviços</p></ion-item
+          >
+          <ion-item [routerLink]="['/msg-definidas']"
+            ><ion-icon name="chatbox-ellipses"></ion-icon>
+            <p>Mensagens</p></ion-item
+          >
+          <ion-item [routerLink]="['/lembretes']"
+            ><ion-icon name="notifications"></ion-icon>
+            <p>Lembretes</p>
+            <ion-badge slot="end">1</ion-badge></ion-item
+          >
+          <ion-item [routerLink]="['/faturamentos']"
+            ><ion-icon name="bar-chart-sharp"></ion-icon>
+            <p>Faturamento</p></ion-item
+          >
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+</ion-menu>

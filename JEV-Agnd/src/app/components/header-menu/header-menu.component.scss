@@ -1,0 +1,14 @@
+ion-toolbar {
+  --color: #fff;
+  --background: #d819a3;
+}
+ion-list {
+  ion-item {
+    ion-icon {
+      color: #d819a3;
+    }
+    p {
+      margin-left: 5%;
+    }
+  }
+}
