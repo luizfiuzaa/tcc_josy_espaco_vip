@@ -8,19 +8,12 @@
   // border: 1px solid black;
 }
 
-ion-toolbar{
+
+ion-toolbar {
   --background: transparent;
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.header ul{
-  display: flex;
-  justify-content: space-around;
-}
-
-.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,34 +22,44 @@ ion-toolbar{
   height: 100px;
 }
 
-.landing-text{
+.landing-text {
   font-family: 'Roboto';
   z-index: 30;
   text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
 }
 
-@media only screen and (max-width:700px){
+@media only screen and (max-width:700px) {}
 
+.bgc {
+  background: #D819A3;
 }
 
-.landing-text h1{
+.landing-text h1 {
   font-size: 3.9em;
   color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.747);
 }
 
-.landing-text p{
+@media only screen and (max-height:800px){
+.landing-text h1{
+  font-size: 3.1em;
+}
+}
+
+.landing-text p {
   font-size: 1.5em;
   color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.747);
 }
 
-.landing-text .btn{
+.landing-text .btn {
   width: 200px;
   padding: 15px 0;
   text-align: center;
@@ -72,7 +75,7 @@ ion-toolbar{
   font-size: 1em;
 }
 
-.landing-text .btn:hover{
+.landing-text .btn:hover, .landing-text .btn:focus  {
   transform: scale(1.05);
   background: #D819A3;
 }

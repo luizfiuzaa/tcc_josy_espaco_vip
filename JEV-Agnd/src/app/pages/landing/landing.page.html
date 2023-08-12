@@ -1,27 +1,28 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-        <div class="header">
-            <ion-title>
+<ion-content class="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title slot="start">
                 <ion-text class="logo">Josy</ion-text>
             </ion-title>
-                <ion-menu-button class="menu-icon"  auto-hide="false"></ion-menu-button>
-        </div>
-    </ion-toolbar>
-</ion-header>
-
-<ion-content class="content" [fullscreen]="true" >
+            <ion-buttons slot="end">
+                <ion-menu-button class="menu-icon" auto-hide="false"></ion-menu-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
     <ion-row class="cotainer-row">
         <ion-col size="12" class="cotainer-col ion-text-center">
             <ion-row>
                 <ion-col>
                     <div class="landing-text">
                         <h1>Josy espaço vip</h1>
-                        <p>Venha conhecer a nossa unidade em Tatuí-sp, mas antes realize o seu cadastro em nosso site para ficar por dentro de todas as novidades.</p>
+                        <p>Venha conhecer a nossa unidade em Tatuí-sp, mas antes realize o seu cadastro em nosso site
+                            para ficar por dentro de todas as novidades.</p>
                         <div class="div_btn">
                             <button class="btn">cadastrar</button>
                         </div>
                     </div>
-                    <app-carousel [images_carousel]="images_carousel" [autoSlide]="false" [controls]="false"></app-carousel>
+                    <app-carousel [images_carousel]="images_carousel" [autoSlide]="true"
+                        [controls]="false"></app-carousel>
                 </ion-col>
             </ion-row>
             <ion-row class="slide_images_row justify-content-center">
