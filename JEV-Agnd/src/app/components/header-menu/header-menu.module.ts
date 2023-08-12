@@ -13,4 +13,4 @@ import { HeaderMenuComponent } from './header-menu.component';
     HeaderMenuComponent
   ]
 })
-export class CarouselModule { }
+export class HeaderMenuModule { }
