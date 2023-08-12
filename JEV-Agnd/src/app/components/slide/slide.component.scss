@@ -37,7 +37,8 @@
 .image-card {
     flex: 0 0 auto;
     width: 250px;
-    margin: 0 40px 20px 0
+    margin: 0 40px 20px 0;
+    transition: 0.5s;
 }
 
 .images_div {
@@ -55,8 +56,31 @@ img {
     transition: all 0.3s ease;
 }
 
-img:hover {
+.image-card:hover {
     transform: scale(1.04);
+}
+
+.card_btn{
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 12px;
+    width: 90%;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+    background: #D819A3;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+}
+
+.image-card:hover .card_btn{
+    opacity: 1;
 }
 
 .titulo {
