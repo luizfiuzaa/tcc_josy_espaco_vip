@@ -13,7 +13,7 @@
 	</ion-header>
 	<ion-content [fullscreen]="true">
 		<ion-row>
-			<ion-col class="container" size="12">
+			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0">
 				<ion-card *ngFor="let CardDados of CardDados">
 					<ion-card-content class="icon_card">
 						<ion-icon name="create-outline" class="edit_icon"></ion-icon>
@@ -25,6 +25,14 @@
 						<p>Preço (R$): {{CardDados.precoCard}}</p>
 					</ion-card-content>
 				</ion-card>
+			</ion-col>
+			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length == 0">
+				<ion-text>
+					<p>Nenhum serviço cadastrado...</p>
+					<button [routerLink]="['#']" routerLinkActive="router-link-active">
+						Cadastrar
+					</button>
+				</ion-text>
 			</ion-col>
 		</ion-row>
 	</ion-content>

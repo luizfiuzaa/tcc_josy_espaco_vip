@@ -8,6 +8,7 @@ import { ServicosPageRoutingModule } from './servicos-routing.module';
 
 import { ServicosPage } from './servicos.page';
 import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.module'; 
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.mod
     FormsModule,
     IonicModule,
     ServicosPageRoutingModule,
-    HeaderMenuModule
+    HeaderMenuModule,
+    RouterModule
   ],
   declarations: [ServicosPage]
 })

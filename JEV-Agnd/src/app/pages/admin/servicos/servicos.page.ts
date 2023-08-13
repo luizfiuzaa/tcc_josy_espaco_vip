@@ -33,7 +33,19 @@ export class ServicosPage implements OnInit {
       precoCard: '40.00',
     },
     {
-      tituloCard: 'Sombracelhas',
+      tituloCard: 'Sombrancelhas',
+      descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
+      duracaoCard: '30mins',
+      precoCard: '30.00',
+    },
+    {
+      tituloCard: 'Sombrancelhas',
+      descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
+      duracaoCard: '30mins',
+      precoCard: '30.00',
+    },
+    {
+      tituloCard: 'Sombrancelhas',
       descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
       duracaoCard: '30mins',
       precoCard: '30.00',
