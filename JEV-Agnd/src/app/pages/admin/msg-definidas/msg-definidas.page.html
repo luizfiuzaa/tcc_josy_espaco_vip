@@ -13,14 +13,18 @@
   </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-row>
+  <ion-row class="main">
 
     <ion-col>
-      <ion-card color="success">
+      <ion-card class="card1" color="success">
         <ion-card-header>
           <ion-row class="titles">
-            <ion-card-title>Confirmação</ion-card-title>
-            <ion-icon class="icons" name="checkmark-circle-outline"></ion-icon>
+            <ion-col size="10">
+              <ion-card-title>Confirmação</ion-card-title>
+            </ion-col>
+            <ion-col size="2">
+              <ion-icon class="icons" name="checkmark-circle-outline"></ion-icon>
+            </ion-col>
           <ion-card-subtitle>Mensagem de confirmação do agendamento</ion-card-subtitle>
           </ion-row>
           
@@ -34,7 +38,7 @@
           
           <ion-col>
             <ion-row>
-            <ion-button color="light">
+            <ion-button class="btn-editar" color="light">
             <p></p>Editar
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
@@ -47,11 +51,15 @@
     </ion-col>
   
     <ion-col>
-      <ion-card color="danger">
+      <ion-card class="card2" color="danger">
         <ion-card-header>
           <ion-row class="titles">
+            <ion-col size="10">
               <ion-card-title>Cancelamento</ion-card-title>
-            <ion-icon class="icons" name="close-circle-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="2">
+              <ion-icon class="icons" name="close-circle-outline"></ion-icon>
+            </ion-col>
             <ion-card-subtitle>Mensagem de cancelamento de agendamento</ion-card-subtitle>
           </ion-row>
           
@@ -65,7 +73,7 @@
           
           <ion-col>
             <ion-row>
-            <ion-button color="light">
+            <ion-button class="btn-editar" color="light">
             <p></p>Editar
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
@@ -78,11 +86,15 @@
     </ion-col>
 
     <ion-col>
-      <ion-card color="warning">
+      <ion-card class="card3" color="warning">
         <ion-card-header>
           <ion-row class="titles">
+            <ion-col size="10">
               <ion-card-title>Cobrança</ion-card-title>
-            <ion-icon class="icons" name="cash-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="2">
+              <ion-icon class="icons" name="cash-outline"></ion-icon>
+            </ion-col>
             <ion-card-subtitle>Mensagem de cobrança de serviço</ion-card-subtitle>
           </ion-row>
           
@@ -96,7 +108,7 @@
           
           <ion-col>
             <ion-row>
-            <ion-button color="light">
+            <ion-button class="btn-editar" color="light">
             <p></p>Editar
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
@@ -109,11 +121,15 @@
     </ion-col>
   
     <ion-col>
-      <ion-card color="tertiary">
+      <ion-card class="card4" color="tertiary">
         <ion-card-header>
           <ion-row class="titles">
+            <ion-col size="10">
               <ion-card-title>Reagendamento</ion-card-title>
+            </ion-col>
+            <ion-col size="2">
               <ion-icon class="icons" name="alert-circle-outline"></ion-icon>
+            </ion-col>
               <ion-card-subtitle>Mensagem de reagendamento de agendamento</ion-card-subtitle>
           </ion-row>
           
@@ -127,8 +143,8 @@
           
           <ion-col>
             <ion-row>
-            <ion-button color="light">
-            <p></p>Editar
+            <ion-button class="btn-editar" color="light">
+            <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
             </ion-row>
