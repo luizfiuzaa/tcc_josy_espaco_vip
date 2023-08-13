@@ -1,13 +1,143 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>msg-definidas</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<app-header-menu></app-header-menu>
+<div class="ion-page" id="main-content">
+  <ion-header mode="ios">
     <ion-toolbar>
-      <ion-title size="large">msg-definidas</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Agendamentos</ion-title>
+      <ion-button id="logOut" expand="block" fill="outline" slot="end"
+        ><ion-icon name="log-out"></ion-icon> <span>Sair</span>
+      </ion-button>
     </ion-toolbar>
   </ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row>
+
+    <ion-col>
+      <ion-card color="success">
+        <ion-card-header>
+          <ion-row class="titles">
+            <ion-card-title>Confirmação</ion-card-title>
+            <ion-icon class="icons" name="checkmark-circle-outline"></ion-icon>
+          <ion-card-subtitle>Mensagem de confirmação do agendamento</ion-card-subtitle>
+          </ion-row>
+          
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-row class="divisor">
+            <p>Olá, tudo bem? você está recebendo esta mensagem para avisar que seu agendamento para [serviço_name] foi marcado com sucesso no dia [data_hora_agendada].</p>
+            <p>atenciosamente, Josy Espaço VIP.</p>
+          </ion-row>
+          
+          <ion-col>
+            <ion-row>
+            <ion-button color="light">
+            <p></p>Editar
+            <ion-icon slot="end" name="pencil-outline"></ion-icon>
+          </ion-button>
+            </ion-row>
+            
+          </ion-col>
+          
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  
+    <ion-col>
+      <ion-card color="danger">
+        <ion-card-header>
+          <ion-row class="titles">
+              <ion-card-title>Cancelamento</ion-card-title>
+            <ion-icon class="icons" name="close-circle-outline"></ion-icon>
+            <ion-card-subtitle>Mensagem de cancelamento de agendamento</ion-card-subtitle>
+          </ion-row>
+          
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-row class="divisor">
+            <p>Olá, tudo bem? você está recebendo esta mensagem para avisar que um agendamento de [serviço_name] no dia [data_hora_agendada] foi cancelada devido à [mensagem de motivo]. Peço desculpas pelo possível incoveniente.</p>
+            <p>atenciosamente, Josy Espaço VIP.</p>
+          </ion-row>
+          
+          <ion-col>
+            <ion-row>
+            <ion-button color="light">
+            <p></p>Editar
+            <ion-icon slot="end" name="pencil-outline"></ion-icon>
+          </ion-button>
+            </ion-row>
+            
+          </ion-col>
+          
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col>
+      <ion-card color="warning">
+        <ion-card-header>
+          <ion-row class="titles">
+              <ion-card-title>Cobrança</ion-card-title>
+            <ion-icon class="icons" name="cash-outline"></ion-icon>
+            <ion-card-subtitle>Mensagem de cobrança de serviço</ion-card-subtitle>
+          </ion-row>
+          
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-row class="divisor">
+            <p>Olá, tudo bem? você está recebendo esta mensagem pois há um pagamento não efetuado de [serviço_name] no dia [data_hora_agendada], favor pagar o mais rápido o possível, obrigada!</p>
+            <p>atenciosamente, Josy Espaço VIP.</p>
+          </ion-row>
+          
+          <ion-col>
+            <ion-row>
+            <ion-button color="light">
+            <p></p>Editar
+            <ion-icon slot="end" name="pencil-outline"></ion-icon>
+          </ion-button>
+            </ion-row>
+            
+          </ion-col>
+          
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  
+    <ion-col>
+      <ion-card color="tertiary">
+        <ion-card-header>
+          <ion-row class="titles">
+              <ion-card-title>Reagendamento</ion-card-title>
+              <ion-icon class="icons" name="alert-circle-outline"></ion-icon>
+              <ion-card-subtitle>Mensagem de reagendamento de agendamento</ion-card-subtitle>
+          </ion-row>
+          
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-row class="divisor">
+            <p>Olá, tudo bem? você está recebendo esta mensagem pois um agendamento de [serviço_name] foi remarcado do dia [data_antiga] para o dia [data_nova]. estarei te aguardando no dia marcado, obrigada! </p>
+            <p>atenciosamente, Josy Espaço VIP.</p>
+          </ion-row>
+          
+          <ion-col>
+            <ion-row>
+            <ion-button color="light">
+            <p></p>Editar
+            <ion-icon slot="end" name="pencil-outline"></ion-icon>
+          </ion-button>
+            </ion-row>
+            
+          </ion-col>
+          
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  
+  </ion-row>
 </ion-content>
