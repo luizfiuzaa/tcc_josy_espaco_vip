@@ -14,7 +14,7 @@ interface CardDados {
 })
 export class ServicosPage implements OnInit {
 
-  @Input() images_carousel: CardDados[] = []
+  @Input() Card_Dados: CardDados[] = []
 
   ngOnInit() {
   }
@@ -56,6 +56,7 @@ export class ServicosPage implements OnInit {
       duracaoCard: '1h',
       precoCard: '35.00',
     }
-  ]
+  ];
+
 
 }
