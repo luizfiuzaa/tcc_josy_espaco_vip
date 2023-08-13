@@ -1,0 +1,62 @@
+ion-toolbar {
+    --color: #fff;
+    --background: #d819a3;
+}
+
+ion-button,
+ion-menu-button {
+    --color: #fff;
+}
+
+ion-card {
+    width: 45%;
+    min-width: 45%;
+    height: 200px;
+    border-radius: 15px;
+}
+
+@media only screen and (max-width:900px) {
+    ion-card {
+        width: 100%;
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.icon_card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    background: #d819a3;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit_icon {
+    font-size: 3em;
+    color: #fff;
+}
+
+.card_context {
+    position: absolute;
+    left: 80px;
+    top: 0;
+    height: 100%;
+    width: calc(100% - 80px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    margin-bottom: 10px;
+}
