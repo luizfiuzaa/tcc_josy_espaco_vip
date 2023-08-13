@@ -1,48 +1,49 @@
 ion-toolbar {
-    --color: #d819a3;
-    --background: #fff;
-  }
-  ion-button, ion-menu-button {
-    --color: #d819a3;
-  }
+  --color: #d819a3;
+  --background: #fff;
+}
+ion-button, ion-menu-button {
+  --color: #d819a3;
+}
 
-  ion-card-title{
-    font-size: 2em;
-  }
+ion-card-title{
+  font-size: 2em;
+}
 
-  ion-card{
-    color: #FFF;
-    height: 400px;
-  }
+ion-card{
+  color: #FFF;
+  height: 400px;
+}
 
-  .card1{
-    box-shadow: 10px 10px 0px 0px #22a055;
-  }
-  .card2{
-    box-shadow: 10px 10px 0px 0px #b93446;
-  }
-  .card3{
-    box-shadow: 10px 10px 0px 0px #d3a408;
-  }
-  .card4{
-    box-shadow: 10px 10px 0px 0px #6bb0ce;
-  }
+.card1{
+  box-shadow: 10px 10px 0px 0px #22a055;
+}
+.card2{
+  box-shadow: 10px 10px 0px 0px #b93446;
+}
+.card3{
+  box-shadow: 10px 10px 0px 0px #d3a408;
+}
+.card4{
+  box-shadow: 10px 10px 0px 0px #6bb0ce;
+}
 
-  ion-card .divisor{
-    height: 200px;
-  }
+ion-card .divisor{
+  height: 200px;
+  border-radius: 5px;
+  padding: 2px;
+}
 
-  .titles{
-    font-style: bold;
-    height: 100px;
-  }
+.titles{
+  height: 100px;
+}
 
-  .btn-editar{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
+.btn-editar{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
-  .icons{
-    font-size: 32px;
-  }
+.icons{
+  font-size: 32px;
+}
