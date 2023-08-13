@@ -26,6 +26,7 @@ ion-card {
     flex-wrap: wrap;
     justify-content: center;
     min-height: 100vh;
+    padding: 50px 0;
 }
 
 .icon_card {
@@ -35,7 +36,6 @@ ion-card {
     width: 80px;
     height: 100%;
     background: #d819a3;
-    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;

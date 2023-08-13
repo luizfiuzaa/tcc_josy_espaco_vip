@@ -1,0 +1,32 @@
+ion-toolbar {
+    --color: #fff;
+    --background: #d819a3;
+}
+
+ion-button,
+ion-menu-button {
+    --color: #fff;
+}
+
+.container_col{
+    display: flex;
+    justify-content: center;
+}
+
+.list{
+    width: 100%;
+    background: #da9ac8;
+}
+
+.list, ion-item{
+    --background: #da9ac8;
+    border-radius: 15px;
+}
+
+ion-item{
+    
+}
+
+.first_item{
+    text-align: center;
+}

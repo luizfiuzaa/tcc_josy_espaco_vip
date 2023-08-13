@@ -1,4 +1,5 @@
 ion-toolbar {
+<<<<<<< HEAD
     --color: #d819a3;
     --background: #fff;
   }
@@ -9,12 +10,18 @@ ion-toolbar {
   ion-card-title{
     font-size: 2em;
   }
+=======
+  --color: #fff;
+  --background: #d819a3;
+}
+>>>>>>> 1daee23ba1044e74ac8d36b020acd82d789c9d0e
 
-  ion-card{
-    color: #FFF;
-    height: 400px;
-  }
+ion-button,
+ion-menu-button {
+  --color: #fff;
+}
 
+<<<<<<< HEAD
   .card1{
     box-shadow: 10px 10px 0px 0px #22a055;
   }
@@ -33,11 +40,18 @@ ion-toolbar {
     border-radius: 5px;
     padding: 2px;
   }
+=======
+ion-card {
+  color: #FFF;
+  height: 400px;
+}
+>>>>>>> 1daee23ba1044e74ac8d36b020acd82d789c9d0e
 
-  .titles{
-    height: 100px;
-  }
+ion-card .divisor {
+  height: 200px;
+}
 
+<<<<<<< HEAD
   .btn-editar{
     position: absolute;
     bottom: 0;
@@ -47,3 +61,33 @@ ion-toolbar {
   .icons{
     font-size: 32px;
   }
+=======
+.titles {
+  height: 100px;
+}
+
+.icons {
+  font-size: 16px;
+}
+
+// Inicio medias
+// Media para o card não ficar muito espremido, nem muito grande
+@media only screen and (max-width: 1200px) and (min-width: 600px) {
+  .card_content {
+    min-width: 300px;
+    max-width: 350px;
+  }
+}
+// Media para os card ficarem no centro quando ficar dois de cada lado
+@media only screen and (max-width: 899px) {
+  .content_row {
+    justify-content: center;
+  }
+}
+// Media para o card ocupar o espaço disponível quando ele ficar sozinho
+@media only screen and (max-width: 599px) {
+  .card_content {
+    min-width: 300px;
+  }
+}
+>>>>>>> 1daee23ba1044e74ac8d36b020acd82d789c9d0e
