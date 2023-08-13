@@ -1,4 +1,7 @@
+<!-- Menu hamburger -->
 <app-header-menu></app-header-menu>
+
+<!-- Header -->
 <div class="ion-page" id="main-content">
   <ion-header mode="ios">
     <ion-toolbar>
@@ -6,16 +9,91 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>Agendamentos</ion-title>
-      <ion-button id="logOut" expand="block" fill="outline" slot="end"
-        ><ion-icon name="log-out"></ion-icon> <span>Sair</span>
-      </ion-button>
     </ion-toolbar>
   </ion-header>
+  
+  <!-- Conteúdo da página -->
   <ion-content class="ion-padding">
-    <ion-fab horizontal="end" vertical="bottom">
+
+    <!-- botão add agendamento-->
+    <ion-fab id="add_area" horizontal="end" vertical="bottom">
       <ion-fab-button>
-        <ion-icon name="add"></ion-icon>
+        <ion-icon id="add" name="add" expand="block"></ion-icon>
       </ion-fab-button>
     </ion-fab>
+    
+    <ion-toolbar></ion-toolbar>
+    
+    <!-- modal de agendamento-->
+    <ion-modal id="example-modal" #modal trigger="add_area">
+      <ng-template>
+        <div class="wrapper">
+          <ion-toolbar>
+            <ion-title>Agendar</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="modal.dismiss()"
+              ><ion-icon name="close"></ion-icon
+                ></ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            
+          <form style="margin-top: 7%" action="" method="post">
+            <ion-list lines="none">
+              <!-- Clientes -->
+              <ion-item>
+                <ion-select
+                label="Selecione um Cliente"
+                label-placement="stacked"
+                >
+                <!-- Opções de serviços -->
+                  <ion-select-option value="apple">teste</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <!-- Serviços -->
+              <ion-item>
+                <ion-select
+                  label="Selecione o Serviço"
+                  label-placement="stacked"
+                >
+                  <!-- Opções de serviços -->
+                  <ion-select-option value="apple"
+                    >Cabelo Longo</ion-select-option
+                  >
+                  <ion-select-option value="banana"
+                    >Cabelo Médio</ion-select-option
+                  >
+                  <ion-select-option value="orange"
+                    >Cabelo Curto</ion-select-option
+                  >
+                  <ion-select-option value="orange"
+                    >Cabelo Curto</ion-select-option
+                  >
+                  <ion-select-option value="orange"
+                    >Cabelo Curto</ion-select-option
+                  >
+                </ion-select>
+              </ion-item>
+
+              <!-- DIA e HORA -->
+              <ion-item>
+                <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+                <ion-modal [keepContentsMounted]="true">
+                  <ng-template>
+                    <ion-datetime id="datetime"></ion-datetime>
+                  </ng-template>
+                </ion-modal>
+              </ion-item>
+            </ion-list>
+          <ion-row>
+              <ion-col class="ion-align-items-center ion-justify-content-center ion-text-center">
+                <ion-button>Agendar</ion-button>
+              </ion-col>
+          </ion-row>
+          </form>
+        </div>
+      </ng-template>
+    </ion-modal>
   </ion-content>
 </div>
