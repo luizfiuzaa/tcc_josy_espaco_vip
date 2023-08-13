@@ -11,4 +11,9 @@ ion-list {
       margin-left: 5%;
     }
   }
+
+  ion-item.active{
+    --background: rgb(187, 187, 187);
+    border-radius: 15px;
+  }
 }
