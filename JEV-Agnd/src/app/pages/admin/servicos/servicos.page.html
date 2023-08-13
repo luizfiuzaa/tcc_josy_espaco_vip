@@ -1,13 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>servicos</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<app-header-menu></app-header-menu>
+<div class="ion-page" id="main-content">
+  <ion-header mode="ios">
     <ion-toolbar>
-      <ion-title size="large">servicos</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Agendamentos</ion-title>
+      <ion-button id="logOut" expand="block" fill="outline" slot="end"
+        ><ion-icon name="log-out"></ion-icon> <span>Sair</span>
+      </ion-button>
     </ion-toolbar>
   </ion-header>
+<ion-content [fullscreen]="true">
+
 </ion-content>
+<app-footer></app-footer>
