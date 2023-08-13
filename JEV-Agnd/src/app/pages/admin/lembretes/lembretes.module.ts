@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { LembretesPageRoutingModule } from './lembretes-routing.module';
 
 import { LembretesPage } from './lembretes.page';
+import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LembretesPageRoutingModule
+    LembretesPageRoutingModule,
+    HeaderMenuModule
   ],
   declarations: [LembretesPage]
 })
