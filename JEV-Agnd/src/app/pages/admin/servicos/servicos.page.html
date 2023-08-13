@@ -1,13 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>servicos</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">servicos</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<app-header-menu></app-header-menu>
+<div class="ion-page" id="main-content">
+	<ion-header mode="ios">
+		<ion-toolbar>
+			<ion-buttons slot="start">
+				<ion-menu-button></ion-menu-button>
+			</ion-buttons>
+			<ion-title>Agendamentos</ion-title>
+			<ion-button id="logOut" expand="block" fill="outline" slot="end"><ion-icon name="log-out"></ion-icon>
+				<span>Sair</span>
+			</ion-button>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content [fullscreen]="true">
+		<ion-row>
+			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0">
+				<ion-card *ngFor="let CardDados of CardDados">
+					<ion-card-content class="icon_card">
+						<ion-icon name="create-outline" class="edit_icon"></ion-icon>
+					</ion-card-content>
+					<ion-card-content class="card_context">
+						<ion-card-title class="title">{{CardDados.tituloCard}}</ion-card-title>
+						<p>Descrição: {{CardDados.descricaoCard}}</p>
+						<p>Duração: {{CardDados.duracaoCard}}</p>
+						<p>Preço (R$): {{CardDados.precoCard}}</p>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length == 0">
+				<ion-text>
+					<p>Nenhum serviço cadastrado...</p>
+					<button [routerLink]="['#']" routerLinkActive="router-link-active">
+						Cadastrar
+					</button>
+				</ion-text>
+			</ion-col>
+		</ion-row>
+	</ion-content>
