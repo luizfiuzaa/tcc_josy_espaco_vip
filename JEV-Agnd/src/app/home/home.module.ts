@@ -1,4 +1,4 @@
-import { HeaderMenuComponent } from './../components/header-menu/header-menu.component';
+import { HeaderMenuModule } from '../components/header-menu/header-menu.module'; 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -15,11 +15,11 @@ import { NgCalendarModule } from 'ionic2-calendar';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    NgCalendarModule
+    NgCalendarModule,
+    HeaderMenuModule
   ],
   declarations: [
-    HomePage,
-    HeaderMenuComponent
+    HomePage
   ]
 })
 export class HomePageModule {}
