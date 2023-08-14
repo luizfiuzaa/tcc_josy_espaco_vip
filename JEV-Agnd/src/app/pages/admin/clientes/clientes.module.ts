@@ -8,12 +8,15 @@ import { ClientesPageRoutingModule } from './clientes-routing.module';
 
 import { ClientesPage } from './clientes.page';
 
+import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ClientesPageRoutingModule
+    ClientesPageRoutingModule,
+    HeaderMenuModule
   ],
   declarations: [ClientesPage]
 })
