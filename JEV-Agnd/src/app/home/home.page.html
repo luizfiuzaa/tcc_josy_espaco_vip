@@ -157,7 +157,8 @@
               <!-- Serviços -->
               <ion-item>
                     <ion-select
-                      aria-label="Servicos"
+                      label="Serviço(s):"
+                      label-placement="floating"
                       placeholder="Selecione o(s) serviço(s)"
                       [multiple]="true"
                     >
@@ -176,6 +177,7 @@
 
               <!-- DIA e HORA -->
               <ion-item>
+                <h6>Dia e Horário: </h6>
                 <ion-datetime-button datetime="datetime"></ion-datetime-button>
 
                 <ion-modal [keepContentsMounted]="true">
