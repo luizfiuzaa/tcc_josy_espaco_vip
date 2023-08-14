@@ -23,6 +23,14 @@ export class LembretesPage implements OnInit {
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
+      horarioLembrete: '10:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
+    },
+    {
+      horarioLembrete: '10:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
+    },
+    {
       horarioLembrete: '11:00',
       conteudoLembrete: 'Você tem um agendamento marcado as 12:00'
     },

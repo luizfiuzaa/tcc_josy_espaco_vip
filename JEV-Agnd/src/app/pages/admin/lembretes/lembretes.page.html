@@ -21,9 +21,11 @@
               <h1>Lembretes</h1>
             </ion-text>
           </div>
-          <div class="list__item" *ngFor="let Lembretes of Lembretes">
-            <ion-text class="list__horario">{{Lembretes.horarioLembrete}}</ion-text>
-            <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}</ion-text>
+          <div class="ondem">
+            <div class="list__item" *ngFor="let Lembretes of Lembretes">
+              <ion-text class="list__horario">{{Lembretes.horarioLembrete}}</ion-text>
+              <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}</ion-text>
+            </div>
           </div>
         </div>
       </ion-col>

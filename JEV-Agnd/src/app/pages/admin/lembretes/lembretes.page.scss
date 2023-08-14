@@ -25,12 +25,18 @@ ion-menu-button {
 }
 
 .list {
-    background: #D9D9D9;
+    background: #f0ebeb;
     border-radius: 15px;
     width: 100%;
     height: auto;
     padding: 30px 20px;
-    box-shadow: 10px 10px 0px 0px #a1a1a1;
+    box-shadow: 10px 10px 0px 0px #b6b5b5;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.list::-webkit-scrollbar{
+    display: none;
 }
 
 .list__item {
@@ -41,8 +47,13 @@ ion-menu-button {
     padding: 20px 0 20px 10px;
 }
 
+.ondem{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 .list__itemTitle {
-    color: #860872;
+    color: #000000;
     text-align: center;
     width: 100%;
     font-family: 'Bricolage Grotesque', sans-serif;
@@ -60,9 +71,11 @@ ion-menu-button {
 }
 
 .list__conteudo {
-    color: #C000A2;
+    color: rgb(139, 133, 133);
+    text-shadow: 0.5px 0.5px 0px #00000042;
     font-size: 1.4em;
     text-align: center;
+    width: calc(100% - 180px);
 }
 
 .alerta {
@@ -72,11 +85,17 @@ ion-menu-button {
 @media only screen and (max-width: 830px) {
     .list__item {
         flex-direction: column;
+        padding: 10px 0 20px 10px;
     }
 
     .list__horario {
         margin-bottom: 10px;
     }
+
+    
+.list__conteudo {
+    width: 100%;
+}
 }
 
 @media only screen and (max-width: 770px) {
