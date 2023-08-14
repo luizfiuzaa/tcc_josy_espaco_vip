@@ -7,3 +7,84 @@ ion-button,
 ion-menu-button {
     --color: #fff;
 }
+
+.col_content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F347D8;
+    width: calc(90% /3);
+    height: 180px;
+    min-width: 180px;
+    max-width: 500px;
+    border-radius: 15px;
+}
+
+.card-title {
+    background: #FFAFE9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    font-size: 1.5em;
+}
+
+.card-money {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    width: 100%;
+    font-size: 1.3em;
+}
+
+ion-icon {
+    font-size: 2.7em;
+}
+
+@media only screen and (max-width:660px) {
+    .card {
+        width: 100%;
+    }
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.grafic {
+    height: 300px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.line {
+    font-size: 20px;
+    font-weight: 900;
+    height: 300px;
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px #aaaaaa;
+}
