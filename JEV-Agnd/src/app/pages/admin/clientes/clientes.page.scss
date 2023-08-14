@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // border: 1px solid black;
+}
+
 ion-toolbar {
     --color: #fff;
     --background: #d819a3;
@@ -6,4 +13,28 @@ ion-toolbar {
 ion-button,
 ion-menu-button {
     --color: #fff;
+}
+
+.col_content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.header{
+    display: flex;
+    height: 60px;
+    gap: 20px;
+}
+
+.header button {
+    width: 20%;
+    border-radius: 30px;
+    font-size: 2em;
+    background: #d819a3;
+}
+
+.header .searchBar{
+    --border-radius: 30px;
 }

@@ -13,10 +13,18 @@
   </ion-header>
 
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">clientes</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <ion-content [fullscreen]="true">
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="col_content" size-lg="10" size-md="10" size="12">
+        <div>
+          <div class="header">
+            <button><ion-icon name="person-add-outline">Adicionar Cliente</ion-icon></button>
+            <ion-searchbar class="searchBar" placeholder="Buscar cliente"></ion-searchbar>
+          </div>
+          <div class="content">
+            
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-content>
