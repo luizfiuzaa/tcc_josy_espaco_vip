@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+interface Lembretes {
+  horarioLembrete: string;
+  conteudoLembrete: string;
+}
 
 @Component({
   selector: 'app-lembretes',
@@ -7,9 +12,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LembretesPage implements OnInit {
 
-  constructor() { }
+  @Input() Lembrete: Lembretes[] = [];
 
   ngOnInit() {
-  }
+  };
 
+  Lembretes = [
+    {
+      horarioLembrete: '10:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
+    },
+    {
+      horarioLembrete: '11:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 12:00'
+    },
+    {
+      horarioLembrete: '13:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 14:00'
+    },
+    {
+      horarioLembrete: '17:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:00'
+    }
+  ];
 }
