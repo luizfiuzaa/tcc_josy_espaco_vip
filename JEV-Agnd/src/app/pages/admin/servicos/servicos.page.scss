@@ -44,6 +44,12 @@ ion-card {
 .edit_icon {
     font-size: 3em;
     color: #fff;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.edit_icon:hover {
+    transform: scale(1.1);
 }
 
 .card_context {
