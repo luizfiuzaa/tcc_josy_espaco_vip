@@ -13,26 +13,28 @@
 	</ion-header>
 	<ion-content [fullscreen]="true">
 		<ion-row>
-			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0">
-				<ion-card *ngFor="let CardDados of CardDados">
+			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
+				<ion-card *ngFor="let card of CardDados">
 					<ion-card-content class="icon_card">
 						<ion-icon name="create-outline" class="edit_icon"></ion-icon>
 					</ion-card-content>
 					<ion-card-content class="card_context">
-						<ion-card-title class="title">{{CardDados.tituloCard}}</ion-card-title>
-						<p>Descrição: {{CardDados.descricaoCard}}</p>
-						<p>Duração: {{CardDados.duracaoCard}}</p>
-						<p>Preço (R$): {{CardDados.precoCard}}</p>
+						<ion-card-title class="title">{{card.tituloCard}}</ion-card-title>
+						<p>Descrição: {{card.descricaoCard}}</p>
+						<p>Duração: {{card.duracaoCard}}</p>
+						<p>Preço (R$): {{card.precoCard}}</p>
 					</ion-card-content>
 				</ion-card>
 			</ion-col>
-			<ion-col class="container" size="12" *ngIf="CardDados.length == 0">
-				<ion-text>
-					<p>Nenhum serviço cadastrado...</p>
-					<button [routerLink]="['#']" routerLinkActive="router-link-active">
-						Cadastrar
-					</button>
-				</ion-text>
-			</ion-col>
+			<ng-template #noCards>
+				<ion-col class="container" size="12">
+					<ion-text>
+						<p>Nenhum serviço cadastrado...</p>
+						<button [routerLink]="['#']" routerLinkActive="active-button">
+							Cadastrar
+						</button>
+					</ion-text>
+				</ion-col>
+			</ng-template>
 		</ion-row>
 	</ion-content>
