@@ -8,12 +8,15 @@ import { FaturamentosPageRoutingModule } from './faturamentos-routing.module';
 
 import { FaturamentosPage } from './faturamentos.page';
 
+import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FaturamentosPageRoutingModule
+    FaturamentosPageRoutingModule,
+    HeaderMenuModule
   ],
   declarations: [FaturamentosPage]
 })
