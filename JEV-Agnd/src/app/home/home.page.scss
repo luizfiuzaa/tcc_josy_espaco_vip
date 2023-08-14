@@ -5,3 +5,28 @@ ion-toolbar {
 ion-button, ion-menu-button {
   --color: #fff;
 }
+
+
+// agendamentos
+ion-card{
+  width: 100vw;
+  .ok{
+    --color: var(--ion-color-success);
+  }
+  .wait{
+    --color: var(--ion-color-warning);
+  }
+  .delete{
+    --color:#d819a3;
+  }
+  #horario{
+    --color:#d819a3;
+  
+  }
+  ion-card-subtitle{
+    font-size: 1.3em;
+  }
+  ion-card-subtitle,ion-card-content{
+    color: #000;
+  }
+}
