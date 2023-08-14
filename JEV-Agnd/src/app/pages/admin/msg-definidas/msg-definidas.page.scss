@@ -47,3 +47,29 @@ ion-card .divisor{
 .icons{
   font-size: 32px;
 }
+
+.card_content{
+  max-width: 475px;
+}
+
+
+// Inicio medias
+// Media para o card não ficar muito espremido, nem muito grande
+@media only screen and (max-width: 1200px) and (min-width: 600px) {
+  .card_content {
+    min-width: 300px;
+    max-width: 350px;
+  }
+}
+// Media para os card ficarem no centro quando ficar dois de cada lado
+@media only screen and (max-width: 899px) {
+  .main {
+    justify-content: center;
+  }
+}
+// Media para o card ocupar o espaço disponível quando ele ficar sozinho
+@media only screen and (max-width: 599px) {
+  .card_content {
+    min-width: 300px;
+  }
+}
