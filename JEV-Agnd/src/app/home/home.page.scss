@@ -6,6 +6,40 @@ ion-button, ion-menu-button {
   --color: #fff;
 }
 
+.form{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.date {
+  display: flex;
+  justify-content: flex-start;
+}
+.date input{
+  font-size: 1.2em;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 4px;
+  background: #d819a3;
+  outline: none;
+}
+
+@media only screen and (max-width: 500px){
+  .date input{
+    font-size: 1.05em;
+  }
+
+  .form {
+    padding: 0 5px;
+  }
+}
+
+.inputSearch {
+  display: flex;
+  justify-content: flex-end;
+}
 
 // agendamentos
 ion-card{
