@@ -17,6 +17,12 @@
     max-height: 75vh
 }
 
+@media only screen and (max-width:900px){
+    .carousel-container img.image-active {
+        max-height: 85vh;
+    }
+}
+
 // dots/indicators
 .carousel-dot-container {
     position: absolute;
