@@ -2,11 +2,13 @@ ion-toolbar {
   --color: #fff;
   --background: #d819a3;
 }
-ion-button, ion-menu-button {
+
+ion-button,
+ion-menu-button {
   --color: #fff;
 }
 
-.form{
+.form {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,7 +19,8 @@ ion-button, ion-menu-button {
   display: flex;
   justify-content: flex-start;
 }
-.date input{
+
+.date input {
   font-size: 1.2em;
   border: 2px solid white;
   border-radius: 5px;
@@ -27,8 +30,8 @@ ion-button, ion-menu-button {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 500px){
-  .date input{
+@media only screen and (max-width: 500px) {
+  .date input {
     font-size: 1.05em;
   }
 
@@ -43,25 +46,32 @@ ion-button, ion-menu-button {
 }
 
 // agendamentos
-ion-card{
+ion-card {
   width: 100vw;
-  .ok{
+
+  .ok {
     --color: var(--ion-color-success);
   }
-  .wait{
+
+  .wait {
     --color: var(--ion-color-warning);
   }
-  .delete{
-    --color:#d819a3;
+
+  .delete {
+    --color: #d819a3;
   }
-  #horario{
-    --color:#d819a3;
-  
+
+  #horario {
+    --color: #d819a3;
+
   }
-  ion-card-subtitle{
+
+  ion-card-subtitle {
     font-size: 1.3em;
   }
-  ion-card-subtitle,ion-card-content{
+
+  ion-card-subtitle,
+  ion-card-content {
     color: #000;
   }
 }
