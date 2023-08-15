@@ -19,4 +19,4 @@ import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.mod
   ],
   declarations: [LembretesPage]
 })
-export class LembretesPageModule {}
+export class LembretesPageModule { }
