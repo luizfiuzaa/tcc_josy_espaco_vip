@@ -11,13 +11,54 @@ interface Lembretes {
   styleUrls: ['./lembretes.page.scss'],
 })
 export class LembretesPage implements OnInit {
-
   @Input() Lembrete: Lembretes[] = [];
 
   ngOnInit() {
   };
 
+  constructor() {
+  }
+
+  ngAfterViewInit() {
+    const lista = document.querySelector('.list') as HTMLElement;
+    const fabBtn = document.querySelector('#fab') as HTMLElement;
+
+    lista.addEventListener('scroll', () => {
+      if (lista.scrollTop > 0) {
+        fabBtn.classList.remove('none');
+      }
+      if (lista?.scrollTop == 0) {
+        fabBtn?.classList.add('none');
+      }
+    })
+  }
+
+  ScrollTop(): void{
+    const lista = document.querySelector('.list') as HTMLElement;
+    lista.scrollTop = 0;
+  }
+
   Lembretes = [
+    {
+      horarioLembrete: '10:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
+    },
+    {
+      horarioLembrete: '10:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
+    },
+    {
+      horarioLembrete: '10:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
+    },
+    {
+      horarioLembrete: '10:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
+    },
+    {
+      horarioLembrete: '10:00',
+      conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
+    },
     {
       horarioLembrete: '10:00',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'

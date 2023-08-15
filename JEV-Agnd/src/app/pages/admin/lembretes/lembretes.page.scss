@@ -35,7 +35,7 @@ ion-menu-button {
     overflow-y: auto;
 }
 
-.list::-webkit-scrollbar{
+.list::-webkit-scrollbar {
     display: none;
 }
 
@@ -47,7 +47,7 @@ ion-menu-button {
     padding: 20px 0 20px 10px;
 }
 
-.ondem{
+.ondem {
     display: flex;
     flex-direction: column-reverse;
 }
@@ -92,14 +92,18 @@ ion-menu-button {
         margin-bottom: 10px;
     }
 
-    
-.list__conteudo {
-    width: 100%;
-}
+
+    .list__conteudo {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 770px) {
     .container_col {
         padding: 30px 15px;
     }
+}
+
+.none {
+    display: none;
 }
