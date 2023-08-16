@@ -46,10 +46,10 @@ ion-toolbar {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.747);
 }
 
-@media only screen and (max-height:800px){
-.landing-text h1{
-  font-size: 3.1em;
-}
+@media only screen and (max-height:800px) {
+  .landing-text h1 {
+    font-size: 3.1em;
+  }
 }
 
 .landing-text p {
@@ -74,7 +74,8 @@ ion-toolbar {
   font-size: 1em;
 }
 
-.landing-text .btn:hover, .landing-text .btn:focus  {
+.landing-text .btn:hover,
+.landing-text .btn:focus {
   transform: scale(1.05);
   background: #D819A3;
 }
@@ -103,4 +104,10 @@ ion-toolbar {
   // padding: 40px;
   justify-content: center;
   flex-direction: column;
+}
+
+@media only screen and (max-height:650px) {
+  .landing-text {
+    top: 58%;
+  }
 }
