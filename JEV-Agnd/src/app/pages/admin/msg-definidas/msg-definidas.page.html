@@ -38,11 +38,11 @@
           
           <ion-col>
             <ion-row>
-            <ion-button expand="block" (click)="setOpen1(true)" class="btn-editar" color="light">
+            <ion-button id="btn-editar1" expand="block" (click)="setOpen1(true)" class="btn-editar1" color="light">
             <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
-          <ion-modal mode="ios" class="modal-header1" [isOpen]="modalOpen1" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+          <ion-modal #modal trigger="btn-editar1" mode="ios" class="modal-header1" [isOpen]="modalOpen1" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
             <ion-col>
               <ng-template>
               <ion-header>
@@ -59,6 +59,7 @@
               <ion-content>
                 <ion-item>
                   <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                  <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
                 </ion-item>
               </ion-content>
             </ng-template>
@@ -96,11 +97,11 @@
           
           <ion-col>
             <ion-row>
-            <ion-button expand="block" (click)="setOpen2(true)" class="btn-editar" color="light">
+            <ion-button id="btn-editar2" expand="block" (click)="setOpen2(true)" class="btn-editar2" color="light">
             <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
-          <ion-modal mode="ios" class="modal-header2" [isOpen]="modalOpen2" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+          <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpen2" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
             <ion-col>
               <ng-template>
               <ion-header>
@@ -117,6 +118,7 @@
               <ion-content>
                 <ion-item>
                   <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                  <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
                 </ion-item>
               </ion-content>
             </ng-template>
@@ -154,11 +156,11 @@
           
           <ion-col>
             <ion-row>
-            <ion-button expand="block" (click)="setOpen3(true)" class="btn-editar" color="light">
+            <ion-button id="btn-editar3" expand="block" (click)="setOpen3(true)" class="btn-editar3" color="light">
             <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
-          <ion-modal mode="ios" class="modal-header3" [isOpen]="modalOpen3" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+          <ion-modal #modal trigger="btn-editar3" mode="ios" class="modal-header3" [isOpen]="modalOpen3" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
             <ion-col>
               <ng-template>
               <ion-header>
@@ -175,6 +177,7 @@
               <ion-content>
                 <ion-item>
                   <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                  <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
                 </ion-item>
               </ion-content>
             </ng-template>
@@ -212,11 +215,11 @@
           
           <ion-col>
             <ion-row>
-            <ion-button expand="block" (click)="setOpen4(true)" class="btn-editar" color="light">
+            <ion-button id="btn-editar4" expand="block" (click)="setOpen4(true)" class="btn-editar4" color="light">
             <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
-          <ion-modal mode="ios" class="modal-header4" [isOpen]="modalOpen4" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+          <ion-modal #modal trigger="btn-editar4" mode="ios" class="modal-header4" [isOpen]="modalOpen4" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
             <ion-col>
               <ng-template>
               <ion-header>
@@ -233,6 +236,7 @@
               <ion-content>
                 <ion-item>
                   <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                  <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
                 </ion-item>
               </ion-content>
             </ng-template>

@@ -20,9 +20,6 @@ export class MsgDefinidasPage implements OnInit {
   setOpen1(isOpen: boolean) {
     this.modalOpen1= isOpen;
   }
-  setClose1(isOpen: boolean) {
-    this.modalOpen1= isOpen;
-  }
   
   // modal 2
   modalOpen2 = false;
