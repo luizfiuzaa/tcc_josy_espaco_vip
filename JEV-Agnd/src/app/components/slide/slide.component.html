@@ -1,6 +1,6 @@
 <div class="slide">
   <div *ngIf="images_slide && images_slide.length > 0" class="slide-container">
-    <div *ngFor="let image_slide of images_slide; let i=index;">
+    <div *ngFor="let image_slide of images_slide; let i=index;" class="content">
       <ion-card class="image-card">
         <div class="images_div">
           <img [src]="image_slide.imageSrc" [alt]="image_slide.imageAlt" class="image">

@@ -41,6 +41,14 @@
     transition: 0.5s;
 }
 
+.slide-container:hover :not(:hover) {
+    opacity: 0.97;
+}
+
+.content:hover {
+    opacity: 1;
+}
+
 .images_div {
     position: relative;
     width: 100%;
@@ -56,11 +64,12 @@ img {
     transition: all 0.3s ease;
 }
 
+
 .image-card:hover {
     transform: scale(1.04);
 }
 
-.card_btn{
+.card_btn {
     position: absolute;
     bottom: 8%;
     left: 50%;
@@ -74,13 +83,12 @@ img {
     border-radius: 5px;
     transition: 0.5s;
     cursor: pointer;
-    opacity: 0;
+    opacity: 0 !important;
     color: white;
     font-size: 1.2em;
 }
-
-.image-card:hover .card_btn{
-    opacity: 1;
+.image-card:hover .card_btn {
+    opacity: 1 !important;
 }
 
 .titulo {
