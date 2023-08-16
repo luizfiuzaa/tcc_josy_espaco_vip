@@ -5,7 +5,7 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Agendamentos</ion-title>
+      <ion-title>Mensagens</ion-title>
       <ion-button id="logOut" expand="block" fill="outline" slot="end"
         ><ion-icon name="log-out"></ion-icon> <span>Sair</span>
       </ion-button>
@@ -38,10 +38,33 @@
           
           <ion-col>
             <ion-row>
-            <ion-button class="btn-editar" color="light">
-            <p></p>Editar
+            <ion-button expand="block" (click)="setOpen1(true)" class="btn-editar" color="light">
+            <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
+          <ion-modal mode="ios" class="modal-header1" [isOpen]="modalOpen1" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+            <ion-col>
+              <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Editar</ion-title>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="setOpen1(false)">Cancelar</ion-button>
+                  </ion-buttons>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="setOpen1(false)">Confirmar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content>
+                <ion-item>
+                  <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+            </ion-col>
+              
+          </ion-modal>
             </ion-row>
             
           </ion-col>
@@ -73,10 +96,33 @@
           
           <ion-col>
             <ion-row>
-            <ion-button class="btn-editar" color="light">
+            <ion-button expand="block" (click)="setOpen2(true)" class="btn-editar" color="light">
             <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
+          <ion-modal mode="ios" class="modal-header2" [isOpen]="modalOpen2" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+            <ion-col>
+              <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Editar</ion-title>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="setOpen2(false)">Cancelar</ion-button>
+                  </ion-buttons>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="setOpen2(false)">Confirmar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content>
+                <ion-item>
+                  <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+            </ion-col>
+              
+          </ion-modal>
             </ion-row>
             
           </ion-col>
@@ -108,10 +154,33 @@
           
           <ion-col>
             <ion-row>
-            <ion-button class="btn-editar" color="light">
-            <p></p>Editar
+            <ion-button expand="block" (click)="setOpen3(true)" class="btn-editar" color="light">
+            <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
+          <ion-modal mode="ios" class="modal-header3" [isOpen]="modalOpen3" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+            <ion-col>
+              <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Editar</ion-title>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="setOpen3(false)">Cancelar</ion-button>
+                  </ion-buttons>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="setOpen3(false)">Confirmar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content>
+                <ion-item>
+                  <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+            </ion-col>
+              
+          </ion-modal>
             </ion-row>
             
           </ion-col>
@@ -143,10 +212,33 @@
           
           <ion-col>
             <ion-row>
-            <ion-button class="btn-editar" color="light">
+            <ion-button expand="block" (click)="setOpen4(true)" class="btn-editar" color="light">
             <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
+          <ion-modal mode="ios" class="modal-header4" [isOpen]="modalOpen4" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+            <ion-col>
+              <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Editar</ion-title>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="setOpen4(false)">Cancelar</ion-button>
+                  </ion-buttons>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="setOpen4(false)">Confirmar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content>
+                <ion-item>
+                  <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+            </ion-col>
+              
+          </ion-modal>
             </ion-row>
             
           </ion-col>
@@ -156,4 +248,5 @@
     </ion-col>
   
   </ion-row>
+
 </ion-content>

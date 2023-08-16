@@ -1,3 +1,16 @@
+// msg-colors
+:root{
+  --confirmar: #2DD36F;
+  --cancelar: #EB445A;
+  --cobrar: #FFC409;
+  --remarcar: #83D5F9;
+
+  --confirmar-shadow: #22a055;
+  --cancelar-shadow: #b93446;
+  --cobrar-shadow: #d3a408;
+  --remarcar-shadow: #6bb0ce;
+}
+
 ion-toolbar {
   --color: #d819a3;
   --background: #fff;
@@ -20,17 +33,32 @@ ion-card{
 }
 
 .card1{
-  box-shadow: 10px 10px 0px 0px #22a055;
+  box-shadow: 10px 10px 0px 0px var(--confirmar-shadow);
 }
 .card2{
-  box-shadow: 10px 10px 0px 0px #b93446;
+  box-shadow: 10px 10px 0px 0px var(--cancelar-shadow);
 }
 .card3{
-  box-shadow: 10px 10px 0px 0px #d3a408;
+  box-shadow: 10px 10px 0px 0px var(--cobrar-shadow);
 }
 .card4{
-  box-shadow: 10px 10px 0px 0px #6bb0ce;
+  box-shadow: 10px 10px 0px 0px var(--remarcar-shadow);
 }
+
+// blur para cada modal
+.modal-header1{
+  backdrop-filter: blur(4px);
+}
+.modal-header2{
+  backdrop-filter: blur(4px);
+}
+.modal-header3{
+  backdrop-filter: blur(4px);
+}
+.modal-header4{
+  backdrop-filter: blur(4px);
+}
+
 
 ion-card .divisor{
   height: 200px;
