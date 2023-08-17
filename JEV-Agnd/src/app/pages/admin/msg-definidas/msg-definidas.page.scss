@@ -1,89 +1,90 @@
 // msg-colors
-  $confirmar: #2DD36F;
-  $cancelar: #EB445A;
-  $cobrar: #FFC409;
-  $remarcar: #83D5F9;
+$confirmar: #2dd36f;
+$cancelar: #eb445a;
+$cobrar: #ffc409;
+$remarcar: #83d5f9;
 
-  $confirmar-shadow: #22a055;
-  $cancelar-shadow: #b93446;
-  $cobrar-shadow: #d3a408;
-  $remarcar-shadow: #6bb0ce;
-
+$confirmar-shadow: #22a055;
+$cancelar-shadow: #b93446;
+$cobrar-shadow: #d3a408;
+$remarcar-shadow: #6bb0ce;
 
 ion-toolbar {
-  --color: var(--ion-color-primary);
-  --background: #fff;
+  --color:#fff;
+  --background: var(--ion-color-primary);
 }
-ion-button, ion-menu-button {
-  --color: var(--ion-color-primary);
+ion-button,
+ion-menu-button {
+  --color: #fff;
 }
 
-.main{
+.main {
   margin-top: 3.5rem;
 }
 
-ion-card-title{
+ion-card-title {
   font-size: 2em;
 }
 
-ion-card{
-  color: #FFF;
+ion-card {
+  color: #fff;
   height: 400px;
 }
 
-.card1{
+.card1 {
   box-shadow: 10px 10px 0px 0px $confirmar-shadow;
 }
-.card2{
+.card2 {
   box-shadow: 10px 10px 0px 0px $cancelar-shadow;
 }
-.card3{
+.card3 {
   box-shadow: 10px 10px 0px 0px $cobrar-shadow;
 }
-.card4{
+.card4 {
   box-shadow: 10px 10px 0px 0px $remarcar-shadow;
 }
 
 // blur para cada modal
-.modal-header1{
+.modal-header1 {
   backdrop-filter: blur(4px);
 }
-.modal-header2{
+.modal-header2 {
   backdrop-filter: blur(4px);
 }
-.modal-header3{
+.modal-header3 {
   backdrop-filter: blur(4px);
 }
-.modal-header4{
+.modal-header4 {
   backdrop-filter: blur(4px);
 }
 
-
-ion-card .divisor{
+ion-card .divisor {
   height: 200px;
   border-radius: 5px;
   padding: 2px;
 }
 
-.titles{
+.titles {
   height: 100px;
   font-size: 0.9em;
 }
 
-.btn-editar1, .btn-editar2, .btn-editar3, .btn-editar4{
+.btn-editar1,
+.btn-editar2,
+.btn-editar3,
+.btn-editar4 {
   position: absolute;
   bottom: -0.5em;
   left: 0;
 }
 
-.icons{
+.icons {
   font-size: 32px;
 }
 
-.card_content{
+.card_content {
   max-width: 475px;
 }
-
 
 // Inicio medias
 // Media para o card não ficar muito espremido, nem muito grande

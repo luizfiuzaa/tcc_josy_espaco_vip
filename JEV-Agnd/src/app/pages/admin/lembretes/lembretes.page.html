@@ -1,48 +1,31 @@
 <app-header-menu></app-header-menu>
 
 <div class="ion-page" id="main-content">
-
   <ion-header mode="ios">
-
     <ion-toolbar>
-
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-
       <ion-title>Lembretes</ion-title>
-
-      <ion-button id="logOut" expand="block" fill="outline" slot="end"><ion-icon name="log-out"></ion-icon>
-        <span>Sair</span>
-      </ion-button>
-
     </ion-toolbar>
-
   </ion-header>
 
   <ion-content [fullscreen]="true">
-
     <ion-row class="ion-justify-content-center">
-
       <ion-col size-lg="10" size-md="10" size="12" class="container_col"
         *ngIf="Lembretes && Lembretes.length > 0; else noCards">
-
         <div class="list">
-
           <div class="list__item">
             <ion-text class="list__itemTitle">
               <h1>Lembretes</h1>
             </ion-text>
           </div>
-
           <div class="ondem">
             <div class="list__item" *ngFor="let Lembretes of Lembretes">
               <ion-text class="list__horario">{{Lembretes.horarioLembrete}}</ion-text>
               <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}</ion-text>
             </div>
-
           </div>
-
         </div>
 
       </ion-col>
@@ -54,18 +37,10 @@
         </ion-col>
       </ng-template>
 
-
-
     </ion-row>
-
     <ion-fab id="fab" horizontal="end" vertical="bottom" slot="fixed" class="none">
-
       <ion-fab-button class="fab_button" (click)="ScrollTop()">
-
         <ion-icon name="chevron-up-outline" expand="block"></ion-icon>
-
       </ion-fab-button>
-
     </ion-fab>
-
   </ion-content>
