@@ -19,7 +19,7 @@ export class ServicosPage implements OnInit {
   ngOnInit() {
   }
 
-  CardDados = [
+  CardDados: any[] = [
     {
       tituloCard: 'Unhas',
       descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',

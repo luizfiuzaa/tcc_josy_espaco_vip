@@ -38,7 +38,7 @@ export class LembretesPage implements OnInit {
     lista.scrollTop = 0;
   }
 
-  Lembretes = [
+  Lembretes: any[] = [
     {
       horarioLembrete: '10:00',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'

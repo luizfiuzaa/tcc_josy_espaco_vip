@@ -24,7 +24,8 @@
 
     <ion-row class="ion-justify-content-center">
 
-      <ion-col size-lg="10" size-md="10" size="12" class="container_col" *ngIf="Lembretes && Lembretes.length > 0">
+      <ion-col size-lg="10" size-md="10" size="12" class="container_col"
+        *ngIf="Lembretes && Lembretes.length > 0; else noCards">
 
         <div class="list">
 
@@ -45,12 +46,15 @@
         </div>
 
       </ion-col>
-
-      <ion-col size-lg="10" size-md="10" size="12" class="container_col" *ngIf="Lembretes && Lembretes.length == 0">
-        <ion-col class="ion-text-center">
-          <ion-text>Não há lembretes no momento.</ion-text>
+      <ng-template #noCards>
+        <ion-col size-lg="10" size-md="10" size="12" class="container_col" *ngIf="Lembretes && Lembretes.length == 0">
+          <ion-col class="ion-text-center">
+            <ion-text>Não há lembretes no momento.</ion-text>
+          </ion-col>
         </ion-col>
-      </ion-col>
+      </ng-template>
+
+
 
     </ion-row>
 
