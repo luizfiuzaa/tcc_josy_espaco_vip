@@ -1,6 +1,6 @@
 ion-toolbar {
     --color: #fff;
-    --background: #d819a3;
+    --background: var(--ion-color-primary);
 }
 
 ion-button,
@@ -35,7 +35,7 @@ ion-card {
     top: 0;
     width: 80px;
     height: 100%;
-    background: #d819a3;
+    background: var(--ion-color-primary);
     display: flex;
     align-items: center;
     justify-content: center;

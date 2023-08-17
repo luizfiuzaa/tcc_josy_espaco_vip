@@ -7,7 +7,7 @@
 
 ion-toolbar {
     --color: #fff;
-    --background: #d819a3;
+    --background: var(--ion-color-primary);
 }
 
 ion-button,
@@ -32,7 +32,7 @@ ion-menu-button {
     width: 20%;
     border-radius: 30px;
     font-size: 2em;
-    background: #d819a3;
+    background: var(--ion-color-primary);
 }
 
 .header .searchBar{

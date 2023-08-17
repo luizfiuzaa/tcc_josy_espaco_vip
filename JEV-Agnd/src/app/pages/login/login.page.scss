@@ -3,6 +3,6 @@ form {
   padding: 3%;
   border-radius: 20px;
   border: 2px solid #000;
-  ion-icon{color: #d819a3;}
+  ion-icon{color: var(--ion-color-primary);}
   .btnLink {margin: 3% 15% 3% 15%;}
 }

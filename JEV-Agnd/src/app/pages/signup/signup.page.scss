@@ -3,18 +3,18 @@ form {
   padding: 3%;
   border-radius: 20px;
   border: 2px solid #000;
-  ion-icon{color: #d819a3;}
-  #passPreview {--border-color: #d819a3;}
+  ion-icon{color: var(--ion-color-primary);}
+  #passPreview {--border-color: var(--ion-color-primary);}
   .btnLink {margin: 3% 15% 3% 15%;}
   .btnLogin {
-    --background: #d819a3;
-    --background-focused: #d819a3;
+    --background: var(--ion-color-primary);
+    --background-focused: var(--ion-color-primary);
     --background-hover: #8d0165;
     color: #fff;
   }
   .btnSignUp {
-    --border-color: #d819a3;
+    --border-color: var(--ion-color-primary);
     --background-focused: #8d0165;
-    color: #d819a3;
+    color: var(--ion-color-primary);
   }
 }
