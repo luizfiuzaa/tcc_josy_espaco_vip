@@ -39,30 +39,30 @@
             <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
-          <ion-modal #modal trigger="btn-editar1" mode="ios" class="modal-header1" [isOpen]="modalOpen1" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
-            <ion-col>
-              <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-title>Editar</ion-title>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="setOpen1(false)">Cancelar</ion-button>
-                  </ion-buttons>
-                  <ion-buttons slot="end">
-                    <ion-button (click)="setOpen1(false)">Confirmar</ion-button>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-content>
-                <ion-item>
-                  <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
-                  <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
-                </ion-item>
-              </ion-content>
-            </ng-template>
-            </ion-col>
-              
-          </ion-modal>
+            <ion-modal #modal trigger="btn-editar1" mode="ios" class="modal-header1" [isOpen]="modalOpen1" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+              <ion-col>
+                <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-title>Editar</ion-title>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="setOpen1(false)">Cancelar</ion-button>
+                    </ion-buttons>
+                    <ion-buttons slot="end">
+                      <ion-button (click)="setOpen1(false)">Confirmar</ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-content>
+                  <ion-item>
+                    <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
+                    <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
+                  </ion-item>
+                </ion-content>
+              </ng-template>
+              </ion-col>
+                
+            </ion-modal>
             </ion-row>
             
           </ion-col>

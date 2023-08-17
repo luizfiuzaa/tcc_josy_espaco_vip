@@ -21,8 +21,24 @@ ion-card {
     }
 }
 
-#add_area{
+.add_area {
     margin-right: 15px;
+}
+
+.modal-header {
+    backdrop-filter: blur(4px);
+}
+
+.block {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-modal {
+    --height: auto;
 }
 
 .container {
