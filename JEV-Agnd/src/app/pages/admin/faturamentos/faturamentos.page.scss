@@ -1,6 +1,6 @@
 ion-toolbar {
     --color: #fff;
-    --background: #d819a3;
+    --background: var(--ion-color-primary);
 }
 
 ion-button,

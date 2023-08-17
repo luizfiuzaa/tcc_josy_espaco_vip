@@ -12,11 +12,11 @@
 }
 
 ion-toolbar {
-  --color: #d819a3;
+  --color: var(--ion-color-primary);
   --background: #fff;
 }
 ion-button, ion-menu-button {
-  --color: #d819a3;
+  --color: var(--ion-color-primary);
 }
 
 .main{

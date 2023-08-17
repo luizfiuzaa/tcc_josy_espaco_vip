@@ -36,7 +36,7 @@ ion-toolbar {
 }
 
 .bgc {
-  background: #D819A3;
+  background: var(--ion-color-primary);
 }
 
 .landing-text h1 {
@@ -64,7 +64,7 @@ ion-toolbar {
   margin: 20px 10px;
   border-radius: 25px;
   font-weight: bold;
-  border: 2px solid #D819A3;
+  border: 2px solid var(--ion-color-primary);
   background: transparent;
   color: white;
   cursor: pointer;
@@ -76,7 +76,7 @@ ion-toolbar {
 .landing-text .btn:hover,
 .landing-text .btn:focus {
   transform: scale(1.05);
-  background: #D819A3;
+  background: var(--ion-color-primary);
 }
 
 .logo {

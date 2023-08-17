@@ -1,11 +1,11 @@
 ion-toolbar {
   --color: #fff;
-  --background: #d819a3;
+  --background: var(--ion-color-primary);
 }
 ion-list {
   ion-item {
     ion-icon {
-      color: #d819a3;
+      color: var(--ion-color-primary);
     }
     p {
       margin-left: 5%;
