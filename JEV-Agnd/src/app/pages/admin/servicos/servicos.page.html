@@ -36,31 +36,54 @@
 		</ion-row>
 
 
-		<ion-fab id="open-modal" horizontal="end" vertical="bottom" slot="fixed">
+		<ion-fab id="open-modal" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpen(true)">
 			<ion-fab-button>
 				<ion-icon id="add" name="add" expand="block"></ion-icon>
 			</ion-fab-button>
 		</ion-fab>
-		<ion-modal #modal trigger="open-modal" mode="ios" class="modal-header" [isOpen]="modalOpen1"
-			[initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
+		<ion-modal #modal trigger="open-modal" mode="ios" class="modal-header modal" [isOpen]="modalOpen"
+			[initialBreakpoint]="0.65" [breakpoints]="[0,0.50,0.65]" >
 			<ion-col>
 				<ng-template class="block">
 					<ion-header>
 						<ion-toolbar>
-							<ion-title>Editar</ion-title>
+							<ion-title>Adicionar</ion-title>
 							<ion-buttons slot="start">
-								<ion-button (click)="setOpen1(false)">Cancelar</ion-button>
+								<ion-button (click)="setOpen(false)">Cancelar</ion-button>
 							</ion-buttons>
 							<ion-buttons slot="end">
-								<ion-button (click)="setOpen1(false)">Confirmar</ion-button>
+								<ion-button (click)="setOpen(false)">Confirmar</ion-button>
 							</ion-buttons>
 						</ion-toolbar>
 					</ion-header>
 					<ion-content>
-						<ion-item>
-							<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci, ullam deleniti laboriosam porro aliquam ipsa recusandae sint obcaecati odit soluta, quisquam animi est itaque ut error accusamus in, voluptatum aperiam.</p>
-							<!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
-						</ion-item>
+						<form action="" class="form">
+							<ion-item class="input_container">
+								<div class="input_cont">
+									<input type="text" id="title" placeholder="Digite o nome" class="input1">
+									<label for="title">Titulo:</label>
+								</div>
+							</ion-item>
+							<ion-item class="input_container">
+								<div class="input_cont">
+									<input type="text" id="desc" placeholder="Digite a descrição" class="input2">
+									<label for="desc">Descrição:</label>
+								</div>
+							</ion-item>
+							<ion-item class="input_container">
+								<div class="input_cont">
+									<input type="text" id="duracao" placeholder="Digite a duração" class="input3">
+									<label for="duracao">Duração:</label>
+								</div>
+							</ion-item>
+							<ion-item class="input_container">
+								<div class="input_cont">
+									<input type="text" id="preco" placeholder="Digite o preco" class="input4">
+									<label for="preco">Preço:</label>
+								</div>
+							</ion-item>
+							<ion-button type="submit" expand="block" color="success">Register</ion-button>
+						</form>
 					</ion-content>
 				</ng-template>
 			</ion-col>
