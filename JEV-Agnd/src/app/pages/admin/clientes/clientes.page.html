@@ -13,23 +13,23 @@
   <ion-content [fullscreen]="true">
     <ion-row class="ion-justify-content-center">
       <ion-col class="col_content" size-lg="10" size-md="10" size="12">
-        <div>
-          <div class="header">
-            <button><ion-icon name="person-add-outline">Adicionar Cliente</ion-icon></button>
-            <ion-searchbar class="searchBar" placeholder="Buscar cliente"></ion-searchbar>
+        <div class="header">
+          <button><ion-icon name="person-add-outline">Adicionar Cliente</ion-icon></button>
+          <ion-searchbar class="searchBar" placeholder="Buscar cliente"></ion-searchbar>
+        </div>
+        <div class="content" *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes">
+          <div class="cliente__header">
+            <ion-text class="header__left">
+              <h1>Nome</h1>
+            </ion-text>
+            <ion-text class="header__main">
+              <h1>E-mail</h1>
+            </ion-text>
+            <ion-text class="header__rigth">
+              <h1>Telefone</h1>
+            </ion-text>
           </div>
-          <div class="content" *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes">
-            <div class="cliente__header">
-              <ion-text class="header__left">
-                <h1>Nome</h1>
-              </ion-text>
-              <ion-text class="header__main">
-                <h1>E-mail</h1>
-              </ion-text>
-              <ion-text class="header__rigth">
-                <h1>Telefone</h1>
-              </ion-text>
-            </div>
+          <div class="main">
             <div class="cliente__main" *ngFor="let ClientesCadastrados of ClientesCadastrados">
               <ion-text class="main__nome">
                 <p>{{ClientesCadastrados.ClienteNome}}</p>
@@ -41,16 +41,16 @@
                 <p>{{ClientesCadastrados.ClienteTelefone}}</p>
               </ion-text>
             </div>
+          </div>
 
-          </div> 
-          <ng-template #noClientes>
-            <ion-col size="12" class="noClientes">
-              <ion-text class="ion-text-center">
-                <p>Não há clientes cadastrados...</p>
-              </ion-text>
-            </ion-col>
-          </ng-template>
         </div>
+        <ng-template #noClientes>
+          <ion-col size="12" class="noClientes">
+            <ion-text class="ion-text-center">
+              <p>Não há clientes cadastrados...</p>
+            </ion-text>
+          </ion-col>
+        </ng-template>
       </ion-col>
     </ion-row>
   </ion-content>
