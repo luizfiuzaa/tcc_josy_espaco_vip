@@ -18,9 +18,38 @@
             <button><ion-icon name="person-add-outline">Adicionar Cliente</ion-icon></button>
             <ion-searchbar class="searchBar" placeholder="Buscar cliente"></ion-searchbar>
           </div>
-          <div class="content">
-            
-          </div>
+          <div class="content" *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes">
+            <div class="cliente__header">
+              <ion-text class="header__left">
+                <h1>Nome</h1>
+              </ion-text>
+              <ion-text class="header__main">
+                <h1>E-mail</h1>
+              </ion-text>
+              <ion-text class="header__rigth">
+                <h1>Telefone</h1>
+              </ion-text>
+            </div>
+            <div class="cliente__main" *ngFor="let ClientesCadastrados of ClientesCadastrados">
+              <ion-text class="main__nome">
+                <p>{{ClientesCadastrados.ClienteNome}}</p>
+              </ion-text>
+              <ion-text class="main__email">
+                <p>{{ClientesCadastrados.ClienteEmail}}</p>
+              </ion-text>
+              <ion-text class="main__telefone">
+                <p>{{ClientesCadastrados.ClienteTelefone}}</p>
+              </ion-text>
+            </div>
+
+          </div> 
+          <ng-template #noClientes>
+            <ion-col size="12" class="noClientes">
+              <ion-text class="ion-text-center">
+                <p>Não há clientes cadastrados...</p>
+              </ion-text>
+            </ion-col>
+          </ng-template>
         </div>
       </ion-col>
     </ion-row>
