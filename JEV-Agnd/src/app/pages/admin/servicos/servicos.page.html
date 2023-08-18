@@ -11,7 +11,7 @@
 	<ion-content [fullscreen]="true">
 		<ion-row>
 			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
-				<ion-card *ngFor="let card of CardDados">
+				<ion-card *ngFor="let card of CardDados" class="card">
 					<ion-card-content class="icon_card">
 						<ion-icon name="create-outline" class="edit_icon"></ion-icon>
 					</ion-card-content>
