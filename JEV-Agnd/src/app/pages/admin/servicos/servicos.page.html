@@ -11,9 +11,10 @@
 	<ion-content [fullscreen]="true">
 		<ion-row>
 			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
-				<ion-card *ngFor="let card of CardDados" class="card">
+				<ion-card *ngFor="let card of CardDados; let i = index" class="card">
 					<ion-card-content class="icon_card">
-						<ion-icon name="create-outline" class="edit_icon"></ion-icon>
+						<ion-icon name="create-outline" class="edit_icon" id="open-modal"
+							(click)="editService(i)"></ion-icon>
 					</ion-card-content>
 					<ion-card-content class="card_context">
 						<ion-card-title class="title">{{card.tituloCard}}</ion-card-title>
@@ -23,6 +24,7 @@
 					</ion-card-content>
 				</ion-card>
 			</ion-col>
+
 			<ng-template #noCards>
 				<ion-col class="container" size="12">
 					<ion-text>
@@ -33,59 +35,110 @@
 					</ion-text>
 				</ion-col>
 			</ng-template>
+
 		</ion-row>
 
 
-		<ion-fab id="open-modal" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpen(true)">
+		<ion-fab id="open-modal" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpen('modalAdd')">
 			<ion-fab-button>
 				<ion-icon id="add" name="add" expand="block"></ion-icon>
 			</ion-fab-button>
 		</ion-fab>
+
+
 		<ion-modal #modal trigger="open-modal" mode="ios" class="modal-header modal" [isOpen]="modalOpen"
-			[initialBreakpoint]="0.65" [breakpoints]="[0,0.50,0.65]" >
-			<ion-col>
-				<ng-template class="block">
-					<ion-header>
-						<ion-toolbar>
-							<ion-title>Adicionar</ion-title>
-							<ion-buttons slot="start">
-								<ion-button (click)="setOpen(false)">Cancelar</ion-button>
-							</ion-buttons>
-							<ion-buttons slot="end">
-								<ion-button (click)="setOpen(false)">Confirmar</ion-button>
-							</ion-buttons>
-						</ion-toolbar>
-					</ion-header>
-					<ion-content>
-						<form action="" class="form">
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="title" placeholder="Digite o nome" class="input1">
-									<label for="title">Titulo:</label>
-								</div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="desc" placeholder="Digite a descrição" class="input2">
-									<label for="desc">Descrição:</label>
-								</div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="duracao" placeholder="Digite a duração" class="input3">
-									<label for="duracao">Duração:</label>
-								</div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="preco" placeholder="Digite o preco" class="input4">
-									<label for="preco">Preço:</label>
-								</div>
-							</ion-item>
-							<ion-button type="submit" expand="block" color="success">Register</ion-button>
-						</form>
-					</ion-content>
-				</ng-template>
-			</ion-col>
+			[initialBreakpoint]="0.65" [breakpoints]="[0,0.50,0.65]">
+			<div class="modalAdd" *ngIf="Modal && Modal == 'modalAdd'; else modalEdit">
+				<ion-col>
+					<ng-template class="block">
+						<ion-header>
+							<ion-toolbar>
+								<ion-title>Adicionar</ion-title>
+								<ion-buttons slot="start">
+									<ion-button (click)="setOpen(false)">Cancelar</ion-button>
+								</ion-buttons>
+								<ion-buttons slot="end">
+									<ion-button (click)="setOpen(false)">Confirmar</ion-button>
+								</ion-buttons>
+							</ion-toolbar>
+						</ion-header>
+						<ion-content>
+							<form action="" class="form">
+								<ion-item class="input_container">
+									<div class="input_cont">
+										<input type="text" id="title" placeholder="Digite o nome" class="input1">
+										<label for="title">Titulo:</label>
+									</div>
+								</ion-item>
+								<ion-item class="input_container">
+									<div class="input_cont">
+										<input type="text" id="desc" placeholder="Digite a descrição" class="input2">
+										<label for="desc">Descrição:</label>
+									</div>
+								</ion-item>
+								<ion-item class="input_container">
+									<div class="input_cont">
+										<input type="text" id="duracao" placeholder="Digite a duração" class="input3">
+										<label for="duracao">Duração:</label>
+									</div>
+								</ion-item>
+								<ion-item class="input_container">
+									<div class="input_cont">
+										<input type="text" id="preco" placeholder="Digite o preco" class="input4">
+										<label for="preco">Preço:</label>
+									</div>
+								</ion-item>
+								<ion-button type="submit" expand="block" color="success">Register</ion-button>
+							</form>
+						</ion-content>
+					</ng-template>
+				</ion-col>
+			</div>
+			<div class="modalEdit">
+				<ion-col>
+					<ng-template #modalEdit class="block">
+						<ion-header>
+							<ion-toolbar>
+								<ion-title>Editar</ion-title>
+								<ion-buttons slot="start">
+									<ion-button (click)="setOpen(false)">Cancelar</ion-button>
+								</ion-buttons>
+								<ion-buttons slot="end">
+									<ion-button (click)="setOpen(false)">Confirmar</ion-button>
+								</ion-buttons>
+							</ion-toolbar>
+						</ion-header>
+						<ion-content>
+							<form action="" class="form">
+								<ion-item class="input_container">
+									<div class="input_cont">
+										<input type="text" id="title" placeholder="Digite o nome" class="input1">
+										<label for="title">Titulo:</label>
+									</div>
+								</ion-item>
+								<ion-item class="input_container">
+									<div class="input_cont">
+										<input type="text" id="desc" placeholder="Digite a descrição" class="input2">
+										<label for="desc">Descrição:</label>
+									</div>
+								</ion-item>
+								<ion-item class="input_container">
+									<div class="input_cont">
+										<input type="text" id="duracao" placeholder="Digite a duração" class="input3">
+										<label for="duracao">Duração:</label>
+									</div>
+								</ion-item>
+								<ion-item class="input_container">
+									<div class="input_cont">
+										<input type="text" id="preco" placeholder="Digite o preco" class="input4">
+										<label for="preco">Preço:</label>
+									</div>
+								</ion-item>
+								<ion-button type="submit" expand="block" color="success">Register</ion-button>
+							</form>
+						</ion-content>
+					</ng-template>
+				</ion-col>
+			</div>
 		</ion-modal>
 	</ion-content>
