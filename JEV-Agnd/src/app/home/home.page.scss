@@ -33,11 +33,12 @@ form {
   form {padding: 0 5px;}
 }
 
-// agendamentos
-.content_list{
+.inputSearch {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
+
+// agendamentos
 ion-card {
   width: 100vw;
 

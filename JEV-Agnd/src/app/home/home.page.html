@@ -30,19 +30,21 @@
             </ion-col>
           </form>
         </ion-toolbar>
-        <ion-col size="12">
+        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
           <ion-list lines="none">
-
+            <div *ngFor="let Agendamentos of Agendamentos">
             <ion-item>
               <ion-card>
                 <ion-card-header>
-                  <ion-card-title class="status ok"><ion-icon name="checkmark-circle"></ion-icon>
-                    Confirmado</ion-card-title>
-                  <ion-card-title id="horario">9:00 - 10:30</ion-card-title>
-                  <ion-card-subtitle>Laura Peneira</ion-card-subtitle>
+                  <ion-card-title class="status ok">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    {{Agendamentos.status}}
+                  </ion-card-title>
+                  <ion-card-title id="horario">{{Agendamentos.horarioInicio}} - {{Agendamentos.horarioFim}}</ion-card-title>
+                  <ion-card-subtitle>{{Agendamentos.cliente}}</ion-card-subtitle>
                 </ion-card-header>
 
-                <ion-card-content> Cabelo, mão, pé </ion-card-content>
+                <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
                 <ion-card-content>
                   <ion-button class="delete" fill="outline">
                     <ion-icon name="trash"></ion-icon>
@@ -58,62 +60,17 @@
                 </ion-card-content>
               </ion-card>
             </ion-item>
-
-            <ion-item>
-              <ion-card>
-                <ion-card-header>
-                  <ion-card-title class="status waiting"><ion-icon name="time"></ion-icon> Esperando
-                    confirmação</ion-card-title>
-                  <ion-card-title id="horario">11:00 - 12:30</ion-card-title>
-                  <ion-card-subtitle>Josefina Chapéu</ion-card-subtitle>
-                </ion-card-header>
-
-                <ion-card-content> Cabelo </ion-card-content>
-                <ion-card-content>
-                  <ion-button class="delete" fill="outline">
-                    <ion-icon name="trash"></ion-icon>
-                    Excluir
-                  </ion-button>
-                  <ion-button class="edit">
-                    <ion-icon name="create-outline"></ion-icon>
-                    Editar
-                  </ion-button>
-                  <ion-button class="info">
-                    <ion-icon name="information-circle-sharp"></ion-icon>
-                  </ion-button>
-                </ion-card-content>
-              </ion-card>
-            </ion-item>
-
-            <ion-item>
-              <ion-card>
-                <ion-card-header>
-                  <ion-card-title class="status waiting"><ion-icon name="time"></ion-icon> Esperando
-                    confirmação</ion-card-title>
-                  <ion-card-title id="horario">14:20 - 15:20</ion-card-title>
-                  <ion-card-subtitle>Claudinha Saia Justa</ion-card-subtitle>
-                </ion-card-header>
-
-                <ion-card-content> mão, pé </ion-card-content>
-                <ion-card-content>
-                  <ion-button class="delete" fill="outline">
-                    <ion-icon name="trash"></ion-icon>
-                    Excluir
-                  </ion-button>
-                  <ion-button class="edit">
-                    <ion-icon name="create-outline"></ion-icon>
-                    Editar
-                  </ion-button>
-                  <ion-button class="info">
-                    <ion-icon name="information-circle-sharp"></ion-icon>
-                  </ion-button>
-                </ion-card-content>
-              </ion-card>
-            </ion-item>
-
+          </div>
           </ion-list>
         </ion-col>
       </ion-col>
+      <ng-template #noCard>
+        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0">
+          <ion-col class="ion-text-center">
+            <ion-text>Não há lembretes no momento.</ion-text>
+          </ion-col>
+        </ion-col>
+      </ng-template>
     </ion-row>
 
     <!-- botão add agendamento-->
