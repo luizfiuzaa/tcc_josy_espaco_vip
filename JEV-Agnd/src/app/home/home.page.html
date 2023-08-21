@@ -14,7 +14,6 @@
 
   <!-- Conteúdo da página -->
   <ion-content class="ion-padding">
-
     <ion-row>
       <ion-col size="12">
         <ion-toolbar class="toolbar">
@@ -24,51 +23,60 @@
             </ion-col>
             <ion-col size="6" class="inputSearch">
               <ion-button fill="outline" id="buscar">
-                <ion-icon style="margin-right: 5%;" name="search-sharp"></ion-icon>
-                Buscar 
+                <ion-icon
+                  style="margin-right: 5%"
+                  name="search-sharp"
+                ></ion-icon>
+                Buscar
               </ion-button>
             </ion-col>
           </form>
         </ion-toolbar>
-        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
+        <ion-col
+          size="12"
+          *ngIf="Agendamentos && Agendamentos.length > 0; else noCard"
+        >
           <ion-list lines="none">
             <div *ngFor="let Agendamentos of Agendamentos">
-            <ion-item>
-              <ion-card>
-                <ion-card-header>
-                  <ion-card-title class="status ok">
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                    {{Agendamentos.status}}
-                  </ion-card-title>
-                  <ion-card-title id="horario">{{Agendamentos.horarioInicio}} - {{Agendamentos.horarioFim}}</ion-card-title>
-                  <ion-card-subtitle>{{Agendamentos.cliente}}</ion-card-subtitle>
-                </ion-card-header>
+              <ion-item>
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title class="status ok">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                      {{Agendamentos.status}}
+                    </ion-card-title>
+                    <ion-card-title id="horario"
+                      >{{Agendamentos.horarioInicio}} -
+                      {{Agendamentos.horarioFim}}</ion-card-title
+                    >
+                    <ion-card-subtitle
+                      >{{Agendamentos.cliente}}</ion-card-subtitle
+                    >
+                  </ion-card-header>
 
-                <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
-                <ion-card-content>
-                  <ion-button class="delete" fill="outline">
-                    <ion-icon name="trash"></ion-icon>
-                    Excluir
-                  </ion-button>
-                  <ion-button class="edit">
-                    <ion-icon name="create-outline"></ion-icon>
-                    Editar
-                  </ion-button>
-                  <ion-button class="info">
-                    <ion-icon name="information-circle-sharp"></ion-icon>
-                  </ion-button>
-                </ion-card-content>
-              </ion-card>
-            </ion-item>
-          </div>
+                  <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
+                  <ion-card-content>
+                    <ion-button class="delete" fill="outline">
+                      <ion-icon name="trash"></ion-icon>
+                      Excluir
+                    </ion-button>
+                    <ion-button class="edit">
+                      <ion-icon name="create-outline"></ion-icon>
+                      Editar
+                    </ion-button>
+                    <ion-button class="info">
+                      <ion-icon name="information-circle-sharp"></ion-icon>
+                    </ion-button>
+                  </ion-card-content>
+                </ion-card>
+              </ion-item>
+            </div>
           </ion-list>
         </ion-col>
       </ion-col>
       <ng-template #noCard>
         <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0">
-          <ion-col class="ion-text-center">
-            <ion-text>Não há lembretes no momento.</ion-text>
-          </ion-col>
+          <ion-text class="ion-text-center"><h3>Não há nenhum agendamento.</h3></ion-text>
         </ion-col>
       </ng-template>
     </ion-row>
@@ -87,7 +95,9 @@
           <ion-toolbar>
             <ion-title>Agendar</ion-title>
             <ion-buttons slot="end">
-              <ion-button (click)="modal.dismiss()"><ion-icon name="close"></ion-icon></ion-button>
+              <ion-button (click)="modal.dismiss()"
+                ><ion-icon name="close"></ion-icon
+              ></ion-button>
             </ion-buttons>
           </ion-toolbar>
 
@@ -97,26 +107,37 @@
               <ion-item>
                 <ion-select label="Cliente" label-placement="floating">
                   <!-- Opções de clientes -->
-                  <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
-                  <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
-                  <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
+                  <ion-select-option value="Laura Pereira"
+                    >Laura Peneira</ion-select-option
+                  >
+                  <ion-select-option value="Josefina Chapéu"
+                    >Josefina Chapéu</ion-select-option
+                  >
+                  <ion-select-option value="Claudinha Sia Justa"
+                    >Claudinha Saia Justa</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
 
               <!-- Serviços -->
               <ion-item>
-                <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
-                  [multiple]="true">
+                <ion-select
+                  label="Serviço(s):"
+                  label-placement="floating"
+                  placeholder="Selecione o(s) serviço(s)"
+                  [multiple]="true"
+                >
                   <ion-select-option value="apples">Cabelo</ion-select-option>
                   <ion-select-option value="oranges">Unha</ion-select-option>
-                  <ion-select-option value="bananas">Pedicure</ion-select-option>
+                  <ion-select-option value="bananas"
+                    >Pedicure</ion-select-option
+                  >
                 </ion-select>
-
               </ion-item>
 
               <!-- DIA e HORA -->
               <ion-item>
-                <h6>Dia e Horário: </h6>
+                <h6>Dia e Horário:</h6>
                 <ion-datetime-button datetime="datetime"></ion-datetime-button>
 
                 <ion-modal [keepContentsMounted]="true">
@@ -128,10 +149,15 @@
 
               <!-- Pagamento -->
               <ion-item>
-                <ion-select label="Método de Pagamento" label-placement="floating">
+                <ion-select
+                  label="Método de Pagamento"
+                  label-placement="floating"
+                >
                   <!-- Opções de pagamento -->
                   <ion-select-option value="pix">Pix</ion-select-option>
-                  <ion-select-option value="dinheiro">Dinheiro</ion-select-option>
+                  <ion-select-option value="dinheiro"
+                    >Dinheiro</ion-select-option
+                  >
                   <ion-select-option value="debto">Débto</ion-select-option>
                   <ion-select-option value="credito">Crédito</ion-select-option>
                 </ion-select>
@@ -144,10 +170,11 @@
                   <p>xx.xx</p>
                 </ion-text>
               </ion-item>
-
             </ion-list>
             <ion-row>
-              <ion-col class="ion-align-items-center ion-justify-content-center ion-text-center">
+              <ion-col
+                class="ion-align-items-center ion-justify-content-center ion-text-center"
+              >
                 <ion-button>Agendar</ion-button>
               </ion-col>
             </ion-row>
