@@ -12,23 +12,29 @@
   <ion-content [fullscreen]="true">
     <ion-row class="ion-justify-content-center">
       <ion-col class="col_content" size-lg="10" size-md="10" size="12">
+        <!-- Se tiver algum Cliente -->
         <div
         class="content"
         *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes"
         >
         <ion-list lines="none">
+
+          <!-- Search Bar -->
             <ion-item>
               <ion-col size="12">
                 <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"></ion-searchbar>
               </ion-col>
             </ion-item>
+
             <div
-              class="cliente__main"
-              *ngFor="let ClientesCadastrados of ClientesCadastrados"
+            class="cliente__main"
+            *ngFor="let ClientesCadastrados of ClientesCadastrados"
             >
-              <ion-item>
-                <ion-card>
-                  <ion-card-header>
+            <ion-item>
+              <!-- Card dos Clientes -->
+              <ion-card>
+                <!-- Clientes: Nome e Telefone -->
+                <ion-card-header>
                     <ion-card-title>
                       <ion-text class="main__nome">
                         <ion-icon name="person-sharp"></ion-icon>
@@ -42,6 +48,8 @@
                       </ion-text>
                     </ion-card-subtitle>
                   </ion-card-header>
+
+                  <!-- Botões de Exclusão, Edição e Visualização de dados -->
                   <ion-card-content>
                     <ion-button class="delete" fill="outline">
                       <ion-icon name="trash"></ion-icon>
@@ -60,6 +68,8 @@
             </div>
           </ion-list>
         </div>
+
+        <!-- Senão Exiba -->
         <ng-template #noClientes>
           <ion-col size="12" class="noClientes">
             <ion-text class="ion-text-center">
@@ -69,6 +79,8 @@
         </ng-template>
       </ion-col>
     </ion-row>
+
+    <!-- Btn para adicionar um novo cliente -->
     <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed">
       <ion-fab-button>
         <ion-icon id="add" name="add" expand="block"></ion-icon>
