@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 interface CardDados {
   tituloCard: string;
@@ -14,6 +17,8 @@ interface CardDados {
   styleUrls: ['./servicos.page.scss'],
 })
 export class ServicosPage implements OnInit {
+  private baseApiUrl = environment.baseApiUrl;
+  private apiUrl = `${this.baseApiUrl}api/servicos`;
 
   @Input() Card_Dados: CardDados[] = [];
   CardDados: any[] = [
@@ -55,12 +60,29 @@ export class ServicosPage implements OnInit {
     }
   ];
 
+  constructor(private http: HttpClient) { }
+  createServico(formData: FormData): Observable<FormData> {
+    return this.http.post<FormData>(this.apiUrl, formData);
+  }
+
   AddForm!: FormGroup;
   EditForm!: FormGroup;
 
   modalOpenAdd = false;
   modalOpenEdit = false;
-  index: any = ''
+  index: any = '';
+
+  async createHandler(event: any) {
+    console.log('Deus é fiel!!!');
+    const formData = new FormData();
+
+    formData.append("titulo", this.AddForm.value.titulo);
+    formData.append("descricao", this.AddForm.value.descricao);
+    formData.append("duracao", this.AddForm.value.duracao);
+    formData.append("preco", this.AddForm.value.preco);
+
+    this.createServico(formData).subscribe();
+  }
 
   ngOnInit(): void {
     this.AddForm = new FormGroup({
