@@ -21,8 +21,8 @@
             </ion-text>
           </div>
           <div>
-            <ion-list class="list" lines="none">
-            <div *ngFor="let Lembretes of Lembretes">
+            <ion-list id="list" lines="none">
+            <div *ngFor="let Lembretes of Lembretes" class="content_list">
               <ion-item>
                 <ion-card>
                   <ion-card-header>
@@ -42,7 +42,6 @@
             </ion-list>
           </div>
         </div>
-
       </ion-col>
       <ng-template #noCards>
         <ion-col size-lg="10" size-md="10" size="12" class="container_col" *ngIf="Lembretes && Lembretes.length == 0">
