@@ -12,19 +12,34 @@
 
   <ion-content [fullscreen]="true">
     <ion-row class="ion-justify-content-center">
-      <ion-col size-lg="10" size-md="10" size="12" class="container_col"
-        *ngIf="Lembretes && Lembretes.length > 0; else noCards">
+      <ion-col size-lg="10" size-md="10" size="12" 
+      *ngIf="Lembretes && Lembretes.length > 0; else noCards">
         <div class="list">
-          <div class="list__item">
-            <ion-text class="list__itemTitle">
-              <h1>Lembretes</h1>
+          <div>
+            <ion-text class="list__itemTitle ion-text-center">
+              <h1 style="margin-bottom: 7%;"><b>Não Esqueça!</b></h1>
             </ion-text>
           </div>
-          <div class="ondem">
-            <div class="list__item" *ngFor="let Lembretes of Lembretes">
-              <ion-text class="list__horario">{{Lembretes.horarioLembrete}}</ion-text>
-              <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}</ion-text>
+          <div>
+            <ion-list class="list" lines="none">
+            <div *ngFor="let Lembretes of Lembretes">
+              <ion-item>
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>
+                      <ion-text class="list__horario">{{Lembretes.horarioLembrete}}</ion-text>
+                    </ion-card-title>
+                    <ion-card-subtitle>
+                      <ion-text class="list__horario">{{Lembretes.dataLembrete}}</ion-text>
+                    </ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}</ion-text>
+                  </ion-card-content>
+                </ion-card>
+              </ion-item>
             </div>
+            </ion-list>
           </div>
         </div>
 

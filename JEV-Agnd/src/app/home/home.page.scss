@@ -3,16 +3,14 @@ ion-toolbar {
   --background: var(--ion-color-primary);
 }
 
-ion-button,
-ion-menu-button {
-  --color: #fff;
-}
+ion-button,ion-menu-button {--color: #fff;}
 
-.form {
+.toolbar{border-radius: 5px;}
+
+form {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
 }
 
 .date {
@@ -31,13 +29,8 @@ ion-menu-button {
 }
 
 @media only screen and (max-width: 500px) {
-  .date input {
-    font-size: 1.05em;
-  }
-
-  .form {
-    padding: 0 5px;
-  }
+  input{font-size: 1.05em;}
+  form {padding: 0 5px;}
 }
 
 .inputSearch {
@@ -49,29 +42,13 @@ ion-menu-button {
 ion-card {
   width: 100vw;
 
-  .ok {
-    --color: var(--ion-color-success);
-  }
+  .ok {--color: var(--ion-color-success);}
+  .waiting {--color: var(--ion-color-warning);}
 
-  .wait {
-    --color: var(--ion-color-warning);
-  }
+  #horario {--color: var(--ion-color-primary);}
 
-  .delete {
-    --color: var(--ion-color-primary);
-  }
+  .delete {--color: var(--ion-color-primary);}
 
-  #horario {
-    --color: var(--ion-color-primary);
-
-  }
-
-  ion-card-subtitle {
-    font-size: 1.3em;
-  }
-
-  ion-card-subtitle,
-  ion-card-content {
-    color: #000;
-  }
+  ion-card-subtitle {font-size: 1.3em;}
+  ion-card-subtitle,ion-card-content {color: #000;}
 }

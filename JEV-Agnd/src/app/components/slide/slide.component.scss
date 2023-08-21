@@ -79,7 +79,7 @@ img {
     text-transform: capitalize;
     border: none;
     outline: none;
-    background: #D819A3;
+    background: var(--ion-primary-color);
     border-radius: 5px;
     transition: 0.5s;
     cursor: pointer;
