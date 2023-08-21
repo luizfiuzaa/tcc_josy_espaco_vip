@@ -33,49 +33,49 @@ ion-menu-button {
     box-shadow: 10px 10px 0px 0px #b6b5b5;
     max-height: calc(100vh - 120px);
     overflow-y: auto;
+
+    &__itemTitle {
+        color: #000000;
+        text-align: center;
+        width: 100%;
+        font-family: 'Bricolage Grotesque', sans-serif;
+    }
+    
+    &__itemTitle h1 {
+        font-weight: 900;
+        font-size: 2em;
+    }
+    
+    &__horario {
+        color: #0066FF;
+        width: 90px;
+        font-size: 1.4em;
+    }
+    
+    &__conteudo {
+        color: rgb(139, 133, 133);
+        text-shadow: 0.5px 0.5px 0px #00000042;
+        font-size: 1.4em;
+        text-align: center;
+        width: calc(100% - 180px);
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        border-bottom: 2px solid black;
+        padding: 20px 0 20px 10px;
+    }
 }
 
 .list::-webkit-scrollbar {
     display: none;
 }
 
-.list__item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    border-bottom: 2px solid black;
-    padding: 20px 0 20px 10px;
-}
-
 .ondem {
     display: flex;
     flex-direction: column-reverse;
-}
-
-.list__itemTitle {
-    color: #000000;
-    text-align: center;
-    width: 100%;
-    font-family: 'Bricolage Grotesque', sans-serif;
-}
-
-.list__itemTitle h1 {
-    font-weight: 900;
-    font-size: 2em;
-}
-
-.list__horario {
-    color: #0066FF;
-    width: 90px;
-    font-size: 1.4em;
-}
-
-.list__conteudo {
-    color: rgb(139, 133, 133);
-    text-shadow: 0.5px 0.5px 0px #00000042;
-    font-size: 1.4em;
-    text-align: center;
-    width: calc(100% - 180px);
 }
 
 .alerta {
