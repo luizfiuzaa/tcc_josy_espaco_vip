@@ -41,10 +41,24 @@
               <ion-item>
                 <ion-card>
                   <ion-card-header>
-                    <ion-card-title class="status ok">
-                      <ion-icon name="checkmark-circle"></ion-icon>
-                      {{Agendamentos.status}}
-                    </ion-card-title>
+                    <div
+                      *ngIf="Agendamentos.status == 'Confirmado'; else otherStatus"
+                    >
+                      <ion-card-title class="status ok">
+                        <div class="ok">
+                          <ion-icon name="checkmark-circle"></ion-icon>
+                          {{Agendamentos.status}}
+                        </div>
+                      </ion-card-title>
+                    </div>
+                    <ng-template #otherStatus>
+                      <ion-card-title class="status waiting">
+                        <div class="ok">
+                          <ion-icon name="time"></ion-icon>
+                          {{Agendamentos.status}}
+                        </div>
+                      </ion-card-title>
+                    </ng-template>
                     <ion-card-title id="horario"
                       >{{Agendamentos.horarioInicio}} -
                       {{Agendamentos.horarioFim}}</ion-card-title
@@ -76,7 +90,9 @@
       </ion-col>
       <ng-template #noCard>
         <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0">
-          <ion-text class="ion-text-center"><h3>Não há nenhum agendamento.</h3></ion-text>
+          <ion-text class="ion-text-center"
+            ><h3>Não há nenhum agendamento.</h3></ion-text
+          >
         </ion-col>
       </ng-template>
     </ion-row>
