@@ -60,6 +60,7 @@ ion-menu-button {
     display: flex;
     height: 60px;
     gap: 20px;
+    align-items: center;
 }
 
 .header button {
@@ -68,6 +69,7 @@ ion-menu-button {
     font-size: 2em;
     background: var(--ion-color-primary);
     transition: .5s;
+    height: 42px;
 }
 
 .header button:hover {
