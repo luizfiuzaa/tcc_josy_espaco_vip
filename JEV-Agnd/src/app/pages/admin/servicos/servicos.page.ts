@@ -129,8 +129,4 @@ export class ServicosPage implements OnInit {
     this.index = indice;
     this.setOpenEdit(true);
   }
-
-  EditFunction() {
-
-  }
 }
