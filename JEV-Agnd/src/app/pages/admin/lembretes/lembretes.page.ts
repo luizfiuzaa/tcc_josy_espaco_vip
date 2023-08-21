@@ -15,26 +15,7 @@ export class LembretesPage implements OnInit {
   };
 
   constructor() {
-  }
-
-  ngAfterViewInit() {
-    const lista = document.querySelector('.list') as HTMLElement;
-    const fabBtn = document.querySelector('#fab') as HTMLElement;
-
-    lista.addEventListener('scroll', () => {
-      if (lista.scrollTop > 0) {
-        fabBtn.classList.remove('none');
-      }
-      if (lista?.scrollTop == 0) {
-        fabBtn?.classList.add('none');
-      }
-    })
-  }
-
-  ScrollTop(): void{
-    const lista = document.querySelector('.list') as HTMLElement;
-    lista.scrollTop = 0;
-  }
+  };
 
   Lembretes: any[] = [
     {
