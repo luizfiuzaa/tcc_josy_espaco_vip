@@ -17,6 +17,21 @@ export class ServicosPage implements OnInit {
   @Input() Card_Dados: CardDados[] = []
 
   ngOnInit() {
+    
+  }
+
+  Modal = 'modalAdd';
+
+  modalOpen = false;
+
+  setOpen(isOpen: any) {
+    if(isOpen != false){
+      this.Modal = isOpen;
+      console.log(this.Modal)
+      isOpen = true;
+    }
+
+    this.modalOpen = isOpen;
   }
 
   CardDados: any[] = [
@@ -58,5 +73,12 @@ export class ServicosPage implements OnInit {
     }
   ];
 
+  editService(indice: any){
+    console.log(indice);
+    let cards = document.querySelectorAll('.card_context')[indice];
+    console.log(cards)
+
+    this.setOpen('modalEdit');
+  }
 
 }
