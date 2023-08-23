@@ -7,7 +7,6 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
-import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { NgCalendarModule } from 'ionic2-calendar';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    NgCalendarModule,
     HeaderMenuModule
   ],
   declarations: [

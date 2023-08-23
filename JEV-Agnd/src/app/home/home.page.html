@@ -23,27 +23,19 @@
             </ion-col>
             <ion-col size="6" class="inputSearch">
               <ion-button fill="outline" id="buscar">
-                <ion-icon
-                  style="margin-right: 5%"
-                  name="search-sharp"
-                ></ion-icon>
+                <ion-icon style="margin-right: 5%" name="search-sharp"></ion-icon>
                 Buscar
               </ion-button>
             </ion-col>
           </form>
         </ion-toolbar>
-        <ion-col
-          size="12"
-          *ngIf="Agendamentos && Agendamentos.length > 0; else noCard"
-        >
+        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
           <ion-list lines="none">
             <div *ngFor="let Agendamentos of Agendamentos">
               <ion-item>
                 <ion-card>
                   <ion-card-header>
-                    <div
-                      *ngIf="Agendamentos.status == 'Confirmado'; else otherStatus"
-                    >
+                    <div *ngIf="Agendamentos.status == 'Confirmado'; else otherStatus">
                       <ion-card-title class="status ok">
                         <div class="ok">
                           <ion-icon name="checkmark-circle"></ion-icon>
@@ -59,21 +51,18 @@
                         </div>
                       </ion-card-title>
                     </ng-template>
-                    <ion-card-title id="horario"
-                      >{{Agendamentos.horarioInicio}} -
-                      {{Agendamentos.horarioFim}}</ion-card-title
-                    >
-                    <ion-card-subtitle
-                      >{{Agendamentos.cliente}}</ion-card-subtitle
-                    >
+                    <ion-card-title id="horario">{{Agendamentos.horarioInicio}} -
+                      {{Agendamentos.horarioFim}}</ion-card-title>
+                    <ion-card-subtitle>{{Agendamentos.cliente}}</ion-card-subtitle>
                   </ion-card-header>
 
                   <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
                   <ion-card-content>
-                    <ion-button class="delete" fill="outline">
+                    <ion-button id="excluir" class="delete" fill="outline" (click)="setOpenDelete(true)">
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>
+
                     <ion-button class="edit">
                       <ion-icon name="create-outline"></ion-icon>
                       Editar
@@ -90,12 +79,31 @@
       </ion-col>
       <ng-template #noCard>
         <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0">
-          <ion-text class="ion-text-center"
-            ><h3>Não há nenhum agendamento.</h3></ion-text
-          >
+          <ion-text class="ion-text-center">
+            <h3>Não há nenhum agendamento.</h3>
+          </ion-text>
         </ion-col>
       </ng-template>
     </ion-row>
+
+    <ion-modal id="example-modal" #modal trigger="excluir" [isOpen]="modalOpenDelete">
+      <ng-template>
+        <div class="wrapper">
+          <ion-toolbar>
+            <ion-title>Deletar</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpenDelete(false)"><ion-icon name="close"></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+
+          <ion-text>
+            <h1>Excluir Agendamento?</h1>
+          </ion-text>
+
+        </div>
+      </ng-template>
+    </ion-modal>
+
 
     <!-- botão add agendamento-->
     <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed">
@@ -105,49 +113,35 @@
     </ion-fab>
 
     <!-- modal de agendamento-->
-    <ion-modal id="example-modal" #modal trigger="add_area">
+    <ion-modal id="example-modal" #modal trigger="add_area" [isOpen]="modalOpenAdd">
       <ng-template>
         <div class="wrapper">
           <ion-toolbar>
             <ion-title>Agendar</ion-title>
             <ion-buttons slot="end">
-              <ion-button (click)="modal.dismiss()"
-                ><ion-icon name="close"></ion-icon
-              ></ion-button>
+              <ion-button (click)="setOpenAdd(false)"><ion-icon name="close"></ion-icon></ion-button>
             </ion-buttons>
           </ion-toolbar>
 
           <form action="" method="post">
-            <ion-list lines="none">
+            <ion-list lines="none" class="ion-justify-content-center ion-align-items-center list-content">
               <!-- Clientes -->
               <ion-item>
                 <ion-select label="Cliente" label-placement="floating">
                   <!-- Opções de clientes -->
-                  <ion-select-option value="Laura Pereira"
-                    >Laura Peneira</ion-select-option
-                  >
-                  <ion-select-option value="Josefina Chapéu"
-                    >Josefina Chapéu</ion-select-option
-                  >
-                  <ion-select-option value="Claudinha Sia Justa"
-                    >Claudinha Saia Justa</ion-select-option
-                  >
+                  <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
+                  <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
+                  <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
                 </ion-select>
               </ion-item>
 
               <!-- Serviços -->
               <ion-item>
-                <ion-select
-                  label="Serviço(s):"
-                  label-placement="floating"
-                  placeholder="Selecione o(s) serviço(s)"
-                  [multiple]="true"
-                >
+                <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
+                  [multiple]="true">
                   <ion-select-option value="apples">Cabelo</ion-select-option>
                   <ion-select-option value="oranges">Unha</ion-select-option>
-                  <ion-select-option value="bananas"
-                    >Pedicure</ion-select-option
-                  >
+                  <ion-select-option value="bananas">Pedicure</ion-select-option>
                 </ion-select>
               </ion-item>
 
@@ -156,7 +150,7 @@
                 <h6>Dia e Horário:</h6>
                 <ion-datetime-button datetime="datetime"></ion-datetime-button>
 
-                <ion-modal [keepContentsMounted]="true">
+                <ion-modal [keepContentsMounted]="true" mode="ios">
                   <ng-template>
                     <ion-datetime id="datetime"></ion-datetime>
                   </ng-template>
@@ -165,15 +159,10 @@
 
               <!-- Pagamento -->
               <ion-item>
-                <ion-select
-                  label="Método de Pagamento"
-                  label-placement="floating"
-                >
+                <ion-select label="Método de Pagamento" label-placement="floating">
                   <!-- Opções de pagamento -->
                   <ion-select-option value="pix">Pix</ion-select-option>
-                  <ion-select-option value="dinheiro"
-                    >Dinheiro</ion-select-option
-                  >
+                  <ion-select-option value="dinheiro">Dinheiro</ion-select-option>
                   <ion-select-option value="debto">Débto</ion-select-option>
                   <ion-select-option value="credito">Crédito</ion-select-option>
                 </ion-select>
@@ -186,14 +175,10 @@
                   <p>xx.xx</p>
                 </ion-text>
               </ion-item>
-            </ion-list>
-            <ion-row>
-              <ion-col
-                class="ion-align-items-center ion-justify-content-center ion-text-center"
-              >
+              <ion-row class="ion-justify-content-center">
                 <ion-button>Agendar</ion-button>
-              </ion-col>
-            </ion-row>
+              </ion-row>
+            </ion-list>
           </form>
         </div>
       </ng-template>

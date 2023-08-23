@@ -90,7 +90,10 @@ export class ServicosPage implements OnInit {
       titulo: new FormControl('', [Validators.required]),
       descricao: new FormControl('', [Validators.required]),
       duracao: new FormControl('', [Validators.required]),
-      preco: new FormControl('', [Validators.required])
+      preco: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern(/^-?(0|[1-9]\d*)?$/)
+      ]))
     });
     this.EditForm = new FormGroup({
       id_edit: new FormControl(''),
