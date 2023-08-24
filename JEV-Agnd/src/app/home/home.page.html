@@ -13,7 +13,7 @@
   </ion-header>
 
   <!-- Conteúdo da página -->
-  <ion-content class="ion-padding">
+  <ion-content class="ion-padding ion-page">
     <ion-row>
       <ion-col size="12">
         <ion-toolbar class="toolbar">
@@ -58,12 +58,16 @@
 
                   <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
                   <ion-card-content>
-                    <ion-button id="excluir" class="delete" fill="outline" (click)="setOpenDelete(true)">
+                    <!-- <ion-button id="excluir" class="delete" fill="outline" (click)="setOpenDelete(true)">
+                      <ion-icon name="trash"></ion-icon>
+                      Excluir
+                    </ion-button> -->
+                    <ion-button id="excluir" class="delete" fill="outline">
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>
 
-                    <ion-button class="edit">
+                    <ion-button class="edit" id="editar" (click)="setOpenEdit(true)">
                       <ion-icon name="create-outline"></ion-icon>
                       Editar
                     </ion-button>
@@ -86,7 +90,7 @@
       </ng-template>
     </ion-row>
 
-    <ion-modal id="example-modal" #modal trigger="excluir" [isOpen]="modalOpenDelete">
+    <!-- <ion-modal id="delete-modal" #modal trigger="excluir" [isOpen]="modalOpenDelete">
       <ng-template>
         <div class="wrapper">
           <ion-toolbar>
@@ -98,6 +102,40 @@
 
           <ion-text>
             <h1>Excluir Agendamento?</h1>
+          </ion-text>
+
+        </div>
+      </ng-template>
+    </ion-modal> -->
+
+    <ion-modal #modal trigger="excluir" [canDismiss]="canDismiss" [presentingElement]="presentingElement">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Modal</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="modal.dismiss()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>You will be prompted when closing this modal.</p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal id="edit-modal" #modal trigger="editar" [isOpen]="modalOpenEdit">
+      <ng-template>
+        <div class="wrapper">
+          <ion-toolbar>
+            <ion-title>Editar</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpenEdit(false)"><ion-icon name="close"></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+
+          <ion-text>
+            <h1>Editar Agendamento?</h1>
           </ion-text>
 
         </div>

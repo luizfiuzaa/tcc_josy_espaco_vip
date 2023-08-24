@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  presentingElement: any = undefined;
 
-  constructor() {}
+  constructor(private actionSheetCtrl: ActionSheetController) {}
 
   Agendamentos: any[] =[
   {
@@ -36,13 +38,39 @@ export class HomePage {
   },
 ]
 
-modalOpenDelete = false;
+ngOnInit() {
+  this.presentingElement = document.querySelector('.ion-page');
+}
+
+canDismiss = async () => {
+  const actionSheet = await this.actionSheetCtrl.create({
+    header: 'Are you sure?',
+    buttons: [
+      {
+        text: 'Yes',
+        role: 'confirm',
+      },
+      {
+        text: 'No',
+        role: 'cancel',
+      },
+    ],
+  });
+
+  actionSheet.present();
+
+  const { role } = await actionSheet.onWillDismiss();
+
+  return role === 'confirm';
+};
+
+// modalOpenDelete = false;
 modalOpenAdd = false;
 modalOpenEdit= false;
 
-setOpenDelete(isOpen: any) {
-  this.modalOpenDelete = isOpen;
-}
+// setOpenDelete(isOpen: any) {
+//   this.modalOpenDelete = isOpen;
+// }
 setOpenAdd(isOpen: any) {
   this.modalOpenAdd = isOpen;
 }
