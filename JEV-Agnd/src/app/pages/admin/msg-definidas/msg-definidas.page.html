@@ -72,20 +72,20 @@
     </ion-col>
   
     <ion-col class="card_content">
-      <ion-card class="card2" color="danger">
-        <ion-card-header>
+      <ion-card class="card2" color="light">
+        <ion-card-header color="danger">
           <ion-row class="titles">
             <ion-col size="10">
+              <!-- <ion-card-subtitle>Mensagem de cancelamento de agendamento</ion-card-subtitle> -->
               <ion-card-title>Cancelamento</ion-card-title>
             </ion-col>
             <ion-col size="2">
               <ion-icon class="icons" name="close-circle-outline"></ion-icon>
             </ion-col>
-            <ion-card-subtitle>Mensagem de cancelamento de agendamento</ion-card-subtitle>
           </ion-row>
           
         </ion-card-header>
-      
+        
         <ion-card-content>
           <ion-row class="divisor">
             <p>Olá, tudo bem? você está recebendo esta mensagem para avisar que um agendamento de [serviço_name] no dia [data_hora_agendada] foi cancelada devido à [mensagem de motivo]. Peço desculpas pelo possível incoveniente.</p>
@@ -94,7 +94,7 @@
           
           <ion-col>
             <ion-row>
-            <ion-button id="btn-editar2" expand="block" (click)="setOpen2(true)" class="btn-editar2" color="light">
+            <ion-button id="btn-editar2" expand="block" (click)="setOpen2(true)" class="btn-editar2" color="danger">
             <p>Editar</p>
             <ion-icon slot="end" name="pencil-outline"></ion-icon>
           </ion-button>
