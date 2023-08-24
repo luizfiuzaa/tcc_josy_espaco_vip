@@ -38,11 +38,15 @@ export class HomePage {
 
 modalOpenDelete = false;
 modalOpenAdd = false;
+modalOpenEdit= false;
 
 setOpenDelete(isOpen: any) {
   this.modalOpenDelete = isOpen;
 }
 setOpenAdd(isOpen: any) {
   this.modalOpenAdd = isOpen;
+}
+setOpenEdit(isOpen: any) {
+  this.modalOpenEdit= isOpen;
 }
 }
