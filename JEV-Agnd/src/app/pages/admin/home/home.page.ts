@@ -54,7 +54,31 @@ export class HomePage {
     this.modalOpenEdit = isOpen;
   }
 
-  console(texto: string){
+  console(texto: string) {
     console.log(texto);
+  }
+
+  handlerMessage = '';
+  roleMessage = '';
+
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        this.handlerMessage = 'Alert canceled';
+      },
+    },
+    {
+      text: 'OK',
+      role: 'confirm',
+      handler: () => {
+        this.handlerMessage = 'Alert confirmed';
+      },
+    },
+  ];
+
+  setResult(ev:any) {
+    this.roleMessage = `Dismissed with role: ${ev.detail.role}`;
   }
 }

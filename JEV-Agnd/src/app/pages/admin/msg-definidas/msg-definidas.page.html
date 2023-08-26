@@ -11,21 +11,20 @@
 
   <ion-content [fullscreen]="true">
     <ion-row class="main ion-align-items-center ion-justify-content-center ion-text-center">
-      <ion-col sizeLg="3" sizeMd="7" size="12">
-
+      <ion-col class="container">
         <!-- Confirmação -->
         <ion-card color="light">
           <ion-card-header color="success">
             
             <ion-card-title>
-              <ion-icon class="icons" name="close-circle-outline"></ion-icon>
+              <ion-icon name="checkbox"></ion-icon>
               <ion-col size="10"><ion-text>Confirmação</ion-text></ion-col>
             </ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
             <ion-text class="descricao">
-              <p>Text Placeholder</p>
+              <p class="placeholder">Espaço reservado para texto</p>
             </ion-text>
 
             <ion-card-content>
@@ -34,7 +33,7 @@
                 expand="block"
                 color="success"
               >
-              <p>Compartilhar</p>
+              <p class="compartilhar">Compartilhar</p>
               <ion-icon name="arrow-redo"></ion-icon>
               </ion-button>
 
@@ -93,20 +92,19 @@
             </ion-card-content>
           </ion-card-content>
         </ion-card>
-
         <!-- Reagendamento -->
         <ion-card color="light">
           <ion-card-header color="secondary">
             
             <ion-card-title>
-              <ion-icon class="icons" name="close-circle-outline"></ion-icon>
+              <ion-icon name="time"></ion-icon>
               <ion-col size="10"><ion-text>Reagendamento</ion-text></ion-col>
             </ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
             <ion-text class="descricao">
-              <p>Text Placeholder</p>
+              <p class="placeholder">Espaço reservado para texto</p>
             </ion-text>
 
             <ion-card-content>
@@ -115,7 +113,7 @@
                 expand="block"
                 color="secondary"
               >
-              <p>Compartilhar</p>
+              <p class="compartilhar">Compartilhar</p>
               <ion-icon name="arrow-redo"></ion-icon>
               </ion-button>
 
@@ -174,20 +172,19 @@
             </ion-card-content>
           </ion-card-content>
         </ion-card>
-
         <!-- Cancelamento -->
         <ion-card color="light">
           <ion-card-header color="danger">
             
             <ion-card-title>
-              <ion-icon class="icons" name="close-circle-outline"></ion-icon>
+              <ion-icon name="close-circle"></ion-icon>
               <ion-col size="10"><ion-text>Cancelamento</ion-text></ion-col>
             </ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
             <ion-text class="descricao">
-              <p>Text Placeholder</p>
+              <p class="placeholder">Espaço reservado para texto</p>
             </ion-text>
 
             <ion-card-content>
@@ -196,14 +193,14 @@
                 expand="block"
                 color="danger"
               >
-              <p>Compartilhar</p>
+              <p class="compartilhar">Compartilhar</p>
               <ion-icon name="arrow-redo"></ion-icon>
               </ion-button>
 
               <ion-button
                 id="btn-editar"
                 expand="block"
-                (click)="setOpenCobrar(true)"
+                (click)="setOpenCancel(true)"
                 class="btn-editar"
                 fill="outline"
                 color="danger"
@@ -216,7 +213,7 @@
                 trigger="btn-editar2"
                 mode="ios"
                 class="modal-header2"
-                [isOpen]="modalOpenCobrar"
+                [isOpen]="modalOpenCancel"
                 [initialBreakpoint]="0.25"
                 [breakpoints]="[0,0.25,0.50,0.65]"
               >
@@ -227,13 +224,13 @@
                         <ion-title>Editar</ion-title>
 
                         <ion-buttons slot="start">
-                          <ion-button (click)="setOpenCobrar(false)">
+                          <ion-button (click)="setOpenCancel(false)">
                             Cancelar
                           </ion-button>
                         </ion-buttons>
 
                         <ion-buttons slot="end">
-                          <ion-button (click)="setOpenCobrar(false)">
+                          <ion-button (click)="setOpenCancel(false)">
                             Confirmar
                           </ion-button>
                         </ion-buttons>
@@ -255,20 +252,19 @@
             </ion-card-content>
           </ion-card-content>
         </ion-card>
-
         <!-- Cobrar -->
         <ion-card color="light">
           <ion-card-header color="warning">
             
             <ion-card-title>
-              <ion-icon class="icons" name="close-circle-outline"></ion-icon>
+              <ion-icon name="cash"></ion-icon>
               <ion-col size="10"><ion-text>Cobrar</ion-text></ion-col>
             </ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
             <ion-text class="descricao">
-              <p>Text Placeholder</p>
+              <p class="placeholder">Espaço reservado para texto</p>
             </ion-text>
 
             <ion-card-content>
@@ -277,7 +273,7 @@
                 expand="block"
                 color="warning"
               >
-              <p>Compartilhar</p>
+              <p class="compartilhar">Compartilhar</p>
               <ion-icon name="arrow-redo"></ion-icon>
               </ion-button>
 
@@ -336,7 +332,6 @@
             </ion-card-content>
           </ion-card-content>
         </ion-card>
-
       </ion-col>
     </ion-row>
   </ion-content>
