@@ -21,114 +21,29 @@ export class ClientesPage implements OnInit {
 
   ClientesCadastrados: any[] = [
     {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
+      ClienteNome: 'Luiza Fiuze',
+      ClienteEmail: 'lui.fiuze@gmail.com',
+      ClienteTelefone: '15 99999-9998'
     },
     {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
+      ClienteNome: 'Claudinha Buxexa',
+      ClienteEmail: 'caluBuxa@gmail.com',
+      ClienteTelefone: '15 99999-9997'
     },
     {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
+      ClienteNome: 'Lauro Pinheiro',
+      ClienteEmail: 'laura.peneira@gmail.com',
+      ClienteTelefone: '15 99999-9996'
     },
     {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
+      ClienteNome: 'Joana Victoria',
+      ClienteEmail: 'joavi.c@gmail.com',
+      ClienteTelefone: '15 99999-9995'
     },
     {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
-    },
-    {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99456-3468'
+      ClienteNome: 'Marlene Steps',
+      ClienteEmail: 'marlene.stp@gmail.com',
+      ClienteTelefone: '15 99999-9994'
     },
   ]
 

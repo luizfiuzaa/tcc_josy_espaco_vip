@@ -46,7 +46,7 @@
                     <ng-template #otherStatus>
                       <ion-card-title class="status waiting">
                         <div class="ok">
-                          <ion-icon name="time"></ion-icon>
+                          <ion-icon name="checkmark-circle"></ion-icon>
                           {{Agendamentos.status}}
                         </div>
                       </ion-card-title>
@@ -123,11 +123,19 @@
 
 
     <!-- botão add agendamento-->
+<<<<<<< HEAD
     <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
       <ion-fab-button>
         <ion-icon id="add" name="add" expand="block"></ion-icon>
       </ion-fab-button>
     </ion-fab>
+=======
+      <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button>
+          <ion-icon id="add" name="add" expand="block"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+>>>>>>> telaClientes
 
     <!-- modal de agendamento-->
     <ion-modal id="example-modal" #modal trigger="add_area" [isOpen]="modalOpenAdd" backdropDismiss="false">
