@@ -42,7 +42,6 @@ ion-card {
     width: 100%;
     height: 40%;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 10px;
@@ -146,4 +145,12 @@ ion-card {
 
 .title {
     margin-bottom: 10px;
+}
+
+.alert-text{
+    text-align: left;
+    width:100%;
+    color: red;
+    padding-left: 10px;
+    border-left: 2px solid red;
 }

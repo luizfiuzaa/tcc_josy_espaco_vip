@@ -73,6 +73,10 @@ export class ServicosPage implements OnInit {
   index: any = '';
 
   async createHandler(event: any) {
+    if(this.AddForm.invalid){
+      return;
+    }
+
     console.log('Deus é fiel!!!');
     const formData = new FormData();
 
@@ -80,6 +84,8 @@ export class ServicosPage implements OnInit {
     formData.append("descricao", this.AddForm.value.descricao);
     formData.append("duracao", this.AddForm.value.duracao);
     formData.append("preco", this.AddForm.value.preco);
+
+    
 
     this.createServico(formData).subscribe();
   }
@@ -138,8 +144,10 @@ export class ServicosPage implements OnInit {
   }
   submit_edit() {
     if (this.EditForm.invalid) {
+      console.log('oiii')
       return;
     }
+    console.log('aqui')
     console.log(this.EditForm.value);
   }
 
@@ -150,7 +158,7 @@ export class ServicosPage implements OnInit {
   }
 
   setOpenEdit(isOpen: any) {
-    if (this.EditForm.valid || isOpen == true) {
+    if (isOpen == true || this.EditForm.invalid && isOpen == false || this.EditForm.valid && isOpen == false) {
       this.modalOpenEdit = isOpen;
     }
   }
