@@ -16,3 +16,8 @@ ion-card{
     display: flex;
     justify-content: center;
 }
+
+.list__horario{
+    border-left: 2px var(--ion-color-primary) solid;
+    padding-left: 0.4em;
+}
