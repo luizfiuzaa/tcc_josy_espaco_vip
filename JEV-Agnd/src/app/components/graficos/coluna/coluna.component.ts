@@ -22,7 +22,7 @@ export class ColunaComponent implements OnInit {
     var myChart = new Chart("coluna", {
       type: 'bar',
       data: {
-        labels: ['Janeira', 'Fevereiro', 'Março', "Abril", "Maio", "Junho", "Julho", "Agusto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+        labels: ['Janeira', 'Fevereiro', 'Março', "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
         datasets: [{
           label: 'Faturamento mensal',
           data: [
