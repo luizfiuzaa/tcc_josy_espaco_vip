@@ -8,31 +8,37 @@ import { getElement } from 'ionicons/dist/types/stencil-public-runtime';
   styleUrls: ['./msg-definidas.page.scss'],
 })
 export class MsgDefinidasPage implements OnInit {
-  constructor() {}
 
-  ngOnInit() {}
+  constructor() { }
 
-  Mensagens: any[] = [
-    {
-      titulo: 'Confirmação',
-      texto: 'Texto de agendamento confirmado',
-    },
-    {
-      titulo: 'Cancelamento',
-      texto: 'Texto de agendamento confirmado',
-    },
-    {
-      titulo: 'Reagendamento',
-      texto: 'Texto de agendamento reagendamento',
-    },
-    {
-      titulo: 'Cobrança',
-      texto: 'Texto de agendamento cobrança',
-    },
-  ];
+  ngOnInit() {
+  }
 
-  modalOpen = false;
-  setOpen(isOpen: boolean) {
-    this.modalOpen = isOpen;
+  // modal 1
+  modalOpen1 = false;
+
+  setOpen1(isOpen: boolean) {
+    this.modalOpen1 = isOpen;
+  }
+
+  // modal 2
+  modalOpen2 = false;
+
+  setOpen2(isOpen: boolean) {
+    this.modalOpen2 = isOpen;
+  }
+
+  // modal 3
+  modalOpen3 = false;
+
+  setOpen3(isOpen: boolean) {
+    this.modalOpen3 = isOpen;
+  }
+
+  // modal 4
+  modalOpen4 = false;
+
+  setOpen4(isOpen: boolean) {
+    this.modalOpen4 = isOpen;
   }
 }

@@ -13,30 +13,25 @@
     <ion-row class="ion-justify-content-center">
       <ion-col class="col_content" size-lg="10" size-md="10" size="12">
         <!-- Se tiver algum Cliente -->
-        <div
-        class="content"
-        *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes"
-        >
-        <ion-list lines="none">
+        <div class="content" *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes">
+          <ion-list lines="none">
 
-          <!-- Search Bar -->
+            <!-- Search Bar -->
             <ion-item>
               <ion-col size="12">
                 <form action="GET" method="get">
-                  <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"></ion-searchbar>
+                  <ion-searchbar style="margin-top: 1.5%;" class="searchBar"
+                    placeholder="Buscar cliente"></ion-searchbar>
                 </form>
               </ion-col>
             </ion-item>
 
-            <div
-            class="cliente__main"
-            *ngFor="let ClientesCadastrados of ClientesCadastrados"
-            >
-            <ion-item>
-              <!-- Card dos Clientes -->
-              <ion-card>
-                <!-- Clientes: Nome e Telefone -->
-                <ion-card-header>
+            <div class="cliente__main" *ngFor="let ClientesCadastrados of ClientesCadastrados">
+              <ion-item>
+                <!-- Card dos Clientes -->
+                <ion-card>
+                  <!-- Clientes: Nome e Telefone -->
+                  <ion-card-header>
                     <ion-card-title>
                       <ion-text class="main__nome">
                         <ion-icon name="person-sharp"></ion-icon>
@@ -81,11 +76,6 @@
         </ng-template>
       </ion-col>
     </ion-row>
-<<<<<<< HEAD
-  </ion-content>
-</div>
-=======
-
     <!-- Btn para adicionar um novo cliente -->
     <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed">
       <ion-fab-button>
@@ -94,4 +84,3 @@
     </ion-fab>
   </ion-content>
 </div>
->>>>>>> 0074d70793bd804255c8bc8ae46c24c7b6e62bcb
