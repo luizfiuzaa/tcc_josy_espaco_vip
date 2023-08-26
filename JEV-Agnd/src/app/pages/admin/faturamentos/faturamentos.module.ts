@@ -9,6 +9,9 @@ import { FaturamentosPageRoutingModule } from './faturamentos-routing.module';
 import { FaturamentosPage } from './faturamentos.page';
 
 import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.module';
+import { ServicosComponent } from 'src/app/components/graficos/pizza/servicos/servicos.component';
+import { FaturamentoComponent } from 'src/app/components/graficos/pizza/faturamento/faturamento.component';
+import { ColunaComponent } from 'src/app/components/graficos/coluna/coluna.component';
 
 @NgModule({
   imports: [
@@ -18,6 +21,6 @@ import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.mod
     FaturamentosPageRoutingModule,
     HeaderMenuModule
   ],
-  declarations: [FaturamentosPage]
+  declarations: [FaturamentosPage,  ServicosComponent, FaturamentoComponent, ColunaComponent]
 })
 export class FaturamentosPageModule {}
