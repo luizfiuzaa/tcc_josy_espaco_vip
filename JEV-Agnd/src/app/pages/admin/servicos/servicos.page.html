@@ -67,12 +67,18 @@
 										formControlName="titulo" required>
 									<label for="title">Titulo:</label>
 								</div>
+								<div *ngIf="titulo.invalid && formDir.submitted">
+									O título é obrigatorio!
+								</div>
 							</ion-item>
 							<ion-item class="input_container">
 								<div class="input_cont">
 									<input type="text" id="descricao" placeholder="Digite a descrição" class="input2"
 										formControlName="descricao" required>
 									<label for="descricao">Descrição:</label>
+								</div>
+								<div *ngIf="titulo.invalid && formDir.submitted">
+									O título é obrigatorio!
 								</div>
 							</ion-item>
 							<ion-item class="input_container">
@@ -81,7 +87,9 @@
 										formControlName="duracao" required>
 									<label for="duracao">Duração:</label>
 								</div>
-								<div></div>
+								<div *ngIf="titulo.invalid && formDir.submitted">
+									O título é obrigatorio!
+								</div>
 							</ion-item>
 							<ion-item class="input_container">
 								<div class="input_cont">
@@ -89,9 +97,17 @@
 										formControlName="preco" required>
 									<label for="preco">Preço:</label>
 								</div>
+								<div *ngIf="titulo.invalid && formDir.submitted">
+									O título é obrigatorio!
+								</div>
 							</ion-item>
-							<ion-button (click)="setOpenAdd(false)" type="submit" expand="block"
-								color="success">Register</ion-button>
+							<div *ngIf="AddForm.invalid; else buttonCOnfirm">
+								<ion-button type="submit" expand="block" color="primary">Register</ion-button>
+							</div>
+							<ng-template #buttonCOnfirm>
+								<ion-button (click)="setOpenAdd(false)" type="submit" expand="block"
+									color="success">Register</ion-button>
+							</ng-template>
 						</form>
 					</ion-content>
 				</ng-template>
@@ -123,8 +139,9 @@
 							</ion-item>
 							<ion-item class="input_container">
 								<div class="input_cont">
-									<input type="text" id="desc_edit" minlength="10" maxlength="100" placeholder="Digite a descrição" class="input2"
-										formControlName="descricao_edit" required>
+									<input type="text" id="desc_edit" minlength="10" maxlength="100"
+										placeholder="Digite a descrição" class="input2" formControlName="descricao_edit"
+										required>
 									<label for="desc_edit">Descrição:</label>
 								</div>
 							</ion-item>
@@ -142,7 +159,8 @@
 									<label for="preco_edit">Preço:</label>
 								</div>
 							</ion-item>
-							<ion-button (click)="setOpenEdit(false)" type="submit" expand="block" color="success">Register</ion-button>
+							<ion-button (click)="setOpenEdit(false)" type="submit" expand="block"
+								color="success">Register</ion-button>
 						</form>
 					</ion-content>
 				</ng-template>
