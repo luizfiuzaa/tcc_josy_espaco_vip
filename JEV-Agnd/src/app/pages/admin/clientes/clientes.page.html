@@ -5,53 +5,93 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Faturamento</ion-title>
+      <ion-title>Clientes</ion-title>
     </ion-toolbar>
   </ion-header>
-
 
   <ion-content [fullscreen]="true">
     <ion-row class="ion-justify-content-center">
       <ion-col class="col_content" size-lg="10" size-md="10" size="12">
-        <div class="header">
-          <button><ion-icon name="person-add-outline">Adicionar Cliente</ion-icon></button>
-          <ion-searchbar class="searchBar" placeholder="Buscar cliente"></ion-searchbar>
-        </div>
-        <div class="content" *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes">
-          <div class="cliente__header">
-            <ion-text class="header__left">
-              <h1>Nome</h1>
-            </ion-text>
-            <ion-text class="header__main">
-              <h1>E-mail</h1>
-            </ion-text>
-            <ion-text class="header__rigth">
-              <h1>Telefone</h1>
-            </ion-text>
-          </div>
-          <div class="main">
-            <div class="cliente__main" *ngFor="let ClientesCadastrados of ClientesCadastrados">
-              <ion-text class="main__nome">
-                <p>{{ClientesCadastrados.ClienteNome}}</p>
-              </ion-text>
-              <ion-text class="main__email">
-                <p>{{ClientesCadastrados.ClienteEmail}}</p>
-              </ion-text>
-              <ion-text class="main__telefone">
-                <p>{{ClientesCadastrados.ClienteTelefone}}</p>
-              </ion-text>
-            </div>
-          </div>
+        <!-- Se tiver algum Cliente -->
+        <div
+        class="content"
+        *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes"
+        >
+        <ion-list lines="none">
 
+          <!-- Search Bar -->
+            <ion-item>
+              <ion-col size="12">
+                <form action="GET" method="get">
+                  <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"></ion-searchbar>
+                </form>
+              </ion-col>
+            </ion-item>
+
+            <div
+            class="cliente__main"
+            *ngFor="let ClientesCadastrados of ClientesCadastrados"
+            >
+            <ion-item>
+              <!-- Card dos Clientes -->
+              <ion-card>
+                <!-- Clientes: Nome e Telefone -->
+                <ion-card-header>
+                    <ion-card-title>
+                      <ion-text class="main__nome">
+                        <ion-icon name="person-sharp"></ion-icon>
+                        {{ClientesCadastrados.ClienteNome}}
+                      </ion-text>
+                    </ion-card-title>
+                    <ion-card-subtitle>
+                      <ion-text class="main__email">
+                        <ion-icon name="logo-whatsapp"></ion-icon>
+                        {{ClientesCadastrados.ClienteTelefone}}
+                      </ion-text>
+                    </ion-card-subtitle>
+                  </ion-card-header>
+
+                  <!-- Botões de Exclusão, Edição e Visualização de dados -->
+                  <ion-card-content>
+                    <ion-button class="delete" fill="outline">
+                      <ion-icon name="trash"></ion-icon>
+                      Excluir
+                    </ion-button>
+                    <ion-button class="edit">
+                      <ion-icon name="create-outline"></ion-icon>
+                      Editar
+                    </ion-button>
+                    <ion-button class="info">
+                      <ion-icon name="information-circle-sharp"></ion-icon>
+                    </ion-button>
+                  </ion-card-content>
+                </ion-card>
+              </ion-item>
+            </div>
+          </ion-list>
         </div>
+
+        <!-- Senão Exiba -->
         <ng-template #noClientes>
           <ion-col size="12" class="noClientes">
             <ion-text class="ion-text-center">
-              <p>Não há clientes cadastrados...</p>
+              <h3>Não há clientes cadastrados...</h3>
             </ion-text>
           </ion-col>
         </ng-template>
       </ion-col>
     </ion-row>
+<<<<<<< HEAD
   </ion-content>
 </div>
+=======
+
+    <!-- Btn para adicionar um novo cliente -->
+    <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button>
+        <ion-icon id="add" name="add" expand="block"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+</div>
+>>>>>>> 0074d70793bd804255c8bc8ae46c24c7b6e62bcb

@@ -11,6 +11,7 @@
 
   <ion-content [fullscreen]="true">
     <ion-row class="main">
+<<<<<<< HEAD
 
       <ion-col class="card_content">
         <ion-card class="card1" color="success">
@@ -261,3 +262,79 @@
 
   </ion-content>
 </div>
+=======
+      <ion-col sizeLg="3" sizeMd="7" size="12">
+        <ion-card color="light">
+          <ion-card-header color="danger">
+            
+            <ion-card-title>
+              <ion-icon class="icons" name="close-circle-outline"></ion-icon>
+              <ion-col size="10"><ion-text>Title Placeholder</ion-text></ion-col>
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-text class="descricao">
+              <p>Text Placeholder</p>
+            </ion-text>
+
+            <ion-card-content>
+              <ion-button
+                id="btn-editar"
+                expand="block"
+                (click)="setOpen(true)"
+                class="btn-editar"
+                color="danger"
+              >
+                <p>Editar</p>
+                <ion-icon slot="end" name="pencil-outline"></ion-icon>
+              </ion-button>
+              <ion-modal
+                #modal
+                trigger="btn-editar2"
+                mode="ios"
+                class="modal-header2"
+                [isOpen]="modalOpen"
+                [initialBreakpoint]="0.25"
+                [breakpoints]="[0,0.25,0.50,0.65]"
+              >
+                <ion-col>
+                  <ng-template>
+                    <ion-header>
+                      <ion-toolbar>
+                        <ion-title>Editar</ion-title>
+
+                        <ion-buttons slot="start">
+                          <ion-button (click)="setOpen(false)">
+                            Cancelar
+                          </ion-button>
+                        </ion-buttons>
+
+                        <ion-buttons slot="end">
+                          <ion-button (click)="setOpen(false)">
+                            Confirmar
+                          </ion-button>
+                        </ion-buttons>
+
+                      </ion-toolbar>
+                    </ion-header>
+
+                    <ion-content>
+                      <ion-item>
+                        <ion-input
+                          type="text"
+                          placeholder="Insira sua mensagem pré-definida"
+                        ></ion-input>
+                      </ion-item>
+                    </ion-content>
+                  </ng-template>
+                </ion-col>
+              </ion-modal>
+            </ion-card-content>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+</div>
+>>>>>>> 0074d70793bd804255c8bc8ae46c24c7b6e62bcb
