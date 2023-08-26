@@ -21,6 +21,7 @@ export class ServicosPage implements OnInit {
   private apiUrl = `${this.baseApiUrl}api/servicos`;
 
   @Input() Card_Dados: CardDados[] = [];
+
   CardDados: any[] = [
     {
       tituloCard: 'Unhas',
@@ -73,6 +74,10 @@ export class ServicosPage implements OnInit {
   index: any = '';
 
   async createHandler(event: any) {
+    if(this.AddForm.invalid){
+      return;
+    }
+
     console.log('Deus é fiel!!!');
     const formData = new FormData();
 
@@ -138,17 +143,23 @@ export class ServicosPage implements OnInit {
   }
   submit_edit() {
     if (this.EditForm.invalid) {
+      console.log('oiii')
       return;
     }
+    console.log('aqui')
     console.log(this.EditForm.value);
   }
 
   setOpenAdd(isOpen: any) {
-    this.modalOpenAdd = isOpen;
+    if (isOpen == true || this.AddForm.invalid && isOpen == false || this.AddForm.valid && isOpen == false) {
+      this.modalOpenAdd = isOpen;
+    }
   }
 
   setOpenEdit(isOpen: any) {
-    this.modalOpenEdit = isOpen;
+    if (isOpen == true || this.EditForm.invalid && isOpen == false || this.EditForm.valid && isOpen == false) {
+      this.modalOpenEdit = isOpen;
+    }
   }
   editService(indice: any) {
     this.index = indice;

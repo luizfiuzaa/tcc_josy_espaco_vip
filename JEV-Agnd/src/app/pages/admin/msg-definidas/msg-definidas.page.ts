@@ -18,27 +18,27 @@ export class MsgDefinidasPage implements OnInit {
   modalOpen1 = false;
 
   setOpen1(isOpen: boolean) {
-    this.modalOpen1= isOpen;
+    this.modalOpen1 = isOpen;
   }
-  
+
   // modal 2
   modalOpen2 = false;
 
   setOpen2(isOpen: boolean) {
-    this.modalOpen2= isOpen;
+    this.modalOpen2 = isOpen;
   }
 
   // modal 3
   modalOpen3 = false;
 
   setOpen3(isOpen: boolean) {
-    this.modalOpen3= isOpen;
+    this.modalOpen3 = isOpen;
   }
 
   // modal 4
   modalOpen4 = false;
 
   setOpen4(isOpen: boolean) {
-    this.modalOpen4= isOpen;
+    this.modalOpen4 = isOpen;
   }
 }

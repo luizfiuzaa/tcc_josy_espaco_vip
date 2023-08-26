@@ -1,7 +1,5 @@
 <!-- Menu hamburger -->
 <app-header-menu></app-header-menu>
-
-<!-- Header -->
 <div class="ion-page" id="main-content">
   <ion-header mode="ios">
     <ion-toolbar>
@@ -46,7 +44,7 @@
                     <ng-template #otherStatus>
                       <ion-card-title class="status waiting">
                         <div class="ok">
-                          <ion-icon name="time"></ion-icon>
+                          <ion-icon name="checkmark-circle"></ion-icon>
                           {{Agendamentos.status}}
                         </div>
                       </ion-card-title>
@@ -58,12 +56,11 @@
 
                   <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
                   <ion-card-content>
-                    <ion-button id="excluir" class="delete" fill="outline" (click)="setOpenDelete(true)">
+                    <ion-button id="excluir" class="delete" fill="outline" (click)="setOpenDelete(true);">
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>
-
-                    <ion-button class="edit">
+                    <ion-button class="edit" id="editar" (click)="setOpenEdit(true)">
                       <ion-icon name="create-outline"></ion-icon>
                       Editar
                     </ion-button>
@@ -86,9 +83,9 @@
       </ng-template>
     </ion-row>
 
-    <ion-modal id="example-modal" #modal trigger="excluir" [isOpen]="modalOpenDelete">
-      <ng-template>
-        <div class="wrapper">
+    <ion-modal id="delete-modal" #modal trigger="excluir" [isOpen]="modalOpenDelete" backdropDismiss="false">
+      <ng-template class="modal_content">
+        <div class="wrapper modal_delete">
           <ion-toolbar>
             <ion-title>Deletar</ion-title>
             <ion-buttons slot="end">
@@ -104,16 +101,34 @@
       </ng-template>
     </ion-modal>
 
+    <ion-modal id="edit-modal" #modal trigger="editar" [isOpen]="modalOpenEdit" backdropDismiss="false">
+      <ng-template>
+        <div class="wrapper">
+          <ion-toolbar>
+            <ion-title>Editar</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpenEdit(false)"><ion-icon name="close"></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+
+          <ion-text>
+            <h1>Editar Agendamento?</h1>
+          </ion-text>
+
+        </div>
+      </ng-template>
+    </ion-modal>
+
 
     <!-- botão add agendamento-->
-    <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
       <ion-fab-button>
         <ion-icon id="add" name="add" expand="block"></ion-icon>
       </ion-fab-button>
     </ion-fab>
 
     <!-- modal de agendamento-->
-    <ion-modal id="example-modal" #modal trigger="add_area" [isOpen]="modalOpenAdd">
+    <ion-modal id="example-modal" #modal trigger="add_area" [isOpen]="modalOpenAdd" backdropDismiss="false">
       <ng-template>
         <div class="wrapper">
           <ion-toolbar>

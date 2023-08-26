@@ -1,151 +1,204 @@
 <app-header-menu></app-header-menu>
 <div class="ion-page" id="main-content">
-	<ion-header mode="ios">
-		<ion-toolbar>
-			<ion-buttons slot="start">
-				<ion-menu-button></ion-menu-button>
-			</ion-buttons>
-			<ion-title>Serviços</ion-title>
-		</ion-toolbar>
-	</ion-header>
-	<ion-content [fullscreen]="true">
-		<ion-row>
-			<ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
-				<ion-card *ngFor="let card of CardDados; let i = index" class="card">
-					<ion-card-content class="icon_card">
-						<ion-icon name="create-outline" class="edit_icon" id="open-modal-edit" (click)="editService(i)"></ion-icon>
-					</ion-card-content>
-					<ion-card-content class="card_context">
-						<ion-card-title class="title">{{card.tituloCard}}</ion-card-title>
-						<p>Descrição: {{card.descricaoCard}}</p>
-						<p>Duração: {{card.duracaoCard}}</p>
-						<p>Preço (R$): {{card.precoCard}}</p>
-					</ion-card-content>
-				</ion-card>
-			</ion-col>
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Serviços</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true">
 
-			<ng-template #noCards>
-				<ion-col class="container" size="12">
-					<ion-text>
-						<p>Nenhum serviço cadastrado...</p>
-						<button [routerLink]="['#']" routerLinkActive="active-button">
-							Cadastrar
-						</button>
-					</ion-text>
-				</ion-col>
-			</ng-template>
+    <ion-row>
 
-		</ion-row>
+      <ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
+        <ion-card *ngFor="let card of CardDados; let i = index" class="card">
+          <ion-card-content class="icon_card">
+            <ion-icon name="create-outline" class="edit_icon" id="open-modal-edit" (click)="editService(i)"></ion-icon>
+          </ion-card-content>
+          <ion-card-content class="card_context">
+            <ion-card-title class="title">{{card.tituloCard}}</ion-card-title>
+            <p>Descrição: {{card.descricaoCard}}</p>
+            <p>Duração: {{card.duracaoCard}}</p>
+            <p>Preço (R$): {{card.precoCard}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
+      <ng-template #noCards>
+        <ion-col class="container" size="12">
+          <ion-text>
+            <p>Nenhum serviço cadastrado...</p>
+            <button [routerLink]="['#']" routerLinkActive="active-button">
+              Cadastrar
+            </button>
+          </ion-text>
+        </ion-col>
+      </ng-template>
 
-		<ion-fab id="open-modal" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
-			<ion-fab-button>
-				<ion-icon id="add" name="add" expand="block"></ion-icon>
-			</ion-fab-button>
-		</ion-fab>
+    </ion-row>
 
-		<ion-modal #modal trigger="open-modal" mode="ios" class="modal-header modal" [isOpen]="modalOpenAdd"
-			[initialBreakpoint]="0.65" [breakpoints]="[0,0.50,0.65]" backdropDismiss="false">
-			<ion-col>
-				<ng-template class="block">
-					<ion-header>
-						<ion-toolbar>
-							<ion-title>Adicionar</ion-title>
-							<ion-buttons slot="start">
-								<ion-button (click)="setOpenAdd(false)">Cancelar</ion-button>
-							</ion-buttons>
-							<ion-buttons slot="end">
-								<ion-button (click)="setOpenAdd(false)">Confirmar</ion-button>
-							</ion-buttons>
-						</ion-toolbar>
-					</ion-header>
-					<ion-content>
-						<form action="" class="form" (ngSubmit)="submit_add(); createHandler($event)" [formGroup]="AddForm" #formDir="ngForm">
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="title" placeholder="Digite o nome" class="input1" formControlName="titulo"
-										required>
-									<label for="title">Titulo:</label>
-								</div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="descricao" placeholder="Digite a descrição" class="input2"
-										formControlName="descricao" required>
-									<label for="descricao">Descrição:</label>
-								</div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="duracao" placeholder="Digite a duração" class="input3"
-										formControlName="duracao" required>
-									<label for="duracao">Duração:</label>
-								</div>
-								<div></div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="preco" placeholder="Digite o preco" class="input4" formControlName="preco"
-										required>
-									<label for="preco">Preço:</label>
-								</div>
-							</ion-item>
-							<ion-button type="submit" expand="block" color="success">Register</ion-button>
-						</form>
-					</ion-content>
-				</ng-template>
-			</ion-col>
-		</ion-modal>
+    <!-- Fab Button -->
+    <ion-fab id="open-modal" class="button_fab" horizontal="end" vertical="bottom" slot="fixed"
+      (click)="setOpenAdd(true)">
+      <ion-fab-button>
+        <ion-icon id="add" name="add" expand="block"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
-		<ion-modal #modal trigger="open-modal-edit" mode="ios" class="modal-header modal" [isOpen]="modalOpenEdit"
-			[initialBreakpoint]="0.65" [breakpoints]="[0,0.50,0.65]" backdropDismiss="false">
-			<ion-col>
-				<ng-template class="block">
-					<ion-header>
-						<ion-toolbar>
-							<ion-title>Editar</ion-title>
-							<ion-buttons slot="start">
-								<ion-button (click)="setOpenEdit(false)">Cancelar</ion-button>
-							</ion-buttons>
-							<ion-buttons slot="end">
-								<ion-button (click)="setOpenEdit(false)">Confirmar</ion-button>
-							</ion-buttons>
-						</ion-toolbar>
-					</ion-header>
-					<ion-content>
-						<form action="" class="form" (ngSubmit)="submit_edit()" [formGroup]="EditForm" #formDir="ngForm">
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="titulo" placeholder="Digite o nome" class="input1"
-										formControlName="titulo_edit" required>
-									<label for="titulo">Titulo:</label>
-								</div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="desc_edit" placeholder="Digite a descrição" class="input2"
-										formControlName="descricao_edit" required>
-									<label for="desc_edit">Descrição:</label>
-								</div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="duracao_edit" placeholder="Digite a duração" class="input3"
-										formControlName="duracao_edit" required>
-									<label for="duracao_edit">Duração:</label>
-								</div>
-							</ion-item>
-							<ion-item class="input_container">
-								<div class="input_cont">
-									<input type="text" id="preco_edit" placeholder="Digite o preco" class="input4"
-										formControlName="preco_edit" required>
-									<label for="preco_edit">Preço:</label>
-								</div>
-							</ion-item>
-							<ion-button type="submit" expand="block" color="success">Register</ion-button>
-						</form>
-					</ion-content>
-				</ng-template>
-			</ion-col>
-		</ion-modal>
-	</ion-content>
+    <!-- Modal Add -->
+    <ion-modal #modal trigger="open-modal" mode="ios" class="modal-header modal" [isOpen]="modalOpenAdd"
+      [initialBreakpoint]="0.61" [breakpoints]="[0,0.57,0.61,0.65,0.75]" backdropDismiss="false">
+      <ion-col>
+        <ng-template class="block">
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Adicionar</ion-title>
+              <ion-buttons slot="start">
+                <ion-button (click)="setOpenAdd(false)">Cancelar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <form action="" class="form" (ngSubmit)="submit_add(); createHandler($event)" [formGroup]="AddForm"
+              #formDir="ngForm">
+              <div class="form__inputs">
+                <div class="inputs__context">
+                  <ion-item>
+                    <ion-input formControlName="titulo" type="text" label="Título:" labelPlacement="floating" id="title"
+                      class="input1" placeholder="Digite o título" [clearInput]="true" required></ion-input>
+                  </ion-item>
+                </div>
+                <div class="message-alert" *ngIf="titulo.invalid && formDir.submitted">
+                  Título invalido!
+                </div>
+              </div>
+              <div class="form__inputs">
+                <div class="inputs__context">
+                  <ion-item>
+                    <ion-input formControlName="descricao" type="text" label="Descrição:" labelPlacement="floating"
+                      id="descricao" class="input2" placeholder="Digite a descrição" [clearInput]="true"
+                      required></ion-input>
+                  </ion-item>
+                </div>
+                <div class="message-alert" *ngIf="descricao.invalid && formDir.submitted">
+                  Descrição invalida!
+                </div>
+              </div>
+              <div class="form__inputs">
+                <div class="inputs__context">
+                  <ion-item>
+                    <ion-input formControlName="duracao" type="text" label="Duração:" labelPlacement="floating"
+                      id="duracao" class="input3" placeholder="Digite a duração" [clearInput]="true"
+                      required></ion-input>
+                  </ion-item>
+                </div>
+                <div class="message-alert" *ngIf="duracao.invalid && formDir.submitted">
+                  Duração invalida!
+                </div>
+              </div>
+              <div class="form__inputs">
+                <div class="inputs__context">
+                  <ion-item>
+                    <ion-input formControlName="preco" type="text" label="Preço:" labelPlacement="floating" id="preco"
+                      class="input4" placeholder="Digite o preço" [clearInput]="true" required></ion-input>
+                  </ion-item>
+                </div>
+                <div class="message-alert" *ngIf="preco.invalid && formDir.submitted">
+                  Preço invalido!
+                </div>
+              </div>
+              <div class="form__buttons">
+                <div *ngIf="AddForm.invalid; else buttonConfirm">
+                  <ion-button type="submit" expand="block" color="primary" style="opacity: 0.7;">Adicionar</ion-button>
+                </div>
+                <ng-template #buttonConfirm>
+                  <ion-button (click)="setOpenAdd(false)" type="submit" expand="block"
+                    color="primary">Adicionar</ion-button>
+                </ng-template>
+              </div>
+            </form>
+          </ion-content>
+        </ng-template>
+      </ion-col>
+    </ion-modal>
+    <!-- Modal Edit -->
+    <ion-modal #modal trigger="open-modal-edit" mode="ios" class="modal-header modal" [isOpen]="modalOpenEdit"
+      [initialBreakpoint]="0.61" [breakpoints]="[0,0.55,0.61,0.65,0.75]" backdropDismiss="false">
+      <ion-col>
+        <ng-template class="block">
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Editar</ion-title>
+              <ion-buttons slot="start">
+                <ion-button (click)="setOpenEdit(false)">Cancelar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <form action="" class="form" (ngSubmit)="submit_edit()" [formGroup]="EditForm" #formDir="ngForm">
+              <div class="form__inputs">
+                <div class="inputs__context">
+                  <ion-item>
+                    <ion-input type="text" formControlName="titulo_edit" id="titulo_edit" class="input1" label="Título:"
+                      labelPlacement="floating" minlength="2" maxlength="50" placeholder="Digite o título"
+                      [clearInput]="true" required></ion-input>
+                  </ion-item>
+                </div>
+                <div class="message-alert" *ngIf="titulo_edit.invalid && formDir.submitted">
+                  Título invalido!
+                </div>
+              </div>
+              <div class="form__inputs">
+                <div class="inputs__context">
+                  <ion-item>
+                    <ion-input formControlName="descricao_edit" type="text" id="descricao_edit" class="input2"
+                      label="Descrição:" labelPlacement="floating" minlength="10" maxlength="160"
+                      placeholder="Digite a descrição" [clearInput]="true" required></ion-input>
+                  </ion-item>
+                </div>
+                <div class="message-alert" *ngIf="descricao_edit.invalid && formDir.submitted">
+                  Descrição invalida!
+                </div>
+              </div>
+              <div class="form__inputs">
+                <div class="inputs__context">
+                  <ion-item>
+                    <ion-input formControlName="duracao_edit" type="text" label="Duração:" labelPlacement="floating"
+                      id="duracao_edit" class="input3" placeholder="Digite a duração" minlength="1" maxlength="5"
+                      [clearInput]="true" required></ion-input>
+                  </ion-item>
+                </div>
+                <div class="message-alert" *ngIf="duracao_edit.invalid && formDir.submitted">
+                  Duração invalida!
+                </div>
+              </div>
+              <div class="form__inputs">
+                <div class="inputs__context">
+                  <ion-item>
+                    <ion-input formControlName="preco_edit" type="text" label="Preço:" labelPlacement="floating"
+                      id="preco_edit" class="input4" placeholder="Digite o preco" minlength="2" maxlength="14"
+                      [clearInput]="true" required></ion-input>
+                  </ion-item>
+                </div>
+                <div class="message-alert" *ngIf="preco_edit.invalid && formDir.submitted">
+                  Preço invalido!
+                </div>
+              </div>
+              <div class="form__buttons">
+                <div *ngIf="EditForm.invalid; else buttonConfirmEdit">
+                  <ion-button type="submit" expand="block" color="primary" style="opacity: 0.7;">Editar</ion-button>
+                </div>
+                <ng-template #buttonConfirmEdit>
+                  <ion-button (click)="setOpenEdit(false)" type="submit" expand="block"
+                    color="primary">Editar</ion-button>
+                </ng-template>
+              </div>
+            </form>
+          </ion-content>
+        </ng-template>
+      </ion-col>
+    </ion-modal>
+  </ion-content>
+</div>

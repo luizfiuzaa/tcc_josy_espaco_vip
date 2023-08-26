@@ -12,8 +12,7 @@
 
   <ion-content [fullscreen]="true">
     <ion-row class="ion-justify-content-center">
-      <ion-col size-lg="10" size-md="10" size="12" 
-      *ngIf="Lembretes && Lembretes.length > 0; else noCards">
+      <ion-col size-lg="10" size-md="10" size="12" *ngIf="Lembretes && Lembretes.length > 0; else noCards">
         <div class="list">
           <div>
             <ion-text class="list__itemTitle ion-text-center">
@@ -24,23 +23,23 @@
           </div>
           <div>
             <ion-list id="list" lines="none">
-            <div *ngFor="let Lembretes of Lembretes" class="content_list">
-              <ion-item>
-                <ion-card>
-                  <ion-card-header>
-                    <ion-card-title>
-                      <ion-text class="list__horario">{{Lembretes.horarioLembrete}}</ion-text>
-                    </ion-card-title>
-                    <ion-card-subtitle>
-                      <ion-text class="list__horario">{{Lembretes.dataLembrete}}</ion-text>
-                    </ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}</ion-text>
-                  </ion-card-content>
-                </ion-card>
-              </ion-item>
-            </div>
+              <div *ngFor="let Lembretes of Lembretes" class="content_list">
+                <ion-item>
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        <ion-text class="list__horario">{{Lembretes.horarioLembrete}}</ion-text>
+                      </ion-card-title>
+                      <ion-card-subtitle>
+                        <ion-text class="list__horario">{{Lembretes.dataLembrete}}</ion-text>
+                      </ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}</ion-text>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
             </ion-list>
           </div>
         </div>
@@ -55,3 +54,4 @@
 
     </ion-row>
   </ion-content>
+</div>

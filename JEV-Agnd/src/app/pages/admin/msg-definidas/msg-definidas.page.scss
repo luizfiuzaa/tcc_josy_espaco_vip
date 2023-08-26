@@ -1,4 +1,3 @@
-// msg-colors
 $confirmar: #2dd36f;
 $cancelar: #eb445a;
 $cobrar: #ffc409;
@@ -13,10 +12,6 @@ ion-toolbar {
   --color:#fff;
   --background: var(--ion-color-primary);
 }
-ion-button,
-ion-menu-button {
-  --color: #fff;
-}
 
 .main {
   margin-top: 3.5rem;
@@ -27,7 +22,7 @@ ion-card-title {
 }
 
 ion-card {
-  color: #fff;
+  color: #000000;
   height: 400px;
 }
 
