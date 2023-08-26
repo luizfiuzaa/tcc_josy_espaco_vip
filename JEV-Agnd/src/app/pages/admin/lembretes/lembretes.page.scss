@@ -3,9 +3,13 @@ ion-toolbar {
     --background: #FFF;
 }
 
-ion-button,
 ion-menu-button {
     --color: var(--ion-color-primary);
+}
+
+ion-button{
+    color: #FFF;
+    background-color: #FFF;
 }
 
 ion-card{
@@ -21,3 +25,4 @@ ion-card{
     border-left: 2px var(--ion-color-primary) solid;
     padding-left: 0.4em;
 }
+
