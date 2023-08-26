@@ -21,6 +21,7 @@ export class ServicosPage implements OnInit {
   private apiUrl = `${this.baseApiUrl}api/servicos`;
 
   @Input() Card_Dados: CardDados[] = [];
+
   CardDados: any[] = [
     {
       tituloCard: 'Unhas',
@@ -84,8 +85,6 @@ export class ServicosPage implements OnInit {
     formData.append("descricao", this.AddForm.value.descricao);
     formData.append("duracao", this.AddForm.value.duracao);
     formData.append("preco", this.AddForm.value.preco);
-
-    
 
     this.createServico(formData).subscribe();
   }
