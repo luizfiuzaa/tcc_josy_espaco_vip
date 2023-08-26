@@ -1,12 +1,11 @@
-// Header
 ion-toolbar {
-    --color: #fff;
-    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary);
+    --background: #FFF;
 }
 
 ion-button,
 ion-menu-button {
-    --color: #fff;
+    --color: var(--ion-color-primary);
 }
 
 // Container

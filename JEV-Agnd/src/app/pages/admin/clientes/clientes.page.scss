@@ -1,11 +1,11 @@
 ion-toolbar {
-    --color: #fff;
-    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary);
+    --background: #FFF;
 }
 
 ion-button,
 ion-menu-button {
-    --color: #fff;
+    --color: var(--ion-color-primary);
 }
 
 ion-card {
@@ -15,4 +15,8 @@ ion-card {
   
     ion-card-subtitle {font-size: 1.3em;}
     ion-card-subtitle,ion-card-content {color: #000;}
+
+    .edit, .info{
+        color: #FFF;
+      }
   }

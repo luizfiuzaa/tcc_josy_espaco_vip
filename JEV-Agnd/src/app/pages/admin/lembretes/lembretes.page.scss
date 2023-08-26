@@ -1,9 +1,12 @@
 ion-toolbar {
-    --color: #fff;
-    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary);
+    --background: #FFF;
 }
 
-ion-button,ion-menu-button {--color: #fff;}
+ion-button,
+ion-menu-button {
+    --color: var(--ion-color-primary);
+}
 
 ion-card{
     width: 100vh;

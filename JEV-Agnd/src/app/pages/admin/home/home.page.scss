@@ -1,11 +1,16 @@
 ion-toolbar {
-  --color: #fff;
-  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary);
+  --background: #FFF;
 }
 
-ion-button,ion-menu-button {--color: #fff;}
+ion-button,
+ion-menu-button {
+  --color: var(--ion-color-primary);
+}
 
-.toolbar{border-radius: 5px;}
+.toolbar{
+  border-radius: 5px;
+}
 
 form {
   display: flex;
@@ -20,6 +25,7 @@ form {
 .date {
   display: flex;
   justify-content: flex-start;
+  color: #FFF;
 }
 
 .date input {
@@ -30,6 +36,10 @@ form {
   background: var(--ion-color-primary);
   outline: none;
   cursor: pointer;
+}
+
+.edit, .info{
+  color: #FFF;
 }
 
 @media only screen and (max-width: 500px) {

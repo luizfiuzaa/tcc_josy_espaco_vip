@@ -1,6 +1,6 @@
 ion-toolbar {
-  --color: #fff;
-  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary);
+  --background: #FFF;
 }
 
 ion-list {
@@ -13,4 +13,9 @@ ion-list {
       margin-left: 5%;
     }
   }
+}
+
+ion-item .Link{
+  background: rgb(161, 161, 161);
+  border-radius: 15px;
 }
