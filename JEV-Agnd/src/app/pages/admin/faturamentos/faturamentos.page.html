@@ -14,24 +14,15 @@
     <ion-row class="ion-justify-content-center">
       <ion-col class="content-col" class="col_content" size-lg="10" size-md="11" size="12">
         <div class="header">
-          <div class="card">
-            <ion-text class="card-title">Dinheiro</ion-text>
-
-            <ion-text class="card-money"><ion-icon name="cash-outline"></ion-icon>R$ 459,50</ion-text>
-          </div>
-          <div class="card">
-            <ion-text class="card-title">Cartão</ion-text>
-
-            <ion-text class="card-money"><ion-icon name="card-outline"></ion-icon>R$ 459,50</ion-text>
-          </div>
-          <div class="card">
-            <ion-text class="card-title">Pix</ion-text>
-            <ion-text class="card-money"><ion-icon name="phone-portrait-outline"></ion-icon>R$ 459,50</ion-text>
-          </div>
+          <app-coluna>[</app-coluna>
         </div>
         <div class="main">
-          <div class="grafic"></div>
-          <div class="line"></div>
+          <div class="grafic">
+            <app-faturamento></app-faturamento>
+          </div>
+          <div class="grafic">
+            <app-servicos></app-servicos>
+          </div>
         </div>
         <div class="main-2">
           <form (ngSubmit)="submit_add();" #formDir="ngForm">
@@ -44,15 +35,15 @@
             </ion-item>
             <ion-item class="input_container">
               <div class="input_cont">
-                <ion-input type="text" id="descricao" placeholder="Digite a descrição" class="input2"
-                  ngModel name="descricao" required></ion-input>
+                <ion-input type="text" id="descricao" placeholder="Digite a descrição" class="input2" ngModel
+                  name="descricao" required></ion-input>
                 <label for="descricao">Descrição:</label>
               </div>
             </ion-item>
             <ion-item class="input_container">
               <div class="input_cont">
-                <ion-input type="text" id="duracao" placeholder="Digite a duração" class="input3"
-                  ngModel name="duracao" required></ion-input>
+                <ion-input type="text" id="duracao" placeholder="Digite a duração" class="input3" ngModel name="duracao"
+                  required></ion-input>
                 <label for="duracao">Duração:</label>
               </div>
             </ion-item>
