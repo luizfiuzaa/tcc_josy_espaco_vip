@@ -9,245 +9,79 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-row class="main">
-
-    <ion-col class="card_content">
-      <ion-card class="card1" color="success">
-        <ion-card-header>
-          <ion-row class="titles">
-            <ion-col size="10">
-              <ion-card-title>Confirmação</ion-card-title>
-            </ion-col>
-            <ion-col size="2">
-              <ion-icon class="icons" name="checkmark-circle-outline"></ion-icon>
-            </ion-col>
-          <ion-card-subtitle>Mensagem de confirmação do agendamento</ion-card-subtitle>
-          </ion-row>
-          
-        </ion-card-header>
-      
-        <ion-card-content>
-          <ion-row class="divisor">
-            <p>Olá, tudo bem? você está recebendo esta mensagem para avisar que seu agendamento para [serviço_name] foi marcado com sucesso no dia [data_hora_agendada].</p>
-            <p>atenciosamente, Josy Espaço VIP.</p>
-          </ion-row>
-          
-          <ion-col>
-            <ion-row>
-            <ion-button id="btn-editar1" expand="block" (click)="setOpen1(true)" class="btn-editar1" color="light">
-            <p>Editar</p>
-            <ion-icon slot="end" name="pencil-outline"></ion-icon>
-          </ion-button>
-            <ion-modal #modal trigger="btn-editar1" mode="ios" class="modal-header1" [isOpen]="modalOpen1" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
-              <ion-col>
-                <ng-template>
-                <ion-header>
-                  <ion-toolbar>
-                    <ion-title>Editar</ion-title>
-                    <ion-buttons slot="start">
-                      <ion-button (click)="setOpen1(false)">Cancelar</ion-button>
-                    </ion-buttons>
-                    <ion-buttons slot="end">
-                      <ion-button (click)="setOpen1(false)">Confirmar</ion-button>
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ion-header>
-                <ion-content>
-                  <ion-item>
-                    <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
-                    <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
-                  </ion-item>
-                </ion-content>
-              </ng-template>
-              </ion-col>
-                
-            </ion-modal>
-            </ion-row>
+  <ion-content [fullscreen]="true">
+    <ion-row class="main">
+      <ion-col sizeLg="3" sizeMd="7" size="12">
+        <ion-card color="light">
+          <ion-card-header color="danger">
             
-          </ion-col>
-          
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  
-    <ion-col class="card_content">
-      <ion-card class="card2" color="light">
-        <ion-card-header color="danger">
-          <ion-row class="titles">
-            <ion-col size="10">
-              <!-- <ion-card-subtitle>Mensagem de cancelamento de agendamento</ion-card-subtitle> -->
-              <ion-card-title>Cancelamento</ion-card-title>
-            </ion-col>
-            <ion-col size="2">
+            <ion-card-title>
               <ion-icon class="icons" name="close-circle-outline"></ion-icon>
-            </ion-col>
-          </ion-row>
-          
-        </ion-card-header>
-        
-        <ion-card-content>
-          <ion-row class="divisor">
-            <p>Olá, tudo bem? você está recebendo esta mensagem para avisar que um agendamento de [serviço_name] no dia [data_hora_agendada] foi cancelada devido à [mensagem de motivo]. Peço desculpas pelo possível incoveniente.</p>
-            <p>atenciosamente, Josy Espaço VIP.</p>
-          </ion-row>
-          
-          <ion-col>
-            <ion-row>
-            <ion-button id="btn-editar2" expand="block" (click)="setOpen2(true)" class="btn-editar2" color="danger">
-            <p>Editar</p>
-            <ion-icon slot="end" name="pencil-outline"></ion-icon>
-          </ion-button>
-          <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpen2" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
-            <ion-col>
-              <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-title>Editar</ion-title>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="setOpen2(false)">Cancelar</ion-button>
-                  </ion-buttons>
-                  <ion-buttons slot="end">
-                    <ion-button (click)="setOpen2(false)">Confirmar</ion-button>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-content>
-                <ion-item>
-                  <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
-                  <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
-                </ion-item>
-              </ion-content>
-            </ng-template>
-            </ion-col>
-              
-          </ion-modal>
-            </ion-row>
-            
-          </ion-col>
-          
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
+              <ion-col size="10"><ion-text>Title Placeholder</ion-text></ion-col>
+            </ion-card-title>
+          </ion-card-header>
 
-    <ion-col class="card_content">
-      <ion-card class="card3" color="warning">
-        <ion-card-header>
-          <ion-row class="titles">
-            <ion-col size="10">
-              <ion-card-title>Cobrança</ion-card-title>
-            </ion-col>
-            <ion-col size="2">
-              <ion-icon class="icons" name="cash-outline"></ion-icon>
-            </ion-col>
-            <ion-card-subtitle>Mensagem de cobrança de serviço</ion-card-subtitle>
-          </ion-row>
-          
-        </ion-card-header>
-      
-        <ion-card-content>
-          <ion-row class="divisor">
-            <p>Olá, tudo bem? você está recebendo esta mensagem pois há um pagamento não efetuado de [serviço_name] no dia [data_hora_agendada], favor pagar o mais rápido o possível, obrigada!</p>
-            <p>atenciosamente, Josy Espaço VIP.</p>
-          </ion-row>
-          
-          <ion-col>
-            <ion-row>
-            <ion-button id="btn-editar3" expand="block" (click)="setOpen3(true)" class="btn-editar3" color="light">
-            <p>Editar</p>
-            <ion-icon slot="end" name="pencil-outline"></ion-icon>
-          </ion-button>
-          <ion-modal #modal trigger="btn-editar3" mode="ios" class="modal-header3" [isOpen]="modalOpen3" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
-            <ion-col>
-              <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-title>Editar</ion-title>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="setOpen3(false)">Cancelar</ion-button>
-                  </ion-buttons>
-                  <ion-buttons slot="end">
-                    <ion-button (click)="setOpen3(false)">Confirmar</ion-button>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-content>
-                <ion-item>
-                  <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
-                  <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
-                </ion-item>
-              </ion-content>
-            </ng-template>
-            </ion-col>
-              
-          </ion-modal>
-            </ion-row>
-            
-          </ion-col>
-          
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  
-    <ion-col class="card_content">
-      <ion-card class="card4" color="tertiary">
-        <ion-card-header>
-          <ion-row class="titles">
-            <ion-col size="10">
-              <ion-card-title>Reagendamento</ion-card-title>
-            </ion-col>
-            <ion-col size="2">
-              <ion-icon class="icons" name="alert-circle-outline"></ion-icon>
-            </ion-col>
-              <ion-card-subtitle>Mensagem de reagendamento de agendamento</ion-card-subtitle>
-          </ion-row>
-          
-        </ion-card-header>
-      
-        <ion-card-content>
-          <ion-row class="divisor">
-            <p>Olá, tudo bem? você está recebendo esta mensagem pois um agendamento de [serviço_name] foi remarcado do dia [data_antiga] para o dia [data_nova]. estarei te aguardando no dia marcado, obrigada! </p>
-            <p>atenciosamente, Josy Espaço VIP.</p>
-          </ion-row>
-          
-          <ion-col>
-            <ion-row>
-            <ion-button id="btn-editar4" expand="block" (click)="setOpen4(true)" class="btn-editar4" color="light">
-            <p>Editar</p>
-            <ion-icon slot="end" name="pencil-outline"></ion-icon>
-          </ion-button>
-          <ion-modal #modal trigger="btn-editar4" mode="ios" class="modal-header4" [isOpen]="modalOpen4" [initialBreakpoint]="0.25" [breakpoints]="[0,0.25,0.50,0.65]">
-            <ion-col>
-              <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-title>Editar</ion-title>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="setOpen4(false)">Cancelar</ion-button>
-                  </ion-buttons>
-                  <ion-buttons slot="end">
-                    <ion-button (click)="setOpen4(false)">Confirmar</ion-button>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-content>
-                <ion-item>
-                  <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
-                  <!-- aqui com o uso do PHP, teremos a {{mensagem}} que é pega do banco de dados e é exibida como 'value' dentro do input, para que possa ser editada, e não precise reescrever tudo novamente-->
-                </ion-item>
-              </ion-content>
-            </ng-template>
-            </ion-col>
-              
-          </ion-modal>
-            </ion-row>
-            
-          </ion-col>
-          
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  
-  </ion-row>
+          <ion-card-content>
+            <ion-text class="descricao">
+              <p>Text Placeholder</p>
+            </ion-text>
 
-</ion-content>
+            <ion-card-content>
+              <ion-button
+                id="btn-editar"
+                expand="block"
+                (click)="setOpen(true)"
+                class="btn-editar"
+                color="danger"
+              >
+                <p>Editar</p>
+                <ion-icon slot="end" name="pencil-outline"></ion-icon>
+              </ion-button>
+              <ion-modal
+                #modal
+                trigger="btn-editar2"
+                mode="ios"
+                class="modal-header2"
+                [isOpen]="modalOpen"
+                [initialBreakpoint]="0.25"
+                [breakpoints]="[0,0.25,0.50,0.65]"
+              >
+                <ion-col>
+                  <ng-template>
+                    <ion-header>
+                      <ion-toolbar>
+                        <ion-title>Editar</ion-title>
+
+                        <ion-buttons slot="start">
+                          <ion-button (click)="setOpen(false)">
+                            Cancelar
+                          </ion-button>
+                        </ion-buttons>
+
+                        <ion-buttons slot="end">
+                          <ion-button (click)="setOpen(false)">
+                            Confirmar
+                          </ion-button>
+                        </ion-buttons>
+
+                      </ion-toolbar>
+                    </ion-header>
+
+                    <ion-content>
+                      <ion-item>
+                        <ion-input
+                          type="text"
+                          placeholder="Insira sua mensagem pré-definida"
+                        ></ion-input>
+                      </ion-item>
+                    </ion-content>
+                  </ng-template>
+                </ion-col>
+              </ion-modal>
+            </ion-card-content>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+</div>
