@@ -144,11 +144,13 @@ export class ServicosPage implements OnInit {
   }
 
   setOpenAdd(isOpen: any) {
-    this.modalOpenAdd = isOpen;
+      this.modalOpenAdd = isOpen;
   }
 
   setOpenEdit(isOpen: any) {
-    this.modalOpenEdit = isOpen;
+    if (this.EditForm.valid) {
+      this.modalOpenEdit = isOpen;
+    }
   }
   editService(indice: any) {
     this.index = indice;
