@@ -144,11 +144,13 @@ export class ServicosPage implements OnInit {
   }
 
   setOpenAdd(isOpen: any) {
+    if (isOpen == true || this.AddForm.invalid && isOpen == false || this.AddForm.valid && isOpen == false) {
       this.modalOpenAdd = isOpen;
+    }
   }
 
   setOpenEdit(isOpen: any) {
-    if (this.EditForm.valid) {
+    if (this.EditForm.valid || isOpen == true) {
       this.modalOpenEdit = isOpen;
     }
   }
