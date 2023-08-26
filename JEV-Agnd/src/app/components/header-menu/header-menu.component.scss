@@ -2,18 +2,15 @@ ion-toolbar {
   --color: #fff;
   --background: var(--ion-color-primary);
 }
+
 ion-list {
   ion-item {
     ion-icon {
       color: var(--ion-color-primary);
     }
+
     p {
       margin-left: 5%;
     }
-  }
-
-  ion-item.active{
-    --background: rgb(187, 187, 187);
-    border-radius: 15px;
   }
 }
