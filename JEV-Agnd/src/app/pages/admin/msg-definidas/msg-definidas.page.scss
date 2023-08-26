@@ -28,7 +28,7 @@ ion-card-content{
 .container{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
@@ -49,6 +49,10 @@ ion-card-content{
 @media only screen and (max-width:1400px){
   .container ion-card{
     width: 30%;
+  }
+
+  .container{
+    justify-content: flex-start;
   }
 }
 
