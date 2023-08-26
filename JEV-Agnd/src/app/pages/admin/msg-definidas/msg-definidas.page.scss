@@ -10,6 +10,7 @@ ion-menu-button {
 
 .main {
   margin-top: 1.7em;
+  width: 100vw;
 }
 
 ion-card-title{
@@ -21,5 +22,47 @@ ion-card-title{
 ion-card-content{
   ion-text > p{
     font-size: 1.3em;
+  }
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.container ion-card{
+  width: 22%;
+}
+
+.container ion-card-title ion-text{
+  font-size: 1.25em;
+}
+
+.container ion-card-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width:1400px){
+  .container ion-card{
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width:1011px){
+  .container ion-card{
+    width: 45%;
+  }
+  .container{
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width:630px){
+  .container ion-card{
+    width: 90%;
   }
 }
