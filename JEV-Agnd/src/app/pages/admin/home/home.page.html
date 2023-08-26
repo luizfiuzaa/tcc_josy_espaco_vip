@@ -29,7 +29,7 @@
         </ion-toolbar>
         <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
           <ion-list lines="none">
-            <div *ngFor="let Agendamentos of Agendamentos">
+            <div *ngFor="let Agendamentos of Agendamentos;let i = index">
               <ion-item>
                 <ion-card>
                   <ion-card-header>
@@ -56,7 +56,7 @@
 
                   <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
                   <ion-card-content>
-                    <ion-button id="excluir" class="delete" fill="outline" (click)="setOpenDelete(true);">
+                    <ion-button id="open-action-sheet" class="delete" fill="outline" (click)="setOpenDelete(true);">
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>
@@ -83,7 +83,7 @@
       </ng-template>
     </ion-row>
 
-    <ion-modal id="delete-modal" #modal trigger="excluir" [isOpen]="modalOpenDelete" backdropDismiss="false">
+    <!-- <ion-modal id="delete-modal" #modal trigger="open-action-sheet" [isOpen]="modalOpenDelete" backdropDismiss="false">
       <ng-template class="modal_content">
         <div class="wrapper modal_delete">
           <ion-toolbar>
@@ -99,7 +99,7 @@
 
         </div>
       </ng-template>
-    </ion-modal>
+    </ion-modal> -->
 
     <ion-modal id="edit-modal" #modal trigger="editar" [isOpen]="modalOpenEdit" backdropDismiss="false">
       <ng-template>
@@ -198,5 +198,10 @@
         </div>
       </ng-template>
     </ion-modal>
+
+    <ion-alert trigger="open-action-sheet" header="Alert!" [buttons]="alertButtons" (didDismiss)="setResult($event)"
+      [isOpen]="modalOpenDelete" backdropDismiss="false" (click)="setOpenDelete(false)"></ion-alert>
+    <p>{{ handlerMessage }}</p>
+    <p>{{ roleMessage }}</p>
   </ion-content>
 </div>
