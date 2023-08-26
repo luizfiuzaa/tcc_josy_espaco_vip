@@ -16,7 +16,12 @@ ion-menu-button {
 ion-card-title{
   ion-icon,ion-text{
   font-size: 1.7em;
+  color: #FFF;
 }
+}
+
+ion-icon{
+  color: #FFF;
 }
 
 ion-card-content{
@@ -73,6 +78,7 @@ ion-card-content{
 
 .compartilhar{
   margin-right: 8px;
+  color: #FFF;
 }
 
 .placeholder{
