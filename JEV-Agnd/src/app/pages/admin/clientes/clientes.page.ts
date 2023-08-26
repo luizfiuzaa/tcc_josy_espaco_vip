@@ -16,6 +16,11 @@ export class ClientesPage implements OnInit {
 
   constructor() { }
 
+  
+  exibir(){
+    console.log('oi')
+  }
+
   ngOnInit() {
   }
 
