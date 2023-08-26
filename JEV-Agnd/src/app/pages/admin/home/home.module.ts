@@ -1,4 +1,4 @@
-import { HeaderMenuModule } from '../components/header-menu/header-menu.module'; 
+import { HeaderMenuModule } from '../../../components/header-menu/header-menu.module'; 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
