@@ -21,11 +21,6 @@ export class ClientesPage implements OnInit {
 
   ClientesCadastrados: any[] = [
     {
-      ClienteNome: 'Fernanda Soares',
-      ClienteEmail: 'fernanda.soares@gmail.com',
-      ClienteTelefone: '15 99999-9999'
-    },
-    {
       ClienteNome: 'Luiza Fiuze',
       ClienteEmail: 'lui.fiuze@gmail.com',
       ClienteTelefone: '15 99999-9998'
