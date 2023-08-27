@@ -25,15 +25,15 @@ form {
 .date {
   display: flex;
   justify-content: flex-start;
-  color: #FFF;
 }
 
 .date input {
   font-size: 1.2em;
-  border: 2px solid white;
+  border: 2px solid var(--ion-color-primary);
   border-radius: 5px;
   padding: 4px;
-  background: var(--ion-color-primary);
+  background: white;
+  color: var(--ion-color-primary);
   outline: none;
   cursor: pointer;
 }
