@@ -31,15 +31,16 @@ export class ServicosComponent implements OnInit {
           label: 'Quantidade',
           data: [this.mao, this.pe, this.peMao, this.cabelo],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
+            '#FE2260',
+            '#034C8C',
+            '#9B02A6',
+            '#45C0A4'
           ],
           borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-
+            '#FE2260',
+            '#034C8C',
+            '#9B02A6',
+            '#45C0A4'
           ],
           borderWidth: 1
         }]

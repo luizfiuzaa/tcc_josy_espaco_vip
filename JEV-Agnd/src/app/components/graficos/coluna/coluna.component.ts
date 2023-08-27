@@ -40,13 +40,20 @@ export class ColunaComponent implements OnInit {
             this.mes[11],
           ],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',          ],
+            '#E33058',
+            '#8C1843',
+            '#D3294E',
+            '#F04A62',
+            '#F04A62',
+            '#D22A4E',
+          ],
           borderColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
+            '#E33058',
+            '#8C1843',
+            '#D3294E',
+            '#F04A62',
+            '#F04A62',
+            '#D22A4E',
           ],
           borderWidth: 1
         }]
