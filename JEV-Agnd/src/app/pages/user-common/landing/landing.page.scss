@@ -4,26 +4,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: inherit;
   // border: 1px solid black;
 }
 
-ion-toolbar {
-  --background: transparent;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  padding: 0 40px;
-  height: 100px;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.747);
-}
-
 .landing-text {
-  font-family: 'Roboto';
+  // font-family: 'Roboto';
   z-index: 30;
   text-align: center;
   position: absolute;
@@ -90,16 +75,11 @@ ion-toolbar {
   font-size: 50px;
 }
 
-.menu-icon {
-  font-size: 40px;
-  transform: scale(2);
-}
-
-.cotainer-row {
-  width: 100%;
-  min-height: 100vh;
-  // margin-bottom: 40px;
-}
+// .cotainer-row {
+//   width: 100%;
+//   min-height: 100vh;
+//   // margin-bottom: 40px;
+// }
 
 .cotainer-col {
   background: #f8e5f269;
