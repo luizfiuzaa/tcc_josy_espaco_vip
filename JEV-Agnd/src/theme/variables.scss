@@ -79,3 +79,11 @@
   /** FONTES **/
   --text: 'Open Sans', sans-serif;
 }
+
+ion-button{
+  transition: .3s;
+}
+
+ ion-button:hover, ion-button:focus{
+  transform: scale(1.03);
+}

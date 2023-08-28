@@ -8,7 +8,7 @@ ion-menu-button {
   --color: var(--ion-color-primary);
 }
 
-.toolbar{
+.toolbar {
   border-radius: 5px;
 }
 
@@ -18,7 +18,7 @@ form {
   justify-content: space-between;
 }
 
-.list-content{
+.list-content {
   width: 100%;
 }
 
@@ -38,13 +38,25 @@ form {
   cursor: pointer;
 }
 
-.edit, .info{
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.6) brightness(50%) sepia(100%) saturate(20000%) hue-rotate(300deg);
+}
+
+.edit,
+.info {
   color: #FFF;
 }
 
 @media only screen and (max-width: 500px) {
-  input{font-size: 1.05em;}
-  form {padding: 0 5px;}
+  input {
+    font-size: 1.05em;
+  }
+
+  form {
+    padding: 0 5px;
+  }
 }
 
 .inputSearch {
@@ -56,13 +68,32 @@ form {
 ion-card {
   width: 100vw;
 
-  .ok {--color: var(--ion-color-success);}
-  .waiting {--color: var(--ion-color-warning);}
+  .ok {
+    --color: var(--ion-color-success);
+  }
 
-  #horario {--color: var(--ion-color-primary);}
+  .waiting {
+    --color: var(--ion-color-warning);
+  }
 
-  .delete {--color: var(--ion-color-primary);}
+  #horario {
+    --color: var(--ion-color-primary);
+  }
 
-  ion-card-subtitle {font-size: 1.3em;}
-  ion-card-subtitle,ion-card-content {color: #000;}
+  .delete {
+    --color: var(--ion-color-primary);
+  }
+
+  ion-card-subtitle {
+    font-size: 1.3em;
+  }
+
+  ion-card-subtitle,
+  ion-card-content {
+    color: #000;
+  }
+}
+
+.btn-agendar ion-button {
+  --color: white;
 }
