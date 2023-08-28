@@ -1,35 +1,36 @@
-<ion-content>
-	<ion-header>
+<app-header-menu></app-header-menu>
+<div class="ion-page">
+	<ion-header mode="ios">
 		<ion-toolbar color="dark">
 			<ion-title slot="start">
 				<ion-text class="logo">Josy</ion-text>
 			</ion-title>
-			<ion-button>
-				<!-- <app-header-menu></app-header-menu> -->
-			</ion-button>
 		</ion-toolbar>
 	</ion-header>
-	<ion-row class="cotainer-row">
-		<ion-col size="12" class="cotainer-col ion-text-center">
-			<ion-row>
-				<ion-col>
-					<div class="landing-text">
-						<h1>Josy Espaço Vip</h1>
-						<p>Venha conhecer a nossa unidade em Tatuí-sp, mas antes realize o seu cadastro em nosso site
-						para ficar por dentro de todas as novidades.</p>
-						<div class="div_btn">
-							<button class="btn" [routerLink]="['/signup/']">cadastrar</button>
+	<ion-content>
+		<ion-row class="cotainer-row">
+			<ion-col size="12" class="cotainer-col ion-text-center">
+				<ion-row>
+					<ion-col>
+						<div class="landing-text ion-text-center">
+							<h1>Josy Espaço Vip</h1>
+							<p>Venha conhecer a nossa unidade em Tatuí-sp, mas antes realize o seu cadastro em nosso
+								site
+								para ficar por dentro de todas as novidades.</p>
+							<ion-button color="primary" fill="outline"
+								[routerLink]="['/signup/']">Cadastrar</ion-button>
 						</div>
-					</div>
-					<app-carousel [images_carousel]="images_carousel" [autoSlide]="true" [controls]="false"></app-carousel>
-				</ion-col>
-			</ion-row>
-			<ion-row class="slide_images_row justify-content-center">
-				<ion-col class="slide_images_col ion-text-center" size="12">
-					<app-slide [images_slide]="images_slide"></app-slide>
-				</ion-col>
-			</ion-row>
-		</ion-col>
-	</ion-row>
-	<app-footer></app-footer>
-</ion-content>
+						<app-carousel [images_carousel]="images_carousel" [autoSlide]="true"
+							[controls]="false"></app-carousel>
+					</ion-col>
+				</ion-row>
+				<ion-row class="slide_images_row justify-content-center">
+					<ion-col class="slide_images_col ion-text-center" size="12">
+						<app-slide [images_slide]="images_slide"></app-slide>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+		<app-footer></app-footer>
+	</ion-content>
+</div>

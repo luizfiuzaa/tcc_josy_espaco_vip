@@ -10,5 +10,7 @@ export class HeaderMenuComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
+  reloadPage(){
+    window.location.reload();
+  }
 }

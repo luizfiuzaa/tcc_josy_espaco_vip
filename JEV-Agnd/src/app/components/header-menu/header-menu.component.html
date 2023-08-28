@@ -14,7 +14,7 @@
               name="calendar-clear"></ion-icon>
             <p>Agendamentos</p>
           </ion-item>
-          <ion-item [routerLink]="['/clientes']" routerLinkActive="Link"><ion-icon
+          <ion-item (click)="reloadPage()" [routerLink]="['/clientes']" routerLinkActive="Link"><ion-icon
               name="people-sharp"></ion-icon>
             <p>Clientes</p>
           </ion-item>
