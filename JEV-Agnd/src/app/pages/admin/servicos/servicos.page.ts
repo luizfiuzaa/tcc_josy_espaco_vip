@@ -71,10 +71,12 @@ export class ServicosPage implements OnInit {
 
   modalOpenAdd = false;
   modalOpenEdit = false;
+  modalCloseAdd = false;
+  modalCloseEdit = false;
   index: any = '';
 
   async createHandler(event: any) {
-    if(this.AddForm.invalid){
+    if (this.AddForm.invalid) {
       return;
     }
 
@@ -152,12 +154,16 @@ export class ServicosPage implements OnInit {
 
   setOpenAdd(isOpen: any) {
     if (isOpen == true || this.AddForm.invalid && isOpen == false || this.AddForm.valid && isOpen == false) {
+      console.log('O modal esta aberto ', isOpen)
+      console.log('Pode fechar: ', !isOpen)
+      this.modalCloseAdd = !isOpen;
       this.modalOpenAdd = isOpen;
     }
   }
 
   setOpenEdit(isOpen: any) {
     if (isOpen == true || this.EditForm.invalid && isOpen == false || this.EditForm.valid && isOpen == false) {
+      this.modalCloseEdit = !isOpen;
       this.modalOpenEdit = isOpen;
     }
   }
