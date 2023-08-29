@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderMenuComponent implements OnInit {
 
-  ngOnInit(): void {
+  ngOnInit(){
     
   }
 
