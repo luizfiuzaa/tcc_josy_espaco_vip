@@ -41,9 +41,8 @@
     transition: 0.5s;
 }
 
-.slide-container:hover :not(:hover) {
-    opacity: 0.97;
-}
+// .slide-container:hover :not(:hover) {
+// }
 
 .content:hover {
     opacity: 1;
@@ -117,12 +116,19 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg, transparent, #ffffff86 100%);
     cursor: pointer;
     z-index: 8;
     font-size: 35px;
     transition: all .15s ease;
     color: black;
+}
+
+.btn-prev_slide {
+    background: linear-gradient(-90deg, transparent, #ffffff86 100%);
+}
+
+.btn-next_slide {
+    background: linear-gradient(90deg, transparent, #ffffff86 100%);
 }
 
 .icon-slide {
@@ -136,7 +142,6 @@ img {
 
 .btn-prev_slide {
     left: 0;
-    transform: rotate(180deg);
 }
 
 .btn-next_slide {

@@ -1,11 +1,14 @@
 <ion-content>
-	<ion-header>
+	<ion-header [translucent]="true">
 		<ion-toolbar>
 			<ion-title slot="start">
-				<ion-text class="logo">Josy</ion-text>
+				<ion-title color="primary" class="logo">Josy</ion-title>
 			</ion-title>
 			<ion-buttons slot="end">
-				<ion-menu-button class="menu-icon" auto-hide="false"></ion-menu-button>
+				<ion-button color="primary" fill="solid">
+          Entrar
+          <ion-icon name="log-in-sharp"></ion-icon>
+        </ion-button>
 			</ion-buttons>
 		</ion-toolbar>
 	</ion-header>
@@ -18,7 +21,7 @@
 						<p>Venha conhecer a nossa unidade em Tatuí-sp, mas antes realize o seu cadastro em nosso site
 							para ficar por dentro de todas as novidades.</p>
 						<div class="div_btn">
-							<button class="btn" [routerLink]="['/signup/']">cadastrar</button>
+							<ion-button [routerLink]="['/signup/']">cadastrar</ion-button>
 						</div>
 					</div>
 					<app-carousel [images_carousel]="images_carousel" [autoSlide]="true" [controls]="false"></app-carousel>
