@@ -63,14 +63,14 @@ export class HomePage {
 
   public alertButtons = [
     {
-      text: 'Cancel',
+      text: 'Cancelar',
       role: 'cancel',
       handler: () => {
         this.handlerMessage = 'Alert canceled';
       },
     },
     {
-      text: 'OK',
+      text: 'Sim',
       role: 'confirm',
       handler: () => {
         this.handlerMessage = 'Alert confirmed';

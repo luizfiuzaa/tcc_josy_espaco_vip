@@ -181,7 +181,7 @@
       </ng-template>
     </ion-modal>
 
-    <ion-alert trigger="open-action-sheet" header="Alert!" [buttons]="alertButtons" (didDismiss)="setResult($event)"
+    <ion-alert trigger="open-action-sheet" header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)"
       [isOpen]="modalOpenDelete" backdropDismiss="false" (click)="setOpenDelete(false)"></ion-alert>
     <p>{{ handlerMessage }}</p>
     <p>{{ roleMessage }}</p>
