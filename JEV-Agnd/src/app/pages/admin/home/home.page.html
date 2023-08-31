@@ -56,11 +56,12 @@
 
                   <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
                   <ion-card-content>
-                    <ion-button id="open-action-sheet" class="delete" fill="outline" (click)="setOpenDelete(true);">
+                    <ion-button id="alert-
+                    delete" class="delete" fill="outline" (click)="setOpenDelete(true);">
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>
-                    <ion-button class="edit" id="editar" (click)="setOpenEdit(true)">
+                    <ion-button class="edit" id="alert_editar" (click)="setOpenEdit(true)">
                       <ion-icon name="create-outline"></ion-icon>
                       Editar
                     </ion-button>
@@ -83,7 +84,10 @@
       </ng-template>
     </ion-row>
 
-    <ion-modal id="edit-modal" #modal trigger="editar" [isOpen]="modalOpenEdit" backdropDismiss="false">
+    <ion-alert trigger="alert_editar" header="Please enter your info" [buttons]="alertEditButtons" [isOpen]="modalOpenEdit"
+      [inputs]="alertInputs" (click)="setOpenEdit(false)"></ion-alert>
+
+    <!-- <ion-modal id="edit-modal" #modal trigger="editar" [isOpen]="modalOpenEdit" backdropDismiss="false">
       <ng-template>
         <div class="wrapper">
           <ion-toolbar>
@@ -99,9 +103,7 @@
 
         </div>
       </ng-template>
-    </ion-modal>
-
-
+    </ion-modal> -->
     <!-- botão add agendamento-->
     <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
       <ion-fab-button>
@@ -181,8 +183,9 @@
       </ng-template>
     </ion-modal>
 
-    <ion-alert trigger="open-action-sheet" header="Alert!" [buttons]="alertButtons" (didDismiss)="setResult($event)"
-      [isOpen]="modalOpenDelete" backdropDismiss="false" (click)="setOpenDelete(false)"></ion-alert>
+    <ion-alert trigger="alert-
+    delete" header="Alert!" [buttons]="alertButtons" (didDismiss)="setResult($event)" [isOpen]="modalOpenDelete"
+      backdropDismiss="false" (click)="setOpenDelete(false)"></ion-alert>
     <p>{{ handlerMessage }}</p>
     <p>{{ roleMessage }}</p>
   </ion-content>
