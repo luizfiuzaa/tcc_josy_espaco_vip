@@ -67,7 +67,7 @@
                       class="input1" placeholder="Digite o título" [clearInput]="true" required></ion-input>
                   </ion-item>
                 </div>
-                <div class="message-alert" *ngIf="titulo.invalid">
+                <div class="message-alert" *ngIf="titulo.invalid && formDir.submitted">
                   Título invalido!
                 </div>
               </div>

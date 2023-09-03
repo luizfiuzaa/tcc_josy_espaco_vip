@@ -73,7 +73,7 @@ export class ServicosPage implements OnInit {
   modalOpenEdit = false;
   modalCloseAdd = false;
   modalCloseEdit = false;
-  index: any = '';
+  editFormValue: any = [];
 
   async createHandler(event: any) {
     if (this.AddForm.invalid) {
@@ -102,12 +102,15 @@ export class ServicosPage implements OnInit {
         Validators.pattern(/^-?(0|[1-9]\d*)?$/)
       ]))
     });
+  }
+
+  createFormEdit(){
     this.EditForm = new FormGroup({
-      id_edit: new FormControl(''),
-      titulo_edit: new FormControl('', [Validators.required]),
-      descricao_edit: new FormControl('', [Validators.required]),
-      duracao_edit: new FormControl('', [Validators.required]),
-      preco_edit: new FormControl('', [Validators.required])
+      id_edit: new FormControl(this.editFormValue ? this.editFormValue[0].idCard : ''),
+      titulo_edit: new FormControl(this.editFormValue ? this.editFormValue[0].tituloCard : '', [Validators.required]),
+      descricao_edit: new FormControl(this.editFormValue ? this.editFormValue[0].descricaoCard : '', [Validators.required]),
+      duracao_edit: new FormControl(this.editFormValue ? this.editFormValue[0].duracaoCard : '', [Validators.required]),
+      preco_edit: new FormControl(this.editFormValue ? this.editFormValue[0].precoCard : '', [Validators.required])
     });
   }
 
@@ -145,17 +148,20 @@ export class ServicosPage implements OnInit {
   }
   submit_edit() {
     if (this.EditForm.invalid) {
-      console.log('oiii')
+      console.log('Formulario De Edição Invalido')
       return;
     }
-    console.log('aqui')
-    console.log(this.EditForm.value);
+    console.log('Formulario De Edição Concluído')
+    this.CardDados[this.EditForm.value.id_edit] = {
+      tituloCard: this.EditForm.value.titulo_edit,
+      descricaoCard: this.EditForm.value.descricao_edit,
+      duracaoCard: this.EditForm.value.duracao_edit,
+      precoCard: this.EditForm.value.preco_edit,
+    };
   }
 
   setOpenAdd(isOpen: any) {
     if (isOpen == true || this.AddForm.invalid && isOpen == false || this.AddForm.valid && isOpen == false) {
-      console.log('O modal esta aberto ', isOpen)
-      console.log('Pode fechar: ', !isOpen)
       this.modalCloseAdd = !isOpen;
       this.modalOpenAdd = isOpen;
     }
@@ -168,7 +174,17 @@ export class ServicosPage implements OnInit {
     }
   }
   editService(indice: any) {
-    this.index = indice;
+    this.editFormValue = [
+      {
+        idCard: indice,
+        tituloCard: this.CardDados[indice].tituloCard,
+        descricaoCard: this.CardDados[indice].descricaoCard,
+        duracaoCard: this.CardDados[indice].duracaoCard,
+        precoCard: this.CardDados[indice].precoCard,
+      }
+    ];
+
+    this.createFormEdit();
     this.setOpenEdit(true);
   }
 }
