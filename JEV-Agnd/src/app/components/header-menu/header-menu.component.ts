@@ -6,9 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-menu.component.scss'],
 })
 export class HeaderMenuComponent implements OnInit {
+  constructor(){
 
+  }
   ngOnInit(): void {
     
   }
+
+  // refresh (): void { window.location.reload (); }
+
 
 }

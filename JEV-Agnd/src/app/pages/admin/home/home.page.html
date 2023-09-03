@@ -17,7 +17,7 @@
         <ion-toolbar class="toolbar">
           <form action="GET" method="get">
             <ion-col size="6" class="date">
-              <input type="date" name="" />
+              <input type="date" name="" (input)="search($event)"/>
             </ion-col>
             <ion-col size="6" class="inputSearch">
               <ion-button fill="outline" id="buscar">
@@ -29,7 +29,7 @@
         </ion-toolbar>
         <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
           <ion-list lines="none">
-            <div *ngFor="let Agendamentos of Agendamentos;let i = index">
+            <div *ngFor="let Agendamentos of Agendamentos_exibidos;let i = index">
               <ion-item>
                 <ion-card>
                   <ion-card-header>

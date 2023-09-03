@@ -17,6 +17,7 @@ export class HomePage {
       servico: 'Cabelo, Manicure, Pedicure',
       metodoPagamento: 'Pix',
       preco: '150.00',
+      data: '2023-09-28'
     },
     {
       status: 'Esperando confirmação',
@@ -25,6 +26,7 @@ export class HomePage {
       servico: 'Cabelo',
       metodoPagamento: 'Dinheiro',
       preco: '50.00',
+      data: '2023-09-30'
     },
     {
       status: 'Esperando confirmação',
@@ -33,8 +35,11 @@ export class HomePage {
       servico: 'Manicure, Pedicure',
       metodoPagamento: 'Débito',
       preco: '100.00',
+      data: '2023-09-29'
     },
   ]
+
+  Agendamentos_exibidos: any[] = this.Agendamentos;
 
   ngOnInit() {
 
@@ -78,7 +83,29 @@ export class HomePage {
     },
   ];
 
-  setResult(ev:any) {
+  setResult(ev: any) {
     this.roleMessage = `Dismissed with role: ${ev.detail.role}`;
+  }
+
+  search(e: Event): void {
+    let estado: boolean = false;
+    const target = e.target as HTMLInputElement;
+    const value = target.value;
+
+    this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
+      if (agendamento.data.includes(value) == true) {
+        estado = true;
+      }
+      return agendamento.data.includes(value);
+    });
+    this.verificarEstado(estado);
+  }
+
+  verificarEstado(estado: any) {
+    if (!estado) {
+      setTimeout(() => {
+         this.Agendamentos_exibidos = this.Agendamentos
+      }, 1000)
+    }
   }
 }

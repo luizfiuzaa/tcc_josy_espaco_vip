@@ -30,9 +30,6 @@
         <ion-col class="container" size="12">
           <ion-text>
             <p>Nenhum serviço cadastrado...</p>
-            <button [routerLink]="['#']" routerLinkActive="active-button">
-              Cadastrar
-            </button>
           </ion-text>
         </ion-col>
       </ng-template>
@@ -70,7 +67,7 @@
                       class="input1" placeholder="Digite o título" [clearInput]="true" required></ion-input>
                   </ion-item>
                 </div>
-                <div class="message-alert" *ngIf="titulo.invalid && formDir.submitted">
+                <div class="message-alert" *ngIf="titulo.invalid">
                   Título invalido!
                 </div>
               </div>
