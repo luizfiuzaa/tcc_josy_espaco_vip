@@ -14,13 +14,13 @@
 
       <ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
         <ion-card *ngFor="let card of CardDados; let i = index" class="card">
-          <ion-card-content class="icon_card">
-            <ion-icon name="settings-outline" class="edit_icon" id="open-modal-edit" (click)="editService(i)"></ion-icon>
-          </ion-card-content>
+          <abbr title="Editar"><ion-card-content class="icon_card" (click)="editService(i)" id="open-modal-edit">
+              <ion-icon name="settings-outline" class="edit_icon"></ion-icon>
+            </ion-card-content></abbr>
           <ion-card-content class="card_context">
             <ion-card-title class="title">{{card.tituloCard}}</ion-card-title>
             <p>Descrição: {{card.descricaoCard}}</p>
-            <p>Duração: {{card.duracaoCard}}</p>
+            <p>Duração: {{card.duracaoCard}} minutos</p>
             <p>Preço (R$): {{card.precoCard}}</p>
           </ion-card-content>
         </ion-card>
@@ -35,18 +35,19 @@
       </ng-template>
 
     </ion-row>
-
     <!-- Fab Button -->
-    <ion-fab id="open-modal" class="button_fab" horizontal="end" vertical="bottom" slot="fixed"
-      (click)="setOpenAdd(true)">
-      <ion-fab-button>
-        <ion-icon id="add" name="add" expand="block"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
+    <abbr title="Adicionar">
+      <ion-fab id="open-modal" class="button_fab" horizontal="end" vertical="bottom" slot="fixed"
+        (click)="setOpenAdd(true)">
+        <ion-fab-button>
+          <ion-icon id="add" name="add" expand="block"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </abbr>
     <!-- Modal Add -->
-    <ion-modal #modal trigger="open-modal" mode="ios" class="modal-header modal" 
-      [initialBreakpoint]="0.61" [breakpoints]="[0,0.57,0.61,0.65,0.75]" backdropDismiss="false" [canDismiss]='modalCloseAdd' [isOpen]="modalOpenAdd">
+    <ion-modal #modal trigger="open-modal" mode="ios" class="modal-header modal" [initialBreakpoint]="0.61"
+      [breakpoints]="[0,0.57,0.61,0.65,0.75]" backdropDismiss="false" [canDismiss]='modalCloseAdd'
+      [isOpen]="modalOpenAdd">
       <ion-col>
         <ng-template class="block">
           <ion-header>
@@ -121,8 +122,9 @@
       </ion-col>
     </ion-modal>
     <!-- Modal Edit -->
-    <ion-modal #modal trigger="open-modal-edit" mode="ios" class="modal-header modal" [canDismiss]="modalCloseEdit" [isOpen]="modalOpenEdit"
-      [initialBreakpoint]="0.61" [breakpoints]="[0,0.55,0.61,0.65,0.75]" backdropDismiss="false">
+    <ion-modal #modal trigger="open-modal-edit" mode="ios" class="modal-header modal" [canDismiss]="modalCloseEdit"
+      [isOpen]="modalOpenEdit" [initialBreakpoint]="0.61" [breakpoints]="[0,0.55,0.61,0.65,0.75]"
+      backdropDismiss="false">
       <ion-col>
         <ng-template class="block">
           <ion-header>
