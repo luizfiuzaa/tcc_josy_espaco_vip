@@ -8,7 +8,6 @@ import { FaturamentosPageRoutingModule } from './faturamentos-routing.module';
 
 import { FaturamentosPage } from './faturamentos.page';
 
-import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.module';
 import { ServicosComponent } from 'src/app/components/graficos/pizza/servicos/servicos.component';
 import { FaturamentoComponent } from 'src/app/components/graficos/pizza/faturamento/faturamento.component';
 import { ColunaComponent } from 'src/app/components/graficos/coluna/coluna.component';
@@ -18,9 +17,8 @@ import { ColunaComponent } from 'src/app/components/graficos/coluna/coluna.compo
     CommonModule,
     FormsModule,
     IonicModule,
-    FaturamentosPageRoutingModule,
-    HeaderMenuModule
+    FaturamentosPageRoutingModule
   ],
-  declarations: [FaturamentosPage,  ServicosComponent, FaturamentoComponent, ColunaComponent]
+  declarations: [FaturamentosPage, ServicosComponent, FaturamentoComponent, ColunaComponent]
 })
-export class FaturamentosPageModule {}
+export class FaturamentosPageModule { }

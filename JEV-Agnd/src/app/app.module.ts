@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CarouselModule } from './components/carousel/carousel.module';
+import { HeaderMenuModule } from './components/header-menu/header-menu.module'; 
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { CarouselModule } from './components/carousel/carousel.module';
     CarouselModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HeaderMenuModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

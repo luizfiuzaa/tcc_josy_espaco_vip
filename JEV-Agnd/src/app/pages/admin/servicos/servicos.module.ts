@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { ServicosPageRoutingModule } from './servicos-routing.module';
 
 import { ServicosPage } from './servicos.page';
-import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.module'; 
 import { RouterModule } from '@angular/router';
 
 
@@ -17,7 +16,6 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     IonicModule,
     ServicosPageRoutingModule,
-    HeaderMenuModule,
     RouterModule,
     ReactiveFormsModule,
   ],
