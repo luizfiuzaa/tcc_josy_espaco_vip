@@ -33,22 +33,29 @@
               <ion-item>
                 <ion-card>
                   <ion-card-header>
+
                     <div *ngIf="Agendamentos.status == 'Confirmado'; else otherStatus">
                       <ion-card-title class="status ok">
                         <div class="ok">
                           <ion-icon name="checkmark-circle"></ion-icon>
-                          {{Agendamentos.status}}
+                          <ion-text>
+                            {{Agendamentos.status}}
+                          </ion-text>
                         </div>
                       </ion-card-title>
                     </div>
+
                     <ng-template #otherStatus>
                       <ion-card-title class="status waiting">
                         <div class="ok">
-                          <ion-icon name="checkmark-circle"></ion-icon>
-                          {{Agendamentos.status}}
+                          <ion-icon name="time"></ion-icon>
+                          <ion-text>
+                            {{Agendamentos.status}}
+                          </ion-text>
                         </div>
                       </ion-card-title>
                     </ng-template>
+                    
                     <ion-card-title id="horario">{{Agendamentos.horarioInicio}} -
                       {{Agendamentos.horarioFim}}</ion-card-title>
                     <ion-card-subtitle>{{Agendamentos.cliente}}</ion-card-subtitle>
