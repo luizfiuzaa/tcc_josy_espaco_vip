@@ -13,9 +13,9 @@
     <ion-row>
       <ion-col size="12">
         <ion-toolbar class="toolbar">
-          <form action="GET" method="get">
+          <form action="GET" method="get" class="formFilter">
             <ion-col size="6" class="date">
-              <input type="date" name="" (input)="search($event)"/>
+              <input type="date" name="" (input)="search($event)" />
             </ion-col>
             <ion-col size="6" class="inputSearch">
               <ion-button fill="outline" id="buscar">
@@ -177,18 +177,22 @@
         <div class="wrapper modalCont">
           <div class="modal_title">
             <ion-toolbar>
-              <ion-title>Agendar</ion-title>
-              <ion-buttons slot="end">
-                <ion-button (click)="setOpenAdd(false)"><ion-icon name="close"></ion-icon></ion-button>
+              <ion-buttons slot="start">
+                <ion-button (click)="setOpenAdd(false)">
+                  <!-- <ion-icon name="close"></ion-icon> -->
+                  <ion-label>Cancelar</ion-label>
+                </ion-button>
               </ion-buttons>
+              <!-- <ion-title slot="end"> -->
+                <ion-label slot="end" class="btn-agendar" (click)="setOpenAdd(false)">Agendar</ion-label>
+              <!-- </ion-title> -->
             </ion-toolbar>
           </div>
-          <div class="modal_container">
-            <form action="" method="post" class="form_modalAdd">
-              <ion-list lines="none" class="ion-justify-content-center ion-align-items-center list-content">
-                <ion-item class="ion-text-center calendario_modal">
-                  <ion-datetime></ion-datetime>
-                </ion-item>
+
+          <form action="" method="post" class="form_modalAdd">
+            <ion-list lines="none" class="list-content">
+              <div class="container_form">
+                <ion-datetime class="calendario_modal"></ion-datetime>
                 <!-- Clientes -->
                 <ion-item>
                   <ion-select label="Cliente" label-placement="floating" interface="popover">
@@ -198,7 +202,6 @@
                     <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
                   </ion-select>
                 </ion-item>
-
                 <!-- Serviços -->
                 <ion-item>
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
@@ -208,19 +211,6 @@
                     <ion-select-option value="bananas">Pedicure</ion-select-option>
                   </ion-select>
                 </ion-item>
-
-                <!-- DIA e HORA -->
-                <!-- <ion-item>
-                  <h6>Dia e Horário:</h6>
-                  <ion-datetime-button datetime="datetime"></ion-datetime-button>
-
-                  <ion-modal [keepContentsMounted]="true" mode="ios">
-                    <ng-template>
-                      <ion-datetime id="datetime"></ion-datetime>
-                    </ng-template>
-                  </ion-modal>
-                </ion-item> -->
-
                 <!-- Pagamento -->
                 <ion-item>
                   <ion-select label="Método de Pagamento" label-placement="floating" interface="popover">
@@ -231,28 +221,26 @@
                     <ion-select-option value="credito">Crédito</ion-select-option>
                   </ion-select>
                 </ion-item>
-
                 <!-- Preço -->
                 <ion-item>
                   <ion-text>
                     <h3>Preço (R$):</h3>
+                  </ion-text>
+                  <ion-text>
                     <p>xx.xx</p>
                   </ion-text>
                 </ion-item>
-                <ion-row class="ion-justify-content-center btn-agendar">
-                  <ion-button (click)="setOpenAdd(false)">Agendar</ion-button>
-                </ion-row>
-              </ion-list>
-            </form>
-          </div>
-        </div>
-      </ng-template>
-    </ion-modal>
+              </div>
+            </ion-list>
 
-    <ion-alert trigger="open-action-sheet" header="Tem certeza?" [buttons]="alertButtons"
-      (didDismiss)="setResult($event)" [isOpen]="modalOpenDelete" backdropDismiss="false"
-      (click)="setOpenDelete(false)"></ion-alert>
-    <p>{{ handlerMessage }}</p>
-    <p>{{ roleMessage }}</p>
-  </ion-content>
+          </form>
+        </div>
+</ng-template>
+</ion-modal>
+
+<ion-alert trigger="open-action-sheet" header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)"
+  [isOpen]="modalOpenDelete" backdropDismiss="false" (click)="setOpenDelete(false)"></ion-alert>
+<p>{{ handlerMessage }}</p>
+<p>{{ roleMessage }}</p>
+</ion-content>
 </div>

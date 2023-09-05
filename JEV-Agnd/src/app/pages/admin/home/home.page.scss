@@ -12,25 +12,18 @@ ion-menu-button {
   border-radius: 5px;
 }
 
-form {
+.formFilter {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.form_modalAdd, .form_modalEdit{
-  flex-direction: column;
-  overflow: auto;
-}
+@media only screen and (min-width:770px) {
 
-@media only screen and (min-width:770px){
-  .form_modalAdd, .form_modalEdit{
-    padding: 20px 40px 0px 40px;
+  .form_modalAdd,
+  .form_modalEdit {
+    padding: 0px 40px 0px 40px;
   }
-}
-
-.list-content {
-  width: 100%;
 }
 
 .date {
@@ -101,26 +94,29 @@ ion-card {
   }
 }
 
-.btn-agendar ion-button {
-  --color: white;
+.btn-agendar {
+  // --color: white;
+  margin-right: 15px;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
-.modalCont{
-  height: 100%;
-}
-
-.modal_container{
-  height: 100%;
-}
-
-.form_modalEdit, .form_modalAdd{
+.calendario_modal {
   width: 100%;
-  height: 100%;
+  margin: 0 auto;
 }
 
-.calendario_modal{
-  width: 100%;
+.form_modalAdd,
+.form_modalEdit {
   display: flex;
+  // justify-content: center;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.modalCont {
+  min-height: 100%;
+  overflow: auto;
 }

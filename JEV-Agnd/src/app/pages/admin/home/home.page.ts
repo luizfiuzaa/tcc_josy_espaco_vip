@@ -46,7 +46,7 @@ export class HomePage {
   }
 
   modalOpenDelete = false;
-  modalOpenAdd = false;
+  modalOpenAdd = true;
   modalOpenEdit = false;
 
   setOpenDelete(isOpen: any) {
