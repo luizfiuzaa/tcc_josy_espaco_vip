@@ -18,6 +18,12 @@ form {
   justify-content: space-between;
 }
 
+@media only screen and (min-width:770px){
+  .form_modalAdd, .form_modalEdit{
+    padding: 20px 40px 0px 40px;
+  }
+}
+
 .list-content {
   width: 100%;
 }
@@ -52,10 +58,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @media only screen and (max-width: 500px) {
   input {
     font-size: 1.05em;
-  }
-
-  form {
-    padding: 0 5px;
   }
 }
 

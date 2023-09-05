@@ -53,7 +53,7 @@
                         </div>
                       </ion-card-title>
                     </ng-template>
-                    
+
                     <ion-card-title id="horario">{{Agendamentos.horarioInicio}} -
                       {{Agendamentos.horarioFim}}</ion-card-title>
                     <ion-card-subtitle>{{Agendamentos.cliente}}</ion-card-subtitle>
@@ -104,7 +104,7 @@
               <ion-list lines="none" class="ion-justify-content-center ion-align-items-center list-content">
                 <!-- Clientes -->
                 <ion-item>
-                  <ion-select label="Cliente" label-placement="floating">
+                  <ion-select label="Cliente" label-placement="floating" interface="popover">
                     <!-- Opções de clientes -->
                     <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
                     <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
@@ -115,7 +115,7 @@
                 <!-- Serviços -->
                 <ion-item>
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
-                    [multiple]="true">
+                    [multiple]="true" interface="popover">
                     <ion-select-option value="apples">Cabelo</ion-select-option>
                     <ion-select-option value="oranges">Unha</ion-select-option>
                     <ion-select-option value="bananas">Pedicure</ion-select-option>
@@ -136,11 +136,11 @@
 
                 <!-- Pagamento -->
                 <ion-item>
-                  <ion-select label="Método de Pagamento" label-placement="floating">
+                  <ion-select label="Método de Pagamento" label-placement="floating" interface="popover">
                     <!-- Opções de pagamento -->
                     <ion-select-option value="pix">Pix</ion-select-option>
                     <ion-select-option value="dinheiro">Dinheiro</ion-select-option>
-                    <ion-select-option value="debto">Débto</ion-select-option>
+                    <ion-select-option value="debito">Débito</ion-select-option>
                     <ion-select-option value="credito">Crédito</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -188,7 +188,7 @@
               <ion-list lines="none" class="ion-justify-content-center ion-align-items-center list-content">
                 <!-- Clientes -->
                 <ion-item>
-                  <ion-select label="Cliente" label-placement="floating">
+                  <ion-select label="Cliente" label-placement="floating" interface="popover">
                     <!-- Opções de clientes -->
                     <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
                     <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
@@ -199,7 +199,7 @@
                 <!-- Serviços -->
                 <ion-item>
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
-                    [multiple]="true">
+                    [multiple]="true" interface="popover">
                     <ion-select-option value="apples">Cabelo</ion-select-option>
                     <ion-select-option value="oranges">Unha</ion-select-option>
                     <ion-select-option value="bananas">Pedicure</ion-select-option>
@@ -220,11 +220,11 @@
 
                 <!-- Pagamento -->
                 <ion-item>
-                  <ion-select label="Método de Pagamento" label-placement="floating">
+                  <ion-select label="Método de Pagamento" label-placement="floating" interface="popover">
                     <!-- Opções de pagamento -->
                     <ion-select-option value="pix">Pix</ion-select-option>
                     <ion-select-option value="dinheiro">Dinheiro</ion-select-option>
-                    <ion-select-option value="debto">Débto</ion-select-option>
+                    <ion-select-option value="debito">Débito</ion-select-option>
                     <ion-select-option value="credito">Crédito</ion-select-option>
                   </ion-select>
                 </ion-item>
