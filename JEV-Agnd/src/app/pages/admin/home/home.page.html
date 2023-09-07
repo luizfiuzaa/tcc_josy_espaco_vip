@@ -10,7 +10,6 @@
 
   <!-- Conteúdo da página -->
   <ion-content class="ion-padding">
-
     <ion-row>
       <ion-col size="12">
         <ion-col
@@ -23,12 +22,16 @@
                 <form action="GET" method="get">
                   <ion-row>
                     <ion-col size="12" class="inputSearch">
-                      <ion-searchbar show-clear-button="always" placeholder="Pesquisar"></ion-searchbar>
+                      <ion-searchbar
+                        show-clear-button="always"
+                        placeholder="Pesquisar"
+                      ></ion-searchbar>
                     </ion-col>
                   </ion-row>
                 </form>
               </ion-toolbar>
             </ion-item>
+
             <div
               *ngFor="let Agendamentos of Agendamentos_exibidos;let i = index"
             >
@@ -55,13 +58,14 @@
                       </ion-card-title>
                     </ng-template>
 
-                    <ion-card-title id="horario"
-                      >{{Agendamentos.horarioInicio}} -
-                      {{Agendamentos.horarioFim}}</ion-card-title
-                    >
-                    <ion-card-subtitle
-                      >{{Agendamentos.cliente}}</ion-card-subtitle
-                    >
+                    <ion-card-title id="horario">
+                      {{Agendamentos.horarioInicio}} -
+                      {{Agendamentos.horarioFim}}
+                    </ion-card-title>
+
+                    <ion-card-subtitle>
+                      {{Agendamentos.cliente}}
+                    </ion-card-subtitle>
                   </ion-card-header>
 
                   <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
@@ -72,20 +76,18 @@
                       fill="outline"
                       (click)="setOpenDelete(true);"
                     >
-                      <ion-icon name="trash"></ion-icon>
-                      Excluir
+                    Cancelar
+                    <ion-icon name="close"></ion-icon>
                     </ion-button>
                     <ion-button
                       class="edit"
                       id="editar"
                       (click)="setOpenEdit(true)"
                     >
-                      <ion-icon name="create-outline"></ion-icon>
-                      Editar
+                    Editar
+                    <ion-icon name="create-outline"></ion-icon>
                     </ion-button>
-                    <ion-button class="info">
-                      <ion-icon name="information-circle-sharp"></ion-icon>
-                    </ion-button>
+
                   </ion-card-content>
                 </ion-card>
               </ion-item>
@@ -239,24 +241,24 @@
         <div class="wrapper modalCont">
           <div class="modal_title">
             <ion-toolbar>
-
               <ion-buttons slot="start">
                 <ion-button (click)="setOpenAdd(false)">
-                  <ion-text>Cancelar</ion-text>
+                  <ion-text color="primary">Cancelar</ion-text>
                 </ion-button>
               </ion-buttons>
 
               <ion-buttons slot="end">
                 <ion-button>
                   <ion-text
+                    color="primary"
                     slot="end"
                     class="btn-agendar"
-                    (click)="setOpenAdd(false)">
+                    (click)="setOpenAdd(false)"
+                  >
                     Agendar
                   </ion-text>
                 </ion-button>
               </ion-buttons>
-
             </ion-toolbar>
           </div>
 
@@ -264,6 +266,25 @@
             <ion-list lines="none" class="list-content">
               <div class="container_form">
                 <ion-datetime class="calendario_modal"></ion-datetime>
+
+                <!-- Status -->
+                <ion-item>
+                  <ion-select
+                    label="Status"
+                    label-placement="floating"
+                    interface="popover"
+                  >
+                    <!-- Opções de status -->
+                    <ion-select-option value="confirmado">
+                      Confirmado
+                    </ion-select-option>
+
+                    <ion-select-option value="esperando">
+                      Esperando confirmação
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
                 <!-- Clientes -->
                 <ion-item>
                   <ion-select
@@ -283,6 +304,7 @@
                     >
                   </ion-select>
                 </ion-item>
+
                 <!-- Serviços -->
                 <ion-item>
                   <ion-select
