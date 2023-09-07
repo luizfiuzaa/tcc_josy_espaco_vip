@@ -72,6 +72,7 @@
                     <ion-button class="info">
                       <ion-icon name="information-circle-sharp"></ion-icon>
                     </ion-button>
+
                   </ion-card-content>
                 </ion-card>
               </ion-item>
@@ -110,6 +111,25 @@
             <ion-list lines="none" class="list-content">
               <div class="container_form">
                 <ion-datetime class="calendario_modal"></ion-datetime>
+
+                <!-- Status -->
+                <ion-item>
+                  <ion-select
+                    label="Status"
+                    label-placement="floating"
+                    interface="popover"
+                  >
+                    <!-- Opções de status -->
+                    <ion-select-option value="confirmado">
+                      Confirmado
+                    </ion-select-option>
+
+                    <ion-select-option value="esperando">
+                      Esperando confirmação
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
                 <!-- Clientes -->
                 <ion-item>
                   <ion-select label="Cliente" label-placement="floating" interface="popover">
@@ -119,6 +139,7 @@
                     <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
                   </ion-select>
                 </ion-item>
+
                 <!-- Serviços -->
                 <ion-item>
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
