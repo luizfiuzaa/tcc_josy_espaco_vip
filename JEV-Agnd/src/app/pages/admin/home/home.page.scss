@@ -1,13 +1,3 @@
-ion-toolbar {
-  --color: var(--ion-color-primary);
-  --background: #FFF;
-}
-
-ion-button,
-ion-menu-button {
-  --color: var(--ion-color-primary);
-}
-
 .toolbar {
   border-radius: 5px;
 }
@@ -97,7 +87,6 @@ ion-card {
 .btn-agendar {
   // --color: white;
   margin-right: 15px;
-  text-transform: uppercase;
   cursor: pointer;
 }
 

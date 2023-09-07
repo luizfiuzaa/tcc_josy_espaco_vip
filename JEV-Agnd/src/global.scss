@@ -28,3 +28,17 @@
 /*Import de fontes*/
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Orelega+One&display=swap');
 *{font-family: var(--text);}
+
+.ion-page{
+  ion-header{
+    ion-toolbar {
+      --color: #FFF;
+      --background: var(--ion-color-primary);
+    }
+  }
+  
+  ion-button,
+  ion-menu-button {
+    --color: #FFF;
+  }
+}

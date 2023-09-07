@@ -1,28 +1,18 @@
-ion-toolbar {
-    --color: var(--ion-color-primary);
-    --background: #FFF;
+ion-button {
+  color: #fff;
+  background-color: #fff;
 }
 
-ion-menu-button {
-    --color: var(--ion-color-primary);
+ion-card {
+  width: 100vh;
 }
 
-ion-button{
-    color: #FFF;
-    background-color: #FFF;
+.content_list {
+  display: flex;
+  justify-content: center;
 }
 
-ion-card{
-    width: 100vh;
+.list__horario {
+  border-left: 2px var(--ion-color-primary) solid;
+  padding-left: 0.4em;
 }
-
-.content_list{
-    display: flex;
-    justify-content: center;
-}
-
-.list__horario{
-    border-left: 2px var(--ion-color-primary) solid;
-    padding-left: 0.4em;
-}
-

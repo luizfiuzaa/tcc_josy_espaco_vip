@@ -1,33 +1,22 @@
-ion-toolbar {
-    --color: var(--ion-color-primary);
-    --background: #FFF;
-}
-
-ion-button,
-ion-menu-button {
-    --color: var(--ion-color-primary);
-}
-
 .col_content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
 }
 
 .main {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin: 20px;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 20px;
+  gap: 20px;
 }
 
 .grafic {
-    flex: 1 1 200px;
-    max-width: 500px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 20px #aaaaaa;
+  flex: 1 1 200px;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 20px #aaaaaa;
 }
-

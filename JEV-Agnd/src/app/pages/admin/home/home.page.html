@@ -10,35 +10,38 @@
 
   <!-- Conteúdo da página -->
   <ion-content class="ion-padding">
+
     <ion-row>
       <ion-col size="12">
-        <ion-toolbar class="toolbar">
-          <form action="GET" method="get" class="formFilter">
-            <ion-col size="6" class="date">
-              <input type="date" name="" (input)="search($event)" />
-            </ion-col>
-            <ion-col size="6" class="inputSearch">
-              <ion-button fill="outline" id="buscar">
-                <ion-icon style="margin-right: 5%" name="search-sharp"></ion-icon>
-                Buscar
-              </ion-button>
-            </ion-col>
-          </form>
-        </ion-toolbar>
-        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
+        <ion-col
+          size="12"
+          *ngIf="Agendamentos && Agendamentos.length > 0; else noCard"
+        >
           <ion-list lines="none">
-            <div *ngFor="let Agendamentos of Agendamentos_exibidos;let i = index">
+            <ion-item>
+              <ion-toolbar class="toolbar">
+                <form action="GET" method="get">
+                  <ion-row>
+                    <ion-col size="12" class="inputSearch">
+                      <ion-searchbar show-clear-button="always" placeholder="Pesquisar"></ion-searchbar>
+                    </ion-col>
+                  </ion-row>
+                </form>
+              </ion-toolbar>
+            </ion-item>
+            <div
+              *ngFor="let Agendamentos of Agendamentos_exibidos;let i = index"
+            >
               <ion-item>
                 <ion-card>
                   <ion-card-header>
-
-                    <div *ngIf="Agendamentos.status == 'Confirmado'; else otherStatus">
+                    <div
+                      *ngIf="Agendamentos.status == 'Confirmado'; else otherStatus"
+                    >
                       <ion-card-title class="status ok">
                         <div class="ok">
                           <ion-icon name="checkmark-circle"></ion-icon>
-                          <ion-text>
-                            {{Agendamentos.status}}
-                          </ion-text>
+                          <ion-text> {{Agendamentos.status}} </ion-text>
                         </div>
                       </ion-card-title>
                     </div>
@@ -47,25 +50,36 @@
                       <ion-card-title class="status waiting">
                         <div class="ok">
                           <ion-icon name="time"></ion-icon>
-                          <ion-text>
-                            {{Agendamentos.status}}
-                          </ion-text>
+                          <ion-text> {{Agendamentos.status}} </ion-text>
                         </div>
                       </ion-card-title>
                     </ng-template>
 
-                    <ion-card-title id="horario">{{Agendamentos.horarioInicio}} -
-                      {{Agendamentos.horarioFim}}</ion-card-title>
-                    <ion-card-subtitle>{{Agendamentos.cliente}}</ion-card-subtitle>
+                    <ion-card-title id="horario"
+                      >{{Agendamentos.horarioInicio}} -
+                      {{Agendamentos.horarioFim}}</ion-card-title
+                    >
+                    <ion-card-subtitle
+                      >{{Agendamentos.cliente}}</ion-card-subtitle
+                    >
                   </ion-card-header>
 
                   <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
                   <ion-card-content>
-                    <ion-button id="open-action-sheet" class="delete" fill="outline" (click)="setOpenDelete(true);">
+                    <ion-button
+                      id="open-action-sheet"
+                      class="delete"
+                      fill="outline"
+                      (click)="setOpenDelete(true);"
+                    >
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>
-                    <ion-button class="edit" id="editar" (click)="setOpenEdit(true)">
+                    <ion-button
+                      class="edit"
+                      id="editar"
+                      (click)="setOpenEdit(true)"
+                    >
                       <ion-icon name="create-outline"></ion-icon>
                       Editar
                     </ion-button>
@@ -88,44 +102,74 @@
       </ng-template>
     </ion-row>
 
-    <ion-modal id="edit-modal" #modal trigger="editar" [isOpen]="modalOpenEdit" backdropDismiss="false">
+    <ion-modal
+      id="edit-modal"
+      #modal
+      trigger="editar"
+      [isOpen]="modalOpenEdit"
+      backdropDismiss="false"
+    >
       <ng-template>
         <div class="wrapper modalCont">
           <div class="modalEdit_header">
             <ion-toolbar>
               <ion-title>Editar</ion-title>
               <ion-buttons slot="end">
-                <ion-button (click)="setOpenEdit(false)"><ion-icon name="close"></ion-icon></ion-button>
+                <ion-button (click)="setOpenEdit(false)"
+                  ><ion-icon name="close"></ion-icon
+                ></ion-button>
               </ion-buttons>
             </ion-toolbar>
           </div>
           <div class="modal_container">
             <form action="" method="post" class="form_modalEdit">
-              <ion-list lines="none" class="ion-justify-content-center ion-align-items-center list-content">
+              <ion-list
+                lines="none"
+                class="ion-justify-content-center ion-align-items-center list-content"
+              >
                 <!-- Clientes -->
                 <ion-item>
-                  <ion-select label="Cliente" label-placement="floating" interface="popover">
+                  <ion-select
+                    label="Cliente"
+                    label-placement="floating"
+                    interface="popover"
+                  >
                     <!-- Opções de clientes -->
-                    <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
-                    <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
-                    <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
+                    <ion-select-option value="Laura Pereira"
+                      >Laura Peneira</ion-select-option
+                    >
+                    <ion-select-option value="Josefina Chapéu"
+                      >Josefina Chapéu</ion-select-option
+                    >
+                    <ion-select-option value="Claudinha Sia Justa"
+                      >Claudinha Saia Justa</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
 
                 <!-- Serviços -->
                 <ion-item>
-                  <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
-                    [multiple]="true" interface="popover">
+                  <ion-select
+                    label="Serviço(s):"
+                    label-placement="floating"
+                    placeholder="Selecione o(s) serviço(s)"
+                    [multiple]="true"
+                    interface="popover"
+                  >
                     <ion-select-option value="apples">Cabelo</ion-select-option>
                     <ion-select-option value="oranges">Unha</ion-select-option>
-                    <ion-select-option value="bananas">Pedicure</ion-select-option>
+                    <ion-select-option value="bananas"
+                      >Pedicure</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
 
                 <!-- DIA e HORA -->
                 <ion-item>
                   <h6>Dia e Horário:</h6>
-                  <ion-datetime-button datetime="datetime"></ion-datetime-button>
+                  <ion-datetime-button
+                    datetime="datetime"
+                  ></ion-datetime-button>
 
                   <ion-modal [keepContentsMounted]="true" mode="ios">
                     <ng-template>
@@ -136,12 +180,20 @@
 
                 <!-- Pagamento -->
                 <ion-item>
-                  <ion-select label="Método de Pagamento" label-placement="floating" interface="popover">
+                  <ion-select
+                    label="Método de Pagamento"
+                    label-placement="floating"
+                    interface="popover"
+                  >
                     <!-- Opções de pagamento -->
                     <ion-select-option value="pix">Pix</ion-select-option>
-                    <ion-select-option value="dinheiro">Dinheiro</ion-select-option>
+                    <ion-select-option value="dinheiro"
+                      >Dinheiro</ion-select-option
+                    >
                     <ion-select-option value="debito">Débito</ion-select-option>
-                    <ion-select-option value="credito">Crédito</ion-select-option>
+                    <ion-select-option value="credito"
+                      >Crédito</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
 
@@ -158,34 +210,53 @@
               </ion-list>
             </form>
           </div>
-
         </div>
       </ng-template>
     </ion-modal>
 
-
     <!-- botão add agendamento-->
-    <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
+    <ion-fab
+      id="add_area"
+      horizontal="end"
+      vertical="bottom"
+      slot="fixed"
+      (click)="setOpenAdd(true)"
+    >
       <ion-fab-button>
         <ion-icon id="add" name="add" expand="block"></ion-icon>
       </ion-fab-button>
     </ion-fab>
 
     <!-- modal de agendamento-->
-    <ion-modal id="example-modal" #modal trigger="add_area" [isOpen]="modalOpenAdd" backdropDismiss="false">
+    <ion-modal
+      id="example-modal"
+      #modal
+      trigger="add_area"
+      [isOpen]="modalOpenAdd"
+      backdropDismiss="false"
+    >
       <ng-template>
         <div class="wrapper modalCont">
           <div class="modal_title">
             <ion-toolbar>
+
               <ion-buttons slot="start">
                 <ion-button (click)="setOpenAdd(false)">
-                  <!-- <ion-icon name="close"></ion-icon> -->
-                  <ion-label>Cancelar</ion-label>
+                  <ion-text>Cancelar</ion-text>
                 </ion-button>
               </ion-buttons>
-              <!-- <ion-title slot="end"> -->
-                <ion-label slot="end" class="btn-agendar" (click)="setOpenAdd(false)">Agendar</ion-label>
-              <!-- </ion-title> -->
+
+              <ion-buttons slot="end">
+                <ion-button>
+                  <ion-text
+                    slot="end"
+                    class="btn-agendar"
+                    (click)="setOpenAdd(false)">
+                    Agendar
+                  </ion-text>
+                </ion-button>
+              </ion-buttons>
+
             </ion-toolbar>
           </div>
 
@@ -195,30 +266,55 @@
                 <ion-datetime class="calendario_modal"></ion-datetime>
                 <!-- Clientes -->
                 <ion-item>
-                  <ion-select label="Cliente" label-placement="floating" interface="popover">
+                  <ion-select
+                    label="Cliente"
+                    label-placement="floating"
+                    interface="popover"
+                  >
                     <!-- Opções de clientes -->
-                    <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
-                    <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
-                    <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
+                    <ion-select-option value="Laura Pereira"
+                      >Laura Peneira</ion-select-option
+                    >
+                    <ion-select-option value="Josefina Chapéu"
+                      >Josefina Chapéu</ion-select-option
+                    >
+                    <ion-select-option value="Claudinha Sia Justa"
+                      >Claudinha Saia Justa</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
                 <!-- Serviços -->
                 <ion-item>
-                  <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
-                    [multiple]="true" interface="popover">
+                  <ion-select
+                    label="Serviço(s):"
+                    label-placement="floating"
+                    placeholder="Selecione o(s) serviço(s)"
+                    [multiple]="true"
+                    interface="popover"
+                  >
                     <ion-select-option value="apples">Cabelo</ion-select-option>
                     <ion-select-option value="oranges">Unha</ion-select-option>
-                    <ion-select-option value="bananas">Pedicure</ion-select-option>
+                    <ion-select-option value="bananas"
+                      >Pedicure</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
                 <!-- Pagamento -->
                 <ion-item>
-                  <ion-select label="Método de Pagamento" label-placement="floating" interface="popover">
+                  <ion-select
+                    label="Método de Pagamento"
+                    label-placement="floating"
+                    interface="popover"
+                  >
                     <!-- Opções de pagamento -->
                     <ion-select-option value="pix">Pix</ion-select-option>
-                    <ion-select-option value="dinheiro">Dinheiro</ion-select-option>
+                    <ion-select-option value="dinheiro"
+                      >Dinheiro</ion-select-option
+                    >
                     <ion-select-option value="debito">Débito</ion-select-option>
-                    <ion-select-option value="credito">Crédito</ion-select-option>
+                    <ion-select-option value="credito"
+                      >Crédito</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
                 <!-- Preço -->
@@ -232,15 +328,21 @@
                 </ion-item>
               </div>
             </ion-list>
-
           </form>
         </div>
-</ng-template>
-</ion-modal>
+      </ng-template>
+    </ion-modal>
 
-<ion-alert trigger="open-action-sheet" header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)"
-  [isOpen]="modalOpenDelete" backdropDismiss="false" (click)="setOpenDelete(false)"></ion-alert>
-<p>{{ handlerMessage }}</p>
-<p>{{ roleMessage }}</p>
-</ion-content>
+    <ion-alert
+      trigger="open-action-sheet"
+      header="Tem certeza?"
+      [buttons]="alertButtons"
+      (didDismiss)="setResult($event)"
+      [isOpen]="modalOpenDelete"
+      backdropDismiss="false"
+      (click)="setOpenDelete(false)"
+    ></ion-alert>
+    <p>{{ handlerMessage }}</p>
+    <p>{{ roleMessage }}</p>
+  </ion-content>
 </div>
