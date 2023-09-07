@@ -95,7 +95,7 @@
           <div class="modal_title">
             <ion-toolbar>
               <ion-buttons slot="start">
-                <ion-button  (click)="setOpenEdit(false)">
+                <ion-button (click)="setOpenEdit(false)">
                   <ion-label class="button_modal">Cancelar</ion-label>
                 </ion-button>
               </ion-buttons>
@@ -114,11 +114,7 @@
 
                 <!-- Status -->
                 <ion-item>
-                  <ion-select
-                    label="Status"
-                    label-placement="floating"
-                    interface="popover"
-                  >
+                  <ion-select label="Status" label-placement="floating" interface="popover">
                     <!-- Opções de status -->
                     <ion-select-option value="confirmado">
                       Confirmado
@@ -192,20 +188,35 @@
             <ion-toolbar>
               <ion-buttons slot="start">
                 <ion-button (click)="setOpenAdd(false)">
-                  <!-- <ion-icon name="close"></ion-icon> -->
-                  <ion-label>Cancelar</ion-label>
+                  <ion-label class="button_modal">Cancelar</ion-label>
                 </ion-button>
               </ion-buttons>
-              <!-- <ion-title slot="end"> -->
-              <ion-label slot="end" class="btn-agendar" (click)="setOpenAdd(false)">Agendar</ion-label>
-              <!-- </ion-title> -->
+              <ion-buttons slot="end">
+                <ion-button>
+                  <ion-label class="button_modal" (click)="setOpenAdd(false)">Agendar</ion-label>
+                </ion-button>
+              </ion-buttons>
             </ion-toolbar>
           </div>
-
           <form action="" method="post" class="form_modalAdd">
             <ion-list lines="none" class="list-content">
               <div class="container_form">
                 <ion-datetime class="calendario_modal"></ion-datetime>
+
+                <!-- Status -->
+                <ion-item>
+                  <ion-select label="Status" label-placement="floating" interface="popover">
+                    <!-- Opções de status -->
+                    <ion-select-option value="confirmado">
+                      Confirmado
+                    </ion-select-option>
+
+                    <ion-select-option value="esperando">
+                      Esperando confirmação
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
                 <!-- Clientes -->
                 <ion-item>
                   <ion-select label="Cliente" label-placement="floating" interface="popover">
@@ -215,6 +226,7 @@
                     <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
                   </ion-select>
                 </ion-item>
+
                 <!-- Serviços -->
                 <ion-item>
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"

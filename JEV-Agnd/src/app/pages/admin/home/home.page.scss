@@ -45,7 +45,7 @@ ion-menu-button {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
-  filter: invert(0.6) brightness(50%) sepia(100%) saturate(20000%) hue-rotate(300deg);
+  filter: invert(54%) sepia(80%) saturate(6696%) hue-rotate(323deg) brightness(99%) contrast(106%);
 }
 
 .edit,
@@ -108,7 +108,6 @@ ion-card {
 .form_modalAdd,
 .form_modalEdit {
   display: flex;
-  // justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100%;
@@ -118,4 +117,24 @@ ion-card {
 .modalCont {
   min-height: 100%;
   overflow: auto;
+}
+
+/* width */
+.modalCont::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.modalCont::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.modalCont::-webkit-scrollbar-thumb {
+  background: #ffc6c6;
+  border-radius: 5px;
+}
+
+#add_area {
+  margin-right: 15px;
 }
