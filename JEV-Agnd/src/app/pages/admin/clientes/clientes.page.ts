@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+
 interface ClientesCadastrados {
   ClienteName: string;
   ClienteEmail: string;
@@ -23,7 +24,7 @@ export class ClientesPage implements OnInit {
 
   cad_cli() {
     console.log("laura")
-    // fetch('http://filhodonordeste.lovestoblog.com/?#')
+    // fetch('http://filhodonordeste.lovestoblog.com/')
     fetch('http://127.0.0.1/aula/php/')
       .then(response => response.json())
       // .then(response => console.log(response))
