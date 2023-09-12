@@ -95,9 +95,9 @@
             <p>Os seus agendamentos serão exibidos neste local.</p>
             <ion-buttons class="button_add">
               <abbr title="Agendar">
-              <ion-button (click)="setOpenAdd(true)">
-                fazer agendamento
-              </ion-button></abbr>
+                <ion-button (click)="setOpenAdd(true)">
+                  fazer agendamento
+                </ion-button></abbr>
             </ion-buttons>
           </ion-text>
         </ion-col>
@@ -205,6 +205,11 @@
                   <ion-label class="button_modal">Cancelar</ion-label>
                 </ion-button>
               </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button >
+                  <label class="button_modal" for="AddFormSubmit" (click)="setOpenAdd('fechar_lentamente')">Agendar</label>
+                </ion-button>
+              </ion-buttons>
             </ion-toolbar>
           </div>
           <form action="" method="post" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm"
@@ -265,11 +270,7 @@
                 </ion-item>
               </div>
             </ion-list>
-            <ion-buttons>
-              <ion-button>
-                <ion-button class="button_modal" (click)="setOpenAdd(false)" type="submit">Agendar</ion-button>
-              </ion-button>
-            </ion-buttons>
+            <input type="submit" id="AddFormSubmit" style="display: none;">
           </form>
         </div>
       </ng-template>
