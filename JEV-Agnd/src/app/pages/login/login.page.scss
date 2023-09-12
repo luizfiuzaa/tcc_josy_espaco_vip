@@ -5,4 +5,15 @@ form {
   border: 2px solid #000;
   ion-icon{color: var(--ion-color-primary);}
   .btnLink {margin: 3% 15% 3% 15%;}
+  .btnLogin {
+    --background: var(--ion-color-primary);
+    --background-focused: var(--ion-color-primary);
+    --background-hover: #8d0165;
+    color: #fff;
+  }
+  .btnSignUp {
+    --border-color: var(--ion-color-primary);
+    --background-focused: #8d0165;
+    color: var(--ion-color-primary);
+  }
 }

@@ -28,7 +28,13 @@
       <ng-template #noCards>
         <ion-col class="container" size="12">
           <ion-text>
-            <p>Nenhum serviço cadastrado...</p>
+            <p>Os seus serviços serão exibidos neste local.</p>
+            <ion-buttons class="button_add">
+              <abbr title="Agendar">
+              <ion-button (click)="setOpenAdd(true)">
+                Crir serviço
+              </ion-button></abbr>
+            </ion-buttons>
           </ion-text>
         </ion-col>
       </ng-template>

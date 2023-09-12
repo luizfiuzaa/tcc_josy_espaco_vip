@@ -19,47 +19,47 @@ export class LembretesPage implements OnInit {
 
   Lembretes: any[] = [
     {
-      horarioLembrete: '10:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '10:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
-      horarioLembrete: '10:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '10:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
-      horarioLembrete: '10:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '10:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
-      horarioLembrete: '10:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '10:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
-      horarioLembrete: '10:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '10:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
-      horarioLembrete: '10:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '10:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
-      horarioLembrete: '10:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '10:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
-      horarioLembrete: '10:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '10:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:30'
     },
     {
-      horarioLembrete: '11:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '11:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 12:00'
     },
     {
-      horarioLembrete: '13:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '13:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 14:00'
     },
     {
-      horarioLembrete: '17:00', dataLembrete: 'DD/MM/AAAA',
+      horarioLembrete: '17:00', dataLembrete: '23/09/2023',
       conteudoLembrete: 'Você tem um agendamento marcado as 10:00'
     }
   ];

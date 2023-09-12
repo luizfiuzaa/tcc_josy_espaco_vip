@@ -20,6 +20,13 @@ ion-card {
     }
 }
 
+.button_add {
+    justify-content: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ion-color-primary);
+}
+
 .icon_card {
     position: absolute;
     left: 0;
