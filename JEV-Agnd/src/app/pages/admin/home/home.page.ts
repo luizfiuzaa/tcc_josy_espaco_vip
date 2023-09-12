@@ -8,7 +8,9 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor() { }
+  constructor() { 
+    
+  }
 
   Agendamentos: any[] = [
     {
@@ -67,7 +69,7 @@ export class HomePage {
 
   }
   setOpenAdd(isOpen: any) {
-    if(isOpen == true){
+    if (isOpen == true) {
       this.modalOpenAdd = isOpen;
       this.createFormAdd();
       return;
@@ -76,9 +78,9 @@ export class HomePage {
       this.modalOpenAdd = isOpen;
       return;
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.modalOpenAdd = false;
-    },100);
+    }, 100);
   }
   createFormAdd() {
     this.AddForm = new FormGroup({
@@ -152,4 +154,16 @@ export class HomePage {
       }, 1000)
     }
   }
+
+  isWeekday = (dateString: string) => {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+
+    /**
+     * Date will be enabled if it is not
+     * Sunday or Saturday
+     */
+    return utcDay !== 0 && utcDay !== 6;
+  };
+
 }

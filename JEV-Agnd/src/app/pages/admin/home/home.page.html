@@ -216,7 +216,7 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content">
               <div class="container_form">
-                <ion-datetime class="calendario_modal"></ion-datetime>
+                <ion-datetime minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal"></ion-datetime>
                 <!-- Status -->
                 <ion-item>
                   <ion-select label="Status" label-placement="floating" interface="popover" formControlName="status">
