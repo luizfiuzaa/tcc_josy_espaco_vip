@@ -125,9 +125,9 @@
           <form action="" method="post" class="form_modalAdd">
             <ion-list lines="none" class="list-content">
               <div class="container_form">
-                <ion-datetime class="calendario_modal">
+                <ion-datetime minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal">
                   <span slot="time-label">
-                    <ion-text>
+                    <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
                       Horário
                     </ion-text>
@@ -216,7 +216,14 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content">
               <div class="container_form">
-                <ion-datetime minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal"></ion-datetime>
+                <ion-datetime minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal">
+                  <span slot="time-label">
+                    <ion-text class="time_title">
+                      <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
+                      Horário
+                    </ion-text>
+                  </span>
+                </ion-datetime>
                 <!-- Status -->
                 <ion-item>
                   <ion-select label="Status" label-placement="floating" interface="popover" formControlName="status">
