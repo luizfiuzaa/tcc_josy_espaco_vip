@@ -8,6 +8,17 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  OpenToast = false;
+  mensagem: any = false;
+
+  ExibirMensagem(){
+    this.OpenToast = true;
+    setTimeout(()=>{
+      this.OpenToast = false;
+    },3000)
+  }
+
   constructor() { 
     
   }
@@ -63,9 +74,13 @@ export class HomePage {
     console.log(this.AddForm.value)
     if (this.AddForm.invalid) {
       console.log('Formulario De Adição Invalido')
+      this.mensagem = 'Falha ao agendar!!'
+      this.ExibirMensagem();
       return;
     }
     console.log('Formulario De Adição Valido')
+    this.mensagem = 'Agendado com sucesso!!'
+    this.ExibirMensagem();
 
   }
   setOpenAdd(isOpen: any) {
