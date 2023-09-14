@@ -68,9 +68,12 @@ export class HomePage {
 
   }
   AddForm!: FormGroup;
+  
+  valeu_calendario_add(e: Event){
+    console.log(e)
+  }
 
   submit_add() {
-
     console.log(this.AddForm.value)
     if (this.AddForm.invalid) {
       console.log('Formulario De Adição Invalido')
@@ -81,6 +84,11 @@ export class HomePage {
     console.log('Formulario De Adição Valido')
     this.mensagem = 'Agendado com sucesso!!'
     this.ExibirMensagem();
+    // this.Agendamentos_exibidos.push(
+    //   {
+        
+    //   }
+    // );
 
   }
   setOpenAdd(isOpen: any) {
