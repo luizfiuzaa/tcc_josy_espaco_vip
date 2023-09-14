@@ -210,25 +210,31 @@
                   </span>
                 </ion-datetime>
                 <!-- Clientes -->
-                <ion-item>
+                <div class="item_form">
                   <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
                     <!-- Opções de clientes -->
                     <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
                     <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
                     <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
                   </ion-select>
-                </ion-item>
+                  <div class="message-alert" *ngIf="cliente.invalid && formDir.submitted">
+                    Selecione um cliente.
+                  </div>
+                </div>
                 <!-- Serviços -->
-                <ion-item>
+                <div class="item_form">
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
                     [multiple]="true" interface="popover" formControlName="servicos">
                     <ion-select-option value="cabelo">Cabelo</ion-select-option>
                     <ion-select-option value="unha">Unha</ion-select-option>
                     <ion-select-option value="pedicure">Pedicure</ion-select-option>
                   </ion-select>
-                </ion-item>
+                  <div class="message-alert" *ngIf="servicos.invalid && formDir.submitted">
+                    Selecione o(s) serviço(s).
+                  </div>
+                </div>
                 <!-- Pagamento -->
-                <ion-item>
+                <div class="item_form">
                   <ion-select label="Método de Pagamento" label-placement="floating" interface="popover"
                     formControlName="formaDePagamento">
                     <!-- Opções de pagamento -->
@@ -237,17 +243,19 @@
                     <ion-select-option value="debito">Débito</ion-select-option>
                     <ion-select-option value="credito">Crédito</ion-select-option>
                   </ion-select>
-                  <div *ngIf="formaDePagamento.invalid && formDir.submitted"></div>
-                </ion-item>
+                  <div class="message-alert" *ngIf="formaDePagamento.invalid && formDir.submitted">
+                    Selecione uma forma de pagamento.
+                  </div>
+                </div>
                 <!-- Preço -->
-                <ion-item>
+                <div>
                   <ion-text>
                     <h3>Preço (R$):</h3>
                   </ion-text>
                   <ion-text>
                     <p>xx.xx</p>
                   </ion-text>
-                </ion-item>
+                </div>
               </div>
             </ion-list>
             <input type="submit" id="AddFormSubmit" style="display: none;">
