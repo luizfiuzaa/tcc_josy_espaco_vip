@@ -133,21 +133,6 @@
                     </ion-text>
                   </span>
                 </ion-datetime>
-
-                <!-- Status -->
-                <ion-item>
-                  <ion-select label="Status" label-placement="floating" interface="popover">
-                    <!-- Opções de status -->
-                    <ion-select-option value="confirmado">
-                      Confirmado
-                    </ion-select-option>
-
-                    <ion-select-option value="esperando">
-                      Esperando confirmação
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
-
                 <!-- Clientes -->
                 <ion-item>
                   <ion-select label="Cliente" label-placement="floating" interface="popover">
@@ -207,7 +192,7 @@
               </ion-buttons>
               <ion-buttons slot="end">
                 <ion-button >
-                  <label class="button_modal" for="AddFormSubmit" (click)="setOpenAdd('fechar_lentamente')">Agendar</label>
+                  <label class="button_modal" for="AddFormSubmit" (click)="setOpenAdd('submit')">Agendar</label>
                 </ion-button>
               </ion-buttons>
             </ion-toolbar>
@@ -224,19 +209,6 @@
                     </ion-text>
                   </span>
                 </ion-datetime>
-                <!-- Status -->
-                <ion-item>
-                  <ion-select label="Status" label-placement="floating" interface="popover" formControlName="status">
-                    <!-- Opções de status -->
-                    <ion-select-option value="confirmado">
-                      Confirmado
-                    </ion-select-option>
-
-                    <ion-select-option value="esperando">
-                      Esperando confirmação
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
                 <!-- Clientes -->
                 <ion-item>
                   <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
@@ -265,6 +237,7 @@
                     <ion-select-option value="debito">Débito</ion-select-option>
                     <ion-select-option value="credito">Crédito</ion-select-option>
                   </ion-select>
+                  <div *ngIf="formaDePagamento.invalid && formDir.submitted"></div>
                 </ion-item>
                 <!-- Preço -->
                 <ion-item>
@@ -296,6 +269,6 @@
     </ion-fab>
 
     <!-- Ion toast -->
-    <ion-toast [message]="mensagem" [duration]="3000" icon="globe" [isOpen]="OpenToast" class="mensagem"></ion-toast>
+    <ion-toast [message]="mensagem" icon="globe" [isOpen]="OpenToast" class="mensagem"></ion-toast>
   </ion-content>
 </div>

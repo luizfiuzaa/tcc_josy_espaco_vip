@@ -12,15 +12,15 @@ export class HomePage {
   OpenToast = false;
   mensagem: any = false;
 
-  ExibirMensagem(){
+  ExibirMensagem() {
     this.OpenToast = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       this.OpenToast = false;
-    },3000)
+    }, 3000)
   }
 
-  constructor() { 
-    
+  constructor() {
+
   }
 
   Agendamentos: any[] = [
@@ -93,21 +93,19 @@ export class HomePage {
       this.modalOpenAdd = isOpen;
       return;
     }
-    setTimeout(() => {
-      this.modalOpenAdd = false;
-    }, 100);
+    if (isOpen == 'submit' && this.AddForm.valid) {
+      setTimeout(() => {
+        this.modalOpenAdd = false;
+      }, 100);
+    }
   }
   createFormAdd() {
     this.AddForm = new FormGroup({
       id: new FormControl(''),
-      status: new FormControl('', [Validators.required]),
       cliente: new FormControl('', [Validators.required]),
       servicos: new FormControl('', [Validators.required]),
       formaDePagamento: new FormControl('', [Validators.required])
     });
-  }
-  get status() {
-    return this.AddForm.get('status')!;
   }
   get cliente() {
     return this.AddForm.get('cliente')!;
