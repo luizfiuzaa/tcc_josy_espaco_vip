@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActionSheetController } from '@ionic/angular';
+import { timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomePage {
   }
 
   constructor() {
-
+    
   }
 
   Agendamentos: any[] = [
@@ -68,10 +69,6 @@ export class HomePage {
 
   }
   AddForm!: FormGroup;
-  
-  valeu_calendario_add(e: Event){
-    console.log(e)
-  }
   modalOpenAdd = false;
   submit_add() {
     console.log(this.AddForm.value)
@@ -105,12 +102,16 @@ export class HomePage {
     this.AddForm = new FormGroup({
       id: new FormControl(''),
       cliente: new FormControl('', [Validators.required]),
+      calendario: new FormControl('', [Validators.required]),
       servicos: new FormControl('', [Validators.required]),
       formaDePagamento: new FormControl('', [Validators.required])
     });
   }
   get cliente_add() {
     return this.AddForm.get('cliente')!;
+  }
+  get calendario_add() {
+    return this.AddForm.get('calendario')!;
   }
   get servicos_add() {
     return this.AddForm.get('servicos')!;
