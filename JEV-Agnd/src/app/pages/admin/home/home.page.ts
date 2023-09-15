@@ -68,8 +68,8 @@ export class HomePage {
 
   }
   AddForm!: FormGroup;
-
-  valeu_calendario_add(e: Event) {
+  
+  valeu_calendario_add(e: Event){
     console.log(e)
   }
   modalOpenAdd = false;

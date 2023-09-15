@@ -101,8 +101,5 @@ export class ClientesPage implements OnInit {
       ClienteEmail: 'marlene.stp@gmail.com',
       ClienteTelefone: '15 99999-9994'
     },
-
-
   ]
-
 }
