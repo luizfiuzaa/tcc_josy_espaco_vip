@@ -8,8 +8,19 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor() { 
-    
+
+  OpenToast = false;
+  mensagem: any = false;
+
+  ExibirMensagem() {
+    this.OpenToast = true;
+    setTimeout(() => {
+      this.OpenToast = false;
+    }, 3000)
+  }
+
+  constructor() {
+
   }
 
   Agendamentos: any[] = [
@@ -58,15 +69,21 @@ export class HomePage {
   }
   AddForm!: FormGroup;
 
+  valeu_calendario_add(e: Event) {
+    console.log(e)
+  }
+  modalOpenAdd = false;
   submit_add() {
-
     console.log(this.AddForm.value)
     if (this.AddForm.invalid) {
       console.log('Formulario De Adição Invalido')
+      this.mensagem = 'Falha ao agendar!!'
+      this.ExibirMensagem();
       return;
     }
     console.log('Formulario De Adição Valido')
-
+    this.mensagem = 'Agendado com sucesso!!'
+    this.ExibirMensagem();
   }
   setOpenAdd(isOpen: any) {
     if (isOpen == true) {
@@ -78,44 +95,82 @@ export class HomePage {
       this.modalOpenAdd = isOpen;
       return;
     }
-    setTimeout(() => {
-      this.modalOpenAdd = false;
-    }, 100);
+    if (isOpen == 'submit' && this.AddForm.valid) {
+      setTimeout(() => {
+        this.modalOpenAdd = false;
+      }, 100);
+    }
   }
   createFormAdd() {
     this.AddForm = new FormGroup({
       id: new FormControl(''),
-      status: new FormControl('', [Validators.required]),
       cliente: new FormControl('', [Validators.required]),
       servicos: new FormControl('', [Validators.required]),
       formaDePagamento: new FormControl('', [Validators.required])
     });
   }
-  get status() {
-    return this.AddForm.get('status')!;
-  }
-  get cliente() {
+  get cliente_add() {
     return this.AddForm.get('cliente')!;
   }
-  get servicos() {
+  get servicos_add() {
     return this.AddForm.get('servicos')!;
   }
-  get formaDePagamento() {
+  get formaDePagamento_add() {
     return this.AddForm.get('formaDePagamento')!;
   }
 
-  modalOpenDelete = false;
-  modalOpenAdd = false;
+  EditForm!: FormGroup;
   modalOpenEdit = false;
+  submit_edit() {
+    console.log(this.EditForm.value)
+    if (this.EditForm.invalid) {
+      console.log('Formulario De Edição Invalido')
+      this.mensagem = 'Falha ao alterar!!'
+      this.ExibirMensagem();
+      return;
+    }
+    console.log('Formulario De Edição Valido')
+    this.mensagem = 'Alterado com sucesso!!'
+    this.ExibirMensagem();
+  }
+  setOpenEdit(isOpen: any) {
+    if (isOpen == true) {
+      this.modalOpenEdit = isOpen;
+      this.createFormEdit();
+      return;
+    }
+    if (isOpen == false) {
+      this.modalOpenEdit = isOpen;
+      return;
+    }
+    if (isOpen == 'submit' && this.EditForm.valid) {
+      setTimeout(() => {
+        this.modalOpenEdit = false;
+      }, 100);
+    }
+  }
+  createFormEdit() {
+    this.EditForm = new FormGroup({
+      id: new FormControl(''),
+      cliente: new FormControl('', [Validators.required]),
+      servicos: new FormControl('', [Validators.required]),
+      formaDePagamento: new FormControl('', [Validators.required])
+    });
+  }
+  get cliente_edit() {
+    return this.EditForm.get('cliente')!;
+  }
+  get servicos_edit() {
+    return this.EditForm.get('servicos')!;
+  }
+  get formaDePagamento_edit() {
+    return this.EditForm.get('formaDePagamento')!;
+  }
 
+  modalOpenDelete = false;
   setOpenDelete(isOpen: any) {
     this.modalOpenDelete = isOpen;
   }
-
-  setOpenEdit(isOpen: any) {
-    this.modalOpenEdit = isOpen;
-  }
-
   public alertButtons = [
     {
       text: 'Não',
