@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `agendamento_servicos`;
 CREATE TABLE `agendamento_servicos`(
   `id_agend_servico` INT AUTO_INCREMENT,
   `fk_id_servico` INT NOT NULL,
-  `fk_id_agendamendto` INT NOT NULL,
+  `fk_id_agendamento` INT NOT NULL,
   CONSTRAINT `fk_id_servico` FOREIGN KEY (`fk_id_servico`) REFERENCES `servico` (`id_servico`),
   CONSTRAINT `fk_id_agendamento` FOREIGN KEY (`fk_id_agendamento`) REFERENCES `agendamento` (`id_agendamento`),
   PRIMARY KEY (`id_agend_servico`)
