@@ -1,6 +1,6 @@
 export interface Clientes {
     id: string;
-    ClienteName: string;
+    ClienteNome: string;
     ClienteEmail: string;
     ClienteTelefone: string;
 }
