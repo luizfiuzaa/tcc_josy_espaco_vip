@@ -182,3 +182,15 @@ gap: 3px;
   display: flex;
   flex-direction: column;
 }
+
+ion-spinner{
+  height: 70px !important;
+  width: 70px !important;
+}
+
+.spinner_cont{
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

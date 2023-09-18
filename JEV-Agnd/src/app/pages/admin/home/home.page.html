@@ -90,7 +90,7 @@
         </ion-col>
       </ion-col>
       <ng-template #noCard>
-        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0">
+        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0 && !this.Isloading">
           <ion-text class="ion-text-center">
             <p>Os seus agendamentos serão exibidos neste local.</p>
             <ion-buttons class="button_add">
@@ -100,8 +100,11 @@
                 </ion-button></abbr>
             </ion-buttons>
           </ion-text>
-        </ion-col>
+        </ion-col>  
       </ng-template>
+      <ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.Isloading">
+        <ion-spinner class="spinner" color="danger" name="crescent"></ion-spinner>
+      </ion-col>
     </ion-row>
 
     <ion-modal id="edit-modal" #modal trigger="editar" [isOpen]="modalOpenEdit" backdropDismiss="false">
