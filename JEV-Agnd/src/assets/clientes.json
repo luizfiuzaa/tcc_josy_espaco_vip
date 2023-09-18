@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "ClienteNome": "luiza fiuze",
+    "ClienteEmail": "lui.fiuze@gmail.com",
+    "ClienteTelefone": "15 99999-9998"
+  },
+  {
+    "id": "2",
+    "ClienteNome": "claudinha buxexa",
+    "ClienteEmail": "caluBuxa@gmail.com",
+    "ClienteTelefone": "15 99999-9997"
+  },
+  {
+    "id": "3",
+    "ClienteNome": "lauro pinheiro",
+    "ClienteEmail": "laura.peneira@gmail.com",
+    "ClienteTelefone": "15 99999-9996"
+  }
+]

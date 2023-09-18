@@ -12,7 +12,7 @@
     <ion-row class="ion-justify-content-center">
       <ion-col class="col_content" size-lg="10" size-md="10" size="12">
         <!-- Se tiver algum Cliente -->
-        <div class="content" *ngIf="ClientesCadastrados && ClientesCadastrados.length > 0; else noClientes">
+        <div class="content" *ngIf="ClienteCad && ClienteCad.length > 0; else noClientes">
           <ion-list lines="none">
 
             <!-- Search Bar -->
@@ -20,12 +20,12 @@
               <ion-col size="12">
                 <form action="GET" method="get">
                   <ion-searchbar style="margin-top: 1.5%;" class="searchBar"
-                    placeholder="Buscar cliente"></ion-searchbar>
+                    placeholder="Buscar cliente" (input)="filterClienteName($event)"></ion-searchbar>
                 </form>
               </ion-col>
             </ion-item>
 
-            <div class="cliente__main" *ngFor="let ClientesCadastrados of ClientesCadastrados">
+            <div class="cliente__main" *ngFor="let Clientes of clientes_Exibidos">
               <ion-item>
                 <!-- Card dos Clientes -->
                 <ion-card>
@@ -34,13 +34,13 @@
                     <ion-card-title>
                       <ion-text class="main__nome">
                         <ion-icon name="person-sharp"></ion-icon>
-                        {{ClientesCadastrados.ClienteNome}}
+                        {{Clientes.ClienteNome}}
                       </ion-text>
                     </ion-card-title>
                     <ion-card-subtitle>
                       <ion-text class="main__email">
                         <ion-icon name="logo-whatsapp"></ion-icon>
-                        {{ClientesCadastrados.ClienteTelefone}}
+                        {{Clientes.ClienteEmail}}
                       </ion-text>
                     </ion-card-subtitle>
                   </ion-card-header>

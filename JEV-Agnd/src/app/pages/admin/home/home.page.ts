@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActionSheetController } from '@ionic/angular';
 import { timestamp } from 'rxjs';
+import { Agendamentos } from 'src/app/models/agendamentos';
+import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
 
 @Component({
   selector: 'app-home',
@@ -19,51 +21,21 @@ export class HomePage {
       this.OpenToast = false;
     }, 3000)
   }
+  Agendamentos: Agendamentos[] = []
 
-  constructor() {
-    
+  Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
+
+  constructor(private agendamentosService: AgendamentosService) {
+    this.getAgendamentos();
   }
 
-  Agendamentos: any[] = [
-    {
-      status: 'Confirmado',
-      horarioInicio: '9:00', horarioFim: '10:30',
-      cliente: 'Laura Peneira',
-      servico: 'Cabelo, Manicure, Pedicure',
-      metodoPagamento: 'Pix',
-      preco: '150.00',
-      data: '2023-09-28'
-    },
-    {
-      status: 'Esperando confirmação',
-      horarioInicio: '11:00', horarioFim: '12:30',
-      cliente: 'Josefina Chapéu',
-      servico: 'Cabelo',
-      metodoPagamento: 'Dinheiro',
-      preco: '50.00',
-      data: '2023-09-30'
-    },
-    {
-      status: 'Esperando confirmação',
-      horarioInicio: '14:20', horarioFim: '15:20',
-      cliente: 'Claudinha Buxexa',
-      servico: 'Manicure, Pedicure',
-      metodoPagamento: 'Débito',
-      preco: '100.00',
-      data: '2023-09-29'
-    },
-    {
-      status: 'Confirmado',
-      horarioInicio: '14:20', horarioFim: '15:20',
-      cliente: 'Claudinha Buxexa',
-      servico: 'Manicure, Pedicure',
-      metodoPagamento: 'Débito',
-      preco: '100.00',
-      data: '2023-09-29'
-    },
-  ]
-
-  Agendamentos_exibidos: any[] = this.Agendamentos;
+  getAgendamentos(){
+    this.agendamentosService.list().subscribe(dados =>{ 
+      this.Agendamentos = dados;
+      console.log(this.Agendamentos);
+      this.Agendamentos_exibidos = this.Agendamentos;
+    });
+  }
 
   ngOnInit() {
 

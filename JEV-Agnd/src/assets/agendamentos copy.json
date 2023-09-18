@@ -1,0 +1,42 @@
+[
+    {
+      "id": "1",
+      "status": "Confirmado",
+      "horarioInicio": "9:00", "horarioFim": "10:30",
+      "cliente": "Laura Peneira",
+      "servico": "Cabelo, Manicure, Pedicure",
+      "metodoPagamento": "Pix",
+      "preco": "150.00",
+      "data": "2023-09-28"
+    },
+    {
+      "id": "2",
+      "status": "Esperando confirmação",
+      "horarioInicio": "11:00", "horarioFim": "12:30",
+      "cliente": "Josefina Chapéu",
+      "servico": "Cabelo",
+      "metodoPagamento": "Dinheiro",
+      "preco": "50.00",
+      "data": "2023-09-30"
+    },
+    {
+      "id": "3",
+      "status": "Esperando confirmação",
+      "horarioInicio": "14:20", "horarioFim": "15:20",
+      "cliente": "Claudinha Buxexa",
+      "servico": "Manicure, Pedicure",
+      "metodoPagamento": "Débito",
+      "preco": "100.00",
+      "data": "2023-09-29"
+    },
+    {
+      "id": "4",
+      "status": "Confirmado",
+      "horarioInicio": "14:20", "horarioFim": "15:20",
+      "cliente": "Claudinha Buxexa",
+      "servico": "Manicure, Pedicure",
+      "metodoPagamento": "Débito",
+      "preco": "100.00",
+      "data": "2023-09-29"
+    }
+  ]
