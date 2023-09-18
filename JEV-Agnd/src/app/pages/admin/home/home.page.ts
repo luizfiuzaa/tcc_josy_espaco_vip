@@ -26,14 +26,16 @@ export class HomePage {
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
 
   constructor(private agendamentosService: AgendamentosService) {
+    this.getAgendamentos();
+  }
+
+  getAgendamentos(){
     this.agendamentosService.list().subscribe(dados =>{ 
       this.Agendamentos = dados;
       console.log(this.Agendamentos);
       this.Agendamentos_exibidos = this.Agendamentos;
     });
-
   }
-
 
   ngOnInit() {
 
