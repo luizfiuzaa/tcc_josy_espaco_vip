@@ -23,7 +23,7 @@ export class ClientesPage implements OnInit {
       if (cliente.ClienteNome.includes(value.toLocaleLowerCase()) == true || cliente.ClienteEmail.includes(value) == true) {
         estado = true;
       }
-      return cliente.ClienteNome.includes(value) || cliente.ClienteEmail.includes(value) == true;
+      return cliente.ClienteNome.includes(value.toLocaleLowerCase()) || cliente.ClienteEmail.includes(value) == true;
     });
     this.verificarEstado(estado);
   }
