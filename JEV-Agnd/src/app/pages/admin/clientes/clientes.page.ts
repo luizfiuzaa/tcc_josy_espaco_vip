@@ -1,11 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Clientes } from 'src/app/models/clientes';
 
-
-interface ClientesCadastrados {
-  ClienteName: string;
-  ClienteEmail: string;
-  ClienteTelefone: string;
-}
 
 @Component({
   selector: 'app-clientes',
@@ -13,7 +8,7 @@ interface ClientesCadastrados {
   styleUrls: ['./clientes.page.scss'],
 })
 export class ClientesPage implements OnInit {
-  @Input() ClienteCad: ClientesCadastrados[] = [];
+  @Input() ClienteCad: Clientes[] = [];
 
   clientes = [];
   cliente = {
@@ -21,6 +16,9 @@ export class ClientesPage implements OnInit {
     tel: null
   }
 
+  constructor() {
+    this.cad_cli()
+  }
 
   cad_cli() {
     console.log("laura")
@@ -57,24 +55,11 @@ export class ClientesPage implements OnInit {
       });
 
   }
-
-  constructor() { }
-
-  // teste para integração com PHP
   criarCliente(dados: any) {
     this.cliente.nome = dados.nome;
     this.cliente.tel = dados.tel;
   }
-
-
-  exibir() {
-    console.log('oi')
-  }
-
-  ngOnInit() {
-    this.cad_cli()
-  }
-
+  ngOnInit() { }
   ClientesCadastrados: any[] = [
     {
       ClienteNome: 'Luiza Fiuze',
