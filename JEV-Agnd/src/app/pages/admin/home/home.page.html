@@ -103,7 +103,7 @@
         </ion-col>  
       </ng-template>
       <ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.Isloading">
-        <ion-spinner class="spinner" color="danger" name="crescent"></ion-spinner>
+        <ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
       </ion-col>
     </ion-row>
 
@@ -289,7 +289,6 @@
         </ion-fab-button>
       </abbr>
     </ion-fab>
-
     <!-- Ion toast -->
     <ion-toast [message]="mensagem" icon="globe" [isOpen]="OpenToast" class="mensagem"></ion-toast>
   </ion-content>

@@ -14,6 +14,7 @@ export class HomePage {
 
   OpenToast = false;
   mensagem: any = false;
+  Isloading = false;
 
   ExibirMensagem() {
     this.OpenToast = true;
@@ -30,11 +31,15 @@ export class HomePage {
   }
 
   getAgendamentos(){
+    this.Isloading = true;
+    setTimeout(()=>{
     this.agendamentosService.list().subscribe(dados =>{ 
       this.Agendamentos = dados;
       console.log(this.Agendamentos);
       this.Agendamentos_exibidos = this.Agendamentos;
-    });
+      this.Isloading = false;
+    })
+    },3000)
   }
 
   ngOnInit() {
