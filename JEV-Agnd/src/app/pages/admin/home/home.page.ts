@@ -13,14 +13,35 @@ import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.
 export class HomePage {
 
   OpenToast = false;
-  mensagem: any = false;
+  message: any = false;
   Isloading = false;
+  toast: any
+  fakeCalendario: any
 
-  ExibirMensagem() {
+  getData(e:Event){
+    let target = e.target as HTMLInputElement
+    let value = target.value;
+    this.fakeCalendario.value = value;
+  }
+
+  ExibirMessage(estado: boolean) {
+    if (estado) {
+      this.toast.classList.remove('fail');
+      this.toast.classList.add('success');
+      this.OpenToast = true;
+      setTimeout(() => {
+        this.OpenToast = false;
+      }, 3000);
+      console.log(this.toast)
+      return;
+    }
+    this.toast.classList.remove('success');
+    this.toast.classList.add('fail');
     this.OpenToast = true;
     setTimeout(() => {
       this.OpenToast = false;
     }, 3000)
+    console.log(this.toast)
   }
   Agendamentos: Agendamentos[] = []
 
@@ -30,16 +51,20 @@ export class HomePage {
     this.getAgendamentos();
   }
 
-  getAgendamentos(){
+  ngAfterViewInit() {
+    this.toast = document.querySelector('#message') as HTMLElement;
+  }
+
+  getAgendamentos() {
     this.Isloading = true;
-    setTimeout(()=>{
-    this.agendamentosService.list().subscribe(dados =>{ 
+    // setTimeout(() => {
+    this.agendamentosService.list().subscribe(dados => {
       this.Agendamentos = dados;
       console.log(this.Agendamentos);
       this.Agendamentos_exibidos = this.Agendamentos;
       this.Isloading = false;
     })
-    },3000)
+    // }, 3000)
   }
 
   ngOnInit() {
@@ -51,15 +76,16 @@ export class HomePage {
     console.log(this.AddForm.value)
     if (this.AddForm.invalid) {
       console.log('Formulario De Adição Invalido')
-      this.mensagem = 'Falha ao agendar!!'
-      this.ExibirMensagem();
+      this.message = 'Falha ao agendar!!'
+      this.ExibirMessage(false);
       return;
     }
     console.log('Formulario De Adição Valido')
-    this.mensagem = 'Agendado com sucesso!!'
-    this.ExibirMensagem();
+    this.message = 'Agendado com sucesso!!'
+    this.ExibirMessage(true);
   }
   setOpenAdd(isOpen: any) {
+    this.fakeCalendario = document.querySelector('#fakeCalendario') as HTMLInputElement;
     if (isOpen == true) {
       this.modalOpenAdd = isOpen;
       this.createFormAdd();
@@ -103,13 +129,13 @@ export class HomePage {
     console.log(this.EditForm.value)
     if (this.EditForm.invalid) {
       console.log('Formulario De Edição Invalido')
-      this.mensagem = 'Falha ao alterar!!'
-      this.ExibirMensagem();
+      this.message = 'Falha ao alterar!!'
+      this.ExibirMessage(false);
       return;
     }
     console.log('Formulario De Edição Valido')
-    this.mensagem = 'Alterado com sucesso!!'
-    this.ExibirMensagem();
+    this.message = 'Alterado com sucesso!!'
+    this.ExibirMessage(true);
   }
   setOpenEdit(isOpen: any) {
     if (isOpen == true) {

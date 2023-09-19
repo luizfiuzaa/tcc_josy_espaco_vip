@@ -212,7 +212,7 @@
             <ion-list lines="none" class="list-content">
               <div class="container_form">
                 <ion-datetime minuteValues="0,15,30,45"
-                  [isDateEnabled]="isWeekday" class="calendario_modal" formControlName="calendario" [value]="">
+                  [isDateEnabled]="isWeekday" class="calendario_modal" (ionChange)="getData($event)" [value]="">
                   <span slot="time-label">
                     <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -220,6 +220,7 @@
                     </ion-text>
                   </span>
                 </ion-datetime>
+                <ion-input formControlName="calendario" id="fakeCalendario"></ion-input>
                 <div class="message-alert" *ngIf="calendario_add.invalid && formDir.submitted">
                   Selecione um dia e Horario.
                 </div>
@@ -290,6 +291,6 @@
       </abbr>
     </ion-fab>
     <!-- Ion toast -->
-    <ion-toast [message]="mensagem" icon="globe" [isOpen]="OpenToast" class="mensagem"></ion-toast>
+    <ion-toast [message]="message" icon="globe" [isOpen]="OpenToast" id="message" class="fail"></ion-toast>
   </ion-content>
 </div>

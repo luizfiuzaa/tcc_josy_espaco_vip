@@ -174,8 +174,12 @@ gap: 3px;
   border-left: 2px solid red;
 }
 
-.mensegem{
-  background: green;
+#message.success{
+  --background: #65dd61 ;
+}
+
+#message.fail{
+  --background: #f75656 ;
 }
 
 .item_form{
@@ -193,4 +197,8 @@ ion-spinner{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#fakeCalendario{
+  display: none;
 }
