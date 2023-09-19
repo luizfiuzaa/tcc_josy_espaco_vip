@@ -197,6 +197,8 @@ export class HomePage {
      * Sunday or Saturday
      */
     return utcDay !== 0 && utcDay !== 6;
-  };
-
+  }
+  
+    
+    
 }
