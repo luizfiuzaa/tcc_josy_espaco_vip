@@ -14,12 +14,12 @@
   <ion-content class="ion-padding">
 
     <ion-row>
-      
+
 
       <ion-col size="12">
         <ion-item>
 
-          <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar agendamento" ></ion-searchbar>
+          <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar agendamento"></ion-searchbar>
         </ion-item>
         <ng-template *ngIf="Agendamentos && Agendamentos.length == 0">
           <ion-toolbar class="toolbar">
@@ -107,7 +107,7 @@
                 </ion-button></abbr>
             </ion-buttons>
           </ion-text>
-        </ion-col>  
+        </ion-col>
       </ng-template>
       <ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.Isloading">
         <ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
@@ -126,8 +126,7 @@
               </ion-buttons>
               <ion-buttons slot="end">
                 <ion-button>
-                  <label class="button_modal" for="EditFormSubmit"
-                    (click)="setOpenEdit('submit')">Editar</label>
+                  <label class="button_modal" for="EditFormSubmit" (click)="setOpenEdit('submit')">Editar</label>
                 </ion-button>
               </ion-buttons>
             </ion-toolbar>
@@ -218,8 +217,8 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content">
               <div class="container_form">
-                <ion-datetime minuteValues="0,15,30,45"
-                  [isDateEnabled]="isWeekday" class="calendario_modal" (ionChange)="getData($event)" [value]="">
+                <ion-datetime minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal"
+                  (ionChange)="getData($event)">
                   <span slot="time-label">
                     <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -227,7 +226,7 @@
                     </ion-text>
                   </span>
                 </ion-datetime>
-                <ion-input formControlName="calendario" id="fakeCalendario"></ion-input>
+                <ion-input formControlName="calendario" id="fakeCalendario" type="text"></ion-input>
                 <div class="message-alert" *ngIf="calendario_add.invalid && formDir.submitted">
                   Selecione um dia e Horario.
                 </div>

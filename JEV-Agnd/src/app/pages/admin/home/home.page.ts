@@ -21,7 +21,8 @@ export class HomePage {
   getData(e:Event){
     let target = e.target as HTMLInputElement
     let value = target.value;
-    this.fakeCalendario.value = value;
+    let valueArray = value.split('T')
+    this.fakeCalendario.value = `${valueArray[0]} ${valueArray[1]}`;
   }
 
   ExibirMessage(estado: boolean) {
@@ -85,10 +86,13 @@ export class HomePage {
     this.ExibirMessage(true);
   }
   setOpenAdd(isOpen: any) {
-    this.fakeCalendario = document.querySelector('#fakeCalendario') as HTMLInputElement;
     if (isOpen == true) {
       this.modalOpenAdd = isOpen;
       this.createFormAdd();
+      setTimeout(()=>{
+      this.fakeCalendario = document.querySelector('#fakeCalendario') as HTMLInputElement;
+      console.log(this.fakeCalendario)
+      },1)
       return;
     }
     if (isOpen == false) {
