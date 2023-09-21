@@ -286,7 +286,8 @@
     </ion-modal>
 
     <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
-      [isOpen]="modalOpenDelete" backdropDismiss="false" (click)="setOpenDelete(false)"></ion-alert>
+      [isOpen]="modalOpenDelete" backdropDismiss="false"
+      ></ion-alert>
 
     <!-- botão add agendamento-->
     <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">

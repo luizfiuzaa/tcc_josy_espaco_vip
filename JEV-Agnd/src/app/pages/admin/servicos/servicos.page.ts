@@ -190,4 +190,8 @@ export class ServicosPage implements OnInit {
     this.createFormEdit();
     this.setOpenEdit(true);
   }
+  apagarService(indice: any){
+    this.CardDados.splice(indice, 1)
+
+  }
 }
