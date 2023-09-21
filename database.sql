@@ -16,7 +16,6 @@ CREATE TABLE `cliente` (
     `cliente_nome` VARCHAR(50) NOT NUll,
     `cliente_tel` VARCHAR(12) NOT NUll,
     `cliente_email` VARCHAR(50) NOT NUll,
-    `cliente_senha` VARCHAR(255) NOT NUll,
   PRIMARY KEY (`id_cliente`)
 );
 
@@ -25,6 +24,7 @@ CREATE TABLE `servico`(
   `id_servico` INT NOT NULL AUTO_INCREMENT,
   `titulo_servico` VARCHAR(50) NOT NULL,
   `desc_servico` VARCHAR(150) NOT NULL,
+  `duracao_servico` INT NOT NULL,
   `preco_servico` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`id_servico`)
 );
@@ -60,15 +60,15 @@ CREATE TABLE `agendamento_servicos`(
 );
 
 -- cliente
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro1','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro2','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro3','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro4','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro5','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro6','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro7','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro8','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
-INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro9','15675643598','pinheiro_Luaor@hotmail.com','abc123234');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro1','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro2','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro3','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro4','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro5','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro6','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro7','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro8','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente` VALUES(0,'Lauro Pinheiro9','15675643598','pinheiro_Luaor@hotmail.com');
 -- s
 
 -- agendamento
@@ -92,4 +92,3 @@ INSERT INTO `servico` VALUES(0, 'Corte de cabelo - curto6', 'Venha gastar a sua 
 INSERT INTO `servico` VALUES(0, 'Corte de cabelo - curto7', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','30','20.00');
 INSERT INTO `servico` VALUES(0, 'Corte de cabelo - curto8', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','30','20.00');
 INSERT INTO `servico` VALUES(0, 'Corte de cabelo - curto9', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','30','20.00');
--- s

@@ -13,9 +13,20 @@
 
       <ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
         <ion-card *ngFor="let card of CardDados; let i = index" class="card">
-          <abbr title="Editar"><ion-card-content class="icon_card" (click)="editService(i)" id="open-modal-edit">
-              <ion-icon name="settings-outline" class="edit_icon"></ion-icon>
-            </ion-card-content></abbr>
+          <abbr>
+            <ion-card-content class="icon_card"  >
+              <ion-row>
+                <ion-col>
+                  <ion-icon title="Editar" name="settings-outline" (click)="editService(i)" id="open-modal-edit" class="edit_icon"></ion-icon>
+                </ion-col>
+                <ion-col>
+                  <ion-icon title="Apagar" name="trash-outline"  (click)="apagarService(i)" class="edit_icon"></ion-icon>
+                </ion-col>   
+              </ion-row>
+            
+            </ion-card-content>
+          </abbr>
+          
           <ion-card-content class="card_context">
             <ion-card-title class="title">{{card.tituloCard}}</ion-card-title>
             <p>Descrição: {{card.descricaoCard}}</p>
