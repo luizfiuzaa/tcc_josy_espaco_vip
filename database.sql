@@ -24,6 +24,7 @@ CREATE TABLE `servico`(
   `id_servico` INT NOT NULL AUTO_INCREMENT,
   `titulo_servico` VARCHAR(50) NOT NULL,
   `desc_servico` VARCHAR(150) NOT NULL,
+  `duracao_servico` INT NOT NULL,
   `preco_servico` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`id_servico`)
 );
