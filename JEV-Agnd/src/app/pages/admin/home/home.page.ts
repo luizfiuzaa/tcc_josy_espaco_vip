@@ -14,10 +14,11 @@ export class HomePage {
 
   OpenToast = false;
   message: any = false;
-  Isloading = false;
+  isLoading = false;
   toast: any
   fakeCalendario: any
-
+  agendamentos: any;
+  
   getData(e:Event){
     let target = e.target as HTMLInputElement
     let value = target.value;
@@ -48,6 +49,7 @@ export class HomePage {
 
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
 
+
   constructor(private agendamentosService: AgendamentosService) {
     this.getAgendamentos();
   }
@@ -56,16 +58,19 @@ export class HomePage {
     this.toast = document.querySelector('#message') as HTMLElement;
   }
 
-  getAgendamentos() {
-    this.Isloading = true;
-    // setTimeout(() => {
-    this.agendamentosService.list().subscribe(dados => {
-      this.Agendamentos = dados;
-      console.log(this.Agendamentos);
-      this.Agendamentos_exibidos = this.Agendamentos;
-      this.Isloading = false;
+  getAgendamentos(){
+    this.isLoading = true;
+    fetch('http://aula/php/admin/agendamentos/listarAgendamento.php')
+    .then(response => response.json())
+    .then(response => {
+      this.agendamentos = response.agendamentos;
     })
-    // }, 3000)
+    .catch(erro => {
+      console.log(erro);
+    })
+    .finally(()=>{
+      this.isLoading = false;
+    })
   }
 
   ngOnInit() {
@@ -213,7 +218,7 @@ export class HomePage {
   verificarEstado(estado: any) {
     if (!estado) {
       setTimeout(() => {
-        this.Agendamentos_exibidos = this.Agendamentos
+        this.Agendamentos_exibidos = this.agendamentos
       }, 1000)
     }
   }

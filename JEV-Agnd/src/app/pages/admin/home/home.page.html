@@ -40,7 +40,7 @@
         </ng-template>
         <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
           <ion-list lines="none">
-            <div *ngFor="let Agendamentos of Agendamentos_exibidos;let i = index">
+            <div *ngFor="let Agendamentos of this.Agendamentos_exibidos;let i = index">
               <ion-item>
                 <ion-card>
                   <ion-card-header>
@@ -55,7 +55,7 @@
                         </div>
                       </ion-card-title>
                     </div>
-
+0
                     <ng-template #otherStatus>
                       <ion-card-title class="status waiting">
                         <div class="ok">
@@ -97,7 +97,7 @@
         </ion-col>
       </ion-col>
       <ng-template #noCard>
-        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0 && !this.Isloading">
+        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0 && !this.isLoading">
           <ion-text class="ion-text-center">
             <p>Os seus agendamentos serão exibidos neste local.</p>
             <ion-buttons class="button_add">
@@ -109,7 +109,7 @@
           </ion-text>
         </ion-col>
       </ng-template>
-      <ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.Isloading">
+      <ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.isLoading">
         <ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
       </ion-col>
     </ion-row>
