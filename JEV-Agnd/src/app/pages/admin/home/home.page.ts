@@ -18,7 +18,7 @@ export class HomePage {
   toast: any
   fakeCalendario: any
 
-  getData(e:Event){
+  getData(e: Event) {
     let target = e.target as HTMLInputElement
     let value = target.value;
     let valueArray = value.split('T')
@@ -89,10 +89,10 @@ export class HomePage {
     if (isOpen == true) {
       this.modalOpenAdd = isOpen;
       this.createFormAdd();
-      setTimeout(()=>{
-      this.fakeCalendario = document.querySelector('#fakeCalendario') as HTMLInputElement;
-      console.log(this.fakeCalendario)
-      },1)
+      setTimeout(() => {
+        this.fakeCalendario = document.querySelector('#fakeCalendario') as HTMLInputElement;
+        console.log(this.fakeCalendario)
+      }, 1)
       return;
     }
     if (isOpen == false) {
@@ -202,10 +202,10 @@ export class HomePage {
     const value = target.value;
 
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
-      if (agendamento.data.includes(value) == true) {
+      if (agendamento.cliente.includes(value.toLocaleLowerCase()) == true) {
         estado = true;
       }
-      return agendamento.data.includes(value);
+      return agendamento.cliente.includes(value.toLocaleLowerCase());
     });
     this.verificarEstado(estado);
   }
@@ -228,7 +228,7 @@ export class HomePage {
      */
     return utcDay !== 0 && utcDay !== 6;
   }
-  
-    
-    
+
+
+
 }
