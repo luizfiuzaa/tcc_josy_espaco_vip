@@ -42,11 +42,10 @@ ion-menu-button {
   cursor: pointer;
 }
 
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  filter: invert(54%) sepia(80%) saturate(6696%) hue-rotate(323deg) brightness(99%) contrast(106%);
-}
+// input[type="date"]::-webkit-calendar-picker-indicator {
+//   cursor: pointer;
+//   filter: invert(54%) sepia(80%) saturate(6696%) hue-rotate(323deg) brightness(99%) contrast(106%);
+// }
 
 .edit,
 .info {
@@ -57,11 +56,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   input {
     font-size: 1.05em;
   }
-}
-
-.inputSearch {
-  display: flex;
-  justify-content: flex-end;
 }
 
 // agendamentos
@@ -94,11 +88,12 @@ ion-card {
   }
 }
 
-.button_add{
+.button_add {
   justify-content: center;
 }
 
-.button_modal, .button_add {
+.button_modal,
+.button_add {
   margin-right: 15px;
   text-transform: uppercase;
   cursor: pointer;
@@ -149,21 +144,15 @@ ion-card {
   margin-right: 15px;
 }
 
-.list-content{
+.list-content {
   width: 90%;
 }
 
-ion-datetime {
-  border: 1px solid rgb(173, 173, 173);
-  border-radius: 16px;
-  max-width: 100%;
-}
-
-.time_title{
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 3px;
+.time_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
 }
 
 .message-alert {
@@ -174,29 +163,56 @@ gap: 3px;
   border-left: 2px solid red;
 }
 
-#message.success{
-  --background: #65dd61 ;
+#message.success {
+  --background: #65dd61;
 }
 
-#message.fail{
-  --background: #f75656 ;
+#message.fail {
+  --background: #f75656;
 }
 
-.item_form{
+.item_form {
   display: flex;
   flex-direction: column;
 }
 
-ion-spinner{
+ion-spinner {
   height: 70px !important;
   width: 70px !important;
 }
 
-.spinner_cont{
+.spinner_cont {
   height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card__names {
+  text-transform: capitalize;
+}
+
+.calendarButton {}
+
+.header__search ion-item {
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+}
+
+.searchBar {
+  margin: 0;
+  padding: 0;
+}
+
+.item__searchBar {
+  width: 100%;
+}
+
+.header__search {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 // #fakeCalendario{

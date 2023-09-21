@@ -24,6 +24,7 @@ CREATE TABLE `servico`(
   `id_servico` INT NOT NULL AUTO_INCREMENT,
   `titulo_servico` VARCHAR(50) NOT NULL,
   `desc_servico` VARCHAR(150) NOT NULL,
+  `duracao_servico` INT NOT NULL,
   `preco_servico` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`id_servico`)
 );
@@ -91,4 +92,3 @@ INSERT INTO `servico` VALUES(0, 'Corte de cabelo - curto6', 'Venha gastar a sua 
 INSERT INTO `servico` VALUES(0, 'Corte de cabelo - curto7', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','30','20.00');
 INSERT INTO `servico` VALUES(0, 'Corte de cabelo - curto8', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','30','20.00');
 INSERT INTO `servico` VALUES(0, 'Corte de cabelo - curto9', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','30','20.00');
--- s

@@ -17,28 +17,16 @@
 
 
       <ion-col size="12">
-        <ion-item>
-
-          <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar agendamento"></ion-searchbar>
-        </ion-item>
-        <ng-template *ngIf="Agendamentos && Agendamentos.length == 0">
-          <ion-toolbar class="toolbar">
-            <form action="GET" method="get" class="formFilter">
-              <ion-col size="6" class="date">
-                <abbr title="Pesquisar por data">
-                  <input type="date" name="" (input)="search($event)" />
-                </abbr>
-              </ion-col>
-              <ion-col size="6" class="inputSearch">
-                <ion-button fill="outline" id="buscar">
-                  <ion-icon style="margin-right: 5%" name="search-sharp"></ion-icon>
-                  Buscar
-                </ion-button>
-              </ion-col>
-            </form>
-          </ion-toolbar>
-        </ng-template>
         <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
+          <ion-item lines="none" class="header__search">
+            <ion-item lines="none" class="calendarButton">
+              <ion-icon name="calendar"></ion-icon>
+            </ion-item>
+            <ion-item class="item__searchBar">
+              <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar agendamento"
+                (input)="search($event)"></ion-searchbar>
+            </ion-item>
+          </ion-item>
           <ion-list lines="none">
             <div *ngFor="let Agendamentos of this.Agendamentos_exibidos;let i = index">
               <ion-item>
@@ -69,10 +57,10 @@
 
                     <ion-card-title id="horario">{{Agendamentos.horarioInicio}} -
                       {{Agendamentos.horarioFim}}</ion-card-title>
-                    <ion-card-subtitle>{{Agendamentos.cliente}}</ion-card-subtitle>
+                    <ion-card-subtitle class="card__names">{{Agendamentos.cliente}}</ion-card-subtitle>
                   </ion-card-header>
 
-                  <ion-card-content>{{Agendamentos.servico}}</ion-card-content>
+                  <ion-card-content class="card__names">{{Agendamentos.servico}}</ion-card-content>
                   <ion-card-content>
                     <abbr title="Excluir agendamento">
                       <ion-button class="delete" fill="outline" (click)="setOpenDelete(true);">
@@ -286,7 +274,8 @@
     </ion-modal>
 
     <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
-      [isOpen]="modalOpenDelete" backdropDismiss="false" (click)="setOpenDelete(false)"></ion-alert>
+      [isOpen]="modalOpenDelete" backdropDismiss="false"
+      ></ion-alert>
 
     <!-- botão add agendamento-->
     <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
