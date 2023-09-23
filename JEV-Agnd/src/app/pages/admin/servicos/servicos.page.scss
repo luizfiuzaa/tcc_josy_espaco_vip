@@ -37,7 +37,33 @@ ion-card {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     cursor: pointer;
+    padding: 0;
+}
+
+.icon_card ion-row{
+    height: 100%;
+}
+
+.icon__editar, .icon__apagar{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.icon__editar:hover, .icon__apagar:hover, .icon__editar:focus, .icon__apagar:focus{
+transform: scale(1.1);
+}
+
+.icon__editar{
+ 
+}
+
+.icon__apagar{
+
 }
 
 .card_context {

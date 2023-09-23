@@ -16,11 +16,11 @@
           <abbr>
             <ion-card-content class="icon_card"  >
               <ion-row>
-                <ion-col>
-                  <ion-icon title="Editar" name="settings-outline" (click)="editService(i)" id="open-modal-edit" class="edit_icon"></ion-icon>
+                <ion-col class="icon__editar" (click)="editService(i)" id="open-modal-edit">
+                  <ion-icon title="Editar" name="settings-outline" class="edit_icon"></ion-icon>
                 </ion-col>
-                <ion-col>
-                  <ion-icon title="Apagar" name="trash-outline"  (click)="apagarService(i)" class="edit_icon"></ion-icon>
+                <ion-col class="icon__apagar" (click)="apagarService(i)">
+                  <ion-icon title="Apagar" name="trash-outline" class="edit_icon"></ion-icon>
                 </ion-col>   
               </ion-row>
             

@@ -192,6 +192,5 @@ export class ServicosPage implements OnInit {
   }
   apagarService(indice: any){
     this.CardDados.splice(indice, 1)
-
   }
 }
