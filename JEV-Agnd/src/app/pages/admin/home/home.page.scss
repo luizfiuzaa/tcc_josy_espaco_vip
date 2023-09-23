@@ -19,27 +19,10 @@ ion-menu-button {
 }
 
 @media only screen and (min-width:770px) {
-
   .form_modalAdd,
   .form_modalEdit {
     padding: 0px 40px 0px 40px;
   }
-}
-
-.date {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.date input {
-  font-size: 1.2em;
-  border: 2px solid var(--ion-color-primary);
-  border-radius: 5px;
-  padding: 4px;
-  background: white;
-  color: var(--ion-color-primary);
-  outline: none;
-  cursor: pointer;
 }
 
 // input[type="date"]::-webkit-calendar-picker-indicator {
@@ -176,6 +159,10 @@ ion-card {
   flex-direction: column;
 }
 
+ion-datetime{
+  max-width: 100%;
+}
+
 ion-spinner {
   height: 70px !important;
   width: 70px !important;
@@ -192,12 +179,42 @@ ion-spinner {
   text-transform: capitalize;
 }
 
-.calendarButton {}
+.calendarButton {
+  width: 7%;
+  border: 1px solid var(--ion-color-primary);
+  height: 42px;
+  border-radius: 16px;
+  transition: .5s;
+}
 
-.header__search ion-item {
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
+.calendarButton:hover,
+.calendarButton:focus {
+  transform: scale(1.1);
+}
+
+.calendarButton ion-icon {
+  font-size: 2em;
+  color: var(--ion-color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width:900px) {
+  .header__search {
+    flex-direction: column;
+  }
+
+  .calendarButton {
+    margin-top: 5px;
+    width: 90px;
+  }
+}
+
+.header__search div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .searchBar {
@@ -206,15 +223,36 @@ ion-spinner {
 }
 
 .item__searchBar {
-  width: 100%;
+  width: 89%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5%;
 }
 
 .header__search {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
+  gap: 4%;
+}
+
+.calendar__filter{
+  width: 90%;
+  max-height: 100%;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 // #fakeCalendario{
 //   display: none;
 // }
+
+.calendar__toolbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}

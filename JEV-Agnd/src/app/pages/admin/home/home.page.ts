@@ -62,7 +62,7 @@ export class HomePage {
     fetch('http://aula/php/admin/agendamentos/listarAgendamento.php')
     .then(response => response.json())
     .then(response => {
-      this.agendamentos = response.agendamentos;
+      this.Agendamentos = response.agendamentos;
     })
     .catch(erro => {
       console.log(erro);
@@ -217,7 +217,7 @@ export class HomePage {
   verificarEstado(estado: any) {
     if (!estado) {
       setTimeout(() => {
-        this.Agendamentos_exibidos = this.agendamentos
+        this.Agendamentos_exibidos = this.Agendamentos
       }, 1000)
     }
   }
