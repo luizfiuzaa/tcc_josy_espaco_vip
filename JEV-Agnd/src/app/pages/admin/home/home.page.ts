@@ -22,7 +22,7 @@ export class HomePage {
   diaValido: boolean = true;
   Agendamentos: Agendamentos[] = []
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
-
+  cores = [['white', '#FF0361'], ['white', '#df4980'], ['white', '#ec84ab']]
 
   getData(e: Event) {
     let target = e.target as HTMLInputElement
@@ -56,19 +56,62 @@ export class HomePage {
   highlightedDates: any[] = [];
 
   diasAgendados() {
+
     this.highlightedDates = [];
+    let datas: any[] = [];
+    let datasFrequencia: any[] = [];
+
     this.Agendamentos.forEach(element => {
       let data = new Date(element.data);
-      if (this.date >=  data) {} else {
-        let color = this.random()
-        this.highlightedDates.push({ date: element.data, textColor: color[0], backgroundColor: color[1] })
+      if (this.date > data) { } else {
+        datas.push(element.data)
       }
     });
+
+    let media = datas.length;
+
+    datas.forEach(() => {
+      if (datas.length >= 1) {
+        let frequencia = [];
+        frequencia = datas.filter(data => data == datas[0]);
+        datasFrequencia.push({
+          data: datas[0],
+          datafrequencia: frequencia.length
+        })
+        datas = datas.filter((element) => element != datas[0]);
+      }
+    })
+
+    this.colorirDias(datasFrequencia, media);
   }
 
-  random() {
-    let cores = [['rgb(68, 10, 184)', 'rgb(211, 200, 229)'], ['var(--ion-color-secondary-contrast)', 'var(--ion-color-secondary)'], ['#800080', '#ffc0cb'], ['#09721b', '#c8e5d0']]
-    return cores[Math.round(Math.random() * 3)]
+  colorirDias(datas: any[], media: any) {
+    media = Math.round(media/datas.length);
+    datas.forEach((element) => {
+      if (element.datafrequencia > media) {
+        this.highlightedDates.push({
+          date: element.data,
+          textColor: this.cores[0][0],
+          backgroundColor: this.cores[0][1],
+        });
+      }
+      if (element.datafrequencia == media) {
+        this.highlightedDates.push({
+          date: element.data,
+          textColor: this.cores[1][0],
+          backgroundColor: this.cores[1][1],
+        });
+      }
+      if (element.datafrequencia < media) {
+        this.highlightedDates.push({
+          date: element.data,
+          textColor: this.cores[2][0],
+          backgroundColor: this.cores[2][1],
+        });
+      }
+    })
+    console.log(datas)
+    console.log(this.highlightedDates)
   }
 
   calendario_open: boolean = false;
@@ -270,9 +313,11 @@ export class HomePage {
     let estado: boolean = false;
     const target = e.target as HTMLInputElement;
     const value = target.value;
+    if (!value) {
 
+    }
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
-      if (agendamento.cliente.includes(value.toLocaleLowerCase()) == true) {
+      if (agendamento.cliente.includes(value.toLocaleLowerCase())) {
         estado = true;
       }
       return agendamento.cliente.includes(value.toLocaleLowerCase());

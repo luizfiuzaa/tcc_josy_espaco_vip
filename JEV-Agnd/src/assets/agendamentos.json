@@ -8,7 +8,18 @@
     "servico": "cabelo, manicure, pedicure",
     "metodoPagamento": "pix",
     "preco": "150.00",
-    "data": "2023-09-15"
+    "data": "2023-09-28"
+  },
+  {
+    "id": "1",
+    "status": "Confirmado",
+    "horarioInicio": "9:00",
+    "horarioFim": "10:30",
+    "cliente": "laura peneira",
+    "servico": "cabelo, manicure, pedicure",
+    "metodoPagamento": "pix",
+    "preco": "150.00",
+    "data": "2023-09-28"
   },
   {
     "id": "2",
@@ -20,6 +31,28 @@
     "metodoPagamento": "dinheiro",
     "preco": "50.00",
     "data": "2023-09-30"
+  },
+  {
+    "id": "2",
+    "status": "Esperando confirmação",
+    "horarioInicio": "11:00",
+    "horarioFim": "12:30",
+    "cliente": "josefina chapéu",
+    "servico": "cabelo",
+    "metodoPagamento": "dinheiro",
+    "preco": "50.00",
+    "data": "2023-09-27"
+  },
+  {
+    "id": "3",
+    "status": "Esperando confirmação",
+    "horarioInicio": "14:20",
+    "horarioFim": "15:20",
+    "cliente": "claudinha buxexa",
+    "servico": "manicure, pedicure",
+    "metodoPagamento": "débito",
+    "preco": "100.00",
+    "data": "2023-09-26"
   },
   {
     "id": "3",
@@ -41,7 +74,7 @@
     "servico": "manicure, pedicure",
     "metodoPagamento": "débito",
     "preco": "100.00",
-    "data": "2023-09-22"
+    "data": "2023-09-25"
   },
   {
     "id": "4",
@@ -63,7 +96,7 @@
     "servico": "manicure, pedicure",
     "metodoPagamento": "débito",
     "preco": "100.00",
-    "data": "2023-09-01"
+    "data": "2023-09-23"
   },
   {
     "id": "4",
@@ -74,7 +107,7 @@
     "servico": "manicure, pedicure",
     "metodoPagamento": "débito",
     "preco": "100.00",
-    "data": "2023-09-02"
+    "data": "2023-09-25"
   },
   {
     "id": "4",
@@ -85,7 +118,7 @@
     "servico": "manicure, pedicure",
     "metodoPagamento": "débito",
     "preco": "100.00",
-    "data": "2023-09-03"
+    "data": "2023-09-23"
   },
   {
     "id": "4",
@@ -96,7 +129,7 @@
     "servico": "manicure, pedicure",
     "metodoPagamento": "débito",
     "preco": "100.00",
-    "data": "2023-09-28"
+    "data": "2023-09-25"
   },
   {
     "id": "4",
@@ -107,7 +140,7 @@
     "servico": "manicure, pedicure",
     "metodoPagamento": "débito",
     "preco": "100.00",
-    "data": "2023-09-27"
+    "data": "2023-09-30"
   },
   {
     "id": "4",
@@ -140,6 +173,6 @@
     "servico": "manicure, pedicure",
     "metodoPagamento": "débito",
     "preco": "100.00",
-    "data": "2023-09-23"
+    "data": "2023-09-24"
   }
 ]
