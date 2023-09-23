@@ -17,16 +17,16 @@
 
 
       <ion-col size="12">
-        <div lines="none" class="header__search">
+        <div class="header__search">
           <div class="item__searchBar">
             <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar agendamento"
             (input)="search($event)"></ion-searchbar>
           </div>
-          <div lines="none" class="calendarButton" id="modal_calendario">
+          <div class="calendarButton" (click)="open_calendario(true)">
             <ion-icon name="calendar"></ion-icon>
           </div>
         </div>
-        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length > 0; else noCard">
+        <ion-col size="12" *ngIf="Agendamentos_exibidos && Agendamentos_exibidos.length > 0; else noCard">
           <ion-list lines="none">
             <div *ngFor="let Agendamentos of this.Agendamentos_exibidos;let i = index">
               <ion-item>
@@ -43,7 +43,6 @@
                         </div>
                       </ion-card-title>
                     </div>
-0
                     <ng-template #otherStatus>
                       <ion-card-title class="status waiting">
                         <div class="ok">
@@ -85,7 +84,7 @@
         </ion-col>
       </ion-col>
       <ng-template #noCard>
-        <ion-col size="12" *ngIf="Agendamentos && Agendamentos.length == 0 && !this.isLoading">
+        <ion-col size="12" *ngIf="Agendamentos_exibidos && Agendamentos_exibidos.length == 0 && !this.isLoading && diaValido">
           <ion-text class="ion-text-center">
             <p>Os seus agendamentos serão exibidos neste local.</p>
             <ion-buttons class="button_add">
@@ -278,10 +277,10 @@
       ></ion-alert>
 
       <!-- Modal calendario -->
-      <ion-modal trigger="modal_calendario">
+      <ion-modal [isOpen]="calendario_open" backdropDismiss="false">
         <ng-template>
           <div class="calendar__toolbar"><ion-label>Selecione uma data</ion-label></div>
-          <ion-datetime presentation="date" class="calendar__filter"></ion-datetime>
+          <ion-datetime [highlightedDates]="highlightedDates" presentation="date" class="calendar__filter" (ionChange)="filterDate($event)" (click)="open_calendario(false)"></ion-datetime>
         </ng-template>
       </ion-modal>
 
