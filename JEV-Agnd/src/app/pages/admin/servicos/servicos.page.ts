@@ -190,7 +190,36 @@ export class ServicosPage implements OnInit {
     this.createFormEdit();
     this.setOpenEdit(true);
   }
-  apagarService(indice: any){
-    this.CardDados.splice(indice, 1)
+
+  indexDel:any;
+  apagarService(indice: any) {
+    this.indexDel = indice;
+    this.setOpenDelete(true);
+  }
+
+  // Modal de delete confirm
+  modalOpenDelete = false;
+  setOpenDelete(isOpen: any) {
+    this.modalOpenDelete = isOpen;
+  }
+  public alertButtons = [
+    {
+      text: 'Não',
+      role: 'cancel',
+    },
+    {
+      text: 'Sim',
+      role: 'confirm',
+    },
+  ];
+
+  setResult(ev: any) {
+    // O role pode ser confirm or cancel
+    console.log(ev.detail.role);
+
+    this.setOpenDelete(false);
+    if (ev.detail.role == 'confirm') {
+      this.CardDados.splice(this.indexDel, 1)
+    }
   }
 }

@@ -14,19 +14,19 @@
       <ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
         <ion-card *ngFor="let card of CardDados; let i = index" class="card">
           <abbr>
-            <ion-card-content class="icon_card"  >
+            <ion-card-content class="icon_card">
               <ion-row>
                 <ion-col class="icon__editar" (click)="editService(i)" id="open-modal-edit">
                   <ion-icon title="Editar" name="settings-outline" class="edit_icon"></ion-icon>
                 </ion-col>
                 <ion-col class="icon__apagar" (click)="apagarService(i)">
                   <ion-icon title="Apagar" name="trash-outline" class="edit_icon"></ion-icon>
-                </ion-col>   
+                </ion-col>
               </ion-row>
-            
+
             </ion-card-content>
           </abbr>
-          
+
           <ion-card-content class="card_context">
             <ion-card-title class="title">{{card.tituloCard}}</ion-card-title>
             <p>Descrição: {{card.descricaoCard}}</p>
@@ -42,9 +42,9 @@
             <p>Os seus serviços serão exibidos neste local.</p>
             <ion-buttons class="button_add">
               <abbr title="Agendar">
-              <ion-button (click)="setOpenAdd(true)">
-                Crir serviço
-              </ion-button></abbr>
+                <ion-button (click)="setOpenAdd(true)">
+                  Crir serviço
+                </ion-button></abbr>
             </ion-buttons>
           </ion-text>
         </ion-col>
@@ -215,5 +215,8 @@
         </ng-template>
       </ion-col>
     </ion-modal>
+
+    <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
+      [isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
   </ion-content>
 </div>
