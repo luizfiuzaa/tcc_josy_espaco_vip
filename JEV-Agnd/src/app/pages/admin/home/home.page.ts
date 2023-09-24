@@ -11,17 +11,45 @@ import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  // Iniciando a service no constructor
+  constructor(private agendamentosService: AgendamentosService) {
+    this.getAgendamentos();
+  }
+  // Executa após o carregamento da página
+  ngAfterViewInit() {
+    this.toast = document.querySelector('#message') as HTMLElement;
+  }
 
-  OpenToast = false;
-  message: any = false;
+  Agendamentos: Agendamentos[] = []
+  Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
   isLoading = false;
-  toast: any
-  fakeCalendario: any
+  // Pega os dados da API
+  getAgendamentos() {
+    this.isLoading = true;
+    fetch('././assets/agendamentos.json')
+      .then(response => response.json())
+      .then(response => {
+        this.Agendamentos = response;
+        console.log(response);
+      })
+      .catch(erro => {
+        console.log(erro);
+      })
+      .finally(() => {
+        this.atualizarDados();
+        this.isLoading = false;
+      })
+  }
+  // Atualiza os agendametnos do dia de hoje
+  atualizarDados() {
+    this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
+      return agendamento.data.includes(this.hoje);
+    });
+  }
+
   date = new Date();
   hoje = String(this.date.getFullYear() + '-' + String(this.date.getMonth() + 1).padStart(2, '0') + '-' + this.date.getDate()).padStart(2, '0');
   diaValido: boolean = true;
-  Agendamentos: Agendamentos[] = []
-  Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
   cores = [['white', '#FF0361'], ['white', '#df4980'], ['white', '#ec84ab']]
 
   getData(e: Event) {
@@ -32,12 +60,16 @@ export class HomePage {
   }
 
   filterDate(e: Event) {
+    this.open_calendario(false);
+
     let estado: boolean = false;
     let target = e.target as HTMLInputElement
     let value = target.value;
     let valueArray = value.split('T')
     let diaBuscado = new Date(valueArray[0]);
     let hoje = new Date(this.hoje);
+    console.log(valueArray[0]);
+    console.log(hoje);
     console.log(diaBuscado);
 
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
@@ -67,6 +99,7 @@ export class HomePage {
         datas.push(element.data)
       }
     });
+    console.log(datas)
 
     let media = datas.length;
 
@@ -82,11 +115,12 @@ export class HomePage {
       }
     })
 
+    console.log(datas)
     this.colorirDias(datasFrequencia, media);
   }
 
   colorirDias(datas: any[], media: any) {
-    media = Math.round(media/datas.length);
+    media = Math.round(media / datas.length);
     datas.forEach((element) => {
       if (element.datafrequencia > media) {
         this.highlightedDates.push({
@@ -123,101 +157,9 @@ export class HomePage {
     }
   }
 
-  ExibirMessage(estado: boolean) {
-    if (estado) {
-      this.toast.classList.remove('fail');
-      this.toast.classList.add('success');
-      this.OpenToast = true;
-      setTimeout(() => {
-        this.OpenToast = false;
-      }, 3000);
-      console.log(this.toast)
-      return;
-    }
-    this.toast.classList.remove('success');
-    this.toast.classList.add('fail');
-    this.OpenToast = true;
-    setTimeout(() => {
-      this.OpenToast = false;
-    }, 3000)
-    console.log(this.toast)
-  }
-
-
-  constructor(private agendamentosService: AgendamentosService) {
-    this.getAgendamentos();
-    console.log(this.date)
-    var data = new Date("2023-09-23");
-    console.log("Data original: " + data);
-
-    data.setDate(data.getDate() + 45);
-    console.log("Data após adicionar 45 dias: " + data);
-  }
-
-  ngAfterViewInit() {
-    this.toast = document.querySelector('#message') as HTMLElement;
-  }
-
-  getAgendamentos() {
-    this.isLoading = true;
-    fetch('././assets/agendamentos.json')
-      .then(response => response.json())
-      .then(response => {
-        this.Agendamentos = response;
-        console.log(response);
-      })
-      .catch(erro => {
-        console.log(erro);
-      })
-      .finally(() => {
-        this.atualizarDados();
-        this.isLoading = false;
-      })
-  }
-
-  atualizarDados() {
-    this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
-      return agendamento.data.includes(this.hoje);
-    });
-  }
-
-  ngOnInit() {
-
-  }
+  // Form de adição
+  fakeCalendario: any
   AddForm!: FormGroup;
-  modalOpenAdd = false;
-  submit_add() {
-    console.log(this.AddForm.value)
-    if (this.AddForm.invalid) {
-      console.log('Formulario De Adição Invalido')
-      this.message = 'Falha ao agendar!!'
-      this.ExibirMessage(false);
-      return;
-    }
-    console.log('Formulario De Adição Valido')
-    this.message = 'Agendado com sucesso!!'
-    this.ExibirMessage(true);
-  }
-  setOpenAdd(isOpen: any) {
-    if (isOpen == true) {
-      this.modalOpenAdd = isOpen;
-      this.createFormAdd();
-      setTimeout(() => {
-        this.fakeCalendario = document.querySelector('#fakeCalendario') as HTMLInputElement;
-        console.log(this.fakeCalendario)
-      }, 1)
-      return;
-    }
-    if (isOpen == false) {
-      this.modalOpenAdd = isOpen;
-      return;
-    }
-    if (isOpen == 'submit' && this.AddForm.valid) {
-      setTimeout(() => {
-        this.modalOpenAdd = false;
-      }, 100);
-    }
-  }
   createFormAdd() {
     this.AddForm = new FormGroup({
       id: new FormControl(''),
@@ -239,37 +181,45 @@ export class HomePage {
   get formaDePagamento_add() {
     return this.AddForm.get('formaDePagamento')!;
   }
-
-  EditForm!: FormGroup;
-  modalOpenEdit = false;
-  submit_edit() {
-    console.log(this.EditForm.value)
-    if (this.EditForm.invalid) {
-      console.log('Formulario De Edição Invalido')
-      this.message = 'Falha ao alterar!!'
+  submit_add() {
+    console.log(this.AddForm.value)
+    if (this.AddForm.invalid) {
+      console.log('Formulario De Adição Invalido')
+      this.message = 'Falha ao agendar!!'
       this.ExibirMessage(false);
       return;
     }
-    console.log('Formulario De Edição Valido')
-    this.message = 'Alterado com sucesso!!'
+    console.log('Formulario De Adição Valido')
+    this.message = 'Agendado com sucesso!!'
     this.ExibirMessage(true);
   }
-  setOpenEdit(isOpen: any) {
+
+  // Modal de edição
+  modalOpenAdd = false;
+  setOpenAdd(isOpen: any) {
     if (isOpen == true) {
-      this.modalOpenEdit = isOpen;
-      this.createFormEdit();
+      this.modalOpenAdd = isOpen;
+      this.createFormAdd();
+      setTimeout(() => {
+        this.fakeCalendario = document.querySelector('#fakeCalendario') as HTMLInputElement;
+        console.log(this.fakeCalendario)
+      }, 1)
       return;
     }
     if (isOpen == false) {
-      this.modalOpenEdit = isOpen;
+      this.modalOpenAdd = isOpen;
       return;
     }
-    if (isOpen == 'submit' && this.EditForm.valid) {
+    if (isOpen == 'submit' && this.AddForm.valid) {
       setTimeout(() => {
-        this.modalOpenEdit = false;
+        this.modalOpenAdd = false;
       }, 100);
     }
   }
+
+  // Form de edição
+  EditForm!: FormGroup;
+
   createFormEdit() {
     this.EditForm = new FormGroup({
       id: new FormControl(''),
@@ -287,7 +237,39 @@ export class HomePage {
   get formaDePagamento_edit() {
     return this.EditForm.get('formaDePagamento')!;
   }
+  submit_edit() {
+    console.log(this.EditForm.value)
+    if (this.EditForm.invalid) {
+      console.log('Formulario De Edição Invalido')
+      this.message = 'Falha ao alterar!!'
+      this.ExibirMessage(false);
+      return;
+    }
+    console.log('Formulario De Edição Valido')
+    this.message = 'Alterado com sucesso!!'
+    this.ExibirMessage(true);
+  }
 
+  // Modal de Edição
+  modalOpenEdit = false;
+  setOpenEdit(isOpen: any) {
+    if (isOpen == true) {
+      this.modalOpenEdit = isOpen;
+      this.createFormEdit();
+      return;
+    }
+    if (isOpen == false) {
+      this.modalOpenEdit = isOpen;
+      return;
+    }
+    if (isOpen == 'submit' && this.EditForm.valid) {
+      setTimeout(() => {
+        this.modalOpenEdit = false;
+      }, 100);
+    }
+  }
+
+  // Modal de delete confirm
   modalOpenDelete = false;
   setOpenDelete(isOpen: any) {
     this.modalOpenDelete = isOpen;
@@ -309,22 +291,23 @@ export class HomePage {
 
   }
 
+  // Filtro por nome de clientes
   search(e: Event): void {
     let estado: boolean = false;
     const target = e.target as HTMLInputElement;
     const value = target.value;
-    if (!value) {
-
-    }
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
       if (agendamento.cliente.includes(value.toLocaleLowerCase())) {
         estado = true;
+      }
+      if (!value) {
+        estado = false;
       }
       return agendamento.cliente.includes(value.toLocaleLowerCase());
     });
     this.verificarEstado(estado);
   }
-
+  // Reseta o agendamentos exibidos caso estado false
   verificarEstado(estado: boolean) {
     if (!estado) {
       setTimeout(() => {
@@ -334,17 +317,34 @@ export class HomePage {
     }
   }
 
+  // Filtro de dias validos
   isWeekday = (dateString: string) => {
     const date = new Date(dateString);
     const utcDay = date.getUTCDay();
-
-    /**
-     * Date will be enabled if it is not
-     * Sunday or Saturday
-     */
     return utcDay !== 0 && utcDay !== 6;
   }
 
-
-
+  // Menssagem de aviso
+  OpenToast: boolean = false;
+  message: String = '';
+  toast: any;
+  ExibirMessage(estado: boolean) {
+    if (estado) {
+      this.toast.classList.remove('fail');
+      this.toast.classList.add('success');
+      this.OpenToast = true;
+      setTimeout(() => {
+        this.OpenToast = false;
+      }, 3000);
+      console.log(this.toast)
+      return;
+    }
+    this.toast.classList.remove('success');
+    this.toast.classList.add('fail');
+    this.OpenToast = true;
+    setTimeout(() => {
+      this.OpenToast = false;
+    }, 3000)
+    console.log(this.toast)
+  }
 }
