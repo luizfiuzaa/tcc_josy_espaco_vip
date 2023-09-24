@@ -29,3 +29,64 @@ ion-card {
 .main__nome{
   text-transform: capitalize;
 }
+
+// modal
+.item_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_modalAdd,
+.form_modalEdit {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+.header_form {
+  width: 100%;
+}
+
+.modalCont {
+  min-height: 100%;
+  overflow: auto;
+}
+
+/* width */
+.modalCont::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.modalCont::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.modalCont::-webkit-scrollbar-thumb {
+  background: #ffc6c6;
+  border-radius: 5px;
+}
+
+#add_area {
+  margin-right: 15px;
+}
+
+.list-content {
+  width: 90%;
+}
+
+.button_add {
+  justify-content: center;
+}
+
+.button_modal,
+.button_add {
+  margin-right: 15px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ion-color-primary);
+}
