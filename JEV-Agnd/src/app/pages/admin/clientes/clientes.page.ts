@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActionSheetController } from '@ionic/angular';
+import { timestamp } from 'rxjs';
 import { Clientes } from 'src/app/models/clientes';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
 
@@ -47,5 +50,59 @@ export class ClientesPage implements OnInit {
     console.log(this.ClienteCad);
   })
   }
+
+  // modal
+  AddForm!: FormGroup;
+  modalOpenAdd = false;
+
+  submit_add() {
+    console.log(this.AddForm.value)
+    if (this.AddForm.invalid) {
+      console.log('Formulario De Adição Invalido')
+      // this.message = 'Falha ao agendar!!'
+      // this.ExibirMessage(false);
+      return;
+    }
+    console.log('Formulario De Adição Valido')
+    // this.message = 'Agendado com sucesso!!'
+    // this.ExibirMessage(true);
+  }
+
+  setOpenAdd(isOpen: any) {
+    if (isOpen == true) {
+      this.modalOpenAdd = isOpen;
+      this.createFormAdd();
+      return;
+    }
+    if (isOpen == false) {
+      this.modalOpenAdd = isOpen;
+      return;
+    }
+    if (isOpen == 'submit') {
+      setTimeout(() => {
+        this.modalOpenAdd = false;
+      }, 100);
+    }
+  }
+
+  createFormAdd() {
+    this.AddForm = new FormGroup({
+      idCli: new FormControl(''),
+      nomeCli: new FormControl('', [Validators.required]),
+      telCLi: new FormControl('', [Validators.required]),
+      emailCli: new FormControl('', [Validators.required]),
+    });
+  }
+
+  get nomeCli_add() {
+    return this.AddForm.get('nomeCli')!;
+  }
+  get telCli_add() {
+    return this.AddForm.get('telCli')!;
+  }
+  get emailCli_add() {
+    return this.AddForm.get('emailCli')!;
+  }
+
   ngOnInit() { }
 }

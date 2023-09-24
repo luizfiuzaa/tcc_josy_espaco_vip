@@ -81,8 +81,64 @@
         </ng-template>
       </ion-col>
     </ion-row>
+
+
+    <ion-modal #modal trigger="add_area" [isOpen]="modalOpenAdd" backdropDismiss="false">
+      <ng-template>
+        <div class="wrapper modalCont">
+<div class="modal_title">
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="setOpenAdd(false)">
+                <ion-label class="button_modal">Cancelar</ion-label>
+              </ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button>
+                <label class="button_modal" for="AddFormSubmit" (click)="setOpenAdd('submit')">Agendar</label>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+
+            <!-- form cliente -->
+            <form action="" method="post" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm"
+              #formDir="ngForm">
+              <ion-list lines="none" class="list-content">
+                <div class="container_form">
+                  <div class="item_form">
+                    <ion-input label="Nome do Cliente" label-placement="floating" formControlName="nomeCli"></ion-input>
+                  <div class="message-alert" *ngIf="nomeCli_add.invalid && formDir.submitted">
+                  Selecione um cliente.
+                </div>
+              </div>
+
+              <div class="item_form">
+                <ion-input label="Telefone do Cliente" type="tel" label-placement="floating" formControlName="telCli"></ion-input>
+                <div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
+                  Selecione um cliente.
+                </div>
+              </div>
+
+              <div class="item_form">
+                  <ion-input label="E-mail do Cliente" type="email" label-placement="floating" formControlName="emailCli"></ion-input>
+                <div class="message-alert" *ngIf="emailCli_add.invalid && formDir.submitted">
+                  Selecione um cliente.
+                </div>
+              </div>
+                </div>
+              </ion-list>
+
+            
+          </form>
+
+        </div>
+        </div>
+        
+      </ng-template>
+    </ion-modal>
+
     <!-- Btn para adicionar um novo cliente -->
-    <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
       <ion-fab-button>
         <ion-icon id="add" name="person-add" expand="block"></ion-icon>
       </ion-fab-button>
