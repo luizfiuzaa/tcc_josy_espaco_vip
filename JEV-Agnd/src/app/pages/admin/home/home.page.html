@@ -280,7 +280,7 @@
       <ion-modal [isOpen]="calendario_open" backdropDismiss="false">
         <ng-template>
           <div class="calendar__toolbar"><ion-label>Selecione uma data</ion-label></div>
-          <ion-datetime [highlightedDates]="highlightedDates" presentation="date" class="calendar__filter" (ionChange)="filterDate($event)" (click)="open_calendario(false)"></ion-datetime>
+          <ion-datetime [highlightedDates]="highlightedDates" presentation="date" class="calendar__filter" (ionChange)="filterDate($event)"></ion-datetime>
         </ng-template>
       </ion-modal>
 
