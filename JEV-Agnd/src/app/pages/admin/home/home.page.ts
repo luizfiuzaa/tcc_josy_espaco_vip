@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActionSheetController } from '@ionic/angular';
-import { timestamp } from 'rxjs';
 import { Agendamentos } from 'src/app/models/agendamentos';
 import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
 
@@ -288,7 +286,7 @@ export class HomePage {
   setResult(ev: any) {
     // O role pode ser confirm or cancel
     console.log(ev.detail.role);
-
+    this.setOpenDelete(false);
   }
 
   // Filtro por nome de clientes
