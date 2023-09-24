@@ -69,7 +69,6 @@ INSERT INTO `cliente` VALUES(0,'João Victor','15999999994','jaovictorkits@hotma
 INSERT INTO `cliente` VALUES(0,'Laura Pereira','15999999993','laurapeira@hotmail.com');
 INSERT INTO `cliente` VALUES(0,'Luiz Fiuza','15999999992','luizaffritas@hotmail.com');
 INSERT INTO `cliente` VALUES(0,'Marlon Passos','15999999991','marlonpassoslargos@hotmail.com');
--- s
 
 -- agendamento
 INSERT INTO `agendamento` VALUES(0,'2023-09-01 00:00:00','1000-01-02 08:00:00','Confirmado',1,1);
@@ -80,7 +79,6 @@ INSERT INTO `agendamento` VALUES(0,'2023-10-01 00:00:00','1000-01-02 15:00:00','
 INSERT INTO `agendamento` VALUES(0,'2023-10-01 00:00:00','1000-01-02 16:00:00','Em espera',6,6);
 INSERT INTO `agendamento` VALUES(0,'2023-11-01 00:00:00','1000-01-02 17:00:00','Em espera',7,7);
 INSERT INTO `agendamento` VALUES(0,'2023-11-01 00:00:00','1000-01-02 18:00:00','Em espera',1,1);
--- s
 
 -- servico
 INSERT INTO `servico` VALUES(0, 'Corte de cabelo curto', 'Não existe mulher feia, existe mulher que não conhece os produtos da Jequiti','60','20.00');
