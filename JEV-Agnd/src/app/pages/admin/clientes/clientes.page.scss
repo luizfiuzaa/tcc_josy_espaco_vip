@@ -90,3 +90,11 @@ ion-card {
   cursor: pointer;
   color: var(--ion-color-primary);
 }
+
+.message-alert {
+  text-align: left;
+  width: 100%;
+  color: red;
+  padding-left: 10px;
+  border-left: 2px solid red;
+}

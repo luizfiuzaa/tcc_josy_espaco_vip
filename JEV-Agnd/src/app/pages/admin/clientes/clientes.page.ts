@@ -15,7 +15,7 @@ export class ClientesPage implements OnInit {
 
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
-  
+
   filterClienteName(e: Event) {
     let estado: boolean = false;
     const target = e.target as HTMLInputElement;
@@ -44,11 +44,11 @@ export class ClientesPage implements OnInit {
   }
 
   cad_cli() {
-   this.clientesService.list().subscribe(dados => { 
-    this.ClienteCad = dados;
-    this.clientes_Exibidos = this.ClienteCad;
-    console.log(this.ClienteCad);
-  })
+    this.clientesService.list().subscribe(dados => {
+      this.ClienteCad = dados;
+      this.clientes_Exibidos = this.ClienteCad;
+      console.log(this.ClienteCad);
+    })
   }
 
   // modal
@@ -69,19 +69,11 @@ export class ClientesPage implements OnInit {
   }
 
   setOpenAdd(isOpen: any) {
+    if (isOpen == true || this.AddForm.invalid && isOpen == false || this.AddForm.valid && isOpen == 'submit') {
+      this.modalOpenAdd = isOpen == 'submit' ? false : isOpen;
+    }
     if (isOpen == true) {
-      this.modalOpenAdd = isOpen;
-      this.createFormAdd();
-      return;
-    }
-    if (isOpen == false) {
-      this.modalOpenAdd = isOpen;
-      return;
-    }
-    if (isOpen == 'submit') {
-      setTimeout(() => {
-        this.modalOpenAdd = false;
-      }, 100);
+      this.createFormAdd()
     }
   }
 
@@ -89,7 +81,7 @@ export class ClientesPage implements OnInit {
     this.AddForm = new FormGroup({
       idCli: new FormControl(''),
       nomeCli: new FormControl('', [Validators.required]),
-      telCLi: new FormControl('', [Validators.required]),
+      telCli: new FormControl('', [Validators.required]),
       emailCli: new FormControl('', [Validators.required]),
     });
   }

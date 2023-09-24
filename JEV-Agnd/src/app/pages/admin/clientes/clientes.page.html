@@ -19,8 +19,8 @@
             <ion-item>
               <ion-col size="12">
                 <form action="GET" method="get">
-                  <ion-searchbar style="margin-top: 1.5%;" class="searchBar"
-                    placeholder="Buscar cliente" (input)="filterClienteName($event)"></ion-searchbar>
+                  <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"
+                    (input)="filterClienteName($event)"></ion-searchbar>
                 </form>
               </ion-col>
             </ion-item>
@@ -72,9 +72,9 @@
               <p>Os seus clientes serão exibidos neste local.</p>
               <ion-buttons class="button_add">
                 <abbr title="Agendar">
-                <ion-button>
-                  Cadastrar cliente
-                </ion-button></abbr>
+                  <ion-button>
+                    Cadastrar cliente
+                  </ion-button></abbr>
               </ion-buttons>
             </ion-text>
           </ion-col>
@@ -86,54 +86,49 @@
     <ion-modal #modal trigger="add_area" [isOpen]="modalOpenAdd" backdropDismiss="false">
       <ng-template>
         <div class="wrapper modalCont">
-<div class="modal_title">
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-button (click)="setOpenAdd(false)">
-                <ion-label class="button_modal">Cancelar</ion-label>
-              </ion-button>
-            </ion-buttons>
-            <ion-buttons slot="end">
-              <ion-button>
-                <label class="button_modal" for="AddFormSubmit" (click)="setOpenAdd('submit')">Agendar</label>
-              </ion-button>
-            </ion-buttons>
-          </ion-toolbar>
+          <div class="modal_title">
+            <ion-header>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button (click)="setOpenAdd(false)">Cancelar</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
 
             <!-- form cliente -->
-            <form action="" method="post" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm"
-              #formDir="ngForm">
+            <form action="" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm" #formDir="ngForm">
               <ion-list lines="none" class="list-content">
                 <div class="container_form">
                   <div class="item_form">
                     <ion-input label="Nome do Cliente" label-placement="floating" formControlName="nomeCli"></ion-input>
-                  <div class="message-alert" *ngIf="nomeCli_add.invalid && formDir.submitted">
-                  Selecione um cliente.
-                </div>
-              </div>
+                    <div class="message-alert" *ngIf="nomeCli_add.invalid && formDir.submitted">
+                      Digite um nome
+                    </div>
+                  </div>
 
-              <div class="item_form">
-                <ion-input label="Telefone do Cliente" type="tel" label-placement="floating" formControlName="telCli"></ion-input>
-                <div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
-                  Selecione um cliente.
-                </div>
-              </div>
+                  <div class="item_form">
+                    <ion-input label="Telefone do Cliente" type="tel" label-placement="floating"
+                      formControlName="telCli"></ion-input>
+                    <div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
+                      Digite um Telefone
+                    </div>
+                  </div>
 
-              <div class="item_form">
-                  <ion-input label="E-mail do Cliente" type="email" label-placement="floating" formControlName="emailCli"></ion-input>
-                <div class="message-alert" *ngIf="emailCli_add.invalid && formDir.submitted">
-                  Selecione um cliente.
-                </div>
-              </div>
+                  <div class="item_form">
+                    <ion-input label="E-mail do Cliente" type="email" label-placement="floating"
+                      formControlName="emailCli"></ion-input>
+                    <div class="message-alert" *ngIf="emailCli_add.invalid && formDir.submitted">
+                      Digite um email
+                    </div>
+                  </div>
                 </div>
               </ion-list>
+              <ion-button type="submit" (click)="setOpenAdd('submit')">Cadastrar</ion-button>
+            </form>
 
-            
-          </form>
+          </div>
+        </div>
 
-        </div>
-        </div>
-        
       </ng-template>
     </ion-modal>
 
