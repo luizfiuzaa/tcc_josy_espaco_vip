@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 30px;
+  padding: 30px 10px;
 }
 
 .main {
@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin: 20px;
+  margin-bottom: 20px;
   gap: 20px;
 }
 
@@ -19,4 +19,37 @@
   max-width: 500px;
   border-radius: 10px;
   box-shadow: 2px 2px 20px #aaaaaa;
+}
+
+.grafic-bar {
+  max-width: 800px;
+  min-height: 400px;
+  flex: 1 1 200px;
+  overflow: auto;
+  border-radius: 10px;
+  box-shadow: 2px 2px 20px #aaaaaa;
+}
+
+/* width */
+.grafic-bar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.grafic-bar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.grafic-bar::-webkit-scrollbar-thumb {
+  background: #f57b7b;
+  border-radius: 5px;
+}
+
+.header{
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
