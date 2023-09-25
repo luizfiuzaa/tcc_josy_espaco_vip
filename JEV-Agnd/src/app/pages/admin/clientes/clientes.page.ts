@@ -160,10 +160,27 @@ export class ClientesPage implements OnInit {
 
   ngOnInit() { }
 
+  indexDel: any;
+  apagarService(indice: any) {
+    this.indexDel = indice;
+    console.log(indice)
+    this.setOpenDelete(true);
+  }
+
   // Modal de delete confirm
   modalOpenDelete = false;
   setOpenDelete(isOpen: any) {
     this.modalOpenDelete = isOpen;
+  }
+
+  setResult(ev: any) {
+    // O role pode ser confirm or cancel
+    console.log(ev.detail.role);
+
+    this.setOpenDelete(false);
+    if (ev.detail.role == 'confirm') {
+      this.ClienteCad.splice(this.indexDel, 1)
+    }
   }
   public alertButtons = [
     {
@@ -176,12 +193,6 @@ export class ClientesPage implements OnInit {
     },
   ];
 
-  setResult(ev: any) {
-    this.setOpenDelete(false);
-    if (ev.detail.role == 'confirm') {
-      console.log('Apagado')
-    }
-  }
 
   valorMask: any;
 
@@ -213,3 +224,6 @@ export class ClientesPage implements OnInit {
   }
 
 }
+
+
+

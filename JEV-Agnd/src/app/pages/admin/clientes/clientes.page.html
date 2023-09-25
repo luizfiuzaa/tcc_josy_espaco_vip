@@ -25,7 +25,7 @@
               </ion-col>
             </ion-item>
 
-            <div class="cliente__main" *ngFor="let Clientes of clientes_Exibidos">
+            <div class="cliente__main" *ngFor="let Clientes of clientes_Exibidos;  index as i">
               <ion-item>
                 <!-- Card dos Clientes -->
                 <ion-card>
@@ -47,7 +47,7 @@
 
                   <!-- Botões de Exclusão, Edição e Visualização de dados -->
                   <ion-card-content>
-                    <ion-button class="delete" fill="outline" (click)="setOpenDelete(true)">
+                    <ion-button class="delete apagar_cli" fill="outline" (click)="apagarService(i)">
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>
