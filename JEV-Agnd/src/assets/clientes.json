@@ -1,20 +1,32 @@
 [
   {
     "id": "1",
-    "ClienteNome": "luiza fiuze",
+    "ClienteNome": "Luiza Fiuze",
     "ClienteEmail": "lui.fiuze@gmail.com",
     "ClienteTelefone": "15 99999-9998"
   },
   {
     "id": "2",
     "ClienteNome": "claudinha buxexa",
-    "ClienteEmail": "caluBuxa@gmail.com",
+    "ClienteEmail": "calu.buxa@gmail.com",
     "ClienteTelefone": "15 99999-9997"
   },
   {
     "id": "3",
-    "ClienteNome": "lauro pinheiro",
+    "ClienteNome": "Lauro Pinheiro",
     "ClienteEmail": "laura.peneira@gmail.com",
+    "ClienteTelefone": "15 99999-9996"
+  },
+  {
+    "id": "4",
+    "ClienteNome": "Joana Victorina",
+    "ClienteEmail": "joa.victi@gmail.com",
+    "ClienteTelefone": "15 99999-9996"
+  },
+  {
+    "id": "5",
+    "ClienteNome": "Marlene Steps",
+    "ClienteEmail": "steps.marlene@gmail.com",
     "ClienteTelefone": "15 99999-9996"
   }
 ]
