@@ -12,7 +12,7 @@ import { ClientesService } from 'src/app/services/clientes/clientes.service';
   styleUrls: ['./clientes.page.scss'],
 })
 export class ClientesPage implements OnInit {
- 
+
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
 
@@ -80,9 +80,18 @@ export class ClientesPage implements OnInit {
   createFormEdit() {
     this.EditForm = new FormGroup({
       idCli: new FormControl(''),
-      nomeCli: new FormControl('', [Validators.required]),
-      telCli: new FormControl('', [Validators.required]),
-      emailCli: new FormControl('', [Validators.required]),
+      nomeCli: new FormControl('', Validators.compose([
+        Validators.maxLength(70),
+        Validators.minLength(3),
+        Validators.required])),
+      telCli: new FormControl('', Validators.compose([
+        Validators.maxLength(15),
+        Validators.minLength(15),
+        Validators.required])),
+      emailCli: new FormControl('', Validators.compose([
+        Validators.maxLength(70),
+        Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+        Validators.required])),
     });
   }
 
@@ -124,9 +133,18 @@ export class ClientesPage implements OnInit {
   createFormAdd() {
     this.AddForm = new FormGroup({
       idCli: new FormControl(''),
-      nomeCli: new FormControl('', [Validators.required]),
-      telCli: new FormControl('', [Validators.required]),
-      emailCli: new FormControl('', [Validators.required]),
+      nomeCli: new FormControl('', Validators.compose([
+        Validators.maxLength(70),
+        Validators.minLength(3),
+        Validators.required])),
+      telCli: new FormControl('', Validators.compose([
+        Validators.maxLength(15),
+        Validators.minLength(15),
+        Validators.required])),
+      emailCli: new FormControl('', Validators.compose([
+        Validators.maxLength(70),
+        Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+        Validators.required])),
     });
   }
 
@@ -164,4 +182,34 @@ export class ClientesPage implements OnInit {
       console.log('Apagado')
     }
   }
+
+  valorMask: any;
+
+  mask(e: Event) {
+    let target = e.target as HTMLInputElement;
+    let value = target.value
+    setTimeout(() => {
+      var v = this.mphone(value);
+      if (v != value) {
+        this.valorMask = v;
+        console.log(v)
+      }
+    }, 1);
+  }
+
+  mphone(v: any) {
+    var r = v.replace(/\D/g, "");
+    r = r.replace(/^0/, "");
+    if (r.length > 10) {
+      r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+    } else if (r.length > 5) {
+      r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+    } else if (r.length > 2) {
+      r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+    } else {
+      r = r.replace(/^(\d*)/, "($1");
+    }
+    return r;
+  }
+
 }

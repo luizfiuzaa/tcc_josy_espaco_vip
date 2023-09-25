@@ -106,7 +106,7 @@
                   </div>
 
                   <div class="item_form">
-                    <ion-input placeholder="Digite o telefone" label="Telefone do Cliente" type="tel" label-placement="floating" fill="outline"
+                    <ion-input (input)="mask($event);" [value]="valorMask" placeholder="Digite o telefone" label="Telefone do Cliente" type="tel" label-placement="floating" fill="outline"
                       formControlName="telCli"></ion-input>
                     <div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
                       Digite um Telefone
@@ -153,7 +153,7 @@
                   </div>
 
                   <div class="item_form">
-                    <ion-input placeholder="Digite o telefone" label="Telefone do Cliente" label-placement="floating" fill="outline"
+                    <ion-input (input)="mask($event);" [value]="valorMask" placeholder="Digite o telefone" label="Telefone do Cliente" label-placement="floating" fill="outline"
                       formControlName="telCli"></ion-input>
                     <div class="message-alert" *ngIf="telCli_edit.invalid && formDir.submitted">
                       Digite um Telefone
