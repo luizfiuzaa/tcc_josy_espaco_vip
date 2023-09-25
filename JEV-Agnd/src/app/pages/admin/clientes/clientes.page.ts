@@ -52,6 +52,50 @@ export class ClientesPage implements OnInit {
   }
 
   // modal
+  EditForm!: FormGroup;
+  modalOpenEdit = false;
+
+  submit_edit() {
+    console.log(this.EditForm.value)
+    if (this.EditForm.invalid) {
+      console.log('Formulario De Edição Invalido')
+      // this.message = 'Falha ao agendar!!'
+      // this.ExibirMessage(false);
+      return;
+    }
+    console.log('Formulario De Edição Valido')
+    // this.message = 'Agendado com sucesso!!'
+    // this.ExibirMessage(true);
+  }
+
+  setOpenEdit(isOpen: any) {
+    if (isOpen == true || this.EditForm.invalid && isOpen == false || this.EditForm.valid && isOpen == 'submit') {
+      this.modalOpenEdit = isOpen == 'submit' ? false : isOpen;
+    }
+    if (isOpen == true) {
+      this.createFormEdit()
+    }
+  }
+
+  createFormEdit() {
+    this.EditForm = new FormGroup({
+      idCli: new FormControl(''),
+      nomeCli: new FormControl('', [Validators.required]),
+      telCli: new FormControl('', [Validators.required]),
+      emailCli: new FormControl('', [Validators.required]),
+    });
+  }
+
+  get nomeCli_edit() {
+    return this.EditForm.get('nomeCli')!;
+  }
+  get telCli_edit() {
+    return this.EditForm.get('telCli')!;
+  }
+  get emailCli_edit() {
+    return this.EditForm.get('emailCli')!;
+  }
+  // modal
   AddForm!: FormGroup;
   modalOpenAdd = false;
 
@@ -97,4 +141,27 @@ export class ClientesPage implements OnInit {
   }
 
   ngOnInit() { }
+
+  // Modal de delete confirm
+  modalOpenDelete = false;
+  setOpenDelete(isOpen: any) {
+    this.modalOpenDelete = isOpen;
+  }
+  public alertButtons = [
+    {
+      text: 'Não',
+      role: 'cancel',
+    },
+    {
+      text: 'Sim',
+      role: 'confirm',
+    },
+  ];
+
+  setResult(ev: any) {
+    this.setOpenDelete(false);
+    if (ev.detail.role == 'confirm') {
+      console.log('Apagado')
+    }
+  }
 }

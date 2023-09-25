@@ -47,11 +47,11 @@
 
                   <!-- Botões de Exclusão, Edição e Visualização de dados -->
                   <ion-card-content>
-                    <ion-button class="delete" fill="outline">
+                    <ion-button class="delete" fill="outline" (click)="setOpenDelete(true)">
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>
-                    <ion-button class="edit">
+                    <ion-button class="edit" (click)="setOpenEdit(true)">
                       <ion-icon name="create-outline"></ion-icon>
                       Editar
                     </ion-button>
@@ -83,7 +83,7 @@
     </ion-row>
 
 
-    <ion-modal #modal trigger="add_area" [isOpen]="modalOpenAdd" backdropDismiss="false">
+    <ion-modal #modal [isOpen]="modalOpenAdd" backdropDismiss="false">
       <ng-template>
         <div class="wrapper modalCont">
           <div class="modal_title">
@@ -98,16 +98,15 @@
             <!-- form cliente -->
             <form action="" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm" #formDir="ngForm">
               <ion-list lines="none" class="list-content">
-                <div class="container_form">
                   <div class="item_form">
-                    <ion-input label="Nome do Cliente" label-placement="floating" formControlName="nomeCli"></ion-input>
+                    <ion-input placeholder="Digite o nome" label="Nome do Cliente" label-placement="floating" fill="outline" formControlName="nomeCli"></ion-input>
                     <div class="message-alert" *ngIf="nomeCli_add.invalid && formDir.submitted">
                       Digite um nome
                     </div>
                   </div>
 
                   <div class="item_form">
-                    <ion-input label="Telefone do Cliente" type="tel" label-placement="floating"
+                    <ion-input placeholder="Digite o telefone" label="Telefone do Cliente" type="tel" label-placement="floating" fill="outline"
                       formControlName="telCli"></ion-input>
                     <div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
                       Digite um Telefone
@@ -115,15 +114,61 @@
                   </div>
 
                   <div class="item_form">
-                    <ion-input label="E-mail do Cliente" type="email" label-placement="floating"
+                    <ion-input placeholder="Digite o email" label="E-mail do Cliente" type="email" label-placement="floating" fill="outline"
                       formControlName="emailCli"></ion-input>
                     <div class="message-alert" *ngIf="emailCli_add.invalid && formDir.submitted">
                       Digite um email
                     </div>
                   </div>
-                </div>
               </ion-list>
               <ion-button type="submit" (click)="setOpenAdd('submit')">Cadastrar</ion-button>
+            </form>
+
+          </div>
+        </div>
+
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal #modal [isOpen]="modalOpenEdit" backdropDismiss="false">
+      <ng-template>
+        <div class="wrapper modalCont">
+          <div class="modal_title">
+            <ion-header>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button (click)="setOpenEdit(false)">Cancelar</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+
+            <!-- form cliente -->
+            <form action="" class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm" #formDir="ngForm">
+              <ion-list lines="none" class="list-content">
+                  <div class="item_form">
+                    <ion-input placeholder="Digite o nome" label="Nome do Cliente" label-placement="floating" fill="outline" formControlName="nomeCli"></ion-input>
+                    <div class="message-alert" *ngIf="nomeCli_edit.invalid && formDir.submitted">
+                      Digite um nome
+                    </div>
+                  </div>
+
+                  <div class="item_form">
+                    <ion-input placeholder="Digite o telefone" label="Telefone do Cliente" label-placement="floating" fill="outline"
+                      formControlName="telCli"></ion-input>
+                    <div class="message-alert" *ngIf="telCli_edit.invalid && formDir.submitted">
+                      Digite um Telefone
+                    </div>
+                  </div>
+
+                  <div class="item_form">
+                    <ion-input placeholder="Digite o email" label="E-mail do Cliente" label-placement="floating" fill="outline"
+                      formControlName="emailCli"></ion-input>
+                    <div class="message-alert" *ngIf="emailCli_edit.invalid && formDir.submitted">
+                      Digite um email
+                    </div>
+                  </div>
+              </ion-list>
+              <ion-button type="submit" (click)="setOpenEdit('submit')">Editar</ion-button>
             </form>
 
           </div>
@@ -138,5 +183,8 @@
         <ion-icon id="add" name="person-add" expand="block"></ion-icon>
       </ion-fab-button>
     </ion-fab>
+
+    <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
+    [isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
   </ion-content>
 </div>
