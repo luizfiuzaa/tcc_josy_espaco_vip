@@ -53,11 +53,7 @@ ion-card {
     --color: var(--ion-color-warning);
   }
 
-  #horario {
-    --color: var(--ion-color-primary);
-  }
-
-  .delete {
+  #horario, #data {
     --color: var(--ion-color-primary);
   }
 
@@ -179,35 +175,9 @@ ion-spinner {
   text-transform: capitalize;
 }
 
-.calendarButton {
-  width: 7%;
-  border: 1px solid var(--ion-color-primary);
-  height: 42px;
-  border-radius: 16px;
-  transition: .5s;
-}
-
-.calendarButton:hover,
-.calendarButton:focus {
-  transform: scale(1.1);
-}
-
-.calendarButton ion-icon {
-  font-size: 2em;
-  color: var(--ion-color-primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 @media only screen and (max-width:900px) {
   .header__search {
     flex-direction: column;
-  }
-
-  .calendarButton {
-    margin-top: 5px;
-    width: 90px;
   }
 }
 
@@ -245,10 +215,6 @@ ion-spinner {
   border: 1px solid black;
   border-radius: 10px;
 }
-
-// #fakeCalendario{
-//   display: none;
-// }
 
 .calendar__toolbar{
   display: flex;
