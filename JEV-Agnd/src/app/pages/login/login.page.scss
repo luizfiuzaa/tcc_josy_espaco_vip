@@ -5,4 +5,9 @@ form {
   border: 2px solid #000;
   ion-icon{color: var(--ion-color-primary);}
   .btnLink {margin: 3% 15% 3% 15%;}
+  ion-text{
+    h1{
+      margin-bottom: 7%;
+    }
+  }
 }

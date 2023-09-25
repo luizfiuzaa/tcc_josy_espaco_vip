@@ -8,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class LoginPage implements OnInit {
 
   constructor() { }
+  version:any = '2023.9.24.dev';
+  isModalOpen = false;
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
 
   ngOnInit() {
   }

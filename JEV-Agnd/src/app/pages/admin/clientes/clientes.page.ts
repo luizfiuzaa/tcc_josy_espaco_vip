@@ -12,7 +12,7 @@ import { ClientesService } from 'src/app/services/clientes/clientes.service';
   styleUrls: ['./clientes.page.scss'],
 })
 export class ClientesPage implements OnInit {
-
+ 
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
 
