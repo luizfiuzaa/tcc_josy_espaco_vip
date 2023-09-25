@@ -61,7 +61,7 @@
       </abbr>
     </ion-fab>
     <!-- Modal Add -->
-    <ion-modal #modal trigger="open-modal" mode="ios" class="modal-header modal" [initialBreakpoint]="0.61"
+    <ion-modal #modal mode="ios" class="modal-header modal" [initialBreakpoint]="0.61"
       [breakpoints]="[0,0.57,0.61,0.65,0.75]" backdropDismiss="false" [canDismiss]='modalCloseAdd'
       [isOpen]="modalOpenAdd">
       <ion-col>
@@ -80,8 +80,8 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <ion-item>
-                    <ion-input formControlName="titulo" type="text" label="Título:" labelPlacement="floating" id="title"
-                      class="input1" placeholder="Digite o título" [clearInput]="true" required></ion-input>
+                    <ion-input formControlName="titulo" label="Título:" label-placement="floating" fill="outline"
+                      id="title" placeholder="Digite o título" [clearInput]="true" required></ion-input>
                   </ion-item>
                 </div>
                 <div class="message-alert" *ngIf="titulo.invalid && formDir.submitted">
@@ -91,9 +91,8 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <ion-item>
-                    <ion-input formControlName="descricao" type="text" label="Descrição:" labelPlacement="floating"
-                      id="descricao" class="input2" placeholder="Digite a descrição" [clearInput]="true"
-                      required></ion-input>
+                    <ion-input formControlName="descricao" label="Descrição:" label-placement="floating" fill="outline"
+                      id="descricao" placeholder="Digite a descrição" [clearInput]="true" required></ion-input>
                   </ion-item>
                 </div>
                 <div class="message-alert" *ngIf="descricao.invalid && formDir.submitted">
@@ -103,9 +102,8 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <ion-item>
-                    <ion-input formControlName="duracao" type="text" label="Duração:" labelPlacement="floating"
-                      id="duracao" class="input3" placeholder="Digite a duração" [clearInput]="true"
-                      required></ion-input>
+                    <ion-input formControlName="duracao" label="Duração:" label-placement="floating" fill="outline"
+                      id="duracao" placeholder="Digite a duração" [clearInput]="true" required></ion-input>
                   </ion-item>
                 </div>
                 <div class="message-alert" *ngIf="duracao.invalid && formDir.submitted">
@@ -115,8 +113,8 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <ion-item>
-                    <ion-input formControlName="preco" type="text" label="Preço:" labelPlacement="floating" id="preco"
-                      class="input4" placeholder="Digite o preço" [clearInput]="true" required></ion-input>
+                    <ion-input formControlName="preco" label="Preço:" label-placement="floating" fill="outline"
+                      id="preco" class="input4" placeholder="Digite o preço" [clearInput]="true" required></ion-input>
                   </ion-item>
                 </div>
                 <div class="message-alert" *ngIf="preco.invalid && formDir.submitted">
@@ -138,7 +136,7 @@
       </ion-col>
     </ion-modal>
     <!-- Modal Edit -->
-    <ion-modal #modal trigger="open-modal-edit" mode="ios" class="modal-header modal" [canDismiss]="modalCloseEdit"
+    <ion-modal #modal mode="ios" class="modal-header modal" [canDismiss]="modalCloseEdit"
       [isOpen]="modalOpenEdit" [initialBreakpoint]="0.61" [breakpoints]="[0,0.55,0.61,0.65,0.75]"
       backdropDismiss="false">
       <ion-col>
@@ -156,9 +154,9 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <ion-item>
-                    <ion-input type="text" formControlName="titulo_edit" id="titulo_edit" class="input1" label="Título:"
-                      labelPlacement="floating" minlength="2" maxlength="50" placeholder="Digite o título"
-                      [clearInput]="true" required></ion-input>
+                    <ion-input formControlName="titulo_edit" id="titulo_edit" label="Título:" label-placement="floating"
+                      fill="outline" minlength="2" maxlength="50" placeholder="Digite o título" [clearInput]="true"
+                      required></ion-input>
                   </ion-item>
                 </div>
                 <div class="message-alert" *ngIf="titulo_edit.invalid && formDir.submitted">
@@ -168,8 +166,8 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <ion-item>
-                    <ion-input formControlName="descricao_edit" type="text" id="descricao_edit" class="input2"
-                      label="Descrição:" labelPlacement="floating" minlength="10" maxlength="160"
+                    <ion-input formControlName="descricao_edit" id="descricao_edit" label="Descrição:"
+                      label-placement="floating" fill="outline" minlength="10" maxlength="160"
                       placeholder="Digite a descrição" [clearInput]="true" required></ion-input>
                   </ion-item>
                 </div>
@@ -180,9 +178,9 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <ion-item>
-                    <ion-input formControlName="duracao_edit" type="text" label="Duração:" labelPlacement="floating"
-                      id="duracao_edit" class="input3" placeholder="Digite a duração" minlength="1" maxlength="5"
-                      [clearInput]="true" required></ion-input>
+                    <ion-input formControlName="duracao_edit" label="Duração:" label-placement="floating" fill="outline"
+                      id="duracao_edit" placeholder="Digite a duração" minlength="1" maxlength="5" [clearInput]="true"
+                      required></ion-input>
                   </ion-item>
                 </div>
                 <div class="message-alert" *ngIf="duracao_edit.invalid && formDir.submitted">
@@ -192,7 +190,7 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <ion-item>
-                    <ion-input formControlName="preco_edit" type="text" label="Preço:" labelPlacement="floating"
+                    <ion-input formControlName="preco_edit" label="Preço:" label-placement="floating" fill="outline"
                       id="preco_edit" class="input4" placeholder="Digite o preco" minlength="2" maxlength="14"
                       [clearInput]="true" required></ion-input>
                   </ion-item>
