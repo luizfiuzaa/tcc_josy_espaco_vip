@@ -25,7 +25,7 @@
               </ion-col>
             </ion-item>
 
-            <div class="cliente__main" *ngFor="let Clientes of clientes_Exibidos;  index as i">
+            <div class="cliente__main" *ngFor="let Clientes of clientes_Exibidos">
               <ion-item>
                 <!-- Card dos Clientes -->
                 <ion-card>
@@ -34,20 +34,20 @@
                     <ion-card-title>
                       <ion-text class="main__nome">
                         <ion-icon name="person-sharp"></ion-icon>
-                        {{Clientes.ClienteNome}}
+                        {{Clientes.cliente_nome}}
                       </ion-text>
                     </ion-card-title>
                     <ion-card-subtitle>
                       <ion-text class="main__email">
                         <ion-icon name="logo-whatsapp"></ion-icon>
-                        {{Clientes.ClienteTelefone}}
+                        {{Clientes.cliente_email}}
                       </ion-text>
                     </ion-card-subtitle>
                   </ion-card-header>
 
                   <!-- Botões de Exclusão, Edição e Visualização de dados -->
                   <ion-card-content>
-                    <ion-button class="delete apagar_cli" fill="outline" (click)="apagarService(i)">
+                    <ion-button class="delete apagar_cli" fill="outline" (click)="apagarService(Clientes.id_cliente)">
                       <ion-icon name="trash"></ion-icon>
                       Excluir
                     </ion-button>

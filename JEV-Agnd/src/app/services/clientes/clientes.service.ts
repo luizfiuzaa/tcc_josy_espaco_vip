@@ -8,13 +8,17 @@ import { Clientes } from 'src/app/models/clientes';
 })
 export class ClientesService {
 
-  private readonly API = '/assets/clientes.json'
+  private readonly API = 'http://arquivosdaaulaapi/API/Arquivo%20PHP/cliente/';
 
   constructor(private httpClient: HttpClient) { }
 
   list() {
-    return this.httpClient.get<Clientes[]>(this.API).pipe(
+    return this.httpClient.get<Clientes[]>(this.API+'listar_clientes.php').pipe(
       tap(clientes => console.log(clientes))
     );
+  }
+
+  delete(id: any) {
+    return this.httpClient.delete(this.API+'remover_clientes.php?id='+ id);
   }
 }
