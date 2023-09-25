@@ -267,6 +267,12 @@ export class HomePage {
     }
   }
 
+  indexDel:any;
+  apagarService(indice: any) {
+    this.indexDel = indice;
+    this.setOpenDelete(true);
+  }
+
   // Modal de delete confirm
   modalOpenDelete = false;
   setOpenDelete(isOpen: any) {
@@ -283,10 +289,14 @@ export class HomePage {
     },
   ];
 
+
   setResult(ev: any) {
     // O role pode ser confirm or cancel
     console.log(ev.detail.role);
     this.setOpenDelete(false);
+    if (ev.detail.role == 'confirm') {
+      this.Agendamentos_exibidos.splice(this.indexDel, 1)
+    }
   }
 
   // Filtro por nome de clientes
