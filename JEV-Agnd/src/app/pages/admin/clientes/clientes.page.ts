@@ -42,9 +42,11 @@ export class ClientesPage implements OnInit {
   constructor(private clientesService: ClientesService) {
     this.cad_cli()
   }
-
+  isLoading = false;
   cad_cli() {
+    this.isLoading = true;
     this.clientesService.list().subscribe(dados => {
+      this.isLoading = false;
       this.ClienteCad = dados;
       this.clientes_Exibidos = this.ClienteCad;
       console.log(this.ClienteCad);
@@ -69,7 +71,7 @@ export class ClientesPage implements OnInit {
   }
 
   setOpenEdit(isOpen: any) {
-    if (isOpen == true || this.EditForm.invalid && isOpen == false || this.EditForm.valid && isOpen == 'submit') {
+    if (isOpen == true || isOpen == false || this.EditForm.valid && isOpen == 'submit') {
       this.modalOpenEdit = isOpen == 'submit' ? false : isOpen;
     }
     if (isOpen == true) {
@@ -122,7 +124,7 @@ export class ClientesPage implements OnInit {
   }
 
   setOpenAdd(isOpen: any) {
-    if (isOpen == true || this.AddForm.invalid && isOpen == false || this.AddForm.valid && isOpen == 'submit') {
+    if (isOpen == true || isOpen == false || this.AddForm.valid && isOpen == 'submit') {
       this.modalOpenAdd = isOpen == 'submit' ? false : isOpen;
     }
     if (isOpen == true) {

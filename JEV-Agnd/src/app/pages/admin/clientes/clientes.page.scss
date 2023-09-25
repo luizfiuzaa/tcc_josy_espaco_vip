@@ -103,3 +103,15 @@ ion-card {
 .item_form{
   margin-top: 10px;
 }
+
+ion-spinner {
+  height: 70px !important;
+  width: 70px !important;
+}
+
+.spinner_cont {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
