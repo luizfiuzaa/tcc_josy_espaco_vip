@@ -1,7 +1,7 @@
 <?php
 	$host = "localhost"; // endereço do servidor
 	$usuario = "root"; // usuário do MySQL
-	$senha = "03312006@Luiz"; // senha do MySQL
+	$senha = ""; // senha do MySQL
 	$database = "josy_espaco_vip"; // nome do banco de dados
 
 	// Cria a conexão

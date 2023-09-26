@@ -1,6 +1,6 @@
 <?php
 include '../cors.php';
-include '../conexao.php';
+include '../conn.php';
 
 $data = json_decode(file_get_contents("php://input"));
 
@@ -31,7 +31,7 @@ try {
     $stmt->bindValue(':cliente_email', $cliente_email, PDO::PARAM_STR);
     $stmt->bindValue(':cliente_senha', $cliente_senha, PDO::PARAM_STR);
 
-    if ($stmt->N()) {
+    if ($stmt->execute()) {
 
         http_response_code(201);
         echo json_encode([
