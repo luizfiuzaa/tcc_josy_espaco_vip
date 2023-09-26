@@ -303,6 +303,7 @@
       trigger="add_area"
       [isOpen]="modalOpenAdd"
       backdropDismiss="false"
+      mode="ios"
     >
       <ng-template>
         <div class="wrapper modalCont">
@@ -340,6 +341,7 @@
                   [isDateEnabled]="isWeekday"
                   class="calendario_modal"
                   (ionChange)="getData($event)"
+                  mode="md"
                 >
                   <span slot="time-label">
                     <ion-text class="time_title">
