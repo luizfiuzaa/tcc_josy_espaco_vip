@@ -61,8 +61,7 @@
       </abbr>
     </ion-fab>
     <!-- Modal Add -->
-    <ion-modal #modal mode="ios" class="modal-header modal" [initialBreakpoint]="0.61"
-      [breakpoints]="[0,0.57,0.61,0.65,0.75]" backdropDismiss="false" [canDismiss]='modalCloseAdd'
+    <ion-modal #modal mode="ios" class="modal-header modal"  backdropDismiss="false" [canDismiss]='modalCloseAdd'
       [isOpen]="modalOpenAdd">
       <ion-col>
         <ng-template class="block">
@@ -137,8 +136,7 @@
     </ion-modal>
     <!-- Modal Edit -->
     <ion-modal #modal mode="ios" class="modal-header modal" [canDismiss]="modalCloseEdit"
-      [isOpen]="modalOpenEdit" [initialBreakpoint]="0.61" [breakpoints]="[0,0.55,0.61,0.65,0.75]"
-      backdropDismiss="false">
+      [isOpen]="modalOpenEdit" backdropDismiss="false">
       <ion-col>
         <ng-template class="block">
           <ion-header>
