@@ -54,39 +54,39 @@ export class ClientesPage implements OnInit {
       console.log(this.clientes_Exibidos);
     })
   }
-  indiceDel:any
+  indiceDel: any
   apagarService(indice: any) {
     this.indiceDel = indice
     this.setOpenDelete(true);
   }
 
-    // Modal de delete confirm
-    modalOpenDelete = false;
-    setOpenDelete(isOpen: any) {
-      this.modalOpenDelete = isOpen;
+  // Modal de delete confirm
+  modalOpenDelete = false;
+  setOpenDelete(isOpen: any) {
+    this.modalOpenDelete = isOpen;
+  }
+  public alertButtons = [
+    {
+      text: 'Não',
+      role: 'cancel',
+    },
+    {
+      text: 'Sim',
+      role: 'confirm',
+    },
+  ];
+  setResult(ev: any) {
+    // O role pode ser confirm or cancel
+    console.log(ev.detail.role);
+    this.setOpenDelete(false);
+    if (ev.detail.role == 'confirm') {
+      this.clientesService.delete(this.indiceDel).subscribe(data => {
+        this.ClienteCad = this.ClienteCad.filter((cliente: any) => cliente.id_cliente !== this.indiceDel);
+        this.clientes_Exibidos = this.ClienteCad;
+      });
     }
-    public alertButtons = [
-      {
-        text: 'Não',
-        role: 'cancel',
-      },
-      {
-        text: 'Sim',
-        role: 'confirm',
-      },
-    ];
-      setResult(ev: any) {
-      // O role pode ser confirm or cancel
-      console.log(ev.detail.role);
-      this.setOpenDelete(false);
-      if (ev.detail.role == 'confirm') {
-        this.clientesService.delete(this.indiceDel).subscribe(data=>{
-          this.ClienteCad = this.ClienteCad.filter((cliente: any) => cliente.id_cliente !== this.indiceDel);
-          this.clientes_Exibidos = this.ClienteCad;
-        });
-      }
-    }
-  
+  }
+
 
   // modal
   EditForm!: FormGroup;
@@ -147,15 +147,17 @@ export class ClientesPage implements OnInit {
 
   submit_add() {
     console.log(this.AddForm.value)
-    if (this.AddForm.invalid) {
-      console.log('Formulario De Adição Invalido')
-      // this.message = 'Falha ao agendar!!'
-      // this.ExibirMessage(false);
+    if (this.AddForm.valid) {
+      this.clientesService.create(this.AddForm.value);
+      this.cad_cli();
+      console.log('Formulario De Adição Valido')
+      // this.message = 'Agendado com sucesso!!'
+      // this.ExibirMessage(true);
       return;
     }
-    console.log('Formulario De Adição Valido')
-    // this.message = 'Agendado com sucesso!!'
-    // this.ExibirMessage(true);
+    console.log('Formulario De Adição Invalido')
+    // this.message = 'Falha ao agendar!!'
+    // this.ExibirMessage(false);
   }
 
   setOpenAdd(isOpen: any) {
@@ -169,7 +171,6 @@ export class ClientesPage implements OnInit {
 
   createFormAdd() {
     this.AddForm = new FormGroup({
-      idCli: new FormControl(''),
       nomeCli: new FormControl('', Validators.compose([
         Validators.maxLength(70),
         Validators.minLength(3),
@@ -182,6 +183,9 @@ export class ClientesPage implements OnInit {
         Validators.maxLength(70),
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
         Validators.required])),
+      senhaCli: new FormControl('', Validators.compose([
+        Validators.maxLength(70),
+        Validators.required])),
     });
   }
 
@@ -193,6 +197,9 @@ export class ClientesPage implements OnInit {
   }
   get emailCli_add() {
     return this.AddForm.get('emailCli')!;
+  }
+  get senhaCli_add() {
+    return this.AddForm.get('senhaCli')!;
   }
 
   ngOnInit() { }

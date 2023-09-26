@@ -21,4 +21,8 @@ export class ClientesService {
   delete(id: any) {
     return this.httpClient.delete(this.API+'remover_clientes.php?id='+ id);
   }
+
+  create(cliente: any) {
+    return this.httpClient.post(this.API+'insert_clientes.php', cliente); 
+  }
 }

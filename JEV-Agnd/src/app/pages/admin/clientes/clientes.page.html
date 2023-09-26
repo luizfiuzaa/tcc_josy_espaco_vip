@@ -123,6 +123,14 @@
                     Digite um email
                   </div>
                 </div>
+
+                <div class="item_form">
+                  <ion-input placeholder="Digite a senha" label="Senha do Cliente" type="password"
+                    label-placement="floating" fill="outline" formControlName="senhaCli"></ion-input>
+                  <div class="message-alert" *ngIf="senhaCli_add.invalid && formDir.submitted">
+                    Digite uma senha
+                  </div>
+                </div>
               </ion-list>
               <ion-button type="submit" (click)="setOpenAdd('submit')">Cadastrar</ion-button>
             </form>
