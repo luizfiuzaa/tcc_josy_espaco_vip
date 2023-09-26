@@ -84,12 +84,12 @@ INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_
 -- s
 
 -- servico
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto1', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto2', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto3', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto4', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto5', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto6', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto7', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto8', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
-INSERT INTO `servico`(titulo_servico, desc_servico, preco_servico) VALUES('Corte de cabelo - curto9', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.','20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto2', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto3', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto1', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto4', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto5', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto6', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto7', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto8', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
+INSERT INTO `servico`(titulo_servico, desc_servico, duracao_servico, preco_servico) VALUES('Corte de cabelo - curto9', 'Venha gastar a sua grana, com dinheiro há amor, já sem não me procure.', 30, '20.00');
