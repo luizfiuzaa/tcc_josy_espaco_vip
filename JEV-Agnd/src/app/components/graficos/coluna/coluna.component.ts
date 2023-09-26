@@ -16,7 +16,7 @@ export class ColunaComponent implements OnInit {
   }
 
   mes = [2, 7, 32, 23, 45, 32, 4, 35, 6, 7, 10, 40]
-  
+
   gerarGraficoFormasPagamento() {
     var myChart = new Chart("coluna", {
       type: 'bar',

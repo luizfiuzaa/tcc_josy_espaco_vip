@@ -14,7 +14,7 @@
         <!-- Confirmação -->
         <ion-card color="light">
           <ion-card-header color="success">
-            
+
             <ion-card-title>
               <ion-icon name="checkbox"></ion-icon>
               <ion-col size="10"><ion-text>Confirmação</ion-text></ion-col>
@@ -28,36 +28,21 @@
 
             <ion-card-content>
 
-              <ion-button
-                expand="block"
-                color="success"
-              >
-              <ion-text>
-                <p class="compartilhar">Compartilhar</p>
-              </ion-text>
-              <ion-icon name="arrow-redo"></ion-icon>
+              <ion-button expand="block" color="success">
+                <ion-text>
+                  <p class="compartilhar">Compartilhar</p>
+                </ion-text>
+                <ion-icon name="arrow-redo"></ion-icon>
               </ion-button>
 
-              <ion-button
-                id="btn-editar"
-                expand="block"
-                (click)="setOpenConfirm(true)"
-                class="btn-editar"
-                fill="outline"
-                color="success"
-              >
+              <ion-button id="btn-editar" expand="block" (click)="setOpenConfirm(true)" class="btn-editar"
+                fill="outline" color="success">
                 <ion-text color="success">
                   <p>Editar</p>
                 </ion-text>
                 <ion-icon color="success" slot="end" name="pencil-outline"></ion-icon>
               </ion-button>
-              <ion-modal
-                #modal
-                trigger="btn-editar2"
-                mode="ios"
-                class="modal-header2"
-                [isOpen]="modalOpenConfirm"
-              >
+              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenConfirm" backdropDismiss="false">
                 <ion-col>
                   <ng-template>
                     <ion-header>
@@ -81,10 +66,7 @@
 
                     <ion-content>
                       <ion-item>
-                        <ion-input
-                          type="text"
-                          placeholder="Insira sua mensagem pré-definida"
-                        ></ion-input>
+                        <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
                       </ion-item>
                     </ion-content>
                   </ng-template>
@@ -96,7 +78,7 @@
         <!-- Reagendamento -->
         <ion-card color="light">
           <ion-card-header color="secondary">
-            
+
             <ion-card-title>
               <ion-icon name="time"></ion-icon>
               <ion-col size="10"><ion-text>Reagendamento</ion-text></ion-col>
@@ -110,36 +92,23 @@
 
             <ion-card-content>
 
-              <ion-button
-                expand="block"
-                color="secondary"
-              >
-              <ion-text>
-                <p class="compartilhar">Compartilhar</p>
-              </ion-text>
-              <ion-icon name="arrow-redo"></ion-icon>
+              <ion-button expand="block" color="secondary">
+                <ion-text>
+                  <p class="compartilhar">Compartilhar</p>
+                </ion-text>
+                <ion-icon name="arrow-redo"></ion-icon>
               </ion-button>
 
-              <ion-button
-                id="btn-editar"
-                expand="block"
-                (click)="setOpenReagen(true)"
-                class="btn-editar"
-                fill="outline"
-                color="secondary"
-              >
+              <ion-button id="btn-editar" expand="block" (click)="setOpenReagen(true)" class="btn-editar" fill="outline"
+                color="secondary">
                 <ion-text>
                   <p>Editar</p>
                 </ion-text>
                 <ion-icon color="secondary" slot="end" name="pencil-outline"></ion-icon>
               </ion-button>
-              <ion-modal
-                #modal
-                trigger="btn-editar2"
-                mode="ios"
-                class="modal-header2"
-                [isOpen]="modalOpenReagen"
-              >
+
+              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenReagen"
+                backdropDismiss="false">
                 <ion-col>
                   <ng-template>
                     <ion-header>
@@ -163,10 +132,7 @@
 
                     <ion-content>
                       <ion-item>
-                        <ion-input
-                          type="text"
-                          placeholder="Insira sua mensagem pré-definida"
-                        ></ion-input>
+                        <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
                       </ion-item>
                     </ion-content>
                   </ng-template>
@@ -178,7 +144,7 @@
         <!-- Cancelamento -->
         <ion-card color="light">
           <ion-card-header color="danger">
-            
+
             <ion-card-title>
               <ion-icon name="close-circle"></ion-icon>
               <ion-col size="10"><ion-text>Cancelamento</ion-text></ion-col>
@@ -192,36 +158,22 @@
 
             <ion-card-content>
 
-              <ion-button
-                expand="block"
-                color="danger"
-              >
-              <ion-text>
-                <p class="compartilhar">Compartilhar</p>
-              </ion-text>
-              <ion-icon name="arrow-redo"></ion-icon>
+              <ion-button expand="block" color="danger">
+                <ion-text>
+                  <p class="compartilhar">Compartilhar</p>
+                </ion-text>
+                <ion-icon name="arrow-redo"></ion-icon>
               </ion-button>
 
-              <ion-button
-                id="btn-editar"
-                expand="block"
-                (click)="setOpenCancel(true)"
-                class="btn-editar"
-                fill="outline"
-                color="danger"
-              >
+              <ion-button id="btn-editar" expand="block" (click)="setOpenCancel(true)" class="btn-editar" fill="outline"
+                color="danger">
                 <ion-text>
                   <p>Editar</p>
                 </ion-text>
                 <ion-icon color="danger" slot="end" name="pencil-outline"></ion-icon>
               </ion-button>
-              <ion-modal
-                #modal
-                trigger="btn-editar2"
-                mode="ios"
-                class="modal-header2"
-                [isOpen]="modalOpenCancel"
-              >
+              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenCancel"
+                backdropDismiss="false">
                 <ion-col>
                   <ng-template>
                     <ion-header>
@@ -245,10 +197,7 @@
 
                     <ion-content>
                       <ion-item>
-                        <ion-input
-                          type="text"
-                          placeholder="Insira sua mensagem pré-definida"
-                        ></ion-input>
+                        <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
                       </ion-item>
                     </ion-content>
                   </ng-template>
@@ -260,7 +209,7 @@
         <!-- Cobrar -->
         <ion-card color="light">
           <ion-card-header color="warning">
-            
+
             <ion-card-title>
               <ion-icon name="cash"></ion-icon>
               <ion-col size="10"><ion-text>Cobrar</ion-text></ion-col>
@@ -274,36 +223,21 @@
 
             <ion-card-content>
 
-              <ion-button
-                expand="block"
-                color="warning"
-              >
-              <ion-text>
-                <p class="compartilhar">Compartilhar</p>
-              </ion-text>
-              <ion-icon name="arrow-redo"></ion-icon>
+              <ion-button expand="block" color="warning">
+                <ion-text>
+                  <p class="compartilhar">Compartilhar</p>
+                </ion-text>
+                <ion-icon name="arrow-redo"></ion-icon>
               </ion-button>
 
-              <ion-button
-                id="btn-editar"
-                expand="block"
-                (click)="setOpenCobrar(true)"
-                class="btn-editar"
-                fill="outline"
-                color="warning"
-              >
+              <ion-button id="btn-editar" expand="block" (click)="setOpenCobrar(true)" class="btn-editar" fill="outline"
+                color="warning">
                 <ion-text>
                   <p>Editar</p>
                 </ion-text>
                 <ion-icon color="warning" slot="end" name="pencil-outline"></ion-icon>
               </ion-button>
-              <ion-modal
-                #modal
-                trigger="btn-editar2"
-                mode="ios"
-                class="modal-header2"
-                [isOpen]="modalOpenCobrar"
-              >
+              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenCobrar" backdropDismiss="false">
                 <ion-col>
                   <ng-template>
                     <ion-header>
@@ -327,10 +261,7 @@
 
                     <ion-content>
                       <ion-item>
-                        <ion-input
-                          type="text"
-                          placeholder="Insira sua mensagem pré-definida"
-                        ></ion-input>
+                        <ion-input type="text" placeholder="Insira sua mensagem pré-definida"></ion-input>
                       </ion-item>
                     </ion-content>
                   </ng-template>
