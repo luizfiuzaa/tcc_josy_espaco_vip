@@ -160,6 +160,7 @@
       trigger="editar"
       [isOpen]="modalOpenEdit"
       backdropDismiss="false"
+      mode="ios"
     >
       <ng-template>
         <div class="wrapper modalCont">
@@ -197,6 +198,7 @@
                   minuteValues="0,15,30,45"
                   [isDateEnabled]="isWeekday"
                   class="calendario_modal"
+                  mode="md"
                 >
                   <span slot="time-label">
                     <ion-text class="time_title">
