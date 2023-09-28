@@ -11,3 +11,16 @@ form {
     }
   }
 }
+
+.col-img{
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+}
+
+.col-form{
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
