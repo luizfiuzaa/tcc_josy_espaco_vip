@@ -182,10 +182,7 @@ export class ClientesPage implements OnInit {
       emailCli: new FormControl('', Validators.compose([
         Validators.maxLength(70),
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
-        Validators.required])),
-      senhaCli: new FormControl('', Validators.compose([
-        Validators.maxLength(70),
-        Validators.required])),
+        Validators.required]))
     });
   }
 
@@ -198,10 +195,6 @@ export class ClientesPage implements OnInit {
   get emailCli_add() {
     return this.AddForm.get('emailCli')!;
   }
-  get senhaCli_add() {
-    return this.AddForm.get('senhaCli')!;
-  }
-
   ngOnInit() { }
 
   valorMask: any;
