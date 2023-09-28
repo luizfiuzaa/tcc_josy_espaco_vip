@@ -3,24 +3,56 @@ form {
   padding: 3%;
   border-radius: 20px;
   border: 2px solid #000;
-  ion-icon{color: var(--ion-color-primary);}
-  .btnLink {margin: 3% 15% 3% 15%;}
-  ion-text{
-    h1{
+
+  ion-icon {
+    color: var(--ion-color-primary);
+  }
+
+  .btnLink {
+    margin: 3% 15% 3% 15%;
+  }
+
+  ion-text {
+    h1 {
       margin-bottom: 7%;
     }
   }
 }
 
-.col-img{
+.container {
   height: calc(100vh - 100px);
+}
+
+.col-img {
+  height: 100%;
   display: flex;
   justify-content: center;
 }
 
-.col-form{
-  height: calc(100vh - 100px);
+.col-form {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width:992px) {
+
+  .col-img,
+  .col-form {
+    height: calc(70vh - 100px);
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width:400px) {
+
+  .col-img,
+  .col-form {
+    height: calc(50vh - 100px);
+  }
 }
