@@ -148,8 +148,15 @@ export class ClientesPage implements OnInit {
   submit_add() {
     console.log(this.AddForm.value)
     if (this.AddForm.valid) {
-      this.clientesService.create(this.AddForm.value);
-      this.cad_cli();
+      const formData = new FormData();
+
+      formData.append("nome", this.AddForm.value.nomeCli);
+      formData.append("email", this.AddForm.value.emailCli);
+      formData.append("telefone", this.AddForm.value.telCli);
+
+      this.clientesService.create(formData).subscribe( dados => {
+        this.cad_cli();
+      });
       console.log('Formulario De Adição Valido')
       // this.message = 'Agendado com sucesso!!'
       // this.ExibirMessage(true);
@@ -182,10 +189,7 @@ export class ClientesPage implements OnInit {
       emailCli: new FormControl('', Validators.compose([
         Validators.maxLength(70),
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
-        Validators.required])),
-      senhaCli: new FormControl('', Validators.compose([
-        Validators.maxLength(70),
-        Validators.required])),
+        Validators.required]))
     });
   }
 
@@ -197,9 +201,6 @@ export class ClientesPage implements OnInit {
   }
   get emailCli_add() {
     return this.AddForm.get('emailCli')!;
-  }
-  get senhaCli_add() {
-    return this.AddForm.get('senhaCli')!;
   }
 
   ngOnInit() { }
