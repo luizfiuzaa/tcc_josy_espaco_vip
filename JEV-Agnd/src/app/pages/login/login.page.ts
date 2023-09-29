@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
-  version:any = '2023.9.24.dev';
+  constructor() { 
+    this.createForm()
+  }
+  version: any = '2023.9.24.dev';
   isModalOpen = false;
 
   setOpen(isOpen: boolean) {
@@ -16,7 +19,29 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
+  LoginForm!: FormGroup;
+  createForm() {
+    this.LoginForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
+  }
+
+  get email() {
+    return this.LoginForm.get('email')!;
+  }
+  get password() {
+    return this.LoginForm.get('password')!;
+  }
+
+  submit_login() {
+    if (this.LoginForm.invalid) {
+      console.log('Formulario De Adição Invalido')
+      return;
+    }
+    console.log('Formulario De Adição Concluído')
+  }
 }
