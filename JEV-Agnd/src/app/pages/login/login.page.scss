@@ -49,10 +49,11 @@ form {
   }
 }
 
-@media only screen and (max-width:400px) {
+@media only screen and (max-width:580px) {
 
   .col-img,
   .col-form {
     height: calc(50vh - 100px);
+    max-width: 400px;
   }
 }
