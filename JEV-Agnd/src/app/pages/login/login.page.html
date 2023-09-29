@@ -3,71 +3,73 @@
     <ion-title>Entrar</ion-title>
   </ion-toolbar>
 </ion-header>
-  <ion-content mode="ios" [fullscreen]="true">
-    <ion-row>
-      <ion-col size="12" sizeLg="6">
-        <ion-img src="../../../assets/strategist.svg" alt=""></ion-img>
-      </ion-col>
+
+<ion-content mode="ios" [fullscreen]="true">
+
+  <ion-row class="container">
+    <ion-col size="12" sizeLg="6" class="col-img">
+      <ion-img src="../../../assets/strategist.svg" alt=""></ion-img>
+    </ion-col>
+
+    <ion-col size="12" sizeLg="6" class="col-form">
+      <form action="" (ngSubmit)="submit_login()" [formGroup]="LoginForm" #formDir="ngForm" formControlName="email">
+        <ion-text class="ion-text-center">
+          <h1>Olá <span style="color:#ff2d6c">Josy!</span> Use seu email e senha para entrar :)</h1>
+        </ion-text>
+        <ion-list>
+          <ion-item>
+            <ion-input formControlName="email" label="Email:" type="email" placeholder="usuario@exemplo.com"
+              formControlName="senha"></ion-input>
+            <ion-icon name="mail"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-input formControlName="password" label="Senha:" type="password"></ion-input>
+            <ion-button fill="outline" id="passPreview">
+              <ion-icon name="eye-off"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+        <ion-button href="../../home/" expand="block" shape="round" class="btnLink btnLogin">
+          <ion-text style="font-size: 1.5em;"> Entrar </ion-text>
+        </ion-button>
+      </form>
+    </ion-col>
+  </ion-row>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Créditos</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)"><ion-icon name="close"></ion-icon></ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item lines="none" style="font-size: 1.3em;">Desenvolvido por:</ion-item>
+          <ion-item href="https://github.com/Kits93" target="_blank"><ion-icon name="logo-github"></ion-icon>João
+            Victor</ion-item>
+          <ion-item href="https://github.com/LauraaPereira" target="_blank"><ion-icon
+              name="logo-github"></ion-icon>Laura Pereira</ion-item>
+          <ion-item href="https://github.com/luizfiuzaa" target="_blank"><ion-icon name="logo-github"></ion-icon>Luiz
+            Fiuza</ion-item>
+          <ion-item href="https://github.com/MarlonVBP" target="_blank"><ion-icon name="logo-github"></ion-icon>Marlon
+            Passos</ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
   
-      <ion-col size="12" sizeLg="6">
-        <form action="POST">
-          <ion-text class="ion-text-center"
-            ><h1>Olá <span style="color:#ff2d6c">Josy!</span> Use seu email e senha para entrar :)</h1></ion-text
-          >
-          <ion-list>
-            <ion-item>
-              <ion-input
-                label="Email:"
-                type="email"
-                placeholder="usuario@exemplo.com"
-              ></ion-input>
-              <ion-icon name="mail"></ion-icon>
-            </ion-item>
-            <ion-item>
-              <ion-input label="Senha:" type="password"></ion-input>
-              <ion-button fill="outline" id="passPreview"
-                ><ion-icon name="eye-off"></ion-icon
-              ></ion-button>
-            </ion-item>
-          </ion-list>
-          <ion-button
-            href="../../home/"
-            expand="block"
-            shape="round"
-            class="btnLink btnLogin"
-          >
-            <ion-text style="font-size: 1.5em;"> Entrar </ion-text>
-          </ion-button>
-        </form>
-      </ion-col>
-    </ion-row>
+  <ion-toolbar color="dark">
+    <ion-title slot="start">{{this.version}}</ion-title>
+    <ion-title (click)="setOpen(true)" slot="end"><span
+        style="color:#ff2d6c; cursor: pointer;"><u>Créditos</u></span></ion-title>
+  </ion-toolbar>
 
-    <ion-modal [isOpen]="isModalOpen">
-      <ng-template>
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>Créditos</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="setOpen(false)"><ion-icon name="close"></ion-icon></ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content>
-          <ion-list>
-            <ion-item lines="none" style="font-size: 1.3em;">Desenvolvido por:</ion-item>
-            <ion-item href="https://github.com/Kits93"><ion-icon name="logo-github"></ion-icon>João Victor</ion-item>
-            <ion-item href="https://github.com/LauraaPereira"><ion-icon name="logo-github"></ion-icon>Laura Pereira</ion-item>
-            <ion-item href="https://github.com/luizfiuzaa"><ion-icon name="logo-github"></ion-icon>Luiz Fiuza</ion-item>
-            <ion-item href="https://github.com/MarlonVBP"><ion-icon name="logo-github"></ion-icon>Marlon Passos</ion-item>
-          </ion-list>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
-
-  </ion-content>
-  <ion-footer class="ion-no-border">
-    <ion-toolbar color="dark">
-      <ion-title slot="start">{{this.version}}</ion-title>
-      <ion-title (click)="setOpen(true)" slot="end"><span style="color:#ff2d6c"><u>Créditos</u></span></ion-title>
-    </ion-toolbar>
-  </ion-footer>
+</ion-footer>
