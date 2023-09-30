@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonInput } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { 
-    this.createForm()
-  }
+  constructor(private router: Router) { }
   version: any = '2023.9.24.dev';
   isModalOpen = false;
 
@@ -22,26 +21,17 @@ export class LoginPage implements OnInit {
 
   }
 
-  LoginForm!: FormGroup;
-  createForm() {
-    this.LoginForm = new FormGroup({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-    });
+  submit_login(form: any) {
+    console.log(form)
+    console.log('Formulário concluído')
+    this.router.navigate(['/home']);
   }
 
-  get email() {
-    return this.LoginForm.get('email')!;
-  }
-  get password() {
-    return this.LoginForm.get('password')!;
-  }
-
-  submit_login() {
-    if (this.LoginForm.invalid) {
-      console.log('Formulario De Adição Invalido')
-      return;
-    }
-    console.log('Formulario De Adição Concluído')
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
+ 
+  hideShowPassword() {
+      this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+      this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 }

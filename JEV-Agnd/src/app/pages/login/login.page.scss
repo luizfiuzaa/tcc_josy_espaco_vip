@@ -56,4 +56,34 @@ form {
     height: calc(50vh - 100px);
     max-width: 400px;
   }
+
+  .div_input_icon {
+    justify-content: flex-end;
+    }
+}
+
+.item_form {
+  position: relative;
+  display: flex;
+  padding: 0 5px;
+  font-size: 1.2em;
+}
+
+.div_input_icon {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 13px;
+  bottom: 22px;
+  z-index: 2;
+}
+
+.div_input_icon:nth-child(2) {
+  font-size: 2em;
+}
+
+#passPreview{
+  width: 50px;
 }
