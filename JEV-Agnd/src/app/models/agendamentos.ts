@@ -1,11 +1,11 @@
 export interface Agendamentos {
-    id: string;
-    status: string;
-    horarioInicio: string;
-    horarioFim: string;
-    cliente: string;
-    servico: string;
-    metodoPagamento: string;
-    preco: string;
-    data: string;
+    id_agendamento?: string;
+    status_agendamento: string;
+    hora_inicio_agendamento: string;
+    hora_fim_agendamento: string;
+    cli_agendamento: string;
+    serv_agendamento: string;
+    metodo_de_pagamento: string;
+    preco_agend: string;
+    data_agend: string;
 }

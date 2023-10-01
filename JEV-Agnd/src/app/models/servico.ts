@@ -1,7 +1,7 @@
 export interface Servicos {
-    idServico?: string,
-    tituloCard: string,
-    descricaoCard: string,
-    duracaoCard: string,
-    precoCard: string
+    id_servico?: string,
+    titulo_servico: string,
+    desc_servico: string,
+    duracao_servico: string,
+    preco_servico: string
 }
