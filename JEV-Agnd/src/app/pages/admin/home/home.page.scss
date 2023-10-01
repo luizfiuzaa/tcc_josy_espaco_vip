@@ -25,11 +25,6 @@ ion-menu-button {
   }
 }
 
-// input[type="date"]::-webkit-calendar-picker-indicator {
-//   cursor: pointer;
-//   filter: invert(54%) sepia(80%) saturate(6696%) hue-rotate(323deg) brightness(99%) contrast(106%);
-// }
-
 .edit,
 .info {
   color: #FFF;
@@ -180,7 +175,7 @@ ion-spinner {
 @media only screen and (max-width:900px) {
   .header__search {
     flex-direction: column;
-  }
+  } 
 }
 
 .header__search div {
@@ -195,7 +190,7 @@ ion-spinner {
 }
 
 .item__searchBar {
-  width: 89%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
