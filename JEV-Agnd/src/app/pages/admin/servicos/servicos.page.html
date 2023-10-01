@@ -108,16 +108,16 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input
+                    <ion-textarea
+                    [autoGrow] = "true"
                     formControlName="descricao"
                     label="Descrição:"
                     label-placement="floating"
                     fill="outline"
                     id="descricao"
                     placeholder="Digite a descrição"
-                    [clearInput]="true"
                     required>
-                  </ion-input>
+                  </ion-textarea>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="descricao.invalid && formDir.submitted">
@@ -234,7 +234,8 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input
+                    <ion-textarea
+                    [autoGrow]="true"
                     formControlName="descricao_edit" 
                     id="descricao_edit" 
                     label="Descrição:"
@@ -243,9 +244,8 @@
                     minlength="10" 
                     maxlength="160"  
                     placeholder="Digite a descrição" 
-                    [clearInput]="true" 
                     required>
-                  </ion-input>
+                  </ion-textarea>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="descricao_edit.invalid && formDir.submitted">
