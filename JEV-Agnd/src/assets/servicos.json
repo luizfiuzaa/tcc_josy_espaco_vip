@@ -1,35 +1,41 @@
 [
   {
+    "id_servico": "1",
     "tituloCard": "Unhas",
     "descricaoCard": "Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.",
     "duracaoCard": "60",
     "precoCard": "34.00"
   },
   {
+    "id_servico": "2",
     "tituloCard": "Cabelo",
     "descricaoCard": "Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.",
     "duracaoCard": "120",
     "precoCard": "40.00"
   },
   {
+    "id_servico": "3",
     "tituloCard": "Sombrancelhas",
     "descricaoCard": "Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.",
     "duracaoCard": "30",
     "precoCard": "30.00"
   },
   {
+    "id_servico": "4",
     "tituloCard": "Sombrancelhas",
     "descricaoCard": "Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.",
     "duracaoCard": "30",
     "precoCard": "30.00"
   },
   {
+    "id_servico": "5",
     "tituloCard": "Sombrancelhas",
     "descricaoCard": "Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.",
     "duracaoCard": "30",
     "precoCard": "30.00"
   },
   {
+    "id_servico": "6",
     "tituloCard": "Pés",
     "descricaoCard": "Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.",
     "duracaoCard": "60",
