@@ -1,8 +1,10 @@
 <?php
-	include '../cors.php';
-	include '../conexao.php';
+include '../../cors.php';
+include '../../conn.php';
 
-	$sql = "SELECT * FROM cliente";
+
+try {
+    $sql = "SELECT * FROM cliente";
 
     $result = $connection->query($sql);
 
@@ -12,16 +14,24 @@
             array_push($clientes, $row);
         }
 
-        $response = [
+        echo json_encode([
+            'success' => 1,
             'clientes' => $clientes,
-        ];
+        ]);
 
     } else {
-        $response = [
-            'clientes' => 'Nenhum registro encontrado!'
-        ];
-    }
 
-    //sleep(2);
-    echo json_encode($response);
+        echo json_encode([
+            'success' => 0,
+            'clientes' => 'Sem clientes...',
+        ]);
+    }
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => 0,
+        'message' => $e->getMessage()
+    ]);
+    exit;
+}
 ?>

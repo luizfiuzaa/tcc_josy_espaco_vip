@@ -60,15 +60,15 @@ CREATE TABLE `agendamento_servicos`(
 );
 
 -- cliente
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro1','15675643598','pinheiro_Luaor@hotmail.com');
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro2','15675643598','pinheiro_Luaor@hotmail.com');
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro3','15675643598','pinheiro_Luaor@hotmail.com');
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro4','15675643598','pinheiro_Luaor@hotmail.com');
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro5','15675643598','pinheiro_Luaor@hotmail.com');
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro6','15675643598','pinheiro_Luaor@hotmail.com');
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro7','15675643598','pinheiro_Luaor@hotmail.com');
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro8','15675643598','pinheiro_Luaor@hotmail.com');
-INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email, cliente_senha) VALUES('lauro pinheiro9','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro1','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro2','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro3','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro4','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro5','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro6','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro7','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro8','15675643598','pinheiro_Luaor@hotmail.com');
+INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pinheiro9','15675643598','pinheiro_Luaor@hotmail.com');
 -- s
 
 -- agendamento
