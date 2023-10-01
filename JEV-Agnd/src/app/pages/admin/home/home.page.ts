@@ -81,7 +81,7 @@ export class HomePage {
     let target = e.target as HTMLInputElement
     let value = target.value;
     let valueArray = value.split('T')
-    let diaBuscado = new Date(valueArray[0]);
+    let diaBuscado = new Date(valueArray[0].replace("-", ", "));
     let hoje = new Date(this.hoje);
     console.log(valueArray[0]);
     console.log(hoje);

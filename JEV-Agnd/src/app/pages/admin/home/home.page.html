@@ -130,7 +130,8 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
-                <ion-datetime [value]="this.agendamento.calendario" minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal" >
+                <ion-datetime [value]="this.agendamento.calendario" minuteValues="0,15,30,45" class="calendario_modal"
+                  [isDateEnabled]="isWeekday">
                   <span slot="time-label">
                     <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -140,15 +141,9 @@
                 </ion-datetime>
                 <div>
                   <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
-                    <!-- 
-                    <ng-template *ngIf="EditClientes.length > 0">
-                      <ion-select-option *ngFor="let food of EditClientes" [value]="food">{{ food.name }}</ion-select-option>
-                    </ng-template> -->
-                    <!-- <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente">{{ cliente }}</ion-select-option> -->
                     <!-- Opções de clientes -->
-                    <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
-                    <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
-                    <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
+                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{
+                      cliente.cliente_nome }}</ion-select-option>
                   </ion-select>
                   <div class="message-alert" *ngIf="cliente_edit.invalid && formDir.submitted">
                     Selecione um cliente.
@@ -157,9 +152,9 @@
                 <div>
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
                     [multiple]="true" interface="popover" formControlName="servicos">
-                    <ion-select-option value="apples">Cabelo</ion-select-option>
-                    <ion-select-option value="oranges">Unha</ion-select-option>
-                    <ion-select-option value="bananas">Pedicure</ion-select-option>
+                    <!-- Opções de clientes -->
+                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.idServico">{{
+                      servicos.tituloCard }}</ion-select-option>
                   </ion-select>
                   <div class="message-alert" *ngIf="servicos_edit.invalid && formDir.submitted">
                     Selecione o(s) serviço(s).
