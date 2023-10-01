@@ -15,20 +15,20 @@
     <ion-row>
       <ion-col size="12">
 
+        <ion-item lines="none" class="cont_search">
+          <div class="header__search">
+            <div class="item__searchBar">
+              <ion-searchbar style="margin-top: 1.5%" class="searchBar" placeholder="Buscar agendamento"
+                (input)="search($event)"></ion-searchbar>
+            </div>
+            <ion-button color="primary" fill="outline" class="calendarButton" (click)="open_calendario(true)">
+              Buscar data
+              <ion-icon style="margin-left: 7%; font-size: 1.7em" name="calendar"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-item>
         <ion-col size="12" *ngIf="Agendamentos_exibidos && Agendamentos_exibidos.length > 0; else noCard">
           <ion-list lines="none">
-            <ion-item class="cont_search">
-              <div class="header__search">
-                <div class="item__searchBar">
-                  <ion-searchbar style="margin-top: 1.5%" class="searchBar" placeholder="Buscar agendamento"
-                    (input)="search($event)"></ion-searchbar>
-                </div>
-                <ion-button color="primary" fill="outline" class="calendarButton" (click)="open_calendario(true)">
-                  Buscar data
-                  <ion-icon style="margin-left: 7%; font-size: 1.7em" name="calendar"></ion-icon>
-                </ion-button>
-              </div>
-            </ion-item>
             <div *ngFor="let Agendamentos of this.Agendamentos_exibidos;let i = index">
               <ion-item>
                 <ion-card>
