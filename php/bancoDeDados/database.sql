@@ -22,7 +22,7 @@ CREATE TABLE `cliente` (
 DROP TABLE IF EXISTS `servico`;
 CREATE TABLE `servico`(
   `id_servico` INT NOT NULL AUTO_INCREMENT,
-  `titulo_servico` VARCHAR(50) NOT NULL,
+  `titulo_servico` VARCHAR(70) NOT NULL,
   `desc_servico` VARCHAR(150) NOT NULL,
   `duracao_servico` INT NOT NULL,
   `preco_servico` DECIMAL(10,2) NOT NULL,
@@ -39,13 +39,14 @@ CREATE TABLE `mensagem` (
 DROP TABLE IF EXISTS `agendamento`;
 CREATE TABLE `agendamento`(
   `id_agendamento` INT NOT NULL AUTO_INCREMENT,
-  `data_inicio_agendamento` DATETIME NOT NULL,
-  `data_fim_agendamento` DATETIME NOT NULL,
+  `hora_inicio_agendamento` TIME NOT NULL,
+  `hora_fim_agendamento` TIME NOT NULL,
+  `data_agend` DATE NOT NULL,
   `status_agendamento` CHAR(1) NOT NULL,
-  `fk_id_cli` INT NOT NULL,
-  `fk_id_serv` INT NOT NULL,
-  CONSTRAINT `fk_id_cli` FOREIGN KEY (`fk_id_cli`) REFERENCES `cliente` (`id_cliente`),
-  CONSTRAINT `fk_id_serv` FOREIGN KEY (`fk_id_serv`) REFERENCES `servico` (`id_servico`),
+  `preco_agend` DECIMAL(10,2) NOT NULL,
+  `metodo_de_pagamento` VARCHAR(20) NOT NULL,
+  `cli_agendamento` VARCHAR(70) NOT NULL,
+  `serv_agendamento` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id_agendamento`)
 );
 
@@ -72,14 +73,22 @@ INSERT INTO `cliente`(cliente_nome, cliente_tel, cliente_email) VALUES('lauro pi
 -- s
 
 -- agendamento
-INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_agendamento, fk_id_cli, fk_id_serv) VALUES('1000-01-01 00:00:00','1000-01-02 00:00:00','e',1,1);
-INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_agendamento, fk_id_cli, fk_id_serv) VALUES('1000-01-01 00:00:00','1000-01-02 00:00:00','e',1,1);
-INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_agendamento, fk_id_cli, fk_id_serv) VALUES('1000-01-01 00:00:00','1000-01-02 00:00:00','e',1,1);
-INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_agendamento, fk_id_cli, fk_id_serv) VALUES('1000-01-01 00:00:00','1000-01-02 00:00:00','e',1,1);
-INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_agendamento, fk_id_cli, fk_id_serv) VALUES('1000-01-01 00:00:00','1000-01-02 00:00:00','e',1,1);
-INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_agendamento, fk_id_cli, fk_id_serv) VALUES('1000-01-01 00:00:00','1000-01-02 00:00:00','e',1,1);
-INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_agendamento, fk_id_cli, fk_id_serv) VALUES('1000-01-01 00:00:00','1000-01-02 00:00:00','e',1,1);
-INSERT INTO `agendamento`(data_inicio_agendamento, data_fim_agendamento, status_agendamento, fk_id_cli, fk_id_serv) VALUES('1000-01-01 00:00:00','1000-01-02 00:00:00','e',1,1);
+INSERT INTO `agendamento`(hora_inicio_agendamento, hora_fim_agendamento, data_agend, status_agendamento,preco_agend,
+metodo_de_pagamento, cli_agendamento, serv_agendamento) VALUES('00:00:00','10:01:00','2023-10-20','c',120,'pix','Josy A','cabelo, unha');
+INSERT INTO `agendamento`(hora_inicio_agendamento, hora_fim_agendamento, data_agend, status_agendamento,preco_agend,
+metodo_de_pagamento, cli_agendamento, serv_agendamento) VALUES('00:00:00','10:02:00','2023-10-20','c',120,'pix','Josy B','cabelo, unha');
+INSERT INTO `agendamento`(hora_inicio_agendamento, hora_fim_agendamento, data_agend, status_agendamento,preco_agend,
+metodo_de_pagamento, cli_agendamento, serv_agendamento) VALUES('00:00:00','10:03:00','2023-10-20','c',120,'pix','Josy C','unha');
+INSERT INTO `agendamento`(hora_inicio_agendamento, hora_fim_agendamento, data_agend, status_agendamento,preco_agend,
+metodo_de_pagamento, cli_agendamento, serv_agendamento) VALUES('00:00:00','10:04:00','2023-10-20','c',120,'pix','Josy D','cabelo, unha');
+INSERT INTO `agendamento`(hora_inicio_agendamento, hora_fim_agendamento, data_agend, status_agendamento,preco_agend,
+metodo_de_pagamento, cli_agendamento, serv_agendamento) VALUES('00:00:00','10:05:00','2023-10-20','e',120,'pix','Josy E','cabelo');
+INSERT INTO `agendamento`(hora_inicio_agendamento, hora_fim_agendamento, data_agend, status_agendamento,preco_agend,
+metodo_de_pagamento, cli_agendamento, serv_agendamento) VALUES('00:00:00','10:06:00','2023-10-20','e',120,'pix','Josy F','unha');
+INSERT INTO `agendamento`(hora_inicio_agendamento, hora_fim_agendamento, data_agend, status_agendamento,preco_agend,
+metodo_de_pagamento, cli_agendamento, serv_agendamento) VALUES('00:00:00','10:07:00','2023-10-20','e',120,'pix','Josy G','cabelo, unha');
+INSERT INTO `agendamento`(hora_inicio_agendamento, hora_fim_agendamento, data_agend, status_agendamento,preco_agend,
+metodo_de_pagamento, cli_agendamento, serv_agendamento) VALUES('00:00:00','10:08:00','2023-10-20','e',120,'pix','Josy H','cabelo, unha');
 -- s
 
 -- servico

@@ -10,11 +10,12 @@ if (!isset($id)) {
     exit;
 }
 
-$sql = "DELETE FROM cliente WHERE id_cliente=$id";
+$sql = "DELETE FROM agendamento WHERE id_agendamento=$id";
 
 if ($connection->query($sql) === true) {
 
     if ($fetch_stmt->num_rows > 0) {
+
         echo json_encode([
             'success' => 1,
             'message' => 'Record Deleted successfully'
@@ -24,7 +25,7 @@ if ($connection->query($sql) === true) {
 
     echo json_encode([
         'success' => 0,
-        'message' => 'Cliente not delete. Something went wrong.'
+        'message' => 'Agendamento not delete. Something went wrong.'
     ]);
     exit;
 } else {

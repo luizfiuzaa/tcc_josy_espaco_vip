@@ -10,7 +10,7 @@ if (!isset($id)) {
     exit;
 }
 
-$sql = "DELETE FROM cliente WHERE id_cliente=$id";
+$sql = "DELETE FROM servico WHERE id_servico=$id";
 
 if ($connection->query($sql) === true) {
 
@@ -24,7 +24,7 @@ if ($connection->query($sql) === true) {
 
     echo json_encode([
         'success' => 0,
-        'message' => 'Cliente not delete. Something went wrong.'
+        'message' => 'Servico not delete. Something went wrong.'
     ]);
     exit;
 } else {
