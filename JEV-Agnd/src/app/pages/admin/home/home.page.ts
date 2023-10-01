@@ -2,8 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Agendamentos } from 'src/app/models/agendamentos';
 import { Clientes } from 'src/app/models/clientes';
+import { Servicos } from 'src/app/models/servico';
 import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
+import { ServicosService } from 'src/app/services/servicos/servicos.service';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +14,10 @@ import { ClientesService } from 'src/app/services/clientes/clientes.service';
 })
 export class HomePage {
   // Iniciando a service no constructor
-  constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService) {
+  constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService, private servicosSercice: ServicosService) {
     this.getAgendamentos();
     this.getClientes();
+    this.getServicos();
   }
   // Executa após o carregamento da página
   ngAfterViewInit() {
@@ -23,6 +26,7 @@ export class HomePage {
 
   Agendamentos: Agendamentos[] = []
   Clientes: Clientes[] = []
+  Servicos: Servicos[] = []
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
   isLoading = false;
   // Pega os dados da API
@@ -47,6 +51,13 @@ export class HomePage {
     this.clientesSercice.list().subscribe((dados: any) => {
       this.Clientes = dados.clientes;
       console.log(this.Clientes)
+    })
+  }
+  // Pega os dados da API
+  getServicos() {
+    this.servicosSercice.list().subscribe((dados: any) => {
+      this.Servicos = dados;
+      console.log(this.Servicos)
     })
   }
   // Atualiza os agendametnos do dia de hoje

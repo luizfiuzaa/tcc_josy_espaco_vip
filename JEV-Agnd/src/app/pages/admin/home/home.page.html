@@ -229,13 +229,10 @@
                 </div>
                 <!-- Clientes -->
                 <div class="item_form">
-                  <ion-input label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
+                  <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
                     <!-- Opções de clientes -->
-                    <!-- <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente">{{ cliente.cliente_nome }}</ion-select-option> -->
-                    <!-- <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
-                    <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
-                    <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option> -->
-                  </ion-input>
+                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{ cliente.cliente_nome }}</ion-select-option>
+                  </ion-select>
                   <div class="message-alert" *ngIf="cliente_add.invalid && formDir.submitted">
                     Selecione um cliente.
                   </div>
@@ -244,9 +241,7 @@
                 <div class="item_form">
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
                     [multiple]="true" interface="popover" formControlName="servicos">
-                    <ion-select-option value="cabelo">Cabelo</ion-select-option>
-                    <ion-select-option value="unha">Unha</ion-select-option>
-                    <ion-select-option value="pedicure">Pedicure</ion-select-option>
+                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.idServico">{{ servicos.tituloCard }}</ion-select-option>
                   </ion-select>
                   <div class="message-alert" *ngIf="servicos_add.invalid && formDir.submitted">
                     Selecione o(s) serviço(s).
