@@ -3,13 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
-interface CardDados {
-  tituloCard: string;
-  descricaoCard: string;
-  duracaoCard: string;
-  precoCard: string;
-}
+import { Servicos } from 'src/app/models/servico';
+import { ServicosService } from 'src/app/services/servicos/servicos.service';
 
 @Component({
   selector: 'app-servicos',
@@ -18,52 +13,15 @@ interface CardDados {
 })
 export class ServicosPage implements OnInit {
   ngOnInit(): void { }
-  @Input() Card_Dados: CardDados[] = [];
-  CardDados: any[] = [
-    {
-      tituloCard: 'Unhas',
-      descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
-      duracaoCard: '60',
-      precoCard: '34.00',
-    },
-    {
-      tituloCard: 'Cabelo',
-      descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
-      duracaoCard: '120',
-      precoCard: '40.00',
-    },
-    {
-      tituloCard: 'Sombrancelhas',
-      descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
-      duracaoCard: '30',
-      precoCard: '30.00',
-    },
-    {
-      tituloCard: 'Sombrancelhas',
-      descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
-      duracaoCard: '30',
-      precoCard: '30.00',
-    },
-    {
-      tituloCard: 'Sombrancelhas',
-      descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
-      duracaoCard: '30',
-      precoCard: '30.00',
-    },
-    {
-      tituloCard: 'Pés',
-      descricaoCard: 'Um ótimo serviço para quem tem dinheiro, e vontade de ficar lindo.',
-      duracaoCard: '60',
-      precoCard: '35.00',
-    }
-  ];
+  @Input() Card_Dados: Servicos[] = [];
+  CardDados: Servicos[] = [];
 
-  private baseApiUrl = environment.baseApiUrl;
-  private apiUrl = `${this.baseApiUrl}api/servicos`;
 
-  constructor(private http: HttpClient) { }
-  createServico(formData: FormData): Observable<FormData> {
-    return this.http.post<FormData>(this.apiUrl, formData);
+
+  constructor(private servicoService: ServicosService) {
+    servicoService.list().subscribe(dados => {
+      this.CardDados = dados;
+    })
   }
 
   AddForm!: FormGroup;
@@ -81,8 +39,6 @@ export class ServicosPage implements OnInit {
     formData.append("descricao", this.AddForm.value.descricao);
     formData.append("duracao", this.AddForm.value.duracao);
     formData.append("preco", this.AddForm.value.preco);
-
-    this.createServico(formData).subscribe();
   }
   createFormAdd() {
     this.AddForm = new FormGroup({
@@ -191,7 +147,7 @@ export class ServicosPage implements OnInit {
     this.setOpenEdit(true);
   }
 
-  indexDel:any;
+  indexDel: any;
   apagarService(indice: any) {
     this.indexDel = indice;
     this.setOpenDelete(true);
