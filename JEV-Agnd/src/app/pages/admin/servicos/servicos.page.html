@@ -80,14 +80,15 @@
           </ion-header>
           <ion-content>
             <form
+            mode="md"
               action=""
-              class="form"
+              class="form ion-padding"
               (ngSubmit)="submit_add(); createHandler($event)"
               [formGroup]="AddForm"
               #formDir="ngForm">
               <div class="form__inputs">
                 <div class="inputs__context">
-                  <ion-item>
+                  <div class="input_item">
                     <ion-input
                     formControlName="titulo"
                     label="Título:"
@@ -98,7 +99,7 @@
                     [clearInput]="true"
                     required>
                   </ion-input>
-                  </ion-item>
+                  </div>
                 </div>
                 <div class="message-alert" *ngIf="titulo.invalid && formDir.submitted">
                   Título invalido!
@@ -106,18 +107,18 @@
               </div>
               <div class="form__inputs">
                 <div class="inputs__context">
-                  <ion-item>
-                    <ion-input
+                  <div class="input_item">
+                    <ion-textarea
+                    [autoGrow] = "true"
                     formControlName="descricao"
                     label="Descrição:"
                     label-placement="floating"
                     fill="outline"
                     id="descricao"
                     placeholder="Digite a descrição"
-                    [clearInput]="true"
                     required>
-                  </ion-input>
-                  </ion-item>
+                  </ion-textarea>
+                  </div>
                 </div>
                 <div class="message-alert" *ngIf="descricao.invalid && formDir.submitted">
                   Descrição invalida!
@@ -125,7 +126,7 @@
               </div>
               <div class="form__inputs">
                 <div class="inputs__context">
-                  <ion-item>
+                  <div class="input_item">
                     <ion-input
                     formControlName="duracao"
                     label="Duração:"
@@ -135,7 +136,7 @@
                     placeholder="Digite a duração"
                     [clearInput]="true"
                     required></ion-input>
-                  </ion-item>
+                  </div>
                 </div>
                 <div class="message-alert" *ngIf="duracao.invalid && formDir.submitted">
                   Duração invalida!
@@ -143,7 +144,7 @@
               </div>
               <div class="form__inputs">
                 <div class="inputs__context">
-                  <ion-item>
+                  <div class="input_item">
                     <ion-input
                     formControlName="preco"
                     label="Preço:"
@@ -154,7 +155,7 @@
                     placeholder="Digite o preço"
                     [clearInput]="true"
                     required></ion-input>
-                  </ion-item>
+                  </div>
                 </div>
                 <div class="message-alert" *ngIf="preco.invalid && formDir.submitted">
                   Preço invalido!
@@ -202,14 +203,15 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <form action=""
-            class="form"
+            <form
+            mode="md" action=""
+            class="form ion-padding"
             (ngSubmit)="submit_edit()"
             [formGroup]="EditForm"
             #formDir="ngForm">
               <div class="form__inputs">
                 <div class="inputs__context">
-                  <ion-item>
+                  <div class="input_item">
                     <ion-input
                     formControlName="titulo_edit" 
                     id="titulo_edit"
@@ -222,7 +224,7 @@
                     [clearInput]="true"
                     required>
                   </ion-input>
-                  </ion-item>
+                  </div>
                 </div>
                 <div class="message-alert" 
                 *ngIf="titulo_edit.invalid && formDir.submitted">
@@ -231,8 +233,9 @@
               </div>
               <div class="form__inputs">
                 <div class="inputs__context">
-                  <ion-item>
-                    <ion-input
+                  <div class="input_item">
+                    <ion-textarea
+                    [autoGrow]="true"
                     formControlName="descricao_edit" 
                     id="descricao_edit" 
                     label="Descrição:"
@@ -241,10 +244,9 @@
                     minlength="10" 
                     maxlength="160"  
                     placeholder="Digite a descrição" 
-                    [clearInput]="true" 
                     required>
-                  </ion-input>
-                  </ion-item>
+                  </ion-textarea>
+                  </div>
                 </div>
                 <div class="message-alert" *ngIf="descricao_edit.invalid && formDir.submitted">
                   Descrição invalida!
@@ -252,7 +254,7 @@
               </div>
               <div class="form__inputs">
                 <div class="inputs__context">
-                  <ion-item>
+                  <div class="input_item">
                     <ion-input
                     formControlName="duracao_edit" 
                     label="Duração:" 
@@ -266,7 +268,7 @@
                     [clearInput]="true"
                     required>
                   </ion-input>
-                  </ion-item>
+                  </div>
                 </div>
                 <div class="message-alert" *ngIf="duracao_edit.invalid && formDir.submitted">
                   Duração invalida!
@@ -274,11 +276,11 @@
               </div>
               <div class="form__inputs">
                 <div class="inputs__context">
-                  <ion-item>
+                  <div class="input_item">
                     <ion-input formControlName="preco_edit" label="Preço:" label-placement="floating" fill="outline"
                       id="preco_edit" class="input4" placeholder="Digite o preco" minlength="2" maxlength="14"
                       [clearInput]="true" required></ion-input>
-                  </ion-item>
+                  </div>
                 </div>
                 <div class="message-alert" *ngIf="preco_edit.invalid && formDir.submitted">
                   Preço invalido!
