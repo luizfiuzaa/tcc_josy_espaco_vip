@@ -21,7 +21,7 @@ export class SignupPage implements OnInit {
   submit_criarConta(form: any) {
     console.log(form)
     console.log('Formulário concluído')
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
   passwordType: string = 'password';
