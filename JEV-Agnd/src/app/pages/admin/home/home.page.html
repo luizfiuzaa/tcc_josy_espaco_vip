@@ -229,7 +229,7 @@
                 </div>
                 <!-- Clientes -->
                 <div class="item_form">
-                  <ion-input label="Cliente" (click)="openSelectClientes(true)" label-placement="floating" interface="popover" formControlName="cliente">
+                  <ion-input label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
                     <!-- Opções de clientes -->
                     <!-- <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente">{{ cliente.cliente_nome }}</ion-select-option> -->
                     <!-- <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
@@ -308,17 +308,5 @@
     <!-- Ion toast -->
     <ion-toast [message]="message" icon="globe" [isOpen]="OpenToast" id="message" class="fail"></ion-toast>
 
-    <ion-modal [isOpen]="openSelect" #modal>
-      <ng-template>
-        <app-modal-select
-          class="ion-page"
-          title="Selecione um cliente"
-          [items]="Clientes"
-          [selectedItems]="selectetClientes"
-          (selectionChange)="fruitSelectionChanged($event)"
-          (selectionCancel)="modal.dismiss()"
-        ></app-modal-select>
-      </ng-template>
-    </ion-modal>
   </ion-content>
 </div>
