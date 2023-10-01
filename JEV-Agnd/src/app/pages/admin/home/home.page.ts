@@ -9,6 +9,7 @@ import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  agendamento: any;
   // Iniciando a service no constructor
   constructor(private agendamentosService: AgendamentosService) {
     this.getAgendamentos();
@@ -214,12 +215,16 @@ export class HomePage {
     this.EditForm = new FormGroup({
       id: new FormControl(''),
       cliente: new FormControl('', [Validators.required]),
+      calendario: new FormControl('', [Validators.required]),
       servicos: new FormControl('', [Validators.required]),
       formaDePagamento: new FormControl('', [Validators.required])
     });
   }
   get cliente_edit() {
     return this.EditForm.get('cliente')!;
+  }
+  get calendario_edit() {
+    return this.AddForm.get('calendario')!;
   }
   get servicos_edit() {
     return this.EditForm.get('servicos')!;

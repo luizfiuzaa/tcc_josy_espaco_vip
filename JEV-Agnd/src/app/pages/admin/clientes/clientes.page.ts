@@ -13,6 +13,7 @@ import { ClientesService } from 'src/app/services/clientes/clientes.service';
 })
 export class ClientesPage implements OnInit {
 
+  cliente: any;
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
 
@@ -109,23 +110,20 @@ export class ClientesPage implements OnInit {
     if (isOpen == true || isOpen == false || this.EditForm.valid && isOpen == 'submit') {
       this.modalOpenEdit = isOpen == 'submit' ? false : isOpen;
     }
-    if (isOpen == true) {
-      this.createFormEdit()
-    }
   }
 
-  createFormEdit() {
+  createFormEdit(cliente: any) {
     this.EditForm = new FormGroup({
       idCli: new FormControl(''),
-      nomeCli: new FormControl('', Validators.compose([
+      nomeCli: new FormControl(cliente.nomeCli, Validators.compose([
         Validators.maxLength(70),
         Validators.minLength(3),
         Validators.required])),
-      telCli: new FormControl('', Validators.compose([
+      telCli: new FormControl(cliente.telCli, Validators.compose([
         Validators.maxLength(15),
         Validators.minLength(15),
         Validators.required])),
-      emailCli: new FormControl('', Validators.compose([
+      emailCli: new FormControl(cliente.emailCli, Validators.compose([
         Validators.maxLength(70),
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
         Validators.required])),
@@ -191,6 +189,17 @@ export class ClientesPage implements OnInit {
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
         Validators.required]))
     });
+  }
+
+  editarCliente(cliente: Clientes){
+    this.EditForm.patchValue({
+      id: this.cliente.id,
+      nomeCli: this.cliente.nomeCli,
+      telCli: this.cliente.telCli,
+      emailCli: this.cliente.emailCli
+    })
+
+    this.createFormEdit(cliente);
   }
 
   get nomeCli_add() {
