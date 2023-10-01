@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Agendamentos } from 'src/app/models/agendamentos';
+import { Clientes } from 'src/app/models/clientes';
 import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
+import { ClientesService } from 'src/app/services/clientes/clientes.service';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,9 @@ import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.
 })
 export class HomePage {
   // Iniciando a service no constructor
-  constructor(private agendamentosService: AgendamentosService) {
+  constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService) {
     this.getAgendamentos();
+    this.getClientes();
   }
   // Executa após o carregamento da página
   ngAfterViewInit() {
@@ -19,6 +22,7 @@ export class HomePage {
   }
 
   Agendamentos: Agendamentos[] = []
+  Clientes: Clientes[] = []
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
   isLoading = false;
   // Pega os dados da API
@@ -37,6 +41,13 @@ export class HomePage {
         this.atualizarDados();
         this.isLoading = false;
       })
+  }
+  // Pega os dados da API
+  getClientes() {
+    this.clientesSercice.list().subscribe((dados: any) => {
+      this.Clientes = dados.clientes;
+      console.log(this.Clientes)
+    })
   }
   // Atualiza os agendametnos do dia de hoje
   atualizarDados() {
@@ -259,7 +270,7 @@ export class HomePage {
     }
   }
 
-  indexDel:any;
+  indexDel: any;
   apagarService(indice: any) {
     this.indexDel = indice;
     this.setOpenDelete(true);
@@ -321,7 +332,7 @@ export class HomePage {
   isWeekday = (dateString: string) => {
     const date = new Date(dateString);
     const utcDay = date.getUTCDay();
-    return utcDay !== 0 && utcDay !== 6;
+    return utcDay !== 0 && utcDay !== 1;
   }
 
   // Menssagem de aviso
