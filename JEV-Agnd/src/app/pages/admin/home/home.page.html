@@ -17,7 +17,7 @@
 
         <ion-col size="12" *ngIf="Agendamentos_exibidos && Agendamentos_exibidos.length > 0; else noCard">
           <ion-list lines="none">
-            <ion-item>
+            <ion-item class="cont_search">
               <div class="header__search">
                 <div class="item__searchBar">
                   <ion-searchbar style="margin-top: 1.5%" class="searchBar" placeholder="Buscar agendamento"
@@ -140,6 +140,11 @@
                 </ion-datetime>
                 <div>
                   <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
+<!-- 
+                    <ng-template *ngIf="EditClientes.length > 0">
+                      <ion-select-option *ngFor="let food of EditClientes" [value]="food">{{ food.name }}</ion-select-option>
+                    </ng-template> -->
+                    <!-- <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente">{{ cliente }}</ion-select-option> -->
                     <!-- Opções de clientes -->
                     <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
                     <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
@@ -224,12 +229,13 @@
                 </div>
                 <!-- Clientes -->
                 <div class="item_form">
-                  <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
+                  <ion-input label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
                     <!-- Opções de clientes -->
-                    <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
+                    <!-- <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente">{{ cliente.cliente_nome }}</ion-select-option> -->
+                    <!-- <ion-select-option value="Laura Pereira">Laura Peneira</ion-select-option>
                     <ion-select-option value="Josefina Chapéu">Josefina Chapéu</ion-select-option>
-                    <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option>
-                  </ion-select>
+                    <ion-select-option value="Claudinha Sia Justa">Claudinha Saia Justa</ion-select-option> -->
+                  </ion-input>
                   <div class="message-alert" *ngIf="cliente_add.invalid && formDir.submitted">
                     Selecione um cliente.
                   </div>
@@ -301,5 +307,6 @@
     </ion-fab>
     <!-- Ion toast -->
     <ion-toast [message]="message" icon="globe" [isOpen]="OpenToast" id="message" class="fail"></ion-toast>
+
   </ion-content>
 </div>
