@@ -130,7 +130,7 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
-                <ion-datetime  minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal" >
+                <ion-datetime minuteValues="0,15,30,45" [isDateEnabled]="isWeekday  " class="calendario_modal">
                   <span slot="time-label">
                     <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -140,7 +140,7 @@
                 </ion-datetime>
                 <div>
                   <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
-<!-- 
+                    <!-- 
                     <ng-template *ngIf="EditClientes.length > 0">
                       <ion-select-option *ngFor="let food of EditClientes" [value]="food">{{ food.name }}</ion-select-option>
                     </ng-template> -->
@@ -216,7 +216,8 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
-                <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate" formControlName="calendario" minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal" mode="md">
+                <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate" formControlName="calendario"
+                  minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal" mode="md">
                   <span slot="time-label">
                     <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -231,7 +232,8 @@
                 <div class="item_form">
                   <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
                     <!-- Opções de clientes -->
-                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{ cliente.cliente_nome }}</ion-select-option>
+                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{
+                      cliente.cliente_nome }}</ion-select-option>
                   </ion-select>
                   <div class="message-alert" *ngIf="cliente_add.invalid && formDir.submitted">
                     Selecione um cliente.
@@ -241,7 +243,8 @@
                 <div class="item_form">
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
                     [multiple]="true" interface="popover" formControlName="servicos">
-                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.idServico">{{ servicos.tituloCard }}</ion-select-option>
+                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.idServico">{{
+                      servicos.tituloCard }}</ion-select-option>
                   </ion-select>
                   <div class="message-alert" *ngIf="servicos_add.invalid && formDir.submitted">
                     Selecione o(s) serviço(s).
