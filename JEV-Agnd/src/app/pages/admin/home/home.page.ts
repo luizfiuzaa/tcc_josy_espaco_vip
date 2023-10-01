@@ -61,12 +61,6 @@ export class HomePage {
   diaValido: boolean = true;
   cores = [['white', '#FF0361'], ['white', '#df4980'], ['white', '#ec84ab']]
 
-  getData(e: Event) {
-    let target = e.target as HTMLInputElement
-    let value = target.value;
-    let valueArray = value.split('T')
-    this.fakeCalendario.value = `${valueArray[0]} ${valueArray[1]}`;
-  }
 
   filterDate(e: Event) {
     this.open_calendario(false);
@@ -167,7 +161,7 @@ export class HomePage {
   }
 
   // Form de adição
-  fakeCalendario: any
+  myDate: String = new Date().toISOString();
   AddForm!: FormGroup;
   createFormAdd() {
     this.AddForm = new FormGroup({
@@ -210,8 +204,6 @@ export class HomePage {
       this.modalOpenAdd = isOpen;
       this.createFormAdd();
       setTimeout(() => {
-        this.fakeCalendario = document.querySelector('#fakeCalendario') as HTMLInputElement;
-        console.log(this.fakeCalendario)
       }, 1)
       return;
     }

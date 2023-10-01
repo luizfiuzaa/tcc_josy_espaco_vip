@@ -130,7 +130,7 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
-                <ion-datetime minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal" >
+                <ion-datetime  minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal" >
                   <span slot="time-label">
                     <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -216,8 +216,7 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
-                <ion-datetime minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal"
-                  (ionChange)="getData($event)" mode="md">
+                <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate" formControlName="calendario" minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal" mode="md">
                   <span slot="time-label">
                     <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -225,7 +224,6 @@
                     </ion-text>
                   </span>
                 </ion-datetime>
-                <ion-input formControlName="calendario" id="fakeCalendario" type="text"></ion-input>
                 <div class="message-alert" *ngIf="calendario_add.invalid && formDir.submitted">
                   Selecione um dia e Horario.
                 </div>
