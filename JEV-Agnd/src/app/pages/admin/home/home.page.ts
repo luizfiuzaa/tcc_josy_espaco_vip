@@ -24,7 +24,6 @@ export class HomePage {
   ngAfterViewInit() {
     this.toast = document.querySelector('#message') as HTMLElement;
   }
-
   Agendamentos: Agendamentos[] = []
   Clientes: Clientes[] = []
   Servicos: Servicos[] = []
@@ -33,38 +32,37 @@ export class HomePage {
   // Pega os dados da API
   getAgendamentos() {
     this.isLoading = true;
-    fetch('././assets/agendamentos.json')
-      .then(response => response.json())
-      .then(response => {
-        this.Agendamentos = response;
-        console.log(response);
-      })
-      .catch(erro => {
-        console.log(erro);
-      })
-      .finally(() => {
-        this.atualizarDados();
-        this.isLoading = false;
-      })
+    this.agendamentosService.list().subscribe((dados: any) => {
+      this.isLoading = false;
+      this.Agendamentos = dados.agendamentos;
+      if(!dados.success || dados.success != 1){
+        this.Agendamentos = [];
+      }
+      this.atualizarDados();
+    })
   }
   // Pega os dados da API
   getClientes() {
     this.clientesSercice.list().subscribe((dados: any) => {
       this.Clientes = dados.clientes;
-      console.log(this.Clientes)
+      if(!dados.success || dados.success != 1){
+        this.Clientes = [];
+      }
     })
   }
   // Pega os dados da API
   getServicos() {
     this.servicosSercice.list().subscribe((dados: any) => {
       this.Servicos = dados;
-      console.log(this.Servicos)
+      if(!dados.success || dados.success != 1){
+        this.Servicos = [];
+      }
     })
   }
   // Atualiza os agendametnos do dia de hoje
   atualizarDados() {
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
-      return agendamento.data.includes(this.hoje);
+      return agendamento.data_agend.includes(this.hoje);
     });
   }
 
@@ -73,19 +71,12 @@ export class HomePage {
   diaValido: boolean = true;
   cores = [['white', '#FF0361'], ['white', '#df4980'], ['white', '#ec84ab']]
 
-
   filterDate(e: Event) {
     this.open_calendario(false);
-
     let estado: boolean = false;
-    let target = e.target as HTMLInputElement
-    let value = target.value;
-    let valueArray = value.split('T')
-    let diaBuscado = new Date(valueArray[0].replace("-", ", "));
+    let value = ((e.target as HTMLInputElement).value).split('T');
+    let diaBuscado = new Date(value[0].replace("-", ", "));
     let hoje = new Date(this.hoje);
-    console.log(valueArray[0]);
-    console.log(hoje);
-    console.log(diaBuscado);
 
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
       if (diaBuscado < hoje) {
@@ -93,31 +84,22 @@ export class HomePage {
         this.verificarEstado(estado);
         return;
       }
-      if (agendamento.data.includes(valueArray[0]) == true) {
+      if (agendamento.data_agend.includes(value[0])) {
         estado = true;
       }
-      return agendamento.data.includes(valueArray[0]);
+      return agendamento.data_agend.includes(value[0]);
     });
   }
-
   highlightedDates: any[] = [];
-
   diasAgendados() {
-
     this.highlightedDates = [];
     let datas: any[] = [];
     let datasFrequencia: any[] = [];
-
     this.Agendamentos.forEach(element => {
-      let data = new Date(element.data);
-      if (this.date > data) { } else {
-        datas.push(element.data)
-      }
+      let data = new Date(element.data_agend);
+      if (this.date <= data) { datas.push(element.data_agend) }
     });
-    console.log(datas)
-
     let media = datas.length;
-
     datas.forEach(() => {
       if (datas.length >= 1) {
         let frequencia = [];
@@ -128,12 +110,9 @@ export class HomePage {
         })
         datas = datas.filter((element) => element != datas[0]);
       }
-    })
-
-    console.log(datas)
+    });
     this.colorirDias(datasFrequencia, media);
   }
-
   colorirDias(datas: any[], media: any) {
     media = Math.round(media / datas.length);
     datas.forEach((element) => {
@@ -143,15 +122,13 @@ export class HomePage {
           textColor: this.cores[0][0],
           backgroundColor: this.cores[0][1],
         });
-      }
-      if (element.datafrequencia == media) {
+      } else if (element.datafrequencia == media) {
         this.highlightedDates.push({
           date: element.data,
           textColor: this.cores[1][0],
           backgroundColor: this.cores[1][1],
         });
-      }
-      if (element.datafrequencia < media) {
+      } else if (element.datafrequencia < media) {
         this.highlightedDates.push({
           date: element.data,
           textColor: this.cores[2][0],
@@ -159,19 +136,14 @@ export class HomePage {
         });
       }
     })
-    console.log(datas)
-    console.log(this.highlightedDates)
   }
-
   calendario_open: boolean = false;
-
   open_calendario(isOpen: boolean) {
     this.calendario_open = isOpen;
-    if (isOpen == true) {
+    if (isOpen) {
       this.diasAgendados();
     }
   }
-
   // Form de adição
   myDate: String = new Date().toISOString();
   AddForm!: FormGroup;
@@ -208,7 +180,6 @@ export class HomePage {
     this.message = 'Agendado com sucesso!!'
     this.ExibirMessage(true);
   }
-
   // Modal de edição
   modalOpenAdd = false;
   setOpenAdd(isOpen: any) {
@@ -229,10 +200,8 @@ export class HomePage {
       }, 100);
     }
   }
-
   // Form de edição
   EditForm!: FormGroup;
-
   createFormEdit() {
     this.EditForm = new FormGroup({
       id: new FormControl(''),
@@ -266,7 +235,6 @@ export class HomePage {
     this.message = 'Alterado com sucesso!!'
     this.ExibirMessage(true);
   }
-
   // Modal de Edição
   modalOpenEdit = false;
   setOpenEdit(isOpen: any) {
@@ -285,13 +253,11 @@ export class HomePage {
       }, 100);
     }
   }
-
-  indexDel: any;
+  indiceDel: any;
   apagarService(indice: any) {
-    this.indexDel = indice;
+    this.indiceDel = indice;
     this.setOpenDelete(true);
   }
-
   // Modal de delete confirm
   modalOpenDelete = false;
   setOpenDelete(isOpen: any) {
@@ -308,13 +274,18 @@ export class HomePage {
     },
   ];
 
-
   setResult(ev: any) {
     // O role pode ser confirm or cancel
     console.log(ev.detail.role);
     this.setOpenDelete(false);
     if (ev.detail.role == 'confirm') {
-      this.Agendamentos_exibidos.splice(this.indexDel, 1)
+      this.agendamentosService.delete(this.indiceDel).subscribe(() => {
+        this.Agendamentos = this.Agendamentos.filter((agendamento: any) => agendamento.id_agendamento !== this.indiceDel);
+        console.log(this.Agendamentos);
+        this.Agendamentos_exibidos = this.Agendamentos_exibidos.filter((agendamento: any) => agendamento.id_agendamento   !== this.indiceDel);
+        console.log(this.Agendamentos_exibidos);
+
+      })
     }
   }
 
@@ -324,13 +295,13 @@ export class HomePage {
     const target = e.target as HTMLInputElement;
     const value = target.value;
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
-      if (agendamento.cliente.includes(value.toLocaleLowerCase())) {
+      if (agendamento.cli_agendamento.includes(value.toLocaleLowerCase())) {
         estado = true;
       }
       if (!value) {
         estado = false;
       }
-      return agendamento.cliente.includes(value.toLocaleLowerCase());
+      return agendamento.cli_agendamento.includes(value.toLocaleLowerCase());
     });
     this.verificarEstado(estado);
   }

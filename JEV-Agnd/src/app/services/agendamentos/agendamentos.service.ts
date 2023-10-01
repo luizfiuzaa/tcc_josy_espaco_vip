@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Agendamentos } from 'src/app/models/agendamentos';
 
 @Injectable({
@@ -8,14 +8,21 @@ import { Agendamentos } from 'src/app/models/agendamentos';
 })
 export class AgendamentosService {
 
-  private readonly API = '/assets/agendamentos.json';
+  private readonly API = 'http://arquivosdaaulaapi/API/php/admin/agendamentos/';
 
   constructor(private httpClient: HttpClient) { }
 
-  list(){
-    return this.httpClient.get<Agendamentos[]>(this.API)
-    .pipe(
+  list() {
+    return this.httpClient.get<Agendamentos[]>(this.API + 'listar_agendamentos.php').pipe(
       tap(agendamentos => console.log(agendamentos))
     );
+  }
+
+  delete(id: any) {
+    return this.httpClient.delete(this.API + 'remover_agendamento.php?id=' + id);
+  }
+
+  create(agendamento: FormData): Observable<FormData> {
+    return this.httpClient.post<FormData>(this.API + 'insert_agendamento.php', agendamento);
   }
 }

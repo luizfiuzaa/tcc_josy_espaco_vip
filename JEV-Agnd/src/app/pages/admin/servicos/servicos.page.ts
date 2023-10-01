@@ -16,11 +16,16 @@ export class ServicosPage implements OnInit {
   @Input() Card_Dados: Servicos[] = [];
   CardDados: Servicos[] = [];
 
-
-
   constructor(private servicoService: ServicosService) {
-    servicoService.list().subscribe(dados => {
-      this.CardDados = dados;
+    this.listServicos();
+  }
+
+  listServicos() {
+    this.servicoService.list().subscribe((dados: any) => {
+      this.CardDados = dados.servicos;
+      if (!dados.success || dados.success != 1) {
+        this.CardDados = [];
+      }
     })
   }
 
@@ -71,10 +76,10 @@ export class ServicosPage implements OnInit {
     }
     console.log('Formulario De Adição Concluído')
     this.CardDados.push({
-      tituloCard: this.AddForm.value.titulo,
-      descricaoCard: this.AddForm.value.descricao,
-      duracaoCard: this.AddForm.value.duracao,
-      precoCard: this.AddForm.value.preco,
+      titulo_servico: this.AddForm.value.titulo,
+      desc_servico: this.AddForm.value.descricao,
+      duracao_servico: this.AddForm.value.duracao,
+      preco_servico: this.AddForm.value.preco,
     });
   }
   setOpenAdd(isOpen: any) {
@@ -120,10 +125,10 @@ export class ServicosPage implements OnInit {
     }
     console.log('Formulario De Edição Concluído')
     this.CardDados[this.EditForm.value.id_edit] = {
-      tituloCard: this.EditForm.value.titulo_edit,
-      descricaoCard: this.EditForm.value.descricao_edit,
-      duracaoCard: this.EditForm.value.duracao_edit,
-      precoCard: this.EditForm.value.preco_edit,
+      titulo_servico: this.EditForm.value.titulo_edit,
+      desc_servico: this.EditForm.value.descricao_edit,
+      duracao_servico: this.EditForm.value.duracao_edit,
+      preco_servico: this.EditForm.value.preco_edit,
     };
   }
   setOpenEdit(isOpen: any) {
@@ -136,10 +141,10 @@ export class ServicosPage implements OnInit {
     this.editFormValue = [
       {
         idCard: indice,
-        tituloCard: this.CardDados[indice].tituloCard,
-        descricaoCard: this.CardDados[indice].descricaoCard,
-        duracaoCard: this.CardDados[indice].duracaoCard,
-        precoCard: this.CardDados[indice].precoCard,
+        tituloCard: this.CardDados[indice].titulo_servico,
+        descricaoCard: this.CardDados[indice].desc_servico,
+        duracaoCard: this.CardDados[indice].duracao_servico,
+        precoCard: this.CardDados[indice].preco_servico,
       }
     ];
 
@@ -147,9 +152,9 @@ export class ServicosPage implements OnInit {
     this.setOpenEdit(true);
   }
 
-  indexDel: any;
+  indiceDel: any;
   apagarService(indice: any) {
-    this.indexDel = indice;
+    this.indiceDel = indice;
     this.setOpenDelete(true);
   }
 
@@ -172,10 +177,12 @@ export class ServicosPage implements OnInit {
   setResult(ev: any) {
     // O role pode ser confirm or cancel
     console.log(ev.detail.role);
-
     this.setOpenDelete(false);
     if (ev.detail.role == 'confirm') {
-      this.CardDados.splice(this.indexDel, 1)
+      this.servicoService.delete(this.indiceDel).subscribe(() => {
+        this.CardDados = this.CardDados.filter((servicos: any) => servicos.id_servicos !== this.indiceDel);
+      });
     }
   }
+
 }

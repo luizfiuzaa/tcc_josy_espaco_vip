@@ -50,9 +50,11 @@ export class ClientesPage implements OnInit {
     this.clientesService.list().subscribe((dados: any) => {
       this.isLoading = false;
       this.ClienteCad = dados.clientes;
-      console.log(this.ClienteCad);
+      if(!dados.success || dados.success != 1){
+        this.ClienteCad = [];
+      }
       this.clientes_Exibidos = this.ClienteCad;
-      console.log(this.clientes_Exibidos);
+
     })
   }
   indiceDel: any
@@ -81,7 +83,7 @@ export class ClientesPage implements OnInit {
     console.log(ev.detail.role);
     this.setOpenDelete(false);
     if (ev.detail.role == 'confirm') {
-      this.clientesService.delete(this.indiceDel).subscribe(data => {
+      this.clientesService.delete(this.indiceDel).subscribe(() => {
         this.ClienteCad = this.ClienteCad.filter((cliente: any) => cliente.id_cliente !== this.indiceDel);
         this.clientes_Exibidos = this.ClienteCad;
       });

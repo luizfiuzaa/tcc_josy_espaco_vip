@@ -33,11 +33,11 @@
               <ion-item>
                 <ion-card>
                   <ion-card-header>
-                    <div *ngIf="Agendamentos.status == 'Confirmado'; else otherStatus">
+                    <div *ngIf="Agendamentos.status_agendamento == 'c'; else otherStatus">
                       <ion-card-title class="status ok">
                         <div class="ok">
                           <ion-icon name="checkmark-circle"></ion-icon>
-                          <ion-text> {{Agendamentos.status}} </ion-text>
+                          <ion-text> Confirmado </ion-text>
                         </div>
                       </ion-card-title>
                     </div>
@@ -45,28 +45,24 @@
                       <ion-card-title class="status waiting">
                         <div class="ok">
                           <ion-icon name="time"></ion-icon>
-                          <ion-text> {{Agendamentos.status}} </ion-text>
+                          <ion-text> Esperando confirmação </ion-text>
                         </div>
                       </ion-card-title>
                     </ng-template>
 
-                    <ion-card-title id="data">
-                      ({{Agendamentos.data}})
-                    </ion-card-title>
-
                     <ion-card-title id="horario">
-                      {{Agendamentos.horarioInicio}} -
-                      {{Agendamentos.horarioFim}}
+                      {{Agendamentos.hora_inicio_agendamento}} -
+                      {{Agendamentos.hora_fim_agendamento}} - {{Agendamentos.data_agend}}
                     </ion-card-title>
 
-                    <ion-card-subtitle class="card__names">{{Agendamentos.cliente}}</ion-card-subtitle>
+                    <ion-card-subtitle class="card__names">{{Agendamentos.cli_agendamento}}</ion-card-subtitle>
                   </ion-card-header>
 
-                  <ion-card-content class="card__names">{{Agendamentos.servico}}</ion-card-content>
+                  <ion-card-content class="card__names">{{Agendamentos.serv_agendamento}}</ion-card-content>
                   <ion-card-content>
 
                     <abbr title="Desmarcar agendamento">
-                      <ion-button (click)="apagarService(i)" color="primary" class="delete icon__apagar" fill="outline"
+                      <ion-button (click)="apagarService(Agendamentos.id_agendamento)" color="primary" class="delete icon__apagar" fill="outline"
                         (click)="setOpenDelete(true);">
 
                         <ion-icon name="close-circle-outline"></ion-icon>
@@ -153,8 +149,8 @@
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
                     [multiple]="true" interface="popover" formControlName="servicos">
                     <!-- Opções de clientes -->
-                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.idServico">{{
-                      servicos.tituloCard }}</ion-select-option>
+                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">{{
+                      servicos.titulo_servico }}</ion-select-option>
                   </ion-select>
                   <div class="message-alert" *ngIf="servicos_edit.invalid && formDir.submitted">
                     Selecione o(s) serviço(s).
@@ -227,7 +223,7 @@
                 <div class="item_form">
                   <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
                     <!-- Opções de clientes -->
-                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{
+                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.cliente_nome">{{
                       cliente.cliente_nome }}</ion-select-option>
                   </ion-select>
                   <div class="message-alert" *ngIf="cliente_add.invalid && formDir.submitted">
@@ -238,8 +234,8 @@
                 <div class="item_form">
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
                     [multiple]="true" interface="popover" formControlName="servicos">
-                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.idServico">{{
-                      servicos.tituloCard }}</ion-select-option>
+                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.titulo_servico">{{
+                      servicos.titulo_servico }}</ion-select-option>
                   </ion-select>
                   <div class="message-alert" *ngIf="servicos_add.invalid && formDir.submitted">
                     Selecione o(s) serviço(s).
