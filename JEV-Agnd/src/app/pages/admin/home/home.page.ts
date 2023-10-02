@@ -290,7 +290,6 @@ export class HomePage {
         console.log(this.Agendamentos);
         this.Agendamentos_exibidos = this.Agendamentos_exibidos.filter((agendamento: any) => agendamento.id_agendamento   !== this.indiceDel);
         console.log(this.Agendamentos_exibidos);
-
       })
     }
   }

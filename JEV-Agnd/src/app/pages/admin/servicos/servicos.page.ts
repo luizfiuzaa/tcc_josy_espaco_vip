@@ -180,7 +180,8 @@ export class ServicosPage implements OnInit {
     this.setOpenDelete(false);
     if (ev.detail.role == 'confirm') {
       this.servicoService.delete(this.indiceDel).subscribe(() => {
-        this.CardDados = this.CardDados.filter((servicos: any) => servicos.id_servicos !== this.indiceDel);
+        this.CardDados = this.CardDados.filter((servicos: any) => servicos.id_servico !== this.indiceDel);
+        console.log(this.CardDados)
       });
     }
   }
