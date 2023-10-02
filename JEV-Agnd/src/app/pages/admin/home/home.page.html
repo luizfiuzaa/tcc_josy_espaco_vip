@@ -62,15 +62,15 @@
                   <ion-card-content>
 
                     <abbr title="Desmarcar agendamento">
-                      <ion-button (click)="apagarService(Agendamentos.id_agendamento)" color="primary" class="delete icon__apagar" fill="outline"
-                        (click)="setOpenDelete(true);">
+                      <ion-button (click)="apagarService(Agendamentos.id_agendamento)" color="primary"
+                        class="delete icon__apagar" fill="outline" (click)="setOpenDelete(true);">
 
                         <ion-icon name="close-circle-outline"></ion-icon>
                         <ion-text>Desmarcar</ion-text>
 
                       </ion-button></abbr>
                     <abbr title="Editar agendamento">
-                      <ion-button class="edit" id="editar" (click)="setOpenEdit(true)">
+                      <ion-button class="edit" id="editar" (click)="EditAgendamento(Agendamentos.id_agendamento)">
                         <ion-icon name="create-outline"></ion-icon>
                         Editar
                       </ion-button></abbr>
@@ -126,8 +126,7 @@
             #formDir="ngForm">
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
-                <ion-datetime [value]="this.agendamento.calendario" minuteValues="0,15,30,45" class="calendario_modal"
-                  [isDateEnabled]="isWeekday">
+                <ion-datetime [value]="this.agendamento.data_agend + 'T' + this.agendamento.hora_inicio_agendamento" minuteValues="0,15,30,45" class="calendario_modal">
                   <span slot="time-label">
                     <ion-text class="time_title">
                       <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -135,24 +134,25 @@
                     </ion-text>
                   </span>
                 </ion-datetime>
-                <div>
+                <!-- Clientes -->
+                <div class="item_form">
                   <ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
                     <!-- Opções de clientes -->
-                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{
+                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.cliente_nome">{{
                       cliente.cliente_nome }}</ion-select-option>
                   </ion-select>
-                  <div class="message-alert" *ngIf="cliente_edit.invalid && formDir.submitted">
+                  <div class="message-alert" *ngIf="cliente_add.invalid && formDir.submitted">
                     Selecione um cliente.
                   </div>
                 </div>
-                <div>
+                <!-- Serviços -->
+                <div class="item_form">
                   <ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
                     [multiple]="true" interface="popover" formControlName="servicos">
-                    <!-- Opções de clientes -->
-                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">{{
+                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.titulo_servico">{{
                       servicos.titulo_servico }}</ion-select-option>
                   </ion-select>
-                  <div class="message-alert" *ngIf="servicos_edit.invalid && formDir.submitted">
+                  <div class="message-alert" *ngIf="servicos_add.invalid && formDir.submitted">
                     Selecione o(s) serviço(s).
                   </div>
                 </div>

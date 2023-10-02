@@ -53,7 +53,7 @@ export class HomePage {
   // Pega os dados da API
   getServicos() {
     this.servicosSercice.list().subscribe((dados: any) => {
-      this.Servicos = dados;
+      this.Servicos = dados.servicos;
       if(!dados.success || dados.success != 1){
         this.Servicos = [];
       }
@@ -235,9 +235,15 @@ export class HomePage {
     this.message = 'Alterado com sucesso!!'
     this.ExibirMessage(true);
   }
+  indiceEdit:any; 
+  EditAgendamento(indice: any){
+    this.indiceEdit = indice;
+    this.setOpenEdit(true);
+  }
   // Modal de Edição
   modalOpenEdit = false;
   setOpenEdit(isOpen: any) {
+    this.agendamento = this.Agendamentos[this.indiceEdit];
     if (isOpen == true) {
       this.modalOpenEdit = isOpen;
       this.createFormEdit();
