@@ -24,7 +24,7 @@ export class ClientesService {
     return this.httpClient.delete(this.API+'remover_clientes.php?id='+ id);
   }
 
-  create(cliente: FormData): Observable<FormData> {
-    return this.httpClient.post<FormData>(this.API+'insert_clientes.php', cliente); 
+  create(cliente: Clientes[]) {
+    return this.httpClient.post<Clientes[]>(this.API+'insert_clientes.php', cliente); 
   } 
 }
