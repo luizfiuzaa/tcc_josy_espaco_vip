@@ -25,6 +25,7 @@ export class ClientesService {
   }
 
   create(cliente: Clientes[]) {
+    console.log(cliente)
     return this.httpClient.post<Clientes[]>(this.API+'insert_clientes.php', cliente); 
   } 
 }

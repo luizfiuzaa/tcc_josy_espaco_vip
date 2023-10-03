@@ -24,6 +24,7 @@ export class AgendamentosService {
   }
 
   create(agendamento: Agendamentos[]) {
+    console.log(agendamento)
     return this.httpClient.post<Agendamentos[]>(this.API + 'insert_agendamento.php', agendamento);
   }
 }
