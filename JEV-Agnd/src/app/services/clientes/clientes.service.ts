@@ -24,8 +24,8 @@ export class ClientesService {
     return this.httpClient.delete(this.API+'remover_clientes.php?id='+ id);
   }
 
-  create(cliente: Clientes[]) {
+  create(cliente: any[]) {
     console.log(cliente)
-    return this.httpClient.post<Clientes[]>(this.API+'insert_clientes.php', cliente); 
+    return this.httpClient.post(this.API+'insert_clientes.php', cliente); 
   } 
 }

@@ -148,7 +148,14 @@ export class ClientesPage implements OnInit {
   submit_add() {
     console.log(this.AddForm.value)
     if (this.AddForm.valid) {
-      this.clientesService.create(this.AddForm.value).subscribe(() => {
+
+      let clienteDados = []
+      clienteDados.push({
+        nomeCli: this.AddForm.value.nomeCli,
+        emailCli: this.AddForm.value.emailCli,
+        telCli: this.AddForm.value.telCli.replace('(', '').replace(')', '').replace(' ', '').replace('-', ''),
+      })
+      this.clientesService.create(clienteDados).subscribe(() => {
         this.cad_cli();
       });
       console.log('Formulario De Adição Valido')
