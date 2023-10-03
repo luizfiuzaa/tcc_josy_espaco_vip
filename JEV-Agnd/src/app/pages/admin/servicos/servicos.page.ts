@@ -70,17 +70,12 @@ export class ServicosPage implements OnInit {
     return this.AddForm.get('preco')!;
   }
   submit_add() {
-    if (this.AddForm.invalid) {
-      console.log('Formulario De Adição Invalido')
-      return;
+    if (this.AddForm.valid) {
+      this.servicoService.create(this.AddForm.value).subscribe(()=>{
+        this.listServicos();
+      })
     }
-    console.log('Formulario De Adição Concluído')
-    this.CardDados.push({
-      titulo_servico: this.AddForm.value.titulo,
-      desc_servico: this.AddForm.value.descricao,
-      duracao_servico: this.AddForm.value.duracao,
-      preco_servico: this.AddForm.value.preco,
-    });
+
   }
   setOpenAdd(isOpen: any) {
     if (isOpen == true || this.AddForm.invalid && isOpen == false || this.AddForm.valid && isOpen == false) {

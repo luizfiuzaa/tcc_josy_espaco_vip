@@ -154,7 +154,7 @@ export class ClientesPage implements OnInit {
       formData.append("email", this.AddForm.value.emailCli);
       formData.append("telefone", this.AddForm.value.telCli);
 
-      this.clientesService.create(formData).subscribe( dados => {
+      this.clientesService.create(formData).subscribe(() => {
         this.cad_cli();
       });
       console.log('Formulario De Adição Valido')
