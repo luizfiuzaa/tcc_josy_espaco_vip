@@ -12,24 +12,7 @@ export class MsgDefinidasPage implements OnInit {
 
   ngOnInit() {}
 
-  Mensagens: any[] = [
-    {
-      titulo: 'Confirmação',
-      texto: 'Texto de agendamento confirmado',
-    },
-    {
-      titulo: 'Cancelamento',
-      texto: 'Texto de agendamento confirmado',
-    },
-    {
-      titulo: 'Reagendamento',
-      texto: 'Texto de agendamento reagendamento',
-    },
-    {
-      titulo: 'Cobrança',
-      texto: 'Texto de agendamento cobrança',
-    },
-  ];
+  
 
   modalOpenConfirm = false;
   setOpenConfirm(isOpenConfirm: boolean) {
