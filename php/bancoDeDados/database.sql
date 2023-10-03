@@ -1,5 +1,4 @@
-DROP DATABASE IF EXISTS `josy_espaco_vip`;
-CREATE DATABASE `josy_espaco_vip`;
+CREATE DATABASE IF NOT EXISTS `josy_espaco_vip` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `josy_espaco_vip`;
 
 DROP TABLE IF EXISTS `admin`;
