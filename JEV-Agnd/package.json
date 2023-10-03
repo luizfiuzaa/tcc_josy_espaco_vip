@@ -28,6 +28,7 @@
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
     "@maskito/angular": "^1.7.0",
+    "@maskito/kit": "^1.7.0",
     "chart.js": "^4.4.0",
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",

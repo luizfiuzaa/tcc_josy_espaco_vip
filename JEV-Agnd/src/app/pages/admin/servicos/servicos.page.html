@@ -61,12 +61,7 @@
       </abbr>
     </ion-fab>
     <!-- Modal Add -->
-    <ion-modal
-      #modal
-      mode="ios"
-      class="modal-header modal" 
-      backdropDismiss="false"
-      [canDismiss]='modalCloseAdd'
+    <ion-modal #modal mode="ios" class="modal-header modal" backdropDismiss="false" [canDismiss]='modalCloseAdd'
       [isOpen]="modalOpenAdd">
       <ion-col>
         <ng-template class="block">
@@ -79,26 +74,14 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <form
-            mode="md"
-              action=""
-              class="form ion-padding"
-              (ngSubmit)="submit_add(); createHandler($event)"
-              [formGroup]="AddForm"
-              #formDir="ngForm">
+            <form mode="md" action="" class="form ion-padding" (ngSubmit)="submit_add(); createHandler($event)"
+              [formGroup]="AddForm" #formDir="ngForm">
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input
-                    formControlName="titulo"
-                    label="Título:"
-                    label-placement="floating"
-                    fill="outline"
-                    id="title"
-                    placeholder="Digite o título"
-                    [clearInput]="true"
-                    required>
-                  </ion-input>
+                    <ion-input formControlName="titulo" label="Título:" label-placement="floating" fill="outline"
+                      id="title" placeholder="Digite o título" [clearInput]="true" required>
+                    </ion-input>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="titulo.invalid && formDir.submitted">
@@ -108,16 +91,10 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-textarea
-                    [autoGrow] = "true"
-                    formControlName="descricao"
-                    label="Descrição:"
-                    label-placement="floating"
-                    fill="outline"
-                    id="descricao"
-                    placeholder="Digite a descrição"
-                    required>
-                  </ion-textarea>
+                    <ion-textarea [autoGrow]="true" formControlName="descricao" label="Descrição:"
+                      label-placement="floating" fill="outline" id="descricao" placeholder="Digite a descrição"
+                      required>
+                    </ion-textarea>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="descricao.invalid && formDir.submitted">
@@ -127,15 +104,8 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input
-                    formControlName="duracao"
-                    label="Duração:"
-                    label-placement="floating"
-                    fill="outline"
-                    id="duracao"
-                    placeholder="Digite a duração"
-                    [clearInput]="true"
-                    required></ion-input>
+                    <ion-input formControlName="duracao" label="Duração:" label-placement="floating" fill="outline"
+                      id="duracao" placeholder="Digite a duração" [clearInput]="true" required></ion-input>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="duracao.invalid && formDir.submitted">
@@ -145,16 +115,8 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input
-                    formControlName="preco"
-                    label="Preço:"
-                    label-placement="floating"
-                    fill="outline"
-                    id="preco"
-                    class="input4"
-                    placeholder="Digite o preço"
-                    [clearInput]="true"
-                    required></ion-input>
+                    <ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate" formControlName="preco" label="Preço:" label-placement="floating" fill="outline"
+                      id="preco" class="input4" placeholder="Digite o preço" [clearInput]="true" required></ion-input>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="preco.invalid && formDir.submitted">
@@ -163,20 +125,12 @@
               </div>
               <div class="form__buttons">
                 <div *ngIf="AddForm.invalid; else buttonConfirm">
-                  <ion-button
-                  type="submit"
-                  expand="block"
-                  color="primary"
-                  style="opacity: 0.7;">Adicionar</ion-button>
+                  <ion-button type="submit" expand="block" color="primary" style="opacity: 0.7;">Adicionar</ion-button>
                 </div>
                 <ng-template #buttonConfirm>
-                  <ion-button
-                  (click)="setOpenAdd(false)"
-                  type="submit"
-                  expand="block"
-                  color="primary">
-                  Adicionar
-                </ion-button>
+                  <ion-button (click)="setOpenAdd(false)" type="submit" expand="block" color="primary">
+                    Adicionar
+                  </ion-button>
                 </ng-template>
               </div>
             </form>
@@ -185,12 +139,7 @@
       </ion-col>
     </ion-modal>
     <!-- Modal Edit -->
-    <ion-modal
-      #modal
-      mode="ios"
-      class="modal-header modal"
-      [canDismiss]="modalCloseEdit"
-      [isOpen]="modalOpenEdit"
+    <ion-modal #modal mode="ios" class="modal-header modal" [canDismiss]="modalCloseEdit" [isOpen]="modalOpenEdit"
       backdropDismiss="false">
       <ion-col>
         <ng-template class="block">
@@ -203,49 +152,28 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <form
-            mode="md" action=""
-            class="form ion-padding"
-            (ngSubmit)="submit_edit()"
-            [formGroup]="EditForm"
-            #formDir="ngForm">
+            <form mode="md" action="" class="form ion-padding" (ngSubmit)="submit_edit()" [formGroup]="EditForm"
+              #formDir="ngForm">
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input
-                    formControlName="titulo_edit" 
-                    id="titulo_edit"
-                    label="Título:"
-                    label-placement="floating"
-                    fill="outline" 
-                    minlength="2" 
-                    maxlength="50" 
-                    placeholder="Digite o título" 
-                    [clearInput]="true"
-                    required>
-                  </ion-input>
+                    <ion-input formControlName="titulo_edit" id="titulo_edit" label="Título:" label-placement="floating"
+                      fill="outline" minlength="2" maxlength="50" placeholder="Digite o título" [clearInput]="true"
+                      required>
+                    </ion-input>
                   </div>
                 </div>
-                <div class="message-alert" 
-                *ngIf="titulo_edit.invalid && formDir.submitted">
+                <div class="message-alert" *ngIf="titulo_edit.invalid && formDir.submitted">
                   Título invalido!
                 </div>
               </div>
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-textarea
-                    [autoGrow]="true"
-                    formControlName="descricao_edit" 
-                    id="descricao_edit" 
-                    label="Descrição:"
-                    label-placement="floating" 
-                    fill="outline" 
-                    minlength="10" 
-                    maxlength="160"  
-                    placeholder="Digite a descrição" 
-                    required>
-                  </ion-textarea>
+                    <ion-textarea [autoGrow]="true" formControlName="descricao_edit" id="descricao_edit"
+                      label="Descrição:" label-placement="floating" fill="outline" minlength="10" maxlength="160"
+                      placeholder="Digite a descrição" required>
+                    </ion-textarea>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="descricao_edit.invalid && formDir.submitted">
@@ -255,19 +183,10 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input
-                    formControlName="duracao_edit" 
-                    label="Duração:" 
-                    label-placement="floating" 
-                    fill="outline"
-                      
-                    id="duracao_edit" 
-                    placeholder="Digite a duração" 
-                    minlength="1" 
-                    maxlength="5" 
-                    [clearInput]="true"
-                    required>
-                  </ion-input>
+                    <ion-input formControlName="duracao_edit" label="Duração:" label-placement="floating" fill="outline"
+                      id="duracao_edit" placeholder="Digite a duração" minlength="1" maxlength="5" [clearInput]="true"
+                      required>
+                    </ion-input>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="duracao_edit.invalid && formDir.submitted">
@@ -277,7 +196,7 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input formControlName="preco_edit" label="Preço:" label-placement="floating" fill="outline"
+                    <ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate" formControlName="preco_edit" label="Preço:" label-placement="floating" fill="outline"
                       id="preco_edit" class="input4" placeholder="Digite o preco" minlength="2" maxlength="14"
                       [clearInput]="true" required></ion-input>
                   </div>

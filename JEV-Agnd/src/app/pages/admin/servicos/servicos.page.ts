@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Servicos } from 'src/app/models/servico';
 import { ServicosService } from 'src/app/services/servicos/servicos.service';
+import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
+import  decimalMask  from '../../../masks/decimalMask' 
 
 @Component({
   selector: 'app-servicos',
@@ -51,10 +53,7 @@ export class ServicosPage implements OnInit {
       titulo: new FormControl('', [Validators.required]),
       descricao: new FormControl('', [Validators.required]),
       duracao: new FormControl('', [Validators.required]),
-      preco: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern(/^-?(0|[1-9]\d*)?$/)
-      ]))
+      preco: new FormControl('', [Validators.required,])
     });
   }
   get titulo() {
@@ -185,4 +184,6 @@ export class ServicosPage implements OnInit {
     }
   }
 
+  readonly decimalMask: MaskitoOptions = decimalMask;
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 }

@@ -108,9 +108,9 @@
                 </div>
 
                 <div class="item_form">
-                  <ion-input (input)="mask($event);" [value]="valorMask" placeholder="Digite o telefone"
+                  <ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate" placeholder="Digite o telefone"
                     label="Telefone do Cliente" type="tel" label-placement="floating" fill="outline"
-                    formControlName="telCli"></ion-input>
+                    formControlName="telCli" minlength="15" maxlength="15"></ion-input>
                   <div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
                     Digite um Telefone
                   </div>
@@ -157,9 +157,9 @@
                 </div>
 
                 <div class="item_form">
-                  <ion-input (input)="mask($event);" [value]="valorMask" placeholder="Digite o telefone"
+                  <ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate" placeholder="Digite o telefone"
                     label="Telefone do Cliente" label-placement="floating" fill="outline"
-                    formControlName="telCli"></ion-input>
+                    formControlName="telCli" minlength="15" maxlength="15"></ion-input>
                   <div class="message-alert" *ngIf="telCli_edit.invalid && formDir.submitted">
                     Digite um Telefone
                   </div>

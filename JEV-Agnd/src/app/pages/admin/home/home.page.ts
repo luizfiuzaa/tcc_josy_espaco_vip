@@ -53,7 +53,7 @@ export class HomePage {
   // Pega os dados da API
   getServicos() {
     this.servicosSercice.list().subscribe((dados: any) => {
-      this.Servicos = dados;
+      this.Servicos = dados.servicos;
       if(!dados.success || dados.success != 1){
         this.Servicos = [];
       }
@@ -170,7 +170,22 @@ export class HomePage {
   }
   submit_add() {
     console.log(this.AddForm.value)
-    if (this.AddForm.invalid) {
+    if (this.AddForm.valid) {
+      let agendamento = [];
+      let dia_hora = this.AddForm.value.calendario.split('T');
+      agendamento[0]= {
+        status_agendamento: 'e',
+        hora_inicio_agendamento:  dia_hora[1],
+        hora_fim_agendamento: dia_hora[1],
+        cli_agendamento: this.AddForm.value.cliente,
+        serv_agendamento: 'cabelo lindo em 5 minutos',
+        metodo_de_pagamento: this.AddForm.value.formaDePagamento,
+        preco_agend: '30.00',
+        data_agend: dia_hora[0],
+      }
+      this.agendamentosService.create(agendamento).subscribe(()=>{
+        this.getAgendamentos();
+      })
       console.log('Formulario De Adição Invalido')
       this.message = 'Falha ao agendar!!'
       this.ExibirMessage(false);

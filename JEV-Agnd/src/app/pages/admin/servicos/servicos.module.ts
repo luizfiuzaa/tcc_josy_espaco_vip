@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ServicosPageRoutingModule } from './servicos-routing.module';
+import { MaskitoModule } from '@maskito/angular';
 
 import { ServicosPage } from './servicos.page';
 import { RouterModule } from '@angular/router';
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     ServicosPageRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    MaskitoModule
   ],
   declarations: [ServicosPage]
 })

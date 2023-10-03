@@ -8,7 +8,7 @@ import { Clientes } from 'src/app/models/clientes';
 })
 export class ClientesService {
 
-  private readonly API = 'http://arquivosdaaulaapi/API/php/admin/clientes/';
+  private readonly API = 'http://localhost/aula/php/php/admin/clientes/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class ClientesService {
     return this.httpClient.delete(this.API+'remover_clientes.php?id='+ id);
   }
 
-  create(cliente: FormData): Observable<FormData> {
-    return this.httpClient.post<FormData>(this.API+'insert_clientes.php', cliente); 
+  create(cliente: any[]) {
+    return this.httpClient.post(this.API+'insert_clientes.php', cliente[0]); 
   } 
 }

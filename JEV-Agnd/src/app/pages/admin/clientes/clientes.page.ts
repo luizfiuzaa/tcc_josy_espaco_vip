@@ -4,6 +4,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { timestamp } from 'rxjs';
 import { Clientes } from 'src/app/models/clientes';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
+import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 
 
 @Component({
@@ -148,13 +149,15 @@ export class ClientesPage implements OnInit {
   submit_add() {
     console.log(this.AddForm.value)
     if (this.AddForm.valid) {
-      const formData = new FormData();
+      let  cliente = [];
 
-      formData.append("nome", this.AddForm.value.nomeCli);
-      formData.append("email", this.AddForm.value.emailCli);
-      formData.append("telefone", this.AddForm.value.telCli);
+      cliente[0] = {
+        nomeCli: this.AddForm.value.nomeCli,
+        emailCli: this.AddForm.value.emailCli,
+        telCli: this.AddForm.value.telCli
+      }
 
-      this.clientesService.create(formData).subscribe( dados => {
+      this.clientesService.create(cliente).subscribe(() => {
         this.cad_cli();
       });
       console.log('Formulario De Adição Valido')
@@ -215,35 +218,10 @@ export class ClientesPage implements OnInit {
   }
   ngOnInit() { }
 
-  valorMask: any;
-
-  mask(e: Event) {
-    let target = e.target as HTMLInputElement;
-    let value = target.value
-    setTimeout(() => {
-      var v = this.mphone(value);
-      if (v != value) {
-        this.valorMask = v;
-        console.log(v)
-      }
-    }, 1);
-  }
-
-  mphone(v: any) {
-    var r = v.replace(/\D/g, "");
-    r = r.replace(/^0/, "");
-    if (r.length > 10) {
-      r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
-    } else if (r.length > 5) {
-      r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-    } else if (r.length > 2) {
-      r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
-    } else {
-      r = r.replace(/^(\d*)/, "($1");
-    }
-    return r;
-  }
-
+  readonly phoneMask: MaskitoOptions = {
+    mask: ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+  };
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 }
 
 

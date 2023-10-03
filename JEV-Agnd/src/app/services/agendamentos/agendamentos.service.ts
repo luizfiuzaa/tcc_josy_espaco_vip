@@ -8,7 +8,7 @@ import { Agendamentos } from 'src/app/models/agendamentos';
 })
 export class AgendamentosService {
 
-  private readonly API = 'http://arquivosdaaulaapi/API/php/admin/agendamentos/';
+  private readonly API = 'http://localhost/aula/php/php/admin/agendamentos/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +22,8 @@ export class AgendamentosService {
     return this.httpClient.delete(this.API + 'remover_agendamento.php?id=' + id);
   }
 
-  create(agendamento: FormData): Observable<FormData> {
-    return this.httpClient.post<FormData>(this.API + 'insert_agendamento.php', agendamento);
+  create(agendamento: any[]){
+    console.log(agendamento)
+    return this.httpClient.post<FormData>(this.API + 'insert_agendamento.php', agendamento[0]);
   }
 }
