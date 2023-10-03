@@ -194,6 +194,9 @@ export class HomePage {
     console.log('Formulario De Adição Valido')
     this.message = 'Agendado com sucesso!!'
     this.ExibirMessage(true);
+    this.agendamentosService.create(this.AddForm.value).subscribe(()=>{
+      this.getAgendamentos();
+    })
   }
   // Modal de edição
   modalOpenAdd = false;
@@ -250,9 +253,15 @@ export class HomePage {
     this.message = 'Alterado com sucesso!!'
     this.ExibirMessage(true);
   }
+  indiceEdit:any; 
+  EditAgendamento(indice: any){
+    this.indiceEdit = indice;
+    this.setOpenEdit(true);
+  }
   // Modal de Edição
   modalOpenEdit = false;
   setOpenEdit(isOpen: any) {
+    this.agendamento = this.Agendamentos[this.indiceEdit];
     if (isOpen == true) {
       this.modalOpenEdit = isOpen;
       this.createFormEdit();
@@ -299,7 +308,6 @@ export class HomePage {
         console.log(this.Agendamentos);
         this.Agendamentos_exibidos = this.Agendamentos_exibidos.filter((agendamento: any) => agendamento.id_agendamento   !== this.indiceDel);
         console.log(this.Agendamentos_exibidos);
-
       })
     }
   }

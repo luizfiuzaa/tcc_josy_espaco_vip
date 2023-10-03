@@ -2,17 +2,18 @@
 include '../../cors.php';
 include '../../conn.php';
 
-
 try {
     $sql = "SELECT * FROM servico";
 
-    $result = $connection->query($sql);
+    $stmt = $connection->prepare($sql);
 
-    if ($result->num_rows > 0) {
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+
         $servicos = [];
-        while ($row = $result->fetch_assoc()) {
-            array_push($servicos, $row);
-        }
+
+        $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo json_encode([
             'success' => 1,

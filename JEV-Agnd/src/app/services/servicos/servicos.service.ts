@@ -8,7 +8,8 @@ import { Servicos } from 'src/app/models/servico';
 })
 export class ServicosService {
 
-  private readonly API = 'http://localhost/aula/php/php/admin/servicos/';
+  // private readonly API = 'http://localhost/aula/php/admin/servicos/';
+  private readonly API = 'http://arquivosdaaulaapi/API/php/admin/servicos/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +23,8 @@ export class ServicosService {
     return this.httpClient.delete(this.API+'remover_servicos.php?id='+ id);
   }
 
-  create(servicos: FormData): Observable<FormData> {
+  create(servicos: Servicos[]){
+    console.log(servicos)
     return this.httpClient.post<FormData>(this.API+'insert_servicos.php', servicos); 
   } 
 }

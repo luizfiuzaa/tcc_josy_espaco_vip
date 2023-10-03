@@ -154,7 +154,7 @@ export class ClientesPage implements OnInit {
       cliente[0] = {
         nomeCli: this.AddForm.value.nomeCli,
         emailCli: this.AddForm.value.emailCli,
-        telCli: this.AddForm.value.telCli
+        telCli: this.AddForm.value.telCli.replace('(', '').replace(')', '').replace(' ', '').replace('-', ''),
       }
 
       this.clientesService.create(cliente).subscribe(() => {

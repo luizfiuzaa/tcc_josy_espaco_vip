@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   constructor(private router: Router) { }
-  version: any = '2023.9.24.dev';
+  version: any = '2023.10.2.dev';
   isModalOpen = false;
 
   setOpen(isOpen: boolean) {

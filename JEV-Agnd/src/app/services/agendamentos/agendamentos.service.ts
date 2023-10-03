@@ -8,7 +8,8 @@ import { Agendamentos } from 'src/app/models/agendamentos';
 })
 export class AgendamentosService {
 
-  private readonly API = 'http://localhost/aula/php/php/admin/agendamentos/';
+  private readonly API = 'http://localhost/aula/php/admin/agendamentos/';
+  // private readonly API = 'http://arquivosdaaulaapi/API/php/admin/agendamentos/';
 
   constructor(private httpClient: HttpClient) { }
 
