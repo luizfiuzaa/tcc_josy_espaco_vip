@@ -179,6 +179,9 @@ export class HomePage {
     console.log('Formulario De Adição Valido')
     this.message = 'Agendado com sucesso!!'
     this.ExibirMessage(true);
+    this.agendamentosService.create(this.AddForm.value).subscribe(()=>{
+      this.getAgendamentos();
+    })
   }
   // Modal de edição
   modalOpenAdd = false;

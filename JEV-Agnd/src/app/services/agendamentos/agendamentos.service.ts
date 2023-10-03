@@ -23,7 +23,7 @@ export class AgendamentosService {
     return this.httpClient.delete(this.API + 'remover_agendamento.php?id=' + id);
   }
 
-  create(agendamento: FormData): Observable<FormData> {
-    return this.httpClient.post<FormData>(this.API + 'insert_agendamento.php', agendamento);
+  create(agendamento: Agendamentos[]) {
+    return this.httpClient.post<Agendamentos[]>(this.API + 'insert_agendamento.php', agendamento);
   }
 }
