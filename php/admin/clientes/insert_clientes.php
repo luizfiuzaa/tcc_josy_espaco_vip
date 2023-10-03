@@ -2,6 +2,8 @@
 include '../../cors.php';
 include '../../conn.php';
 
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
 $data = json_decode(file_get_contents("php://input"));
 
 try {
@@ -9,15 +11,15 @@ try {
     $cliente_email = htmlspecialchars(trim($data->emailCli));
     $cliente_tel = htmlspecialchars(trim($data->telCli));
 
-    $query = "INSERT INTO `cliente`(
+    $query = "INSERT INTO `cliente` (
             cliente_nome,
             cliente_tel,
-            cliente_email,
+            cliente_email
             ) 
-            VALUES(
+            VALUES (
             :cliente_nome,
             :cliente_tel,
-            :cliente_email,
+            :cliente_email
             )";
 
     $stmt = $connection->prepare($query);
@@ -48,5 +50,5 @@ try {
         'message' => $e->getMessage()
 ]);
     exit;
-}
+}}
 ?>

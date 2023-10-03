@@ -21,12 +21,12 @@ $query = "INSERT INTO `agendamento`(
             serv_agendamento
         ) 
         VALUES(
-           :hora_inicio_agendamento,
-           :hora_fim_agendamento,
-           :data_agend,
-           :status_agendamento,
-           :cli_agendamento,
-           :serv_agendamento
+            :hora_inicio_agendamento,
+            :hora_fim_agendamento,
+            :data_agend,
+            :status_agendamento,
+            :cli_agendamento,
+            :serv_agendamento
         )";
 
 $stmt = $connection->prepare($query);
@@ -35,8 +35,8 @@ $stmt->bindValue(':hora_inicio_agendamento', $hora_inicio_agendamento, PDO::PARA
 $stmt->bindValue(':hora_fim_agendamento', $hora_fim_agendamento, PDO::PARAM_STR);
 $stmt->bindValue(':data_agend', $data_agend, PDO::PARAM_STR);
 $stmt->bindValue(':status_agendamento', $status_agendamento, PDO::PARAM_STR);
-$stmt->bindValue(':cli_agendamento', $cli_agendamento, PDO::PARAM_STR);
-$stmt->bindValue(':serv_agendamento', $serv_agendamento, PDO::PARAM_STR);
+$stmt->bindValue(':cli_agendamento', $fk_id_cli, PDO::PARAM_STR);
+$stmt->bindValue(':serv_agendamento', $fk_id_serv, PDO::PARAM_STR);
 
 if ($stmt->execute()) {
     http_response_code(201);
