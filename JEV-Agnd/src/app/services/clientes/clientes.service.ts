@@ -8,8 +8,8 @@ import { Clientes } from 'src/app/models/clientes';
 })
 export class ClientesService {
 
-  private readonly API = 'http://localhost/aula/php/admin/clientes/';
-  // private readonly API = 'http://arquivosdaaulaapi/API/php/admin/clientes/';
+  // private readonly API = 'http://localhost/aula/php/admin/clientes/';
+  private readonly API = 'http://arquivosdaaulaapi/php/admin/clientes/';
 
 
   constructor(private httpClient: HttpClient) { }
