@@ -23,8 +23,8 @@ export class ServicosService {
     return this.httpClient.delete(this.API+'remover_servicos.php?id='+ id);
   }
 
-  create(servicos: Servicos[]){
-    console.log(servicos)
-    return this.httpClient.post<FormData>(this.API+'insert_servicos.php', servicos); 
+  create(servicos: any[]){
+    console.log(servicos[0])
+    return this.httpClient.post<FormData>(this.API+'insert_servicos.php', servicos[0]); 
   } 
 }

@@ -76,7 +76,9 @@ export class HomePage {
     let estado: boolean = false;
     let value = ((e.target as HTMLInputElement).value).split('T');
     let diaBuscado = new Date(value[0].replace("-", ", "));
+    console.log(diaBuscado)
     let hoje = new Date(this.hoje);
+    console.log(hoje)
 
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
       if (diaBuscado < hoje) {
@@ -178,7 +180,7 @@ export class HomePage {
         hora_inicio_agendamento:  dia_hora[1],
         hora_fim_agendamento: dia_hora[1],
         cli_agendamento: this.AddForm.value.cliente,
-        serv_agendamento: 'cabelo lindo em 5 minutos',
+        serv_agendamento: this.AddForm.value.servicos,
         metodo_de_pagamento: this.AddForm.value.formaDePagamento,
         preco_agend: '30.00',
         data_agend: dia_hora[0],

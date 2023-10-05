@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Servicos } from 'src/app/models/servico';
 import { ServicosService } from 'src/app/services/servicos/servicos.service';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
-import  decimalMask  from '../../../masks/decimalMask' 
+import decimalMask from '../../../masks/decimalMask'
 
 @Component({
   selector: 'app-servicos',
@@ -70,7 +70,15 @@ export class ServicosPage implements OnInit {
   }
   submit_add() {
     if (this.AddForm.valid) {
-      this.servicoService.create(this.AddForm.value).subscribe(()=>{
+      console.log(this.AddForm.value)
+      let servico = []
+      servico[0] = {
+        titulo: this.AddForm.value.titulo,
+        descricao: this.AddForm.value.descricao,
+        duracao: this.AddForm.value.duracao,
+        preco: this.AddForm.value.preco.replace('R$','').replace(' ', '')
+      }
+      this.servicoService.create(servico).subscribe(() => {
         this.listServicos();
       })
     }
@@ -132,15 +140,19 @@ export class ServicosPage implements OnInit {
     }
   }
   editService(indice: any) {
-    this.editFormValue = [
-      {
-        idCard: indice,
-        tituloCard: this.CardDados[indice].titulo_servico,
-        descricaoCard: this.CardDados[indice].desc_servico,
-        duracaoCard: this.CardDados[indice].duracao_servico,
-        precoCard: this.CardDados[indice].preco_servico,
+    this.CardDados.forEach(Element => {
+      if (indice == Element.id_servico) {
+        this.editFormValue = [
+          {
+            idCard: indice,
+            tituloCard: Element.titulo_servico,
+            descricaoCard: Element.desc_servico,
+            duracaoCard: Element.duracao_servico,
+            precoCard: Element.preco_servico,
+          }
+        ];
       }
-    ];
+    })
 
     this.createFormEdit();
     this.setOpenEdit(true);
