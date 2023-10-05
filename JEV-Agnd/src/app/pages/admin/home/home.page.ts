@@ -67,7 +67,10 @@ export class HomePage {
   }
 
   date = new Date();
-  hoje = String(this.date.getFullYear() + '-' + String(this.date.getMonth() + 1).padStart(2, '0') + '-' + this.date.getDate()).padStart(2, '0');
+  data_hoje = String(this.date.getFullYear() + '-' + String(this.date.getMonth() + 1).padStart(2, '0') + '-' + this.date.getDate()).padStart(2, '0');
+  hojeArray = this.data_hoje.split('-');
+  diaDeHoje = `${this.hojeArray[0]}-${this.hojeArray[1]}-0${this.hojeArray[2]}`
+  hoje = this.data_hoje.length > 9 ? this.data_hoje : this.diaDeHoje;
   diaValido: boolean = true;
   cores = [['white', '#FF0361'], ['white', '#df4980'], ['white', '#ec84ab']]
 
@@ -188,10 +191,10 @@ export class HomePage {
       this.agendamentosService.create(agendamento).subscribe(()=>{
         this.getAgendamentos();
       })
-      console.log('Formulario De Adição Invalido')
-      this.message = 'Falha ao agendar!!'
-      this.ExibirMessage(false);
-      return;
+      // console.log('Formulario De Adição Invalido')
+      // this.message = 'Falha ao agendar!!'
+      // this.ExibirMessage(false);
+      // return;
     }
     console.log('Formulario De Adição Valido')
     this.message = 'Agendado com sucesso!!'
