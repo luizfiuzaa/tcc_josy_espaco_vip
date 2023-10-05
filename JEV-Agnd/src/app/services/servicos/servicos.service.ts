@@ -9,7 +9,7 @@ import { Servicos } from 'src/app/models/servico';
 export class ServicosService {
 
   // private readonly API = 'http://localhost/aula/php/admin/servicos/';
-  private readonly API = 'http://arquivosdaaulaapi/API/php/admin/servicos/';
+  private readonly API = 'http://arquivosdaaulaapi/php/admin/servicos/';
 
   constructor(private httpClient: HttpClient) { }
 
