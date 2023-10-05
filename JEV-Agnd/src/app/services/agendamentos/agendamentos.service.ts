@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Agendamentos } from 'src/app/models/agendamentos';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +10,22 @@ import { Agendamentos } from 'src/app/models/agendamentos';
 export class AgendamentosService {
 
   // private readonly API = 'http://localhost/aula/php/admin/agendamentos/';
-  private readonly API = 'http://arquivosdaaulaapi/php/admin/agendamentos/';
+  private readonly API = environment.baseApiUrl;
 
   constructor(private httpClient: HttpClient) { }
 
   list() {
-    return this.httpClient.get<Agendamentos[]>(this.API + 'listar_agendamentos.php').pipe(
+    return this.httpClient.get<Agendamentos[]>(this.API + 'agendamentos/listar_agendamentos.php').pipe(
       tap(agendamentos => console.log(agendamentos))
     );
   }
 
   delete(id: any) {
-    return this.httpClient.delete(this.API + 'remover_agendamento.php?id=' + id);
+    return this.httpClient.delete(this.API + 'agendamentos/remover_agendamento.php?id=' + id);
   }
 
   create(agendamento: any[]){
-    console.log(agendamento)
-    return this.httpClient.post<FormData>(this.API + 'insert_agendamento.php', agendamento[0]);
+    console.log(agendamento[0])
+    return this.httpClient.post<FormData>(this.API + 'agendamentos/insert_agendamento.php', agendamento[0]);
   }
 }

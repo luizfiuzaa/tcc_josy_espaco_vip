@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: ''
+  baseApiUrl: 'http://arquivosdaaulaapi/php/admin/'
+  // baseApiUrl: 'http://localhost/aula/php/admin/'
 };
 
 /*
