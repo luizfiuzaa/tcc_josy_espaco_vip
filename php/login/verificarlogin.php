@@ -2,20 +2,20 @@
 include '../cors.php';
 include '../conn.php';
 
-// $method = $_SERVER['REQUEST_METHOD'];
+$method = $_SERVER['REQUEST_METHOD'];
 
-// if ($method == "OPTIONS") {
-//     die();
-// }
+if ($method == "OPTIONS") {
+    die();
+}
 
-// if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
-//     http_response_code(405);
-//     echo json_encode([
-//         'success' => 0,
-//         'message' => 'Falha na requisição!. Somente o método POST é permitido',
-//     ]);
-//     exit;
-// }
+if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
+    http_response_code(405);
+    echo json_encode([
+        'success' => 0,
+        'message' => 'Falha na requisição!. Somente o método POST é permitido',
+    ]);
+    exit;
+}
 
 $data = json_decode(file_get_contents("php://input"));
 

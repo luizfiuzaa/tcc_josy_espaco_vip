@@ -24,10 +24,11 @@ export class LoginPage implements OnInit {
 
   submit_login(form: any) {
     console.log(form)
-    this.loginService.verificar(form).subscribe(data => {
+    this.loginService.verificar(form).subscribe((data: any) => {
       console.log(data)
-      
-      // this.router.navigate(['/home']);
+      if(data.success == '1'){
+        this.router.navigate(['/home']);
+      }
     })
   }
 
