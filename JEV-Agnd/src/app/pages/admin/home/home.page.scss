@@ -206,11 +206,17 @@ ion-spinner {
 }
 
 .calendar__filter{
+  background: white;
   width: 90%;
   max-height: 100%;
+  height: 450px;
   margin: auto;
   border: 1px solid black;
   border-radius: 10px;
+}
+
+.calendar__filter__title{
+  color: var(--ion-color-primary);
 }
 
 .calendar__toolbar{
@@ -218,4 +224,10 @@ ion-spinner {
   justify-content: center;
   align-items: center;
   margin-top: 5%;
+}
+
+h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
