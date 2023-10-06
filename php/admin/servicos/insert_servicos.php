@@ -2,9 +2,23 @@
 include '../../cors.php';
 include '../../conn.php';
 
-$data = json_decode(file_get_contents("php://input"));
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method == "OPTIONS") {
+    die();
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
+    http_response_code(405);
+    echo json_encode([
+        'success' => 0,
+        'message' => 'Falha na requisição!. Somente o método POST é permitido',
+    ]);
+    exit;
+}
+
+$data = json_decode(file_get_contents("php://input"));
 
 try {
     $titulo_servico = htmlspecialchars(trim($data->titulo));
@@ -36,14 +50,14 @@ try {
         http_response_code(201);
         echo json_encode([
             'success' => 1,
-            'message' => 'Data Inserted Successfully.'
+            'message' => 'Data inserida com sucesso'
         ]);
         exit;
     }
 
     echo json_encode([
         'success' => 0,
-        'message' => 'There is some problem in data inserting'
+        'message' => 'Há algum problema na inserção de dados'
     ]);
     exit;
 
@@ -54,5 +68,5 @@ try {
         'message' => $e->getMessage()
     ]);
     exit;
-}}
+}
 ?>

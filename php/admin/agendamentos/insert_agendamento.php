@@ -2,9 +2,30 @@
 include '../../cors.php';
 include '../../conn.php';
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method == "OPTIONS") {
+    die();
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
+    http_response_code(405);
+    echo json_encode([
+        'success' => 0,
+        'message' => 'Falha na requisição!. Somente o método POST é permitido',
+    ]);
+    exit;
+}
 
 $data = json_decode(file_get_contents("php://input"));
+
+$servicos = $data->serv_agendamento;
+
+$servicos_list = '';
+foreach ($servicos as $indice => $servico){
+if( $indice <= count($servicos)-1)
+    $servicos_list .= $servico . ',';
+}
 
 try {
     
@@ -15,7 +36,7 @@ $status_agendamento = htmlspecialchars(trim($data->status_agendamento));
 $preco_serv = htmlspecialchars(trim($data->preco_agend));
 $metodo_pagamento = htmlspecialchars(trim($data->metodo_de_pagamento));
 $fk_id_cli = htmlspecialchars(trim($data->cli_agendamento));
-$fk_id_serv = htmlspecialchars(trim($data->serv_agendamento));
+$fk_id_serv = $servicos_list;
 
 $query = "INSERT INTO `agendamento`(
             hora_inicio_agendamento,
@@ -53,14 +74,14 @@ if ($stmt->execute()) {
     http_response_code(201);
     echo json_encode([
         'success' => 1,
-        'message' => 'Data Inserted Successfully.'
+        'message' => 'Data inserida com sucesso'
     ]);
     exit;
 }
 
 echo json_encode([
     'success' => 0,
-    'message' => 'There is some problem in data inserting'
+    'message' => 'Há algum problema na inserção de dados'
 ]);
 exit;
 
@@ -71,6 +92,5 @@ echo json_encode([
     'message' => $e->getMessage()
 ]);
 exit;
-}
 }
 ?>
