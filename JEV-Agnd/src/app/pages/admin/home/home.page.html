@@ -230,9 +230,11 @@
 								<!-- Serviços -->
 								<div class="item_form">
 									<ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
-										[multiple]="true" interface="popover" formControlName="servicos">
-										<ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">{{
-											servicos.titulo_servico }}</ion-select-option>
+										[multiple]="true" interface="popover" formControlName="servicos"
+										(ionChange)="precoAgendamento($event)">
+										<ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
+											{{ servicos.titulo_servico }}
+										</ion-select-option>
 									</ion-select>
 									<div class="message-alert" *ngIf="servicos_add.invalid && formDir.submitted">
 										Selecione o(s) serviço(s).
@@ -253,13 +255,9 @@
 									</div>
 								</div>
 								<!-- Preço -->
-								<div>
-									<ion-text>
-										<h3>Preço (R$):</h3>
-									</ion-text>
-									<ion-text>
-										<p>xx.xx</p>
-									</ion-text>
+								<div class="precoAgend">
+									<p class="tituloPreco">Preço (R$): </p>
+									<ion-input class="inputPreco" type="text" [value]="precoAgend" readonly></ion-input>
 								</div>
 							</div>
 						</ion-list>

@@ -19,6 +19,7 @@ ion-menu-button {
 }
 
 @media only screen and (min-width:770px) {
+
   .form_modalAdd,
   .form_modalEdit {
     padding: 0px 40px 0px 40px;
@@ -48,7 +49,8 @@ ion-card {
     --color: var(--ion-color-warning);
   }
 
-  #horario, #data {
+  #horario,
+  #data {
     --color: var(--ion-color-primary);
   }
 
@@ -152,7 +154,7 @@ ion-card {
   flex-direction: column;
 }
 
-ion-datetime{
+ion-datetime {
   max-width: 100%;
 }
 
@@ -175,7 +177,7 @@ ion-spinner {
 @media only screen and (max-width:900px) {
   .header__search {
     flex-direction: column;
-  } 
+  }
 }
 
 .header__search div {
@@ -205,7 +207,7 @@ ion-spinner {
   gap: 4%;
 }
 
-.calendar__filter{
+.calendar__filter {
   background: white;
   width: 90%;
   max-height: 100%;
@@ -215,19 +217,28 @@ ion-spinner {
   border-radius: 10px;
 }
 
-.calendar__filter__title{
+.calendar__filter__title {
   color: var(--ion-color-primary);
 }
 
-.calendar__toolbar{
+.calendar__toolbar {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 5%;
 }
 
-h3{
+h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.precoAgend {
+  display: flex;
+  align-items: center;
+}
+.tituloPreco {
+  min-width: 80px;
+  margin: 0 10px 0 0;
 }

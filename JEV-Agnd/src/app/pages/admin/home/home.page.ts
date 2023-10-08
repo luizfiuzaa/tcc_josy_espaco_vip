@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { elements } from 'chart.js';
 import { Agendamentos } from 'src/app/models/agendamentos';
 import { Clientes } from 'src/app/models/clientes';
 import { Servicos } from 'src/app/models/servico';
@@ -35,7 +36,7 @@ export class HomePage {
     this.agendamentosService.list().subscribe((dados: any) => {
       this.isLoading = false;
       this.Agendamentos = dados.agendamentos;
-      if(!dados.success || dados.success != 1){
+      if (!dados.success || dados.success != 1) {
         this.Agendamentos = [];
       }
       this.atualizarDados();
@@ -45,7 +46,7 @@ export class HomePage {
   getClientes() {
     this.clientesSercice.list().subscribe((dados: any) => {
       this.Clientes = dados.clientes;
-      if(!dados.success || dados.success != 1){
+      if (!dados.success || dados.success != 1) {
         this.Clientes = [];
       }
     })
@@ -54,7 +55,7 @@ export class HomePage {
   getServicos() {
     this.servicosSercice.list().subscribe((dados: any) => {
       this.Servicos = dados.servicos;
-      if(!dados.success || dados.success != 1){
+      if (!dados.success || dados.success != 1) {
         this.Servicos = [];
       }
     })
@@ -152,6 +153,7 @@ export class HomePage {
   // Form de adição
   AddForm!: FormGroup;
   createFormAdd() {
+    this.precoAgend = 0;
     this.AddForm = new FormGroup({
       id: new FormControl(''),
       cliente: new FormControl('', [Validators.required]),
@@ -177,17 +179,17 @@ export class HomePage {
     if (this.AddForm.valid) {
       let agendamento = [];
       let dia_hora = this.AddForm.value.calendario.split('T');
-      agendamento[0]= {
+      agendamento[0] = {
         status_agendamento: 'e',
-        hora_inicio_agendamento:  dia_hora[1],
+        hora_inicio_agendamento: dia_hora[1],
         hora_fim_agendamento: dia_hora[1],
         cli_agendamento: this.AddForm.value.cliente,
         serv_agendamento: this.AddForm.value.servicos,
         metodo_de_pagamento: this.AddForm.value.formaDePagamento,
-        preco_agend: '30.00',
+        preco_agend: this.precoAgend,
         data_agend: dia_hora[0],
       }
-      this.agendamentosService.create(agendamento).subscribe(()=>{
+      this.agendamentosService.create(agendamento).subscribe(() => {
         this.getAgendamentos();
       })
       // console.log('Formulario De Adição Invalido')
@@ -198,7 +200,7 @@ export class HomePage {
     console.log('Formulario De Adição Valido')
     this.message = 'Agendado com sucesso!!'
     this.ExibirMessage(true);
-    this.agendamentosService.create(this.AddForm.value).subscribe(()=>{
+    this.agendamentosService.create(this.AddForm.value).subscribe(() => {
       this.getAgendamentos();
     })
   }
@@ -230,7 +232,7 @@ export class HomePage {
       cliente: new FormControl('', [Validators.required]),
       calendario: new FormControl('', [Validators.required]),
       servicos: new FormControl('', [Validators.required]),
-      formaDePagamento: new FormControl('', [Validators.required])
+      formaDePagamento: new FormControl('', [Validators.required]),
     });
   }
   get cliente_edit() {
@@ -257,8 +259,8 @@ export class HomePage {
     this.message = 'Alterado com sucesso!!'
     this.ExibirMessage(true);
   }
-  indiceEdit:any; 
-  EditAgendamento(indice: any){
+  indiceEdit: any;
+  EditAgendamento(indice: any) {
     this.indiceEdit = indice;
     this.setOpenEdit(true);
   }
@@ -310,7 +312,7 @@ export class HomePage {
       this.agendamentosService.delete(this.indiceDel).subscribe(() => {
         this.Agendamentos = this.Agendamentos.filter((agendamento: any) => agendamento.id_agendamento !== this.indiceDel);
         console.log(this.Agendamentos);
-        this.Agendamentos_exibidos = this.Agendamentos_exibidos.filter((agendamento: any) => agendamento.id_agendamento   !== this.indiceDel);
+        this.Agendamentos_exibidos = this.Agendamentos_exibidos.filter((agendamento: any) => agendamento.id_agendamento !== this.indiceDel);
         console.log(this.Agendamentos_exibidos);
       })
     }
@@ -372,4 +374,19 @@ export class HomePage {
     }, 3000)
     console.log(this.toast)
   }
+
+  precoAgend: number = 0;
+  precoAgendamento(e: any) {
+    let preco: number = 0;
+    let id = e.detail.value;
+    id.forEach((currentId: number) => {
+      let servico = this.Servicos.find((element: any) => element.id_servico == currentId);
+      if (servico) {
+        preco += Number(servico.preco_servico);
+      }
+    });
+
+    this.precoAgend = preco;
+  }
+
 }
