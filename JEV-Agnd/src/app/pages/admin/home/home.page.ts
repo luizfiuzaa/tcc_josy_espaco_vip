@@ -71,6 +71,8 @@ export class HomePage {
   hojeArray = this.data_hoje.split('-');
   diaDeHoje = `${this.hojeArray[0]}-${this.hojeArray[1]}-0${this.hojeArray[2]}`
   hoje = this.data_hoje.length > 9 ? this.data_hoje : this.diaDeHoje;
+  myDate: String = new Date(this.hoje).toISOString();
+  dataFilter = `${this.hoje}T00:00:00`;
   diaValido: boolean = true;
   cores = [['white', '#FF0361'], ['white', '#df4980'], ['white', '#ec84ab']]
 
@@ -78,11 +80,9 @@ export class HomePage {
     this.open_calendario(false);
     let estado: boolean = false;
     let value = ((e.target as HTMLInputElement).value).split('T');
+    this.myDate = new Date(value[0]).toISOString();
     let diaBuscado = new Date(value[0].replace("-", ", "));
-    console.log(diaBuscado)
     let hoje = new Date(this.hoje);
-    console.log(hoje)
-
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
       if (diaBuscado < hoje) {
         this.diaValido = false;
@@ -150,7 +150,6 @@ export class HomePage {
     }
   }
   // Form de adição
-  myDate: String = new Date().toISOString();
   AddForm!: FormGroup;
   createFormAdd() {
     this.AddForm = new FormGroup({

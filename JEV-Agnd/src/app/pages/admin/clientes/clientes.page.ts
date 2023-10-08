@@ -152,7 +152,7 @@ export class ClientesPage implements OnInit {
       let  cliente = [];
 
       cliente[0] = {
-        nomeCli: this.AddForm.value.nomeCli,
+        nomeCli: this.AddForm.value.nomeCli.toLocaleLowerCase(),
         emailCli: this.AddForm.value.emailCli,
         telCli: this.AddForm.value.telCli.replace('(', '').replace(')', '').replace(' ', '').replace('-', ''),
       }

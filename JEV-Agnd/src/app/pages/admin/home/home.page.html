@@ -205,7 +205,7 @@
 						<ion-list lines="none" class="list-content" mode="md">
 							<div class="container_form">
 								<ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate" formControlName="calendario"
-									minuteValues="0,15,30,45" [isDateEnabled]="isWeekday" class="calendario_modal" mode="md">
+									minuteValues="0,15,30,45" class="calendario_modal" mode="md">
 									<span slot="time-label">
 										<ion-text class="time_title">
 											<ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -220,7 +220,7 @@
 								<div class="item_form">
 									<ion-select label="Cliente" label-placement="floating" interface="popover" formControlName="cliente">
 										<!-- Opções de clientes -->
-										<ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.cliente_nome">{{
+										<ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{
 											cliente.cliente_nome }}</ion-select-option>
 									</ion-select>
 									<div class="message-alert" *ngIf="cliente_add.invalid && formDir.submitted">
@@ -231,7 +231,7 @@
 								<div class="item_form">
 									<ion-select label="Serviço(s):" label-placement="floating" placeholder="Selecione o(s) serviço(s)"
 										[multiple]="true" interface="popover" formControlName="servicos">
-										<ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.titulo_servico">{{
+										<ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">{{
 											servicos.titulo_servico }}</ion-select-option>
 									</ion-select>
 									<div class="message-alert" *ngIf="servicos_add.invalid && formDir.submitted">
@@ -284,7 +284,9 @@
 				</ion-toolbar>
 				<ion-datetime mode="ios" [highlightedDates]="highlightedDates" presentation="date" class="calendar__filter"
 					(ionChange)="filterDate($event)">
-					<span slot="title" class="calendar__filter__title"><h3>Selecione uma data</h3></span>
+					<span slot="title" class="calendar__filter__title">
+						<h3>Selecione uma data</h3>
+					</span>
 				</ion-datetime>
 			</ng-template>
 		</ion-modal>

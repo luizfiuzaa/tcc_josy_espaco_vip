@@ -11,19 +11,19 @@
   <ion-content [fullscreen]="true">
     <ion-row class="ion-justify-content-center">
       <ion-col class="col_content" size-lg="10" size-md="10" size="12">
+        <!-- Search Bar -->
+        <ion-item>
+          <ion-col size="12">
+            <form action="GET" method="get">
+              <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"
+                (input)="filterClienteName($event)"></ion-searchbar>
+            </form>
+          </ion-col>
+        </ion-item>
         <!-- Se tiver algum Cliente -->
         <div class="content" *ngIf="ClienteCad && ClienteCad.length > 0; else noClientes">
           <ion-list lines="none">
 
-            <!-- Search Bar -->
-            <ion-item>
-              <ion-col size="12">
-                <form action="GET" method="get">
-                  <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"
-                    (input)="filterClienteName($event)"></ion-searchbar>
-                </form>
-              </ion-col>
-            </ion-item>
 
             <div class="cliente__main" *ngFor="let Clientes of clientes_Exibidos">
               <ion-item>
@@ -64,8 +64,8 @@
 
         <!-- Senão Exiba -->
         <ng-template #noClientes>
-          <ion-col size="12" class="noClientes" 
-          *ngIf="clientes_Exibidos && clientes_Exibidos.length == 0 && !this.isLoading">
+          <ion-col size="12" class="noClientes"
+            *ngIf="clientes_Exibidos && clientes_Exibidos.length == 0 && !this.isLoading">
             <ion-text class="ion-text-center">
               <p>Os seus clientes serão exibidos neste local.</p>
               <ion-buttons class="button_add">
@@ -158,8 +158,8 @@
 
                 <div class="item_form">
                   <ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate" placeholder="Digite o telefone"
-                    label="Telefone do Cliente" label-placement="floating" fill="outline"
-                    formControlName="telCli" minlength="15" maxlength="15"></ion-input>
+                    label="Telefone do Cliente" label-placement="floating" fill="outline" formControlName="telCli"
+                    minlength="15" maxlength="15"></ion-input>
                   <div class="message-alert" *ngIf="telCli_edit.invalid && formDir.submitted">
                     Digite um Telefone
                   </div>
