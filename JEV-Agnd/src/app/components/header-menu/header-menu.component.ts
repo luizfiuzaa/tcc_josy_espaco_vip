@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-header-menu',
@@ -7,10 +8,14 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./header-menu.component.scss'],
 })
 export class HeaderMenuComponent implements OnInit {
-  constructor(private menu: MenuController){}
+  constructor(private menu: MenuController, private login: LoginService){}
 
   menuClose(){
     this.menu.close();
+  }
+
+  deslogar(){
+    this.login.deslogar();
   }
 
   ngOnInit(): void {

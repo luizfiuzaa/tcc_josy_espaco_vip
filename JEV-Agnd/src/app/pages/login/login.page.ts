@@ -18,15 +18,14 @@ export class LoginPage implements OnInit {
     this.isModalOpen = isOpen;
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   submit_login(form: any) {
     console.log(form)
     this.loginService.verificar(form).subscribe((data: any) => {
       console.log(data)
       if(data.success == '1'){
+        this.loginService.autorizar();
         this.router.navigate(['/home']);
       }
     })

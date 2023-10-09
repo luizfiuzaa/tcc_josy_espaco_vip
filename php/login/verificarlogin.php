@@ -23,8 +23,8 @@ try {
 
     $sql = "SELECT * FROM `admin` WHERE email_admin=:email AND senha_admin=:senha";
     $stmt = $connection->prepare($sql);
-    $stmt->bindValue(':email', $data->email, PDO::PARAM_INT);
-    $stmt->bindValue(':senha', $data->password, PDO::PARAM_INT);
+    $stmt->bindValue(':email', $data->email, PDO::PARAM_STR);
+    $stmt->bindValue(':senha', $data->password, PDO::PARAM_STR);
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {

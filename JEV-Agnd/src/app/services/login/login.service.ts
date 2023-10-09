@@ -14,7 +14,21 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
 
-  verificar(login: any[]){
+  autorizado = false;
+
+  autorizar() {
+    localStorage.setItem('login', 'sim')
+  }
+
+  deslogar() {
+    localStorage.clear();
+  }
+
+  statusLogin() {
+    return !!localStorage.getItem('login');
+  }
+
+  verificar(login: any[]) {
     console.log(login)
     return this.httpClient.post(this.API + 'login/verificarlogin.php', login);
   }
