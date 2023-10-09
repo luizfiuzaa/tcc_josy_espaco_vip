@@ -177,12 +177,10 @@ export class HomePage {
   submit_add() {
     console.log(this.AddForm.value)
     if (this.AddForm.valid) {
-      let agendamento = [];
-      let dia_hora = this.AddForm.value.calendario.split('T');
-      agendamento[0] = {
+      let dia_hora = ((this.AddForm.value.calendario).replace('.000Z', '')).split('T');
+      let agendamento = {
         status_agendamento: 'e',
         hora_inicio_agendamento: dia_hora[1],
-        hora_fim_agendamento: dia_hora[1],
         cli_agendamento: this.AddForm.value.cliente,
         serv_agendamento: this.AddForm.value.servicos,
         metodo_de_pagamento: this.AddForm.value.formaDePagamento,
@@ -192,17 +190,14 @@ export class HomePage {
       this.agendamentosService.create(agendamento).subscribe(() => {
         this.getAgendamentos();
       })
-      // console.log('Formulario De Adição Invalido')
-      // this.message = 'Falha ao agendar!!'
-      // this.ExibirMessage(false);
-      // return;
+      console.log('Formulario De Adição Valido')
+      this.message = 'Agendado com sucesso!!'
+      this.ExibirMessage(true);
+      return;
     }
-    console.log('Formulario De Adição Valido')
-    this.message = 'Agendado com sucesso!!'
-    this.ExibirMessage(true);
-    this.agendamentosService.create(this.AddForm.value).subscribe(() => {
-      this.getAgendamentos();
-    })
+    console.log('Formulario De Adição Invalido')
+    this.message = 'Falha ao agendar!!'
+    this.ExibirMessage(false);
   }
   // Modal de edição
   modalOpenAdd = false;
