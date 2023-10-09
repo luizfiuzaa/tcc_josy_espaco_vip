@@ -9,10 +9,18 @@
   </ion-header>
   <ion-content [fullscreen]="true">
 
-    <ion-row>
-
-      <ion-col class="container" size="12" *ngIf="CardDados && CardDados.length > 0; else noCards">
-        <ion-card *ngFor="let card of CardDados; let i = index" class="card">
+    <ion-row class="ion-justify-content-center">
+      <!-- Search Bar -->
+      <ion-item>
+        <ion-col size="12">
+          <form action="GET" method="get">
+            <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"
+              (input)="filterServicoTitle($event)"></ion-searchbar>
+          </form>
+        </ion-col>
+      </ion-item>
+      <ion-col class="container" size="12" *ngIf="Servicos_exibidos && Servicos_exibidos.length > 0; else noCards">
+        <ion-card *ngFor="let card of Servicos_exibidos; let i = index" class="card">
           <abbr>
             <ion-card-content class="icon_card">
               <ion-row>
@@ -104,8 +112,9 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input formControlName="duracao" label="Duração:" label-placement="floating" fill="outline"
-                      id="duracao" placeholder="Digite a duração" [clearInput]="true" required></ion-input>
+                    <ion-input formControlName="duracao" label="Duração(mins):" label-placement="floating"
+                      fill="outline" id="duracao" placeholder="Digite a duração" [clearInput]="true"
+                      required></ion-input>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="duracao.invalid && formDir.submitted">
@@ -115,8 +124,9 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate" formControlName="preco" label="Preço:" label-placement="floating" fill="outline"
-                      id="preco" class="input4" placeholder="Digite o preço" [clearInput]="true" required></ion-input>
+                    <ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate" formControlName="preco"
+                      label="Preço:" label-placement="floating" fill="outline" id="preco" class="input4"
+                      placeholder="Digite o preço" [clearInput]="true" required></ion-input>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="preco.invalid && formDir.submitted">
@@ -183,9 +193,9 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input formControlName="duracao_edit" label="Duração:" label-placement="floating" fill="outline"
-                      id="duracao_edit" placeholder="Digite a duração" minlength="1" maxlength="5" [clearInput]="true"
-                      required>
+                    <ion-input formControlName="duracao_edit" label="Duração(minutos):" label-placement="floating"
+                      fill="outline" id="duracao_edit" placeholder="Digite a duração" minlength="1" maxlength="5"
+                      [clearInput]="true" required>
                     </ion-input>
                   </div>
                 </div>
@@ -196,9 +206,10 @@
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
-                    <ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate" formControlName="preco_edit" label="Preço:" label-placement="floating" fill="outline"
-                      id="preco_edit" class="input4" placeholder="Digite o preco" minlength="2" maxlength="14"
-                      [clearInput]="true" required></ion-input>
+                    <ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate" formControlName="preco_edit"
+                      label="Preço:" label-placement="floating" fill="outline" id="preco_edit" class="input4"
+                      placeholder="Digite o preco" minlength="2" maxlength="14" [clearInput]="true"
+                      required></ion-input>
                   </div>
                 </div>
                 <div class="message-alert" *ngIf="preco_edit.invalid && formDir.submitted">

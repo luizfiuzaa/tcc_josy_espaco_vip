@@ -43,11 +43,12 @@ ion-card {
     padding: 0;
 }
 
-.icon_card ion-row{
+.icon_card ion-row {
     height: 100%;
 }
 
-.icon__editar, .icon__apagar{
+.icon__editar,
+.icon__apagar {
     height: 50%;
     display: flex;
     justify-content: center;
@@ -55,8 +56,11 @@ ion-card {
     transition: .5s;
 }
 
-.icon__editar:hover, .icon__apagar:hover, .icon__editar:focus, .icon__apagar:focus{
-transform: scale(1.1);
+.icon__editar:hover,
+.icon__apagar:hover,
+.icon__editar:focus,
+.icon__apagar:focus {
+    transform: scale(1.1);
 }
 
 .card_context {
@@ -88,8 +92,10 @@ transform: scale(1.1);
     align-items: center;
     justify-content: center;
 }
+
 .title {
     margin-bottom: 10px;
+    text-transform: capitalize;
 }
 
 // Forms
@@ -110,7 +116,7 @@ transform: scale(1.1);
     padding: 10px;
 }
 
-.input_item{
+.input_item {
     width: 100%;
 }
 
@@ -121,6 +127,10 @@ transform: scale(1.1);
 
     .form__inputs {
         width: 100%;
+    }
+
+    .container {
+        padding: 10px 0;
     }
 }
 
@@ -160,6 +170,16 @@ transform: scale(1.1);
     margin-right: 15px;
 }
 
-.button_fab #add{
+.button_fab #add {
     transform: rotate(227deg);
+}
+
+.searchBar {
+    width: 100%;
+}
+
+ion-item {
+    width: calc(100% - 20px);
+    --inner-padding-end: 0;
+    --padding-start: 0;
 }

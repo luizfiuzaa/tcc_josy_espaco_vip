@@ -16,7 +16,8 @@ import decimalMask from '../../../masks/decimalMask'
 export class ServicosPage implements OnInit {
   ngOnInit(): void { }
   @Input() Card_Dados: Servicos[] = [];
-  CardDados: Servicos[] = [];
+  Servicos: Servicos[] = [];
+  Servicos_exibidos: Servicos[] = [];
 
   constructor(private servicoService: ServicosService) {
     this.listServicos();
@@ -24,10 +25,11 @@ export class ServicosPage implements OnInit {
 
   listServicos() {
     this.servicoService.list().subscribe((dados: any) => {
-      this.CardDados = dados.servicos;
+      this.Servicos = dados.servicos;
       if (!dados.success || dados.success != 1) {
-        this.CardDados = [];
+        this.Servicos = [];
       }
+      this.Servicos_exibidos = this.Servicos;
     })
   }
 
@@ -73,10 +75,10 @@ export class ServicosPage implements OnInit {
       console.log(this.AddForm.value)
       let servico = []
       servico[0] = {
-        titulo: this.AddForm.value.titulo,
+        titulo: this.AddForm.value.titulo.toLocaleLowerCase(),
         descricao: this.AddForm.value.descricao,
         duracao: this.AddForm.value.duracao,
-        preco: this.AddForm.value.preco.replace('R$','').replace(' ', '')
+        preco: this.AddForm.value.preco.replace('R$', '').replace(/\s/g, '')
       }
       this.servicoService.create(servico).subscribe(() => {
         this.listServicos();
@@ -126,7 +128,7 @@ export class ServicosPage implements OnInit {
       return;
     }
     console.log('Formulario De Edição Concluído')
-    this.CardDados[this.EditForm.value.id_edit] = {
+    this.Servicos[this.EditForm.value.id_edit] = {
       titulo_servico: this.EditForm.value.titulo_edit,
       desc_servico: this.EditForm.value.descricao_edit,
       duracao_servico: this.EditForm.value.duracao_edit,
@@ -140,7 +142,7 @@ export class ServicosPage implements OnInit {
     }
   }
   editService(indice: any) {
-    this.CardDados.forEach(Element => {
+    this.Servicos.forEach(Element => {
       if (indice == Element.id_servico) {
         this.editFormValue = [
           {
@@ -186,9 +188,33 @@ export class ServicosPage implements OnInit {
     this.setOpenDelete(false);
     if (ev.detail.role == 'confirm') {
       this.servicoService.delete(this.indiceDel).subscribe(() => {
-        this.CardDados = this.CardDados.filter((servicos: any) => servicos.id_servico !== this.indiceDel);
-        console.log(this.CardDados)
+        this.Servicos = this.Servicos.filter((servico: any) => servico.id_servico !== this.indiceDel);
+        this.Servicos_exibidos = this.Servicos;
       });
+    }
+  }
+
+  filterServicoTitle(e: Event) {
+    let estado: boolean = false;
+    const target = e.target as HTMLInputElement;
+    const value = target.value;
+    // console.log(value)
+
+    this.Servicos_exibidos = this.Servicos.filter((servico) => {
+      if (servico.titulo_servico.includes(value.toLocaleLowerCase())) {
+        estado = true;
+      }
+      console.log(value)
+      return servico.titulo_servico.includes(value.toLocaleLowerCase());
+    });
+    this.verificarEstado(estado);
+  }
+
+  verificarEstado(estado: any) {
+    if (!estado) {
+      setTimeout(() => {
+        this.Servicos_exibidos = this.Servicos
+      }, 1000)
     }
   }
 
