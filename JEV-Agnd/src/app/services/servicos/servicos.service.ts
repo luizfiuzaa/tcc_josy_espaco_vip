@@ -28,4 +28,9 @@ export class ServicosService {
     console.log(servicos[0])
     return this.httpClient.post<FormData>(this.API+'servicos/insert_servicos.php', servicos[0]); 
   } 
+
+  update(servicos: any){
+    console.log(servicos[0])
+    return this.httpClient.put<FormData>(this.API+'servicos/update_servicos.php', servicos[0]);
+  }
 }

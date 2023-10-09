@@ -40,6 +40,9 @@ export class ServicosPage implements OnInit {
     if (this.AddForm.invalid) {
       return;
     }
+    if (this.EditForm.invalid) {
+      return;
+    }
 
     console.log('Deus é fiel!!!');
     const formData = new FormData();
@@ -48,6 +51,13 @@ export class ServicosPage implements OnInit {
     formData.append("descricao", this.AddForm.value.descricao);
     formData.append("duracao", this.AddForm.value.duracao);
     formData.append("preco", this.AddForm.value.preco);
+
+    const formDataEdit = new FormData();
+
+    formDataEdit.append("titulo", this.EditForm.value.titulo);
+    formDataEdit.append("descricao", this.EditForm.value.descricao);
+    formDataEdit.append("duracao", this.EditForm.value.duracao);
+    formDataEdit.append("preco", this.EditForm.value.preco);
   }
   createFormAdd() {
     this.AddForm = new FormGroup({
@@ -101,6 +111,22 @@ export class ServicosPage implements OnInit {
   editFormValue: any = [];
   modalOpenEdit = false;
   modalCloseEdit = false;
+  async createHandlerEdit(event: any) {
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    console.log('Deus é fiel!!!');
+    const formData = new FormData();
+
+    formData.append("titulo", this.EditForm.value.titulo);
+    formData.append("descricao", this.EditForm.value.descricao);
+    formData.append("duracao", this.EditForm.value.duracao);
+    formData.append("preco", this.EditForm.value.preco);
+
+    const formDataEdit = new FormData();
+  }
+
   createFormEdit() {
     this.EditForm = new FormGroup({
       id_edit: new FormControl(this.editFormValue ? this.editFormValue[0].idCard : ''),
@@ -123,17 +149,32 @@ export class ServicosPage implements OnInit {
     return this.EditForm.get('preco_edit')!;
   }
   submit_edit() {
-    if (this.EditForm.invalid) {
-      console.log('Formulario De Edição Invalido')
-      return;
+
+    if (this.EditForm.valid) {
+      console.log(this.EditForm.value)
+      let servico = []
+      servico[0] = {
+        titulo: this.EditForm.value.titulo,
+        descricao: this.EditForm.value.descricao,
+        duracao: this.EditForm.value.duracao,
+        preco: this.EditForm.value.preco
+      }
+      this.servicoService.update(servico).subscribe(() => {
+        this.listServicos();
+      })
     }
-    console.log('Formulario De Edição Concluído')
-    this.Servicos[this.EditForm.value.id_edit] = {
-      titulo_servico: this.EditForm.value.titulo_edit,
-      desc_servico: this.EditForm.value.descricao_edit,
-      duracao_servico: this.EditForm.value.duracao_edit,
-      preco_servico: this.EditForm.value.preco_edit,
-    };
+
+    // if (this.EditForm.invalid) {
+    //   console.log('Formulario De Edição Invalido')
+    //   return;
+    // }
+    // console.log('Formulario De Edição Concluído')
+    // this.Servicos[this.EditForm.value.id_edit] = {
+    //   titulo_servico: this.EditForm.value.titulo_edit,
+    //   desc_servico: this.EditForm.value.descricao_edit,
+    //   duracao_servico: this.EditForm.value.duracao_edit,
+    //   preco_servico: this.EditForm.value.preco_edit,
+    // };
   }
   setOpenEdit(isOpen: any) {
     if (isOpen == true || this.EditForm.invalid && isOpen == false || this.EditForm.valid && isOpen == false) {
