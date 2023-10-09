@@ -24,8 +24,8 @@ export class AgendamentosService {
     return this.httpClient.delete(this.API + 'agendamentos/remover_agendamento.php?id=' + id);
   }
 
-  create(agendamento: any[]){
+  create(agendamento: any){
     console.log(agendamento)
-    return this.httpClient.post(this.API + 'agendamentos/insert_agendamento.php', agendamento[0]);
+    return this.httpClient.post(this.API + 'agendamentos/insert_agendamento.php', agendamento);
   }
 }
