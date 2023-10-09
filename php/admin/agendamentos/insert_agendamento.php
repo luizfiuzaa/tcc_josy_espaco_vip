@@ -19,14 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $data = json_decode(file_get_contents("php://input"));
 
-
-
 try {
 
     $servicos = $data->serv_agendamento;
     $servicos_list = ['', ''];
+    $duracao = 0;
     foreach ($servicos as $indice => $servico) {
-        $sql = "SELECT `titulo_servico`, `frequencia` FROM `servico` WHERE id_servico=:id";
+        $sql = "SELECT `titulo_servico`, `frequencia`, `duracao_servico` FROM `servico` WHERE id_servico=:id";
         $stmt = $connection->prepare($sql);
         $stmt->bindValue(':id', $servico, PDO::PARAM_INT);
         $stmt->execute();
@@ -44,7 +43,12 @@ try {
         $stmt->bindValue(':id', $servico, PDO::PARAM_INT);
         $stmt->bindValue(':frequencia', $frequencia, PDO::PARAM_INT);
         $stmt->execute();
+        $duracao += $result['duracao_servico'];
     }
+
+    $hora = new DateTime(substr(htmlspecialchars(trim($data->hora_inicio_agendamento)), 0, 5));
+    $minutos = new DateInterval('PT' . $duracao . 'M');
+    $hora->add($minutos);
 
     $cliente = $data->cli_agendamento;
     $sql = "SELECT `cliente_nome` FROM `cliente` WHERE id_cliente=:id";
@@ -54,8 +58,8 @@ try {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $cliente = $result['cliente_nome'];
 
-    $hora_inicio_agendamento = htmlspecialchars(trim($data->hora_inicio_agendamento));
-    $hora_fim_agendamento = htmlspecialchars(trim($data->hora_fim_agendamento));
+    $hora_inicio_agendamento = trim($data->hora_inicio_agendamento);
+    $hora_fim_agendamento = $hora->format('H:i:s');
     $data_agend = htmlspecialchars(trim($data->data_agend));
     $status_agendamento = htmlspecialchars(trim($data->status_agendamento));
     $preco_serv = htmlspecialchars(trim($data->preco_agend));

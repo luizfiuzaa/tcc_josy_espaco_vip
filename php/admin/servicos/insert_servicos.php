@@ -47,7 +47,7 @@ try {
     $stmt->bindValue(':titulo_servico', $titulo_servico, PDO::PARAM_STR);
     $stmt->bindValue(':desc_servico', $desc_servico, PDO::PARAM_STR);
     $stmt->bindValue(':duracao_servico', $duracao_servico, PDO::PARAM_INT);
-    $stmt->bindValue(':preco_servico', $preco_servico, PDO::PARAM_INT);
+    $stmt->bindValue(':preco_servico', $preco_servico, PDO::PARAM_STR);
     $stmt->bindValue(':frequencia', $frequencia, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
