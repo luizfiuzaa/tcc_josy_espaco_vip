@@ -24,7 +24,7 @@
 .grafic-bar {
   max-width: 1050px;
   flex: 1 1 200px;
-  overflow: auto;
+  overflow-y: auto;
   border-radius: 10px;
   box-shadow: 2px 2px 20px #aaaaaa;
 }
