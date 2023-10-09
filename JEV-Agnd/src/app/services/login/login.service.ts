@@ -16,8 +16,8 @@ export class LoginService {
 
   autorizado = false;
 
-  autorizar() {
-    localStorage.setItem('login', 'sim')
+  autorizar(token: any) {
+    localStorage.setItem('token', token)
   }
 
   deslogar() {
@@ -25,11 +25,12 @@ export class LoginService {
   }
 
   statusLogin() {
-    return !!localStorage.getItem('login');
+    let token = localStorage.getItem('token');
+    return this.httpClient.post(this.API + 'login/verificarlogin.php', token);
   }
 
   verificar(login: any[]) {
     console.log(login)
-    return this.httpClient.post(this.API + 'login/verificarlogin.php', login);
+    return this.httpClient.post(this.API + 'login/logar.php', login);
   }
 }

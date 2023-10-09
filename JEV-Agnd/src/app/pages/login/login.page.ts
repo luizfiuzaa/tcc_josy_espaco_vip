@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
     this.loginService.verificar(form).subscribe((data: any) => {
       console.log(data)
       if(data.success == '1'){
-        this.loginService.autorizar();
+        this.loginService.autorizar(data.token);
         this.router.navigate(['/home']);
       }
     })
