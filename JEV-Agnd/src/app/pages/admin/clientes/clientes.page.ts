@@ -50,6 +50,8 @@ export class ClientesPage implements OnInit {
     this.isLoading = true;
     this.clientesService.list().subscribe((dados: any) => {
       this.isLoading = false;
+      console.log(dados)
+      console.log(dados.clientes)
       this.ClienteCad = dados.clientes;
       if(!dados.success || dados.success != 1){
         this.ClienteCad = [];
