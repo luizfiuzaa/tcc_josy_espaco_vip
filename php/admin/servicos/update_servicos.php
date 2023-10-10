@@ -18,25 +18,25 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT'){
 }
 
 $data = json_decode(file_get_contents("php://input"));
-$id = $_GET['id_edit'];
+$id = $data->id;
 
 try{
-    $put = "SELECT * FROM `servico` WHERE id_servico=:id_edit";
+    $put = "SELECT * FROM `servico` WHERE id_servico=:id_servico";
     $stmt = $connection->prepare($put);
-    $stmt->bindValue(':id_edit', $id, PDO::PARAM_INT);
+    $stmt->bindValue(':id_servico', $id, PDO::PARAM_INT);
     $stmt->execute();
 
     if ($stmt->rowCount() > 0){
 
 
-        $row = $fetch_stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $titulo_servico = htmlspecialchars(trim($data->titulo_edit));
-        $desc_servico = htmlspecialchars(trim($data->descricao_edit));
-        $duracao_servico = htmlspecialchars(trim($data->duracao_edit));
-        $preco_servico = htmlspecialchars(trim($data->preco_edit));
+        $titulo_servico = htmlspecialchars(trim($data->titulo));
+        $desc_servico = htmlspecialchars(trim($data->descricao));
+        $duracao_servico = htmlspecialchars(trim($data->duracao));
+        $preco_servico = htmlspecialchars(trim($data->preco));
 
-        $update_serv = "UPDATE `servicos` SET titulo_servico = :titulo_servico, desc_servico = :desc_servico, duracao_servico = :duracao_servico, preco_servico = :preco_servico
+        $update_serv = "UPDATE `servico` SET titulo_servico = :titulo_servico, desc_servico = :desc_servico, duracao_servico = :duracao_servico, preco_servico = :preco_servico
         WHERE id_servico = :id_servico";
 
         $update_stmt = $connection->prepare($update_serv);
@@ -48,18 +48,19 @@ try{
 
         $update_stmt->bindValue(':id_servico', $id, PDO::PARAM_INT);
 
-        if ($stmt->execute()) {
+        if ($update_stmt->execute()) {
+            var_dump($update_stmt);
             http_response_code(201);
             echo json_encode([
                 'success' => 1,
-                'message' => 'Data inserida com sucesso'
+                'message' => 'Dado alterado com sucesso'
             ]);
             exit;
         }
     
         echo json_encode([
             'success' => 0,
-            'message' => 'Há algum problema na inserção de dados'
+            'message' => 'Há algum problema na alteração de dados'
         ]);
         exit;
     

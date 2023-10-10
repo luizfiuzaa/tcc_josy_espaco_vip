@@ -30,7 +30,7 @@ export class ServicosService {
   } 
 
   update(servicos: any){
-    console.log(servicos[0])
+    console.log(servicos[0].id)
     return this.httpClient.put<FormData>(this.API+'servicos/update_servicos.php', servicos[0]);
   }
 }

@@ -119,10 +119,10 @@ export class ServicosPage implements OnInit {
     console.log('Deus é fiel!!!');
     const formData = new FormData();
 
-    formData.append("titulo", this.EditForm.value.titulo);
-    formData.append("descricao", this.EditForm.value.descricao);
-    formData.append("duracao", this.EditForm.value.duracao);
-    formData.append("preco", this.EditForm.value.preco);
+    formData.append("titulo", this.EditForm.value.titulo_edit);
+    formData.append("descricao", this.EditForm.value.descricao_edit);
+    formData.append("duracao", this.EditForm.value.duracao_edit);
+    formData.append("preco", this.EditForm.value.preco_edit);
 
     const formDataEdit = new FormData();
   }
@@ -151,14 +151,16 @@ export class ServicosPage implements OnInit {
   submit_edit() {
 
     if (this.EditForm.valid) {
-      console.log(this.EditForm.value)
+      // console.log(this.EditForm.value)
       let servico = []
       servico[0] = {
-        titulo: this.EditForm.value.titulo,
-        descricao: this.EditForm.value.descricao,
-        duracao: this.EditForm.value.duracao,
-        preco: this.EditForm.value.preco
+        id: this.EditForm.value.id_edit,
+        titulo: this.EditForm.value.titulo_edit.toLocaleLowerCase(),
+        descricao: this.EditForm.value.descricao_edit,
+        duracao: this.EditForm.value.duracao_edit,
+        preco: this.EditForm.value.preco_edit.replace('R$', '').replace(/\s/g, '')
       }
+      console.log(servico[0]);
       this.servicoService.update(servico).subscribe(() => {
         this.listServicos();
       })
