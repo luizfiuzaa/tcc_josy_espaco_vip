@@ -58,6 +58,23 @@ try {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $cliente = $result['cliente_nome'];
 
+    // $data_agend = $data->data_agend;
+    // $sql = "SELECT `hora_fim_agendamento` FROM `agendamento` WHERE data_agend=:data_agend";
+    // $stmt = $connection->prepare($sql);
+    // $stmt->bindValue(':data_agend', $data_agend, PDO::PARAM_STR);
+    // $stmt->execute();
+    // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // $horas = $result['hora_fim_agendamento'];
+    // foreach ($horas as $indice => $hora_fim) {
+    //     if (strtotime($hora) <= strtotime($hora_fim)) {
+    //         echo json_encode([
+    //             'success' => 0,
+    //             'message' => 'Hora em uso'
+    //         ]);
+    //         exit;
+    //     }
+    // }
+
     $hora_inicio_agendamento = trim($data->hora_inicio_agendamento);
     $hora_fim_agendamento = $hora->format('H:i:s');
     $data_agend = htmlspecialchars(trim($data->data_agend));
