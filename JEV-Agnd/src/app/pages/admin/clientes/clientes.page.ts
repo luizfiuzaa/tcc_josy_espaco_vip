@@ -115,20 +115,23 @@ export class ClientesPage implements OnInit {
     if (isOpen == true || isOpen == false || this.EditForm.valid && isOpen == 'submit') {
       this.modalOpenEdit = isOpen == 'submit' ? false : isOpen;
     }
+    if(isOpen == true){
+      this.createFormEdit();
+    }
   }
 
-  createFormEdit(cliente: any) {
+  createFormEdit() {
     this.EditForm = new FormGroup({
-      idCli: new FormControl(''),
-      nomeCli: new FormControl(cliente.nomeCli, Validators.compose([
+      idCli_edit: new FormControl(''),
+      nomeCli_edit: new FormControl(Validators.compose([
         Validators.maxLength(70),
         Validators.minLength(3),
         Validators.required])),
-      telCli: new FormControl(cliente.telCli, Validators.compose([
+      telCli_edit: new FormControl(Validators.compose([
         Validators.maxLength(15),
         Validators.minLength(15),
         Validators.required])),
-      emailCli: new FormControl(cliente.emailCli, Validators.compose([
+      emailCli_edit: new FormControl(Validators.compose([
         Validators.maxLength(70),
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
         Validators.required])),
@@ -198,16 +201,6 @@ export class ClientesPage implements OnInit {
     });
   }
 
-  editarCliente(cliente: Clientes){
-    this.EditForm.patchValue({
-      id: this.cliente.id,
-      nomeCli: this.cliente.nomeCli,
-      telCli: this.cliente.telCli,
-      emailCli: this.cliente.emailCli
-    })
-
-    this.createFormEdit(cliente);
-  }
 
   get nomeCli_add() {
     return this.AddForm.get('nomeCli')!;

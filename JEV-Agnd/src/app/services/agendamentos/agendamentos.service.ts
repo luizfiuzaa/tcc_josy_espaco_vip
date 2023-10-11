@@ -28,4 +28,9 @@ export class AgendamentosService {
     console.log(agendamento)
     return this.httpClient.post(this.API + 'agendamentos/insert_agendamento.php', agendamento);
   }
+
+  update(agendamento:any){
+    console.log(agendamento[0].id)
+    return this.httpClient.put<FormData>(this.API+'agendamentos/update_agendamento.php', agendamento[0]);
+  }
 }

@@ -49,7 +49,6 @@ try{
         $update_stmt->bindValue(':id_servico', $id, PDO::PARAM_INT);
 
         if ($update_stmt->execute()) {
-            var_dump($update_stmt);
             http_response_code(201);
             echo json_encode([
                 'success' => 1,

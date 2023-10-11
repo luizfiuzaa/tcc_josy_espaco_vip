@@ -74,6 +74,13 @@
 												<ion-icon name="create-outline"></ion-icon>
 												Editar
 											</ion-button></abbr>
+
+											<abbr title="Gerar comanda">
+												<ion-button slot="end" class="tab" id="tab" (click)="setOpenComanda(true)">
+													<ion-icon name="newspaper-outline"></ion-icon>
+													Gerar comanda
+												</ion-button></abbr>
+
 									</ion-card-content>
 								</ion-card>
 							</ion-item>
@@ -266,6 +273,73 @@
 				</div>
 			</ng-template>
 		</ion-modal>
+
+		<!-- modal para comanda -->
+		<ion-modal #modal [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
+			<ng-template>
+				<div class="modalCont">
+					<div class="modal_title ion-text-center ion-padding">
+								<ion-text>
+									Comanda
+								</ion-text>
+						</div>
+
+						<div class="comanda-main">
+							<ion-list lines="none">
+								<ion-item>
+									<ion-col size="6" class="col-servicos">
+										<ion-text>
+											Serviços
+										</ion-text>
+									</ion-col>
+									<ion-col size="6" class="col-precos">
+										<ion-text>
+											Preços
+										</ion-text>
+									</ion-col>
+								</ion-item>
+
+								<!-- ngFor -->
+								<ion-item *ngFor="">
+									<ion-col size="6" class="col-servicos">
+										<ion-text>
+											<!-- {{servico}} -->
+										</ion-text>
+									</ion-col>
+									<ion-col size="6" class="col-precos">
+										<ion-text>
+											<!-- {{preco}} -->
+										</ion-text>
+									</ion-col>
+								</ion-item>
+
+							</ion-list>
+
+							<ion-text>
+								Total: 190,00
+							</ion-text>
+
+							
+						</div>
+							
+						
+						
+						<ion-footer class="comanda-footer">
+							<ion-toolbar>
+								<ion-buttons>
+									<ion-button (click)="setOpenComanda(false)">
+										<ion-label class="button_modal">
+										Fechar
+										</ion-label>
+									</ion-button>
+								</ion-buttons>
+							</ion-toolbar>
+						</ion-footer>
+					
+				</div>
+			</ng-template>
+		</ion-modal>
+
 
 		<ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
 			[isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>

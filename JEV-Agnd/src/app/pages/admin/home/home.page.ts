@@ -384,4 +384,22 @@ export class HomePage {
     this.precoAgend = preco;
   }
 
+  // comanda
+
+  modalOpenComanda = false;
+  setOpenComanda(isOpen: any) {
+    if (isOpen == true) {
+      this.modalOpenComanda = isOpen;
+      setTimeout(() => {
+      }, 1)
+      return;
+    }
+    if (isOpen == false) {
+      this.modalOpenComanda = isOpen;
+      return;
+    }
+  }
+
+  
+
 }

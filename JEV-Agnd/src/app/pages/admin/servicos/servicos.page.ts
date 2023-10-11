@@ -40,9 +40,6 @@ export class ServicosPage implements OnInit {
     if (this.AddForm.invalid) {
       return;
     }
-    if (this.EditForm.invalid) {
-      return;
-    }
 
     console.log('Deus é fiel!!!');
     const formData = new FormData();
@@ -51,13 +48,6 @@ export class ServicosPage implements OnInit {
     formData.append("descricao", this.AddForm.value.descricao);
     formData.append("duracao", this.AddForm.value.duracao);
     formData.append("preco", this.AddForm.value.preco);
-
-    const formDataEdit = new FormData();
-
-    formDataEdit.append("titulo", this.EditForm.value.titulo);
-    formDataEdit.append("descricao", this.EditForm.value.descricao);
-    formDataEdit.append("duracao", this.EditForm.value.duracao);
-    formDataEdit.append("preco", this.EditForm.value.preco);
   }
   createFormAdd() {
     this.AddForm = new FormGroup({
@@ -123,8 +113,6 @@ export class ServicosPage implements OnInit {
     formData.append("descricao", this.EditForm.value.descricao_edit);
     formData.append("duracao", this.EditForm.value.duracao_edit);
     formData.append("preco", this.EditForm.value.preco_edit);
-
-    const formDataEdit = new FormData();
   }
 
   createFormEdit() {

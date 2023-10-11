@@ -26,9 +26,22 @@ ion-menu-button {
   }
 }
 
-.edit,
-.info {
+.edit{
   color: #FFF;
+}
+
+.tab ion-icon, .edit ion-icon{
+  padding-right: 5px;
+}
+
+.comanda-footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 56px;
+}
+.col-precos{
+  border-left: #000 solid 1px;
 }
 
 @media only screen and (max-width: 500px) {
