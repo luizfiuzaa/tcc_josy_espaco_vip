@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   // url do Jão:
-  baseApiUrl: 'http://aula/php/admin/',
+  baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
   // baseApiUrl: 'http://localhost/aula/php/admin/',
-  baseApiUrlLogin: 'http://localhost/aula/php/'
+  baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
   // baseApiUrl: 'http://localhost/aula/php/admin/'
 };
 
