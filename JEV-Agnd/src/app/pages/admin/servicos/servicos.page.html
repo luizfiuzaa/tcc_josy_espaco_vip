@@ -162,7 +162,7 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <form mode="md" action="" class="form ion-padding" (ngSubmit)="submit_edit()" [formGroup]="EditForm"
+            <form mode="md" action="" class="form ion-padding" (ngSubmit)="submit_edit(); createHandlerEdit($event)" [formGroup]="EditForm"
               #formDir="ngForm">
               <div class="form__inputs">
                 <div class="inputs__context">
