@@ -34,12 +34,30 @@ ion-menu-button {
   padding-right: 5px;
 }
 
+// fonte do titulo da comanda
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+  .comanda_title{
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: #f75656;
+  }
+
 .comanda-footer{
   position: fixed;
   bottom: 0;
   width: 100%;
   min-height: 56px;
 }
+
+.tabelaComandaTop{
+  border-bottom: 1px solid #000;
+}
+
+.col-precos ion-text, .col-servicos ion-text{
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.7em;
+}
+
 .col-precos{
   border-left: #000 solid 1px;
 }

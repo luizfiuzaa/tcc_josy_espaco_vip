@@ -70,7 +70,6 @@ CREATE TABLE `agendamento_servicos`(
   PRIMARY KEY (`id_agend_servico`)
 );
 
-
 -- admiin
 INSERT INTO
   `admin`(email_admin, senha_admin)

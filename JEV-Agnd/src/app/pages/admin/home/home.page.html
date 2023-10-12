@@ -76,7 +76,7 @@
 											</ion-button></abbr>
 
 											<abbr title="Gerar comanda">
-												<ion-button slot="end" class="tab" id="tab" (click)="setOpenComanda(true)">
+												<ion-button slot="end" class="tab" id="tab" (click)="gerarComanda(Agendamentos.id_agendamento)">
 													<ion-icon name="newspaper-outline"></ion-icon>
 													Gerar comanda
 												</ion-button></abbr>
@@ -275,18 +275,18 @@
 		</ion-modal>
 
 		<!-- modal para comanda -->
-		<ion-modal #modal [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
+		<ion-modal #modal class="ion-padding" [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
 			<ng-template>
 				<div class="modalCont">
-					<div class="modal_title ion-text-center ion-padding">
-								<ion-text>
+					<div class="ion-text-center ion-padding">
+								<ion-text class="comanda_title">
 									Comanda
 								</ion-text>
 						</div>
 
 						<div class="comanda-main">
 							<ion-list lines="none">
-								<ion-item>
+								<ion-item class="tabelaComandaTop">
 									<ion-col size="6" class="col-servicos">
 										<ion-text>
 											Serviços
@@ -313,11 +313,14 @@
 									</ion-col>
 								</ion-item>
 
+								<ion-item>
+									<ion-text>
+										Total: R$ 
+									</ion-text>
+								</ion-item>
 							</ion-list>
 
-							<ion-text>
-								Total: 190,00
-							</ion-text>
+							
 
 							
 						</div>

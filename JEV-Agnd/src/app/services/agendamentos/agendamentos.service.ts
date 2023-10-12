@@ -33,4 +33,9 @@ export class AgendamentosService {
     console.log(agendamento[0].id)
     return this.httpClient.put<FormData>(this.API+'agendamentos/update_agendamento.php', agendamento[0]);
   }
+
+  comandaGenerate(id: any){
+    console.log(id);
+    return this.httpClient.get<Agendamentos[]>(this.API + 'agendamentos/gerarComanda.php?id=' + id);
+  }
 }

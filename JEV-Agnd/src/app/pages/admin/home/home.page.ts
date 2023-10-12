@@ -16,7 +16,7 @@ import { ServicosService } from 'src/app/services/servicos/servicos.service';
 export class HomePage {
   agendamento: any;
   // Iniciando a service no constructor
-  constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService, private servicosSercice: ServicosService) {
+  constructor(private agendamentosService: AgendamentosService, private clientesService: ClientesService, private servicosService: ServicosService) {
     this.getAgendamentos();
     this.getClientes();
     this.getServicos();
@@ -44,7 +44,7 @@ export class HomePage {
   }
   // Pega os dados da API
   getClientes() {
-    this.clientesSercice.list().subscribe((dados: any) => {
+    this.clientesService.list().subscribe((dados: any) => {
       this.Clientes = dados.clientes;
       if (!dados.success || dados.success != 1) {
         this.Clientes = [];
@@ -53,7 +53,7 @@ export class HomePage {
   }
   // Pega os dados da API
   getServicos() {
-    this.servicosSercice.list().subscribe((dados: any) => {
+    this.servicosService.list().subscribe((dados: any) => {
       this.Servicos = dados.servicos;
       if (!dados.success || dados.success != 1) {
         this.Servicos = [];
@@ -398,6 +398,23 @@ export class HomePage {
       this.modalOpenComanda = isOpen;
       return;
     }
+  }
+
+  indiceComanda: any
+  gerarComanda(indice:any){
+    this.indiceComanda = indice;
+    this.setOpenComanda(true);
+
+    this.agendamentosService.comandaGenerate(this.indiceComanda);
+  }
+
+  getComanda() {
+    this.servicosService.list().subscribe((dados: any) => {
+      this.Servicos = dados.servicos;
+      if (!dados.success || dados.success != 1) {
+        this.Servicos = [];
+      }
+    })
   }
 
   
