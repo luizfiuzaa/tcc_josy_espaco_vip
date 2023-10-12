@@ -187,16 +187,20 @@ export class HomePage {
         preco_agend: this.precoAgend,
         data_agend: dia_hora[0],
       }
-      this.agendamentosService.create(agendamento).subscribe(() => {
-        this.listAgendamentos();
+      this.agendamentosService.create(agendamento).subscribe((dados: any) => {
+        if (dados.success == '1') {
+          this.message = dados.message
+          this.ExibirMessage(true);
+          this.listAgendamentos();
+          this.setOpenAdd('submit');
+          return;
+        }
+        this.message = dados.message;
+        this.ExibirMessage(false);
       })
-      console.log('Formulario De Adição Valido')
-      this.message = 'Agendado com sucesso!!'
-      this.ExibirMessage(true);
       return;
     }
-    console.log('Formulario De Adição Invalido')
-    this.message = 'Falha ao agendar!!'
+    this.message = 'Falha ao agendar... :('
     this.ExibirMessage(false);
   }
   // Modal de edição
@@ -213,7 +217,7 @@ export class HomePage {
       this.modalOpenAdd = isOpen;
       return;
     }
-    if (isOpen == 'submit' && this.AddForm.valid) {
+    if (isOpen == 'submit') {
       setTimeout(() => {
         this.modalOpenAdd = false;
       }, 100);
