@@ -17,9 +17,9 @@ export class HomePage {
   agendamento: any;
   // Iniciando a service no constructor
   constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService, private servicosSercice: ServicosService) {
-    this.getAgendamentos();
-    this.getClientes();
-    this.getServicos();
+    this.listAgendamentos();
+    this.listClientes();
+    this.listServicos();
   }
   // Executa após o carregamento da página
   ngAfterViewInit() {
@@ -31,7 +31,7 @@ export class HomePage {
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
   isLoading = false;
   // Pega os dados da API
-  getAgendamentos() {
+  listAgendamentos() {
     this.isLoading = true;
     this.agendamentosService.list().subscribe((dados: any) => {
       this.isLoading = false;
@@ -43,7 +43,7 @@ export class HomePage {
     })
   }
   // Pega os dados da API
-  getClientes() {
+  listClientes() {
     this.clientesSercice.list().subscribe((dados: any) => {
       this.Clientes = dados.clientes;
       if (!dados.success || dados.success != 1) {
@@ -52,7 +52,7 @@ export class HomePage {
     })
   }
   // Pega os dados da API
-  getServicos() {
+  listServicos() {
     this.servicosSercice.list().subscribe((dados: any) => {
       this.Servicos = dados.servicos;
       if (!dados.success || dados.success != 1) {
@@ -188,7 +188,7 @@ export class HomePage {
         data_agend: dia_hora[0],
       }
       this.agendamentosService.create(agendamento).subscribe(() => {
-        this.getAgendamentos();
+        this.listAgendamentos();
       })
       console.log('Formulario De Adição Valido')
       this.message = 'Agendado com sucesso!!'
