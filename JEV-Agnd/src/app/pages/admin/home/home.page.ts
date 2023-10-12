@@ -16,10 +16,10 @@ import { ServicosService } from 'src/app/services/servicos/servicos.service';
 export class HomePage {
   agendamento: any;
   // Iniciando a service no constructor
-  constructor(private agendamentosService: AgendamentosService, private clientesService: ClientesService, private servicosService: ServicosService) {
-    this.getAgendamentos();
-    this.getClientes();
-    this.getServicos();
+  constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService, private servicosSercice: ServicosService) {
+    this.listAgendamentos();
+    this.listClientes();
+    this.listServicos();
   }
   // Executa após o carregamento da página
   ngAfterViewInit() {
@@ -31,7 +31,7 @@ export class HomePage {
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
   isLoading = false;
   // Pega os dados da API
-  getAgendamentos() {
+  listAgendamentos() {
     this.isLoading = true;
     this.agendamentosService.list().subscribe((dados: any) => {
       this.isLoading = false;
@@ -43,8 +43,8 @@ export class HomePage {
     })
   }
   // Pega os dados da API
-  getClientes() {
-    this.clientesService.list().subscribe((dados: any) => {
+  listClientes() {
+    this.clientesSercice.list().subscribe((dados: any) => {
       this.Clientes = dados.clientes;
       if (!dados.success || dados.success != 1) {
         this.Clientes = [];
@@ -52,8 +52,8 @@ export class HomePage {
     })
   }
   // Pega os dados da API
-  getServicos() {
-    this.servicosService.list().subscribe((dados: any) => {
+  listServicos() {
+    this.servicosSercice.list().subscribe((dados: any) => {
       this.Servicos = dados.servicos;
       if (!dados.success || dados.success != 1) {
         this.Servicos = [];
@@ -187,16 +187,20 @@ export class HomePage {
         preco_agend: this.precoAgend,
         data_agend: dia_hora[0],
       }
-      this.agendamentosService.create(agendamento).subscribe(() => {
-        this.getAgendamentos();
+      this.agendamentosService.create(agendamento).subscribe((dados: any) => {
+        if (dados.success == '1') {
+          this.message = dados.message
+          this.ExibirMessage(true);
+          this.listAgendamentos();
+          this.setOpenAdd('submit');
+          return;
+        }
+        this.message = dados.message;
+        this.ExibirMessage(false);
       })
-      console.log('Formulario De Adição Valido')
-      this.message = 'Agendado com sucesso!!'
-      this.ExibirMessage(true);
       return;
     }
-    console.log('Formulario De Adição Invalido')
-    this.message = 'Falha ao agendar!!'
+    this.message = 'Falha ao agendar... :('
     this.ExibirMessage(false);
   }
   // Modal de edição
@@ -213,7 +217,7 @@ export class HomePage {
       this.modalOpenAdd = isOpen;
       return;
     }
-    if (isOpen == 'submit' && this.AddForm.valid) {
+    if (isOpen == 'submit') {
       setTimeout(() => {
         this.modalOpenAdd = false;
       }, 100);

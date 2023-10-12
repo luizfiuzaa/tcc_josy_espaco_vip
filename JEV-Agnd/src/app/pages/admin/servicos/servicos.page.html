@@ -45,7 +45,7 @@
       </ion-col>
 
       <ng-template #noCards>
-        <ion-col class="container" size="12">
+        <ion-col class="container" size="12" *ngIf="Servicos_exibidos.length == 0 && !this.isLoading">
           <ion-text>
             <p>Os seus serviços serão exibidos neste local.</p>
             <ion-buttons class="button_add">
@@ -57,7 +57,9 @@
           </ion-text>
         </ion-col>
       </ng-template>
-
+      <ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.isLoading">
+        <ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
+      </ion-col>
     </ion-row>
     <!-- Fab Button -->
     <ion-fab id="open-modal" class="button_fab" horizontal="end" vertical="bottom" slot="fixed"
@@ -162,8 +164,8 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <form mode="md" action="" class="form ion-padding" (ngSubmit)="submit_edit(); createHandlerEdit($event)" [formGroup]="EditForm"
-              #formDir="ngForm">
+            <form mode="md" action="" class="form ion-padding" (ngSubmit)="submit_edit(); createHandlerEdit($event)"
+              [formGroup]="EditForm" #formDir="ngForm">
               <div class="form__inputs">
                 <div class="inputs__context">
                   <div class="input_item">
