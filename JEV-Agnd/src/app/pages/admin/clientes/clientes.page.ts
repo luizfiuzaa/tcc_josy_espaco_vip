@@ -20,9 +20,7 @@ export class ClientesPage implements OnInit {
 
   filterClienteName(e: Event) {
     let estado: boolean = false;
-    const target = e.target as HTMLInputElement;
-    const value = target.value;
-    // console.log(value)
+    const value = (e.target as HTMLInputElement).value;
 
     this.clientes_Exibidos = this.ClienteCad.filter((cliente) => {
       if (cliente.cliente_nome.includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value)) {
@@ -43,17 +41,17 @@ export class ClientesPage implements OnInit {
   }
 
   constructor(private clientesService: ClientesService) {
-    this.cad_cli()
+    this.list_cli()
   }
-  isLoading = false;
-  cad_cli() {
+  isLoading: boolean = false;
+  list_cli() {
     this.isLoading = true;
     this.clientesService.list().subscribe((dados: any) => {
       this.isLoading = false;
       console.log(dados)
       console.log(dados.clientes)
       this.ClienteCad = dados.clientes;
-      if(!dados.success || dados.success != 1){
+      if (!dados.success || dados.success != 1) {
         this.ClienteCad = [];
       }
       this.clientes_Exibidos = this.ClienteCad;
@@ -154,7 +152,7 @@ export class ClientesPage implements OnInit {
   submit_add() {
     console.log(this.AddForm.value)
     if (this.AddForm.valid) {
-      let  cliente = [];
+      let cliente = [];
 
       cliente[0] = {
         nomeCli: this.AddForm.value.nomeCli.toLocaleLowerCase(),
@@ -163,7 +161,7 @@ export class ClientesPage implements OnInit {
       }
 
       this.clientesService.create(cliente).subscribe(() => {
-        this.cad_cli();
+        this.list_cli();
       });
       console.log('Formulario De Adição Valido')
       // this.message = 'Agendado com sucesso!!'
@@ -201,6 +199,16 @@ export class ClientesPage implements OnInit {
     });
   }
 
+  editarCliente(cliente: Clientes) {
+    this.EditForm.patchValue({
+      id: this.cliente.id,
+      nomeCli: this.cliente.nomeCli,
+      telCli: this.cliente.telCli,
+      emailCli: this.cliente.emailCli
+    })
+
+    this.createFormEdit(cliente);
+  }
 
   get nomeCli_add() {
     return this.AddForm.get('nomeCli')!;

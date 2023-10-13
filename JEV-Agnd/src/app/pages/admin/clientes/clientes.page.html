@@ -64,8 +64,7 @@
 
         <!-- Senão Exiba -->
         <ng-template #noClientes>
-          <ion-col size="12" class="noClientes"
-            *ngIf="clientes_Exibidos && clientes_Exibidos.length == 0 && !this.isLoading">
+          <ion-col size="12" class="noClientes" *ngIf="clientes_Exibidos.length == 0 && !this.isLoading">
             <ion-text class="ion-text-center">
               <p>Os seus clientes serão exibidos neste local.</p>
               <ion-buttons class="button_add">

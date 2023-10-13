@@ -18,18 +18,21 @@ export class ServicosPage implements OnInit {
   @Input() Card_Dados: Servicos[] = [];
   Servicos: Servicos[] = [];
   Servicos_exibidos: Servicos[] = [];
+  isLoading: boolean = false;
 
   constructor(private servicoService: ServicosService) {
     this.listServicos();
   }
 
   listServicos() {
+    this.isLoading = true;
     this.servicoService.list().subscribe((dados: any) => {
-      this.Servicos = dados.servicos;
-      if (!dados.success || dados.success != 1) {
-        this.Servicos = [];
-      }
-      this.Servicos_exibidos = this.Servicos;
+        this.isLoading = false;
+        this.Servicos = dados.servicos;
+        if (!dados.success || dados.success != 1) {
+          this.Servicos = [];
+        }
+        this.Servicos_exibidos = this.Servicos;
     })
   }
 

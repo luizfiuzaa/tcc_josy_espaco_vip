@@ -89,7 +89,7 @@
 			</ion-col>
 			<ng-template #noCard>
 				<ion-col class="ion-text-center ion-justify-content-center ion-align-items-center" size="12"
-					*ngIf="Agendamentos_exibidos && Agendamentos_exibidos.length == 0 && !this.isLoading && diaValido">
+					*ngIf="Agendamentos_exibidos.length == 0 && !this.isLoading && diaValido">
 					<ion-text class="ion-text-center">
 						<p>Os seus agendamentos serão exibidos neste local.</p>
 					</ion-text>
@@ -201,7 +201,7 @@
 							</ion-buttons>
 							<ion-buttons slot="end">
 								<ion-button>
-									<label class="button_modal" for="AddFormSubmit" (click)="setOpenAdd('submit')">Agendar</label>
+									<label class="button_modal" for="AddFormSubmit">Agendar</label>
 								</ion-button>
 							</ion-buttons>
 						</ion-toolbar>
