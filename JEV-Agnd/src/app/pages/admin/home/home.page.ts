@@ -4,9 +4,10 @@ import { elements } from 'chart.js';
 import { Agendamentos } from 'src/app/models/agendamentos';
 import { Clientes } from 'src/app/models/clientes';
 import { Servicos } from 'src/app/models/servico';
-import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
 import { ServicosService } from 'src/app/services/servicos/servicos.service';
+import { Comanda } from 'src/app/models/comanda';
+import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ export class HomePage {
   Agendamentos: Agendamentos[] = []
   Clientes: Clientes[] = []
   Servicos: Servicos[] = []
+  Servicos_comanda: Comanda[] = []
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
   isLoading = false;
   // Pega os dados da API
@@ -384,8 +386,6 @@ export class HomePage {
     this.precoAgend = preco;
   }
 
-  // comanda
-
   modalOpenComanda = false;
   setOpenComanda(isOpen: any) {
     if (isOpen == true) {
@@ -401,22 +401,13 @@ export class HomePage {
   }
 
   indiceComanda: any
-  gerarComanda(indice:any){
+  valorTotal: Number = 0;
+  gerarComanda(indice: any) {
     this.indiceComanda = indice;
     this.setOpenComanda(true);
-
-    this.agendamentosService.comandaGenerate(this.indiceComanda);
+    this.agendamentosService.comandaGenerate(this.indiceComanda).subscribe((dados:any)=>{
+      this.Servicos_comanda = dados.servicos;
+      this.valorTotal = (dados.total).toFixed(2);
+    });
   }
-
-  getComanda() {
-    this.servicosService.list().subscribe((dados: any) => {
-      this.Servicos = dados.servicos;
-      if (!dados.success || dados.success != 1) {
-        this.Servicos = [];
-      }
-    })
-  }
-
-  
-
 }

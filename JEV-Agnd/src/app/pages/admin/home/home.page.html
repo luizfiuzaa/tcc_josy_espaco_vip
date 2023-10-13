@@ -75,12 +75,11 @@
 												Editar
 											</ion-button></abbr>
 
-											<abbr title="Gerar comanda">
-												<ion-button slot="end" class="tab" id="tab" (click)="gerarComanda(Agendamentos.id_agendamento)">
-													<ion-icon name="newspaper-outline"></ion-icon>
-													Gerar comanda
-												</ion-button></abbr>
-
+										<abbr title="Gerar comanda">
+											<ion-button slot="end" class="tab" id="tab" (click)="gerarComanda(Agendamentos.id_agendamento)">
+												<ion-icon name="newspaper-outline"></ion-icon>
+												Gerar comanda
+											</ion-button></abbr>
 									</ion-card-content>
 								</ion-card>
 							</ion-item>
@@ -190,7 +189,6 @@
 			</ng-template>
 		</ion-modal>
 
-		<!-- modal de agendamento-->
 		<ion-modal #modal [isOpen]="modalOpenAdd" backdropDismiss="false" mode="ios">
 			<ng-template>
 				<div class="wrapper modalCont">
@@ -275,70 +273,63 @@
 		</ion-modal>
 
 		<!-- modal para comanda -->
-		<ion-modal #modal class="ion-padding" [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
+		<ion-modal #modal [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
 			<ng-template>
-				<div class="modalCont">
-					<div class="ion-text-center ion-padding">
-								<ion-text class="comanda_title">
-									Comanda
-								</ion-text>
-						</div>
+				<div class="comandaModal">
+					<ion-header class="ion-text-center ion-padding header">
+						<ion-text class="comanda_title">
+							Comanda
+						</ion-text>
+					</ion-header>
 
-						<div class="comanda-main">
-							<ion-list lines="none">
-								<ion-item class="tabelaComandaTop">
-									<ion-col size="6" class="col-servicos">
-										<ion-text>
-											Serviços
-										</ion-text>
-									</ion-col>
-									<ion-col size="6" class="col-precos">
-										<ion-text>
-											Preços
-										</ion-text>
-									</ion-col>
-								</ion-item>
-
-								<!-- ngFor -->
-								<ion-item *ngFor="">
-									<ion-col size="6" class="col-servicos">
-										<ion-text>
-											<!-- {{servico}} -->
-										</ion-text>
-									</ion-col>
-									<ion-col size="6" class="col-precos">
-										<ion-text>
-											<!-- {{preco}} -->
-										</ion-text>
-									</ion-col>
-								</ion-item>
-
-								<ion-item>
+					<div class="comanda-main">
+						<ion-list class="content_principal">
+							<ion-item class="tabelaComandaTop">
+								<ion-col size="6" class="col-servicos">
 									<ion-text>
-										Total: R$ 
+										Serviços
 									</ion-text>
-								</ion-item>
-							</ion-list>
+								</ion-col>
+								<ion-col size="6" class="col-precos">
+									<ion-text>
+										Preços
+									</ion-text>
+								</ion-col>
+							</ion-item>
+							<ion-item *ngFor="let comanda of Servicos_comanda">
+								<ion-col size="6" class="col-servicos">
+									<ion-text>
+										{{comanda.titulo_servico}}
+									</ion-text>
+								</ion-col>
+								<ion-col size="6" class="col-precos">
+									<ion-text>
+										{{comanda.preco_servico}}
+									</ion-text>
+								</ion-col>
+							</ion-item>
+						</ion-list>
+					</div>
 
-							
+					<ion-list class="content_total" lines="none">
+						<ion-item class="total">
+							<ion-text>
+								Total: R$ {{this.valorTotal}}
+							</ion-text>
+						</ion-item>
+					</ion-list>
 
-							
-						</div>
-							
-						
-						
-						<ion-footer class="comanda-footer">
-							<ion-toolbar>
-								<ion-buttons>
-									<ion-button (click)="setOpenComanda(false)">
-										<ion-label class="button_modal">
+					<ion-footer class="comanda-footer">
+						<ion-toolbar>
+							<ion-buttons>
+								<ion-button (click)="setOpenComanda(false)">
+									<ion-label class="button_modal">
 										Fechar
-										</ion-label>
-									</ion-button>
-								</ion-buttons>
-							</ion-toolbar>
-						</ion-footer>
-					
+									</ion-label>
+								</ion-button>
+							</ion-buttons>
+						</ion-toolbar>
+					</ion-footer>
 				</div>
 			</ng-template>
 		</ion-modal>

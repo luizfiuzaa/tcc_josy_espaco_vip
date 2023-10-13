@@ -36,6 +36,6 @@ export class AgendamentosService {
 
   comandaGenerate(id: any){
     console.log(id);
-    return this.httpClient.get<Agendamentos[]>(this.API + 'agendamentos/gerarComanda.php?id=' + id);
+    return this.httpClient.get(this.API + 'agendamentos/gerarComanda.php?id=' + id);
   }
 }
