@@ -207,7 +207,7 @@ export class ClientesPage implements OnInit {
       emailCli: this.cliente.emailCli
     })
 
-    this.createFormEdit(cliente);
+    this.createFormEdit();
   }
 
   get nomeCli_add() {
