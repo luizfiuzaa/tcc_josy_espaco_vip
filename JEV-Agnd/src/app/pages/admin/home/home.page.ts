@@ -18,7 +18,7 @@ export class HomePage {
   agendamento: any;
   // Iniciando a service no constructor
   constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService, private servicosSercice: ServicosService) {
-    this.listAgendamentos();
+    this.listAgendamentos(this.hoje);
     this.listClientes();
     this.listServicos();
   }
@@ -33,7 +33,7 @@ export class HomePage {
   Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
   isLoading = false;
   // Pega os dados da API
-  listAgendamentos() {
+  listAgendamentos(filter: any) {
     this.isLoading = true;
     this.agendamentosService.list().subscribe((dados: any) => {
       this.isLoading = false;
@@ -41,7 +41,7 @@ export class HomePage {
       if (!dados.success || dados.success != 1) {
         this.Agendamentos = [];
       }
-      this.atualizarDados();
+      this.atualizarDados(filter);
     })
   }
   // Pega os dados da API
@@ -63,9 +63,9 @@ export class HomePage {
     })
   }
   // Atualiza os agendametnos do dia de hoje
-  atualizarDados() {
+  atualizarDados(filter: any) {
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
-      return agendamento.data_agend.includes(this.hoje);
+      return agendamento.data_agend.includes(filter);
     });
   }
 
@@ -193,7 +193,7 @@ export class HomePage {
         if (dados.success == '1') {
           this.message = dados.message
           this.ExibirMessage(true);
-          this.listAgendamentos();
+          this.listAgendamentos(dia_hora[0]);
           this.setOpenAdd('submit');
           return;
         }
@@ -339,7 +339,7 @@ export class HomePage {
   verificarEstado(estado: boolean) {
     if (!estado) {
       setTimeout(() => {
-        this.atualizarDados();
+        this.atualizarDados(this.hoje);
         this.diaValido = true;
       }, 1000)
     }
