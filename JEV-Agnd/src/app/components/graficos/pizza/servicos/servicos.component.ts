@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Chart, elements, registerables } from 'chart.js';
+import { FaturamentosService } from 'src/app/services/faturamentos/faturamentos.service';
 Chart.register(...registerables);
 
 @Component({
@@ -10,38 +11,40 @@ Chart.register(...registerables);
 export class ServicosComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private FaturamentosService: FaturamentosService) { }
+
+  servicos: any[] = [];
 
   ngOnInit() {
-    this.gerarGraficoFormasPagamento()
+    this.getDados();
   }
 
-  mao: number = 2
-  pe: number = 10
-  peMao: number = 10
-  cabelo: number = 10
-
+  getDados() {
+    this.FaturamentosService.listServicos().subscribe((dados: any) => {
+      this.servicos = dados.data;
+      console.log(this.servicos);
+      this.gerarGraficoFormasPagamento()
+    })
+  }
 
   gerarGraficoFormasPagamento() {
     var myChart = new Chart("servico", {
       type: 'doughnut',
       data: {
-        labels: ['Mão', 'Pé', 'Pé e Mão', "Cabelo"],
+        labels: this.servicos[0].titulo_servico.map((element: any) => {
+          return element.charAt(0).toUpperCase() + element.substr(1);
+        }),
         datasets: [{
           label: 'Quantidade',
-          data: [this.mao, this.pe, this.peMao, this.cabelo],
-          backgroundColor: [
-            '#FE2260',
-            '#034C8C',
-            '#9B02A6',
-            '#45C0A4'
-          ],
-          borderColor: [
-            '#FE2260',
-            '#034C8C',
-            '#9B02A6',
-            '#45C0A4'
-          ],
+          data: this.servicos[0].frequencia.map((element: any) => {
+            return element;
+          }),
+          backgroundColor: this.servicos[0].cor.map((element: any) => {
+            return element;
+          }),
+          borderColor: this.servicos[0].cor.map((element: any) => {
+            return element;
+          }),
           borderWidth: 1
         }]
       },

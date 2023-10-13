@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { FaturamentosService } from 'src/app/services/faturamentos/faturamentos.service';
 Chart.register(...registerables);
 
 @Component({
@@ -9,13 +10,21 @@ Chart.register(...registerables);
 })
 export class ColunaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private FaturamentosService: FaturamentosService) { }
+
+  faturamento_mensal: any[] = [];
 
   ngOnInit() {
-    this.gerarGraficoFormasPagamento()
+    this.getDados();
   }
 
-  mes = [2, 7, 32, 23, 45, 32, 4, 35, 6, 7, 10, 40]
+  getDados() {
+    this.FaturamentosService.listFaturamentoMensal().subscribe((dados: any) => {
+      this.faturamento_mensal = dados.data;
+      console.log(this.faturamento_mensal);
+      this.gerarGraficoFormasPagamento()
+    })
+  }
 
   gerarGraficoFormasPagamento() {
     var myChart = new Chart("coluna", {
@@ -24,20 +33,9 @@ export class ColunaComponent implements OnInit {
         labels: ['Janeiro', 'Fevereiro', 'Março', "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
         datasets: [{
           label: 'Faturamento mensal',
-          data: [
-            this.mes[0],
-            this.mes[1],
-            this.mes[2],
-            this.mes[3],
-            this.mes[4],
-            this.mes[5],
-            this.mes[6],
-            this.mes[7],
-            this.mes[8],
-            this.mes[9],
-            this.mes[10],
-            this.mes[11],
-          ],
+          data: this.faturamento_mensal.map((element: any) => {
+            return element;
+          }),
           backgroundColor: [
             '#E33058',
             '#8C1843',

@@ -18,5 +18,4 @@ export class FaturamentosPage implements OnInit {
   submit_add() {
     console.log(this.formDir.form.value);
   }
-
 }
