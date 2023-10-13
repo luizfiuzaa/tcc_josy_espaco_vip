@@ -170,10 +170,28 @@ ion-datetime {
   text-transform: capitalize;
 }
 
-@media only screen and (max-width:900px) {
-  .header__search {
-    flex-direction: column;
+@media only screen and (max-width:700px) {
+  .calendarButton {
+    right: 7% !important;
   }
+
+  .cont_search {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
+}
+@media only screen and (max-width:500px) {
+  .calendarButton span {
+    display: none;
+  }
+}
+
+.calendarButton {
+  background: white;
+  height: 29px;
+  position: absolute;
+  right: 4%;
+  top: calc(100% - 48px);
 }
 
 .header__search div {
@@ -182,17 +200,11 @@ ion-datetime {
   align-items: center;
 }
 
-.searchBar {
-  margin: 0;
-  padding: 0;
-}
-
 .item__searchBar {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.5%;
 }
 
 .header__search {
@@ -200,7 +212,6 @@ ion-datetime {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 4%;
 }
 
 .calendar__filter {
@@ -273,10 +284,10 @@ h3 {
 }
 
 .total ion-text {
-color: var(--ion-color-primary);
+  color: var(--ion-color-primary);
 }
 
-.total span{
+.total span {
   font-family: var(--text);
   font-size: .9em;
   color: #000;
@@ -311,7 +322,7 @@ color: var(--ion-color-primary);
   text-align: center;
 }
 
-.content_total ion-text{
+.content_total ion-text {
   width: 100%;
 }
 
@@ -327,4 +338,8 @@ color: var(--ion-color-primary);
 .comandaModal ion-item {
   --padding-start: 0px;
   --inner-padding-end: 0px;
+}
+
+.comanda-main {
+  border-top: 1px solid black;
 }
