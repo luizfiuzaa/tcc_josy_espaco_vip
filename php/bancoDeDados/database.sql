@@ -29,6 +29,7 @@ CREATE TABLE `servico`(
   `desc_servico` VARCHAR(150) NOT NULL,
   `duracao_servico` INT NOT NULL,
   `preco_servico` DECIMAL(10, 2) NOT NULL,
+  `cor` VARCHAR(30) NOT NULL,
   `frequencia` INT NOT NULL,
   PRIMARY KEY (`id_servico`)
 );
