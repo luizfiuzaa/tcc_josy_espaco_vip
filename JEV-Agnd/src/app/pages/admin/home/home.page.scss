@@ -256,25 +256,37 @@ h3 {
 }
 
 .comanda_title {
-  font-family: 'Dancing Script', cursive;
+  font-family: var(--text);
   font-size: 2.5em;
-  color: #f75656;
+  color: var(--ion-color-primary);
 }
 
 .tabelaComandaTop {
   border-bottom: 1px solid #000;
 }
 
-.col-precos ion-text,
-.col-servicos ion-text,
+.title-precos ion-text,
+.title-servicos ion-text,
 .total ion-text {
-  font-family: 'Dancing Script', cursive;
+  font-family: var(--text);
   font-size: 1.7em;
 }
 
-.col-precos {
-  border-left: #000 solid 1px;
+.total ion-text {
+color: var(--ion-color-primary);
 }
+
+.total span{
+  font-family: var(--text);
+  font-size: .9em;
+  color: #000;
+}
+
+.col-precos ion-text,
+.col-servicos ion-text {
+  font-size: 1.3em;
+}
+
 
 .header,
 .comanda-footer {
@@ -287,13 +299,20 @@ h3 {
   bottom: 0;
   width: 100%;
   min-height: 56px;
+  padding-right: 10px;
 }
 
 .content_total {
   position: fixed;
   bottom: 56px;
   right: 0;
-  padding-right: 5px;
+  padding: 0 5px;
+  width: 50%;
+  text-align: center;
+}
+
+.content_total ion-text{
+  width: 100%;
 }
 
 .content_principal {

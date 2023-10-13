@@ -5,6 +5,8 @@ import { timestamp } from 'rxjs';
 import { Clientes } from 'src/app/models/clientes';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
+import { InfoClientes } from 'src/app/models/infoClientes';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,6 +19,7 @@ export class ClientesPage implements OnInit {
   cliente: any;
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
+  Info_Clientes: InfoClientes[] = [];
 
   filterClienteName(e: Event) {
     let estado: boolean = false;
@@ -40,7 +43,7 @@ export class ClientesPage implements OnInit {
     }
   }
 
-  constructor(private clientesService: ClientesService) {
+  constructor(private clientesService: ClientesService, private router: Router) {
     this.list_cli()
   }
   isLoading: boolean = false;
@@ -113,7 +116,7 @@ export class ClientesPage implements OnInit {
     if (isOpen == true || isOpen == false || this.EditForm.valid && isOpen == 'submit') {
       this.modalOpenEdit = isOpen == 'submit' ? false : isOpen;
     }
-    if(isOpen == true){
+    if (isOpen == true) {
       this.createFormEdit();
     }
   }
@@ -219,6 +222,38 @@ export class ClientesPage implements OnInit {
   get emailCli_add() {
     return this.AddForm.get('emailCli')!;
   }
+
+  modalOpenInfo: boolean = false;
+  setOpenInfo(isOpen: any) {
+    this.modalOpenInfo = isOpen;
+  }
+
+  agendar(){
+    this.setOpenInfo(false);
+    setTimeout(()=>{
+      this.router.navigate(['/home'])
+    }, 100)
+  }
+
+  listInformacoes(id: any) {
+    this.Info_Clientes = [];
+    this.clientesService.listInfomacoes(id).subscribe((dados: any) => {
+      if (dados.success == '1') {
+        this.Info_Clientes = dados.data;
+
+        this.Info_Clientes.sort((a, b) => {
+          let dataA = new Date(a.data_agend + " " + a.hora_inicio_agendamento);
+          let dataB = new Date(b.data_agend + " " + b.hora_inicio_agendamento);
+
+          return dataB.getTime() - dataA.getTime();
+        });
+        console.log(this.Info_Clientes);
+      }
+    })
+
+    this.setOpenInfo(true)
+  }
+
   ngOnInit() { }
 
   readonly phoneMask: MaskitoOptions = {

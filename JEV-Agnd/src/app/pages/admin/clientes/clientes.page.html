@@ -55,6 +55,9 @@
                       <ion-icon name="create-outline"></ion-icon>
                       Editar
                     </ion-button>
+                    <ion-button class="info" (click)="listInformacoes(Clientes.id_cliente)">
+                      <ion-icon name="information-circle-outline"></ion-icon>
+                    </ion-button>
                   </ion-card-content>
                 </ion-card>
               </ion-item>
@@ -68,7 +71,7 @@
             <ion-text class="ion-text-center">
               <p>Os seus clientes serão exibidos neste local.</p>
               <ion-buttons class="button_add">
-                <abbr title="Agendar">
+                <abbr title="Cadastrar">
                   <ion-button (click)="setOpenAdd(true)">
                     Cadastrar cliente
                   </ion-button></abbr>
@@ -179,6 +182,68 @@
         </div>
 
       </ng-template>
+    </ion-modal>
+
+
+    <ion-modal #modal [isOpen]="modalOpenInfo" backdropDismiss="false">
+      <ng-template>
+        <div class="wrapper modalCont" *ngIf="Info_Clientes && Info_Clientes.length > 0; else noInfos">
+          <div class="modal_title">
+            <ion-header style="position: fixed;">
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <div class="info_main" style="padding-top: 56px;">
+              <ion-list *ngFor="let info_clientes of Info_Clientes">
+                <ion-item>
+                  <ion-text style="text-transform: capitalize;">
+                    <strong>
+                      {{info_clientes.serv_agendamento}}
+                    </strong>
+                  </ion-text>
+                </ion-item>
+                <ion-item>
+                  <ion-text>
+                    {{info_clientes.hora_inicio_agendamento}} -
+                    {{info_clientes.hora_fim_agendamento}} -
+                    {{info_clientes.data_agend}}
+                  </ion-text>
+                </ion-item>
+              </ion-list>
+            </div>
+          </div>
+        </div>
+        <ng-template #noInfos>
+          <div class="wrapper modalCont">
+            <div class="modal_title">
+              <ion-header>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <div class="info_main">
+                <ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
+                  <ion-col class="ion-text-center">
+                    <ion-text>Esse cliente ainda não fez nenhum agendamento...</ion-text>
+                    <ion-buttons class="button_add" (click)="agendar()">
+                      <ion-button style="font-size: 1em; padding: 10px;">
+                        Agendar
+                      </ion-button>
+                    </ion-buttons>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-template>
+
+
     </ion-modal>
 
     <!-- Btn para adicionar um novo cliente -->

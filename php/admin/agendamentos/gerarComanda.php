@@ -42,7 +42,10 @@ try {
 		]);
 
 	} else {
-		echo "Nenhum resultado encontrado para o ID do agendamento.";
+		echo json_encode([
+			'success' => 0,
+			'data' => 'Nenhum resultado encontrado para o ID do cliente.'
+		]);
 	}
 } catch (PDOException $e) {
 	http_response_code(500);
