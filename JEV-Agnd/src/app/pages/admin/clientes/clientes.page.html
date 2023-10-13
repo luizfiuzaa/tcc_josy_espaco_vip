@@ -46,18 +46,44 @@
                   </ion-card-header>
 
                   <!-- Botões de Exclusão, Edição e Visualização de dados -->
-                  <ion-card-content>
-                    <ion-button class="delete apagar_cli" fill="outline" (click)="apagarService(Clientes.id_cliente)">
-                      <ion-icon name="trash"></ion-icon>
-                      Excluir
-                    </ion-button>
-                    <ion-button class="edit" (click)="setOpenEdit(true)">
-                      <ion-icon name="create-outline"></ion-icon>
-                      Editar
-                    </ion-button>
-                    <ion-button class="info" (click)="listInformacoes(Clientes.id_cliente)">
-                      <ion-icon name="information-circle-outline"></ion-icon>
-                    </ion-button>
+                  <ion-card-content class="card__content">
+                    <div>
+                      <ion-button class="delete apagar_cli" fill="outline" (click)="apagarService(Clientes.id_cliente)">
+                        <ion-icon name="trash"></ion-icon>
+                        Excluir
+                      </ion-button>
+                      <ion-button class="edit" (click)="setOpenEdit(true)">
+                        <ion-icon name="create-outline"></ion-icon>
+                        Editar
+                      </ion-button>
+                    </div>
+                    <div class="cont_2">
+                      <ion-button class="info" (click)="listInformacoes(Clientes.id_cliente)">
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                      </ion-button>
+                      <ion-fab>
+                        <ion-fab-button size="small">
+                          <ion-icon name="mail"></ion-icon>
+                        </ion-fab-button>
+                        <ion-fab-list side="start">
+                          <ion-fab-button color="success">
+                            <ion-icon name="checkbox"></ion-icon>
+                          </ion-fab-button>
+
+                          <ion-fab-button color="secondary">
+                            <ion-icon name="time"></ion-icon>
+                          </ion-fab-button>
+
+                          <ion-fab-button color="danger">
+                            <ion-icon name="close-circle"></ion-icon>
+                          </ion-fab-button>
+
+                          <ion-fab-button color="warning">
+                            <ion-icon name="cash"></ion-icon>
+                          </ion-fab-button>
+                        </ion-fab-list>
+                      </ion-fab>
+                    </div>
                   </ion-card-content>
                 </ion-card>
               </ion-item>
