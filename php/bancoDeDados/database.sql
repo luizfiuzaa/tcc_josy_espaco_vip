@@ -37,9 +37,9 @@ CREATE TABLE `servico`(
 DROP TABLE IF EXISTS `mensagem`;
 
 CREATE TABLE `mensagem` (
-  `id_msg` INT NOT NULL AUTO_INCREMENT,
-  `desc_Msg` VARCHAR(255) NOT NUll,
-  PRIMARY KEY (`id_msg`)
+  `tipo` VARCHAR(20) NOT NULL,
+  `descricao` VARCHAR(255) NOT NUll,
+  PRIMARY KEY (`tipo`)
 );
 
 DROP TABLE IF EXISTS `agendamento`;

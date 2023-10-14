@@ -23,12 +23,12 @@
 
           <ion-card-content>
             <ion-text class="descricao">
-              <p class="placeholder">💙💙💜Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas voluptatem sequi perferendis ducimus molestiae ab, natus fugit iusto, veritatis fuga doloribus dolor. Modi eos nemo sed vero nam a at!</p>
+              <p class="placeholder">{{mensagens[0].descricao}}</p>
             </ion-text>
 
             <ion-card-content>
 
-              <ion-button expand="block" color="success">
+              <ion-button expand="block" color="success" (click)="compartilhar(this.mensagens[0].descricao)">
                 <ion-text>
                   <p class="compartilhar">Compartilhar</p>
                 </ion-text>
@@ -42,7 +42,8 @@
                 </ion-text>
                 <ion-icon color="success" slot="end" name="pencil-outline"></ion-icon>
               </ion-button>
-              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenConfirm" backdropDismiss="false">
+              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenConfirm"
+                backdropDismiss="false">
                 <ion-col>
                   <ng-template>
                     <ion-header>
@@ -66,7 +67,7 @@
 
                     <ion-content>
                       <ion-item>
-                        <ion-textarea  [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
+                        <ion-textarea [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
                       </ion-item>
                     </ion-content>
                   </ng-template>
@@ -87,12 +88,12 @@
 
           <ion-card-content>
             <ion-text class="descricao">
-              <p class="placeholder">Espaço reservado para texto</p>
+              <p class="placeholder">{{mensagens[1].descricao}}</p>
             </ion-text>
 
             <ion-card-content>
 
-              <ion-button expand="block" color="secondary">
+              <ion-button expand="block" color="secondary" (click)="compartilhar(this.mensagens[1].descricao)">
                 <ion-text>
                   <p class="compartilhar">Compartilhar</p>
                 </ion-text>
@@ -132,7 +133,7 @@
 
                     <ion-content>
                       <ion-item>
-                        <ion-textarea  [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
+                        <ion-textarea [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
                       </ion-item>
                     </ion-content>
                   </ng-template>
@@ -153,12 +154,12 @@
 
           <ion-card-content>
             <ion-text class="descricao">
-              <p class="placeholder">Espaço reservado para texto</p>
+              <p class="placeholder">{{mensagens[2].descricao}}</p>
             </ion-text>
 
             <ion-card-content>
 
-              <ion-button expand="block" color="danger">
+              <ion-button expand="block" color="danger" (click)="compartilhar(this.mensagens[2].descricao)">
                 <ion-text>
                   <p class="compartilhar">Compartilhar</p>
                 </ion-text>
@@ -197,7 +198,7 @@
 
                     <ion-content>
                       <ion-item>
-                        <ion-textarea  [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
+                        <ion-textarea [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
                       </ion-item>
                     </ion-content>
                   </ng-template>
@@ -218,12 +219,12 @@
 
           <ion-card-content>
             <ion-text class="descricao">
-              <p class="placeholder">Espaço reservado para texto</p>
+              <p class="placeholder">{{mensagens[3].descricao}}</p>
             </ion-text>
 
             <ion-card-content>
 
-              <ion-button expand="block" color="warning">
+              <ion-button expand="block" color="warning" (click)="compartilhar(this.mensagens[3].descricao)">
                 <ion-text>
                   <p class="compartilhar">Compartilhar</p>
                 </ion-text>
@@ -237,7 +238,8 @@
                 </ion-text>
                 <ion-icon color="warning" slot="end" name="pencil-outline"></ion-icon>
               </ion-button>
-              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenCobrar" backdropDismiss="false">
+              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenCobrar"
+                backdropDismiss="false">
                 <ion-col>
                   <ng-template>
                     <ion-header>
@@ -261,7 +263,7 @@
 
                     <ion-content>
                       <ion-item>
-                        <ion-textarea  [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
+                        <ion-textarea [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
                       </ion-item>
                     </ion-content>
                   </ng-template>

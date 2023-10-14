@@ -42,7 +42,7 @@ try {
         cor,
         frequencia
         ) 
-        VALUES(
+        VALUES( 
         :titulo_servico,
         :desc_servico,
         :duracao_servico,

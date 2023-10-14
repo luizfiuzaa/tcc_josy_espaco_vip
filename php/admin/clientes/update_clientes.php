@@ -21,7 +21,7 @@ $data = json_decode(file_get_contents("php://input"));
 $id = $data->id;
 
 try{
-    $put = "SELECT * FROM `servico` WHERE id_servico=:id_servico";
+    $put = "SELECT * FROM `cliente` WHERE id_cliente=:id_cliente";
     $stmt = $connection->prepare($put);
     $stmt->bindValue(':id_cliente', $id, PDO::PARAM_INT);
     $stmt->execute();
@@ -35,10 +35,10 @@ try{
         $cliente_telefone = htmlspecialchars(trim($data->telefone));
         $cliente_email = htmlspecialchars(trim($data->email));
 
-        $update_serv = "UPDATE `cliente` SET cliente_nome = :cliente_nome, cliente_telefone = :cliente_telefone, cliente_email = :cliente_email
+        $update = "UPDATE `cliente` SET cliente_nome = :cliente_nome, cliente_telefone = :cliente_telefone, cliente_email = :cliente_email
         WHERE id_cliente = :id_cliente";
 
-        $update_stmt = $connection->prepare($update_serv);
+        $update_stmt = $connection->prepare($update);
 
         $update_stmt->bindValue(':cliente_nome', $cliente_nome, PDO::PARAM_STR);
         $update_stmt->bindValue(':cliente_telefone', $cliente_telefone, PDO::PARAM_STR);
