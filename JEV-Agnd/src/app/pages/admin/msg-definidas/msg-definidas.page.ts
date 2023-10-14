@@ -87,4 +87,36 @@ export class MsgDefinidasPage implements OnInit {
   setOpenCobrar(isOpenCobrar: boolean) {
     this.modalOpenCobrar = isOpenCobrar;
   }
+
+
+
+
+  cards: any[] = [
+    {
+      title: 'Confirmação',
+      content: 'Conteúdo do Confirmação',
+      color: '#000000'
+    },
+    {
+      title: 'Cancelamento',
+      content: 'Conteúdo do Cancelamento'
+    },
+    {
+      title: 'Reagendamento',
+      content: 'Conteúdo do Reagendamento'
+    },
+    {
+      title: 'Cobrança',
+      content: 'Conteúdo do Cobrança'
+    }
+  ];
+
+  redirect_add(){
+    console.log(this.cards);
+  }
+
+  submit_add(){
+    console.log(this.cards);
+  }
+
 }

@@ -14,7 +14,7 @@ export class MsgDefinidasService {
 
   constructor(private httpClient: HttpClient) { }
 
-  list() {
+  list(){
     return this.httpClient.get<Mensagem[]>(this.API + 'mensagens/listar_mensagens').pipe(
       tap(mensagens => console.log(mensagens))
     );

@@ -1,76 +1,130 @@
-.main {
-  margin-top: 1.7em;
-  width: 100vw;
+// .main {
+//   margin-top: 1.7em;
+//   width: 100vw;
+// }
+
+// ion-card-title{
+//   ion-icon,ion-text{
+//   font-size: 1.7em;
+//   color: #FFF;
+// }
+// }
+
+// ion-icon{
+//   color: #FFF;
+// }
+
+// ion-card-content{
+//   ion-text > p{
+//     font-size: 1.3em;
+//   }
+// }
+
+// .container{
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .container ion-card{
+//   width: 22%;
+// }
+
+// .container ion-card-title ion-text{
+//   font-size: 1.25em;
+// }
+
+// .container ion-card-title{
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// @media only screen and (max-width:1400px){
+//   .container ion-card{
+//     width: 30%;
+//   }
+
+//   .container{
+//     justify-content: flex-start;
+//   }
+// }
+
+// @media only screen and (max-width:1011px){
+//   .container ion-card{
+//     width: 45%;
+//   }
+//   .container{
+//     justify-content: center;
+//   }
+// }
+
+// @media only screen and (max-width:630px){
+//   .container ion-card{
+//     width: 90%;
+//   }
+// }
+
+// .compartilhar{
+//   margin-right: 8px;
+//   color: #FFF;
+// }
+
+// .placeholder{
+//   margin-top: 5px;
+// }
+
+
+.custom-content {
+  --ion-safe-area-top: 0;
+  --ion-safe-area-bottom: 0;
+  --background: none;
+  background-color: #ffffff; /* Cor de fundo do container */
+  margin: 20px; /* Margens do container */
+  height: calc(100% - 40px); /* Altura do container - margens */
+  overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
 }
 
-ion-card-title{
-  ion-icon,ion-text{
-  font-size: 1.7em;
-  color: #FFF;
-}
-}
-
-ion-icon{
-  color: #FFF;
+.message-container {
+  position: fixed;
+  width: 64%;
+  height: 90%
 }
 
-ion-card-content{
-  ion-text > p{
-    font-size: 1.3em;
+.message-container-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-card {
+  margin: 10px;
+  max-height: 8em;
+}
+.add-card {
+  margin: 10px;
+  max-height: 8em;
+  background: var(--ion-color-primary);
+}
+
+
+@media only screen and (max-width:720px){
+  .message-container {
+    width: 62%;
   }
 }
 
-.container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.container ion-card{
-  width: 22%;
-}
-
-.container ion-card-title ion-text{
-  font-size: 1.25em;
-}
-
-.container ion-card-title{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media only screen and (max-width:1400px){
-  .container ion-card{
-    width: 30%;
-  }
-
-  .container{
-    justify-content: flex-start;
+@media only screen and (max-width:430px){
+  .message-container {
+    width: 60%;
   }
 }
 
-@media only screen and (max-width:1011px){
-  .container ion-card{
-    width: 45%;
-  }
-  .container{
-    justify-content: center;
-  }
-}
 
-@media only screen and (max-width:630px){
-  .container ion-card{
-    width: 90%;
+// aqui, altera para mobile
+@media only screen and (max-width:592px){
+  .message-container {
+    // width: 50%;
   }
-}
-
-.compartilhar{
-  margin-right: 8px;
-  color: #FFF;
-}
-
-.placeholder{
-  margin-top: 5px;
 }

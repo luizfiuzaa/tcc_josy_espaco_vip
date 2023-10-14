@@ -8,11 +8,12 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <ion-row class="main ion-align-items-center ion-justify-content-center ion-text-center">
-      <ion-col class="container">
+  <!-- <ion-content [fullscreen]="true">
+    <ion-row class="main ion-align-items-center ion-justify-content-center ion-text-center"> -->
+
+        
         <!-- Confirmação -->
-        <ion-card color="light">
+        <!-- <ion-card color="light">
           <ion-card-header color="success">
 
             <ion-card-title>
@@ -75,9 +76,11 @@
               </ion-modal>
             </ion-card-content>
           </ion-card-content>
-        </ion-card>
+        </ion-card> -->
+
+
         <!-- Reagendamento -->
-        <ion-card color="light">
+        <!-- <ion-card color="light">
           <ion-card-header color="secondary">
 
             <ion-card-title>
@@ -141,9 +144,11 @@
               </ion-modal>
             </ion-card-content>
           </ion-card-content>
-        </ion-card>
+        </ion-card> -->
+
+
         <!-- Cancelamento -->
-        <ion-card color="light">
+        <!-- <ion-card color="light">
           <ion-card-header color="danger">
 
             <ion-card-title>
@@ -206,9 +211,11 @@
               </ion-modal>
             </ion-card-content>
           </ion-card-content>
-        </ion-card>
+        </ion-card> -->
+
+
         <!-- Cobrar -->
-        <ion-card color="light">
+        <!-- <ion-card color="light">
           <ion-card-header color="warning">
 
             <ion-card-title>
@@ -271,8 +278,67 @@
               </ion-modal>
             </ion-card-content>
           </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-content>
+        </ion-card> -->
+
+
+
+
+        <!-- refatoração de layout -->
+
+        <ion-content class="custom-content" scrollY="true">
+          <ion-row class="main ion-justify-content-center">
+            <ion-col size="4">
+              <ion-card class="custom-card" *ngFor="let card of cards">
+                <ion-card-header>
+                  <ion-card-title>{{ card.title }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  {{ card.content }}
+                </ion-card-content>
+              </ion-card>
+      
+              <ion-card class="add-card" (click)="redirect_add()">
+                <ion-card-content>
+                  <ion-card-header>
+                    <ion-card-title>
+                      <ion-text style="color: #FFF;">+ adicionar nova mensagem</ion-text>
+                    </ion-card-title>
+      
+      
+                  </ion-card-header>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+      
+            <ion-col size="8">
+              <div class="message-container">
+                <ion-card class="message-container-card">
+                  <ion-card-header>
+                    <ion-title>
+                      Criar Nova Mensagem
+                    </ion-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-item>
+                      <ion-label position="floating">Título da mensagem</ion-label>
+                      <ion-input type="text" name="messageTitle"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="floating">Descrição das mensagem</ion-label>
+                      <ion-textarea fill="outline" type="textarea" name="messageDescription"></ion-textarea>
+                    </ion-item>
+                      <ion-label position="floating">Cor</ion-label>
+                      <ion-input type="color" name="messageColor"></ion-input>
+                  </ion-card-content>
+                </ion-card>
+              </div>
+      
+            </ion-col>
+          </ion-row>
+      
+      
+        </ion-content>
+
+    <!-- </ion-row>
+  </ion-content> -->
 </div>
