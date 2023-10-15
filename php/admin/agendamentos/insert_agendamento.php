@@ -93,7 +93,7 @@ try {
     $fk_id_cliente = $data->cli_agendamento;
     $fk_id_servico = $servicos_list[1];
 
-    $query = "INSERT INTO `agendamento`(
+    $insert = "INSERT INTO `agendamento`(
         hora_inicio_agendamento,
         hora_fim_agendamento,
         data_agend,
@@ -118,7 +118,7 @@ try {
         :fk_id_servico
     )";
 
-    $stmt = $connection->prepare($query);
+    $stmt = $connection->prepare($insert);
 
     $stmt->bindValue(':hora_inicio_agendamento', $hora_inicio_agendamento, PDO::PARAM_STR);
     $stmt->bindValue(':hora_fim_agendamento', $hora_fim_agendamento, PDO::PARAM_STR);
@@ -132,6 +132,27 @@ try {
     $stmt->bindValue(':fk_id_servico', $fk_id_servico, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
+        $insert = "INSERT INTO `lembretes`(
+            hora_inicio_agendamento,
+            data_agend,
+            cli_agendamento,
+            serv_agendamento
+        ) 
+        VALUES(
+            :hora_inicio_agendamento,
+            :data_agend,
+            :cli_agendamento,
+            :serv_agendamento
+        )";
+
+        $stmt = $connection->prepare($insert);
+
+        $stmt->bindValue(':horarioLembrete', $hora_inicio_agendamento, PDO::PARAM_STR);
+        $stmt->bindValue(':dataLembrete', $data_agend, PDO::PARAM_STR);
+        $stmt->bindValue(':conteudoLembrete', $cli_agendamento . ' agendou ', PDO::PARAM_STR);
+
+        $stmt->execute();
+
         http_response_code(201);
         echo json_encode([
             'success' => 1,

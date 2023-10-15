@@ -9,6 +9,8 @@ export const environment = {
   // baseApiUrlLogin: 'http://aula/php/',
 
   // url do Marlon:
+  // baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
+  // baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
   baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
   baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
 
