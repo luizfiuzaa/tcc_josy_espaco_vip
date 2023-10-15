@@ -235,11 +235,11 @@ export class ServicosPage implements OnInit {
     // console.log(value)
 
     this.Servicos_exibidos = this.Servicos.filter((servico) => {
-      if (servico.titulo_servico.includes(value.toLocaleLowerCase())) {
+      if (servico.titulo_servico.toLocaleLowerCase().includes(value.toLocaleLowerCase())) {
         estado = true;
       }
       console.log(value)
-      return servico.titulo_servico.includes(value.toLocaleLowerCase());
+      return servico.titulo_servico.toLocaleLowerCase().includes(value.toLocaleLowerCase());
     });
     this.verificarEstado(estado);
   }

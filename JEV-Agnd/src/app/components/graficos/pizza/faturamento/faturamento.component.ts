@@ -13,18 +13,22 @@ Chart.register(...registerables);
 export class FaturamentoComponent implements OnInit {
 
   constructor(private FaturamentosService: FaturamentosService) { }
-  
+
   metodos: Metodos[] = [];
-  
+  isLoading: boolean = true;
+
   ngOnInit() {
     this.getDados()
   }
 
   getDados() {
-    this.FaturamentosService.listMetodos().subscribe((dados:any)=>{
+    this.isLoading = true;
+    this.FaturamentosService.listMetodos().subscribe((dados: any) => {
       this.metodos = dados.data;
-      console.log(this.metodos)
-      this.gerarGraficoFormasPagamento();
+      this.isLoading = false;
+      setTimeout(() => {
+        this.gerarGraficoFormasPagamento();
+      }, 100)
     })
   }
 

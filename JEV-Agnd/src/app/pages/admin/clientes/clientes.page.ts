@@ -26,11 +26,11 @@ export class ClientesPage implements OnInit {
     const value = (e.target as HTMLInputElement).value;
 
     this.clientes_Exibidos = this.ClienteCad.filter((cliente) => {
-      if (cliente.cliente_nome.includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value)) {
+      if (cliente.cliente_nome.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value)) {
         estado = true;
       }
       console.log(value)
-      return cliente.cliente_nome.includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value);
+      return cliente.cliente_nome.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value);
     });
     this.verificarEstado(estado);
   }
@@ -228,9 +228,9 @@ export class ClientesPage implements OnInit {
     this.modalOpenInfo = isOpen;
   }
 
-  agendar(){
+  agendar() {
     this.setOpenInfo(false);
-    setTimeout(()=>{
+    setTimeout(() => {
       this.router.navigate(['/home'])
     }, 100)
   }

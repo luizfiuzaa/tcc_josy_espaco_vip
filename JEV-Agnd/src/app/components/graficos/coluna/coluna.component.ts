@@ -13,20 +13,24 @@ export class ColunaComponent implements OnInit {
   constructor(private FaturamentosService: FaturamentosService) { }
 
   faturamento_mensal: any[] = [];
+  isLoading: boolean = true;
 
   ngOnInit() {
     this.getDados();
   }
 
   getDados() {
+    this.isLoading = true;
     this.FaturamentosService.listFaturamentoMensal().subscribe((dados: any) => {
       this.faturamento_mensal = dados.data;
-      console.log(this.faturamento_mensal);
-      this.gerarGraficoFormasPagamento()
+      this.isLoading = false;
+      setTimeout(()=>{
+        this.gerarGraficoFaturamentoMensal();
+      },100)
     })
   }
 
-  gerarGraficoFormasPagamento() {
+  gerarGraficoFaturamentoMensal() {
     var myChart = new Chart("coluna", {
       type: 'bar',
       data: {

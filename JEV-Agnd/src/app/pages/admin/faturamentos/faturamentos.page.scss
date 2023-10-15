@@ -8,7 +8,7 @@
 .main {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 20px;
   gap: 20px;
@@ -16,7 +16,7 @@
 
 .grafic {
   flex: 1 1 200px;
-  max-width: 500px;
+  max-width: 525px;
   border-radius: 10px;
   box-shadow: 2px 2px 20px #aaaaaa;
 }
@@ -45,7 +45,7 @@
   border-radius: 5px;
 }
 
-.header{
+.header {
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
