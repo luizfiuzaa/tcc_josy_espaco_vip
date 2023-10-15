@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart, elements, registerables } from 'chart.js';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Chart, registerables } from 'chart.js';
 import { FaturamentosService } from 'src/app/services/faturamentos/faturamentos.service';
+
 Chart.register(...registerables);
 
 @Component({
@@ -14,20 +15,25 @@ export class ServicosComponent implements OnInit {
   constructor(private FaturamentosService: FaturamentosService) { }
 
   servicos: any[] = [];
+  isLoading: boolean = true;
 
   ngOnInit() {
     this.getDados();
   }
 
   getDados() {
+    this.isLoading = true;
     this.FaturamentosService.listServicos().subscribe((dados: any) => {
       this.servicos = dados.data;
       console.log(this.servicos);
-      this.gerarGraficoFormasPagamento()
+      this.isLoading = false;
+      setTimeout(() => {
+        this.gerarGraficoServicos();
+      }, 100)
     })
   }
 
-  gerarGraficoFormasPagamento() {
+  gerarGraficoServicos() {
     var myChart = new Chart("servico", {
       type: 'doughnut',
       data: {

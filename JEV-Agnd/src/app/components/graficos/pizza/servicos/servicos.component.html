@@ -1,3 +1,6 @@
-<div id="divChart">
+<div id="divChart" *ngIf="!isLoading">
   <canvas id="servico"></canvas>
 </div>
+<ion-col class="ion-text-center spinner_cont" size="12" *ngIf="isLoading">
+  <ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
+</ion-col>
