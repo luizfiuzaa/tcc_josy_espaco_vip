@@ -288,12 +288,12 @@
         <ion-content class="custom-content" scrollY="true">
           <ion-row class="main ion-justify-content-center">
             <ion-col size="4">
-              <ion-card class="custom-card" *ngFor="let card of cards">
+              <ion-card class="custom-card" *ngFor="let mensagem of mensagens" (click)="redirect_message()">
                 <ion-card-header>
-                  <ion-card-title>{{ card.title }}</ion-card-title>
+                  <ion-card-title></ion-card-title>
                 </ion-card-header>
                 <ion-card-content>
-                  {{ card.content }}
+                  {{ mensagem.descricao }}
                 </ion-card-content>
               </ion-card>
       
@@ -311,7 +311,7 @@
             </ion-col>
       
             <ion-col size="8">
-              <div class="message-container">
+              <div *ngIf="mensagemSelecionada == 1;" class="message-container">
                 <ion-card class="message-container-card">
                   <ion-card-header>
                     <ion-title>
@@ -327,8 +327,8 @@
                       <ion-label position="floating">Descrição das mensagem</ion-label>
                       <ion-textarea fill="outline" type="textarea" name="messageDescription"></ion-textarea>
                     </ion-item>
-                      <ion-label position="floating">Cor</ion-label>
-                      <ion-input type="color" name="messageColor"></ion-input>
+                      <ion-label style="margin-left: 20px;" position="floating">Cor</ion-label>
+                      <ion-input type="color" value="#FFFFFF" name="messageColor" style="width: 100px;"></ion-input>
                   </ion-card-content>
                 </ion-card>
               </div>

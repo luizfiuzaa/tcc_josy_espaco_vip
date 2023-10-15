@@ -38,17 +38,7 @@ export class MsgDefinidasPage implements OnInit {
 
   ngOnInit() { }
 
-  list_mensagens() {
-    this.msgDefinidasService.list().subscribe((dados: any) => {
-      console.log(dados.mensagens)
-      dados.mensagens.forEach((element: any) => {
-        let mensagem = this.mensagens.find((mensagem: any) => mensagem.tipo == element.tipo)
-        if (mensagem) {
-          this.mensagens[this.mensagens.indexOf(mensagem)].descricao = element.descricao;
-        }
-      });
-    })
-  }
+
   create_mensagens() {
 
   }
@@ -89,6 +79,32 @@ export class MsgDefinidasPage implements OnInit {
   }
 
 
+// separador
+
+mensagensExibidas:Mensagem[] = [];
+
+
+list_mensagens() {
+  this.msgDefinidasService.list().subscribe((dados: any) => {
+  //   console.log(dados.mensagens)
+  //   dados.mensagens.forEach((element: any) => {
+  //     let mensagem = this.mensagens.find((mensagem: any) => mensagem.tipo == element.tipo)
+  //     if (mensagem) {
+  //       this.mensagens[this.mensagens.indexOf(mensagem)].descricao = element.descricao;
+  //     }
+  //   });
+  })
+}
+
+select_message(){
+
+}
+
+
+  mensagemSelecionada: any = 0;
+
+
+
 
 
   cards: any[] = [
@@ -113,6 +129,11 @@ export class MsgDefinidasPage implements OnInit {
 
   redirect_add(){
     console.log(this.cards);
+    this.mensagemSelecionada = 1
+  }
+
+  redirect_message(){
+    console.log('abc');
   }
 
   submit_add(){
