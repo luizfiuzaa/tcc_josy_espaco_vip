@@ -8,60 +8,82 @@
     </ion-toolbar>
   </ion-header>
 
-        <ion-content class="custom-content" scrollY="true">
-          <ion-row class="main ion-justify-content-center">
-            <ion-col size="4">
-              <ion-card class="custom-card" *ngFor="let mensagem of mensagens" (click)="redirect_message()">
-                <ion-card-header>
-                  <ion-card-title></ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                  {{ mensagem.descricao }}
-                </ion-card-content>
-              </ion-card>
-      
-              <ion-card class="add-card" (click)="redirect_add()">
-                <ion-card-content>
-                  <ion-card-header>
-                    <ion-card-title>
-                      <ion-text style="color: #FFF;">+ adicionar nova mensagem</ion-text>
-                    </ion-card-title>
-      
-      
-                  </ion-card-header>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-      
-            <ion-col size="8">
-              <div *ngIf="mensagemSelecionada == 1;" class="message-container">
-                <ion-card class="message-container-card">
-                  <ion-card-header>
-                    <ion-title>
-                      Criar Nova Mensagem
-                    </ion-title>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-item>
-                      <ion-label position="floating">Título da mensagem</ion-label>
-                      <ion-input type="text" name="messageTitle"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label position="floating">Descrição das mensagem</ion-label>
-                      <ion-textarea fill="outline" type="textarea" name="messageDescription"></ion-textarea>
-                    </ion-item>
-                      <ion-label style="margin-left: 20px;" position="floating">Cor</ion-label>
-                      <ion-input type="color" value="#FFFFFF" name="messageColor" style="width: 100px;"></ion-input>
-                  </ion-card-content>
-                </ion-card>
-              </div>
-      
-            </ion-col>
-          </ion-row>
-      
-      
-        </ion-content>
+  <ion-content class="custom-content" scrollY="true">
+    <ion-row class="main ion-justify-content-center">
+      <ion-col size="12" sizeLg="4" class="body">
+        
+        <ion-card
+          class="custom-card scroll-container"
+          *ngFor="let mensagem of mensagens"
+          (click)="redirect_message()"
+        >
+          <ion-card-header>
+            <ion-card-title>{{ mensagem.tipo }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
 
-    <!-- </ion-row>
+        <ion-card class="add-card" color="primary" (click)="redirect_add()">
+          <ion-card-content>
+            <ion-card-header>
+              <ion-card-title>
+                <ion-text style="color: #fff">
+                  <ion-icon name="add"></ion-icon>
+                  criar mensagem
+                </ion-text>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" sizeLg="8">
+        <div *ngIf="mensagemSelecionada == 1;" class="message-container">
+          <form>
+            <ion-card class="message-container-card">
+              <ion-card-header class="ion-text-center">
+                <ion-title color="dark">Criar Nova Mensagem</ion-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-label style="margin-left: 20px" position="floating">
+                  Cor
+                </ion-label>
+                  <ion-input
+                    type="color"
+                    value="#FFFFFF"
+                    name="messageColor"
+                    style="width: 100px"
+                  ></ion-input>
+                <ion-item>
+                  <ion-label position="floating">Título da mensagem</ion-label>
+                  <ion-input type="text" name="messageTitle"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating"
+                    >Descrição das mensagem</ion-label>
+                  <ion-textarea
+                    fill="outline"
+                    type="textarea"
+                    name="messageDescription">
+                  </ion-textarea>
+                </ion-item>
+                
+              </ion-card-content>
+              <ion-card-content class="ion-text-center">
+                  <ion-col size="8">
+                    <ion-button expand="block">
+                      <ion-text>
+                        Criar
+                      </ion-text>
+                    </ion-button>
+                  </ion-col>
+              </ion-card-content>
+            </ion-card>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+
+  <!-- </ion-row>
   </ion-content> -->
 </div>
