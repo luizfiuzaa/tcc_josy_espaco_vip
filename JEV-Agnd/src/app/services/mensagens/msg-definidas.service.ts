@@ -22,10 +22,10 @@ export class MsgDefinidasService {
 
   create(mensagem: any[]){
     console.log(mensagem)
-    return this.httpClient.post<FormData>(this.API+'mensagem/insert_mensagem.php', mensagem); 
+    return this.httpClient.post<FormData>(this.API+'mensagens/insert_mensagem.php', mensagem); 
   } 
 
   update(mensagem: any){
-    return this.httpClient.put<FormData>(this.API+'mensagem/update_mensagem.php', mensagem);
+    return this.httpClient.put<FormData>(this.API+'mensagens/update_mensagem.php', mensagem);
   }
 }

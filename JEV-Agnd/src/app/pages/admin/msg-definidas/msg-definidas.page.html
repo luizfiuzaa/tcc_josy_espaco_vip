@@ -11,14 +11,12 @@
   <ion-content class="custom-content" scrollY="true">
     <ion-row class="main ion-justify-content-center">
       <ion-col size="12" sizeLg="4" class="body">
-        
-        <ion-card
-          class="custom-card scroll-container"
-          *ngFor="let mensagem of mensagens"
-          (click)="redirect_message()"
-        >
+
+        <ion-card class="custom-card scroll-container" *ngFor="let mensagem of mensagensExibidas" (click)="redirect_message()">
           <ion-card-header>
-            <ion-card-title>{{ mensagem.tipo }}</ion-card-title>
+            <ion-card-title>
+              <!-- {{mensagem.titulo}} -->
+            </ion-card-title>
           </ion-card-header>
         </ion-card>
 
@@ -38,47 +36,55 @@
 
       <ion-col size="12" sizeLg="8">
         <div *ngIf="mensagemSelecionada == 1;" class="message-container">
-          <form>
-            <ion-card class="message-container-card">
-              <ion-card-header class="ion-text-center">
-                <ion-title color="dark">Criar Nova Mensagem</ion-title>
-              </ion-card-header>
-              <ion-card-content>
-                <ion-label style="margin-left: 20px" position="floating">
+          <ion-card class="message-container-card">
+            <ion-card-header class="ion-text-center">
+              <ion-title color="dark">Criar Nova Mensagem</ion-title>
+            </ion-card-header>
+            <ion-card-content>
+              <form id="AddForm" action="" (ngSubmit)="submit_add();" [formGroup]="AddForm" #formDir=ngForm >
+                  <ion-label style="margin-left: 20px" position="floating">
                   Cor
                 </ion-label>
-                  <ion-input
-                    type="color"
-                    value="#FFFFFF"
-                    name="messageColor"
-                    style="width: 100px"
-                  ></ion-input>
+                <ion-input type="color" value="#FFFFFF" formControlName="cor" style="width: 100px"></ion-input>
+
+                <div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
+                  Escolha uma cor
+                </div>
+
                 <ion-item>
                   <ion-label position="floating">Título da mensagem</ion-label>
-                  <ion-input type="text" name="messageTitle"></ion-input>
+                  <ion-input type="text" formControlName="titulo"></ion-input>
+
+                  <div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
+                    Digite um título
+                  </div>
+
                 </ion-item>
                 <ion-item>
-                  <ion-label position="floating"
-                    >Descrição das mensagem</ion-label>
-                  <ion-textarea
-                    fill="outline"
-                    type="textarea"
-                    name="messageDescription">
-                  </ion-textarea>
+                  <ion-label position="floating">Descrição das mensagem</ion-label>
+                  <ion-textarea fill="outline" type="textarea" formControlName="descricao"></ion-textarea>
+
+                  <div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
+                    Digite uma descrição
+                  </div>
+
                 </ion-item>
-                
-              </ion-card-content>
-              <ion-card-content class="ion-text-center">
-                  <ion-col size="8">
-                    <ion-button expand="block">
-                      <ion-text>
-                        Criar
-                      </ion-text>
-                    </ion-button>
-                  </ion-col>
-              </ion-card-content>
-            </ion-card>
-          </form>
+              </form>
+            </ion-card-content>
+            <ion-card-content class="ion-text-center">
+              <ion-col size="8">
+                <ion-button form="AddForm" type="submit" expand="block">
+                  <ion-text>
+                    Criar
+                  </ion-text>
+                </ion-button>
+              </ion-col>
+            </ion-card-content>
+          </ion-card>
+
+
+
+
         </div>
       </ion-col>
     </ion-row>
