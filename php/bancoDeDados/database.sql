@@ -44,6 +44,16 @@ CREATE TABLE `mensagem` (
 	PRIMARY KEY (`tipo`)
 );
 
+DROP TABLE IF EXISTS `lembretes`;
+
+CREATE TABLE `lembretes` (
+	`id` VARCHAR(20) NOT NULL,
+	`horarioLembrete` TIME NOT NUll,
+	`dataLembrete` DATE,
+	`conteudoLembrete` TIME NOT NUll,
+	PRIMARY KEY (`id`)
+);
+
 DROP TABLE IF EXISTS `agendamento`;
 
 CREATE TABLE `agendamento`(
