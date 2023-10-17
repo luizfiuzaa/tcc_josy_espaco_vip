@@ -321,7 +321,7 @@
 										{{comanda.titulo_servico}}
 									</ion-text>
 								</ion-col>
-								<ion-col size="6" class="col-precos">
+								<ion-col size="6" class="col-precos ion-text-center">
 									<ion-text>
 										{{comanda.preco_servico}}
 									</ion-text>
@@ -333,7 +333,8 @@
 					<ion-list class="content_total" lines="none">
 						<ion-item class="total">
 							<ion-text class="ion-text-center">
-								Total: <span> R$ {{this.valorTotal}}</span>
+								Total(<span class="unidade_preco">R$</span>):<span class="preco">
+									{{this.valorTotal}}</span>
 							</ion-text>
 						</ion-item>
 					</ion-list>
