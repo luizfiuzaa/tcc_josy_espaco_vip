@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET'){
 }
 
 try {
-    $sql = "SELECT * FROM cliente";
+    $select = "SELECT * FROM cliente";
 
-    $stmt = $connection->prepare($sql);
+    $stmt = $connection->prepare($select);
 
     $stmt->execute();
 

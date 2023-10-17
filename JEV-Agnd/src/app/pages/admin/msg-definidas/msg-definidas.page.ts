@@ -14,8 +14,6 @@ export class MsgDefinidasPage implements OnInit {
 
   constructor(private msgDefinidasService: MsgDefinidasService) {
     this.list_mensagens()
-    // this.create_mensagens()
-    // this.update_mensagens()
   }
 
   ngOnInit() {
@@ -80,9 +78,6 @@ list_mensagens() {
         this.mensagensExibidas = this.Mensagens;
   })
   console.log(this.Mensagens);
-
-
-  // console.log(this.Mensagens);
 }
 
 select_message(){
