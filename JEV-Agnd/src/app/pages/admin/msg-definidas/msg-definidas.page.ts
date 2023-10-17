@@ -40,13 +40,14 @@ export class MsgDefinidasPage implements OnInit {
 
   list_mensagens() {
     this.msgDefinidasService.list().subscribe((dados: any) => {
+      if(dados.success = "1"){
       console.log(dados.mensagens)
       dados.mensagens.forEach((element: any) => {
         let mensagem = this.mensagens.find((mensagem: any) => mensagem.tipo == element.tipo)
         if (mensagem) {
           this.mensagens[this.mensagens.indexOf(mensagem)].descricao = element.descricao;
         }
-      });
+      });}
     })
   }
   create_mensagens() {

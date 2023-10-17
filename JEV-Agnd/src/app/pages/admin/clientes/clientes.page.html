@@ -46,8 +46,7 @@
                   </ion-card-header>
 
                   <!-- Botões de Exclusão, Edição e Visualização de dados -->
-                  <ion-card-content class="card__content">
-                    <div>
+                  <ion-card-content class="buttons_container">
                       <ion-button class="delete apagar_cli" fill="outline" (click)="apagarService(Clientes.id_cliente)">
                         <ion-icon name="trash"></ion-icon>
                         Excluir
@@ -56,42 +55,15 @@
                         <ion-icon name="create-outline"></ion-icon>
                         Editar
                       </ion-button>
-                    </div>
-                    <div class="cont_2">
                       <ion-button class="info" (click)="listInformacoes(Clientes.id_cliente)">
                         <ion-icon name="information-circle-outline"></ion-icon>
                       </ion-button>
-                      <ion-fab>
-                        <ion-fab-button size="small">
-                          <ion-icon name="mail"></ion-icon>
-                        </ion-fab-button>
-                        <ion-fab-list side="start">
-                          <ion-fab-button color="success">
-                            <ion-icon name="checkbox"></ion-icon>
-                          </ion-fab-button>
-
-                          <ion-fab-button color="secondary">
-                            <ion-icon name="time"></ion-icon>
-                          </ion-fab-button>
-
-                          <ion-fab-button color="danger">
-                            <ion-icon name="close-circle"></ion-icon>
-                          </ion-fab-button>
-
-                          <ion-fab-button color="warning">
-                            <ion-icon name="cash"></ion-icon>
-                          </ion-fab-button>
-                        </ion-fab-list>
-                      </ion-fab>
-                    </div>
                   </ion-card-content>
                 </ion-card>
               </ion-item>
             </div>
           </ion-list>
         </div>
-
-        <!-- Senão Exiba -->
         <ng-template #noClientes>
           <ion-col size="12" class="noClientes" *ngIf="clientes_Exibidos.length == 0 && !this.isLoading">
             <ion-text class="ion-text-center">
@@ -110,7 +82,6 @@
         <ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
       </ion-col>
     </ion-row>
-
 
     <ion-modal #modal [isOpen]="modalOpenAdd" backdropDismiss="false">
       <ng-template>
@@ -209,7 +180,6 @@
 
       </ng-template>
     </ion-modal>
-
 
     <ion-modal #modal [isOpen]="modalOpenInfo" backdropDismiss="false">
       <ng-template>
