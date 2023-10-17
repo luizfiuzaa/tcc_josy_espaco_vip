@@ -13,13 +13,10 @@ import { MsgDefinidasService } from 'src/app/services/mensagens/msg-definidas.se
 export class MsgDefinidasPage implements OnInit {  
 
   constructor(private msgDefinidasService: MsgDefinidasService) {
-    this.list_mensagens()
-    // this.create_mensagens()
-    // this.update_mensagens()
+    this.list_mensagens();
   }
 
   ngOnInit() {
-    this.list_mensagens();
   }
 
 
@@ -72,14 +69,14 @@ mensagensExibidas: Mensagem[] = [];
 list_mensagens() {
   this.msgDefinidasService.list().subscribe((dados:any) => {
     this.Mensagens = dados.mensagens;
-    console.log(this.Mensagens);
     console.log(dados.mensagens);
-        if (!dados.success || dados.success != 1) {
+    console.log(this.Mensagens);
+        if (!dados.success || dados.success == '0') {
           this.Mensagens = [];
         }
         this.mensagensExibidas = this.Mensagens;
   })
-  console.log(this.Mensagens);
+  // console.log(this.Mensagens);
 
 
   // console.log(this.Mensagens);
@@ -90,16 +87,19 @@ select_message(){
 }
 
 
-  mensagemSelecionada: any = 0;
+  mensagemSelecionada: any = null
 
 
   redirect_add(){
-    this.mensagemSelecionada = 1
+    this.mensagemSelecionada = 0
     this.createFormAdd();
   }
 
-  redirect_message(){
-    console.log('card');
+  redirect_message(id:any){
+    console.log(id);
+
+    this.mensagemSelecionada = this.mensagensExibidas.find((element: any)=> element.id_mensagem == id)
+    console.log(this.mensagemSelecionada);
   }
 
   // criando mensagens novas
