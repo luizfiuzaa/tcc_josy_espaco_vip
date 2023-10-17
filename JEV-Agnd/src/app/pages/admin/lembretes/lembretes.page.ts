@@ -21,6 +21,7 @@ export class LembretesPage implements OnInit {
     this.LembretesService.list().subscribe((dados: any) => {
       if (dados.success == '1') {
         this.Lembretes = dados.lembretes;
+        console.log(this.Lembretes)
         return;
       }
       this.Lembretes = [];
