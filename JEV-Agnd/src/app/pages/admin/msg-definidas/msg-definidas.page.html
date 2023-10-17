@@ -8,271 +8,135 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <ion-row class="main ion-align-items-center ion-justify-content-center ion-text-center">
-      <ion-col class="container">
-        <!-- Confirmação -->
-        <ion-card color="light">
-          <ion-card-header color="success">
+  <ion-content class="custom-content" scrollY="true">
+    <ion-row class="main ion-justify-content-center">
+      <ion-col size="12" sizeLg="4" class="body">
 
+        <ion-card class="custom-card scroll-container" *ngFor="let mensagem of mensagensExibidas" (click)="redirect_message(mensagem.id_mensagem)">
+          <ion-card-header>
             <ion-card-title>
-              <ion-icon name="checkbox"></ion-icon>
-              <ion-col size="10"><ion-text>Confirmação</ion-text></ion-col>
+              {{mensagem.titulo}}
             </ion-card-title>
           </ion-card-header>
-
-          <ion-card-content>
-            <ion-text class="descricao">
-              <p class="placeholder">{{mensagens[0].descricao}}</p>
-            </ion-text>
-
-            <ion-card-content>
-
-              <ion-button expand="block" color="success" (click)="compartilhar(this.mensagens[0].descricao)">
-                <ion-text>
-                  <p class="compartilhar">Compartilhar</p>
-                </ion-text>
-                <ion-icon name="arrow-redo"></ion-icon>
-              </ion-button>
-
-              <ion-button id="btn-editar" expand="block" (click)="setOpenConfirm(true)" class="btn-editar"
-                fill="outline" color="success">
-                <ion-text color="success">
-                  <p>Editar</p>
-                </ion-text>
-                <ion-icon color="success" slot="end" name="pencil-outline"></ion-icon>
-              </ion-button>
-              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenConfirm"
-                backdropDismiss="false">
-                <ion-col>
-                  <ng-template>
-                    <ion-header>
-                      <ion-toolbar>
-                        <ion-title>Editar</ion-title>
-
-                        <ion-buttons slot="start">
-                          <ion-button (click)="setOpenConfirm(false)">
-                            Cancelar
-                          </ion-button>
-                        </ion-buttons>
-
-                        <ion-buttons slot="end">
-                          <ion-button (click)="setOpenConfirm(false)">
-                            Confirmar
-                          </ion-button>
-                        </ion-buttons>
-
-                      </ion-toolbar>
-                    </ion-header>
-
-                    <ion-content>
-                      <ion-item>
-                        <ion-textarea [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
-                      </ion-item>
-                    </ion-content>
-                  </ng-template>
-                </ion-col>
-              </ion-modal>
-            </ion-card-content>
-          </ion-card-content>
         </ion-card>
-        <!-- Reagendamento -->
-        <ion-card color="light">
-          <ion-card-header color="secondary">
 
-            <ion-card-title>
-              <ion-icon name="time"></ion-icon>
-              <ion-col size="10"><ion-text>Reagendamento</ion-text></ion-col>
-            </ion-card-title>
-          </ion-card-header>
-
+        <ion-card class="add-card" color="primary" (click)="redirect_add()">
           <ion-card-content>
-            <ion-text class="descricao">
-              <p class="placeholder">{{mensagens[1].descricao}}</p>
-            </ion-text>
-
-            <ion-card-content>
-
-              <ion-button expand="block" color="secondary" (click)="compartilhar(this.mensagens[1].descricao)">
-                <ion-text>
-                  <p class="compartilhar">Compartilhar</p>
+            <ion-card-header>
+              <ion-card-title>
+                <ion-text style="color: #fff">
+                  <ion-icon name="add"></ion-icon>
+                  criar mensagem
                 </ion-text>
-                <ion-icon name="arrow-redo"></ion-icon>
-              </ion-button>
-
-              <ion-button id="btn-editar" expand="block" (click)="setOpenReagen(true)" class="btn-editar" fill="outline"
-                color="secondary">
-                <ion-text>
-                  <p>Editar</p>
-                </ion-text>
-                <ion-icon color="secondary" slot="end" name="pencil-outline"></ion-icon>
-              </ion-button>
-
-              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenReagen"
-                backdropDismiss="false">
-                <ion-col>
-                  <ng-template>
-                    <ion-header>
-                      <ion-toolbar>
-                        <ion-title>Editar</ion-title>
-
-                        <ion-buttons slot="start">
-                          <ion-button (click)="setOpenReagen(false)">
-                            Cancelar
-                          </ion-button>
-                        </ion-buttons>
-
-                        <ion-buttons slot="end">
-                          <ion-button (click)="setOpenReagen(false)">
-                            Confirmar
-                          </ion-button>
-                        </ion-buttons>
-
-                      </ion-toolbar>
-                    </ion-header>
-
-                    <ion-content>
-                      <ion-item>
-                        <ion-textarea [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
-                      </ion-item>
-                    </ion-content>
-                  </ng-template>
-                </ion-col>
-              </ion-modal>
-            </ion-card-content>
-          </ion-card-content>
-        </ion-card>
-        <!-- Cancelamento -->
-        <ion-card color="light">
-          <ion-card-header color="danger">
-
-            <ion-card-title>
-              <ion-icon name="close-circle"></ion-icon>
-              <ion-col size="10"><ion-text>Cancelamento</ion-text></ion-col>
-            </ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-text class="descricao">
-              <p class="placeholder">{{mensagens[2].descricao}}</p>
-            </ion-text>
-
-            <ion-card-content>
-
-              <ion-button expand="block" color="danger" (click)="compartilhar(this.mensagens[2].descricao)">
-                <ion-text>
-                  <p class="compartilhar">Compartilhar</p>
-                </ion-text>
-                <ion-icon name="arrow-redo"></ion-icon>
-              </ion-button>
-
-              <ion-button id="btn-editar" expand="block" (click)="setOpenCancel(true)" class="btn-editar" fill="outline"
-                color="danger">
-                <ion-text>
-                  <p>Editar</p>
-                </ion-text>
-                <ion-icon color="danger" slot="end" name="pencil-outline"></ion-icon>
-              </ion-button>
-              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenCancel"
-                backdropDismiss="false">
-                <ion-col>
-                  <ng-template>
-                    <ion-header>
-                      <ion-toolbar>
-                        <ion-title>Editar</ion-title>
-
-                        <ion-buttons slot="start">
-                          <ion-button (click)="setOpenCancel(false)">
-                            Cancelar
-                          </ion-button>
-                        </ion-buttons>
-
-                        <ion-buttons slot="end">
-                          <ion-button (click)="setOpenCancel(false)">
-                            Confirmar
-                          </ion-button>
-                        </ion-buttons>
-
-                      </ion-toolbar>
-                    </ion-header>
-
-                    <ion-content>
-                      <ion-item>
-                        <ion-textarea [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
-                      </ion-item>
-                    </ion-content>
-                  </ng-template>
-                </ion-col>
-              </ion-modal>
-            </ion-card-content>
-          </ion-card-content>
-        </ion-card>
-        <!-- Cobrar -->
-        <ion-card color="light">
-          <ion-card-header color="warning">
-
-            <ion-card-title>
-              <ion-icon name="cash"></ion-icon>
-              <ion-col size="10"><ion-text>Cobrar</ion-text></ion-col>
-            </ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-text class="descricao">
-              <p class="placeholder">{{mensagens[3].descricao}}</p>
-            </ion-text>
-
-            <ion-card-content>
-
-              <ion-button expand="block" color="warning" (click)="compartilhar(this.mensagens[3].descricao)">
-                <ion-text>
-                  <p class="compartilhar">Compartilhar</p>
-                </ion-text>
-                <ion-icon name="arrow-redo"></ion-icon>
-              </ion-button>
-
-              <ion-button id="btn-editar" expand="block" (click)="setOpenCobrar(true)" class="btn-editar" fill="outline"
-                color="warning">
-                <ion-text>
-                  <p>Editar</p>
-                </ion-text>
-                <ion-icon color="warning" slot="end" name="pencil-outline"></ion-icon>
-              </ion-button>
-              <ion-modal #modal trigger="btn-editar2" mode="ios" class="modal-header2" [isOpen]="modalOpenCobrar"
-                backdropDismiss="false">
-                <ion-col>
-                  <ng-template>
-                    <ion-header>
-                      <ion-toolbar>
-                        <ion-title>Editar</ion-title>
-
-                        <ion-buttons slot="start">
-                          <ion-button (click)="setOpenCobrar(false)">
-                            Cancelar
-                          </ion-button>
-                        </ion-buttons>
-
-                        <ion-buttons slot="end">
-                          <ion-button (click)="setOpenCobrar(false)">
-                            Confirmar
-                          </ion-button>
-                        </ion-buttons>
-
-                      </ion-toolbar>
-                    </ion-header>
-
-                    <ion-content>
-                      <ion-item>
-                        <ion-textarea [autoGrow]="true" placeholder="Insira sua mensagem pré-definida"></ion-textarea>
-                      </ion-item>
-                    </ion-content>
-                  </ng-template>
-                </ion-col>
-              </ion-modal>
-            </ion-card-content>
+              </ion-card-title>
+            </ion-card-header>
           </ion-card-content>
         </ion-card>
       </ion-col>
+
+      <ion-col size="12" sizeLg="8">
+
+        <div style="position: relative;" *ngIf="mensagemSelecionada == 0;" class="message-container">
+          <ion-card class="message-container-card">
+            <ion-card-header class="ion-text-center">
+              <ion-title color="dark">Criar Nova Mensagem</ion-title>
+            </ion-card-header>
+            <ion-card-content>
+              <form id="AddForm" action="" (ngSubmit)="submit_add();" [formGroup]="AddForm" #formDir=ngForm >
+                  <ion-label style="margin-left: 20px" position="floating">
+                  Cor
+                </ion-label>
+                <ion-input type="color" formControlName="cor" style="width: 100px"></ion-input>
+
+                <div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
+                  Escolha uma cor
+                </div>
+
+                <ion-item>
+                  <ion-label position="floating">Título da mensagem</ion-label>
+                  <ion-input type="text" formControlName="titulo"></ion-input>
+
+                  <div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
+                    Digite um título
+                  </div>
+
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Descrição das mensagem</ion-label>
+                  <ion-textarea fill="outline" type="textarea" formControlName="descricao"></ion-textarea>
+
+                  <div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
+                    Digite uma descrição
+                  </div>
+
+                </ion-item>
+              </form>
+            </ion-card-content>
+            <ion-card-content class="ion-text-center">
+              <ion-col size="8">
+                <ion-button form="AddForm" type="submit" expand="block">
+                  <ion-text>
+                    Criar
+                  </ion-text>
+                </ion-button>
+              </ion-col>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+
+        <!-- cada mensagem -->
+        <div style="position: relative;" *ngIf="mensagemSelecionada != 0;" class="message-container">
+          <ion-card class="message-container-card">
+            <ion-card-header class="ion-text-center">
+              <ion-title color="dark">{{mensagemSelecionada.titulo}}</ion-title>
+            </ion-card-header>
+            <ion-card-content>
+              <!-- <form id="AddForm" action="" (ngSubmit)="submit_add();" [formGroup]="AddForm" #formDir=ngForm >
+                  <ion-label style="margin-left: 20px" position="floating">
+                  Cor
+                </ion-label>
+                <ion-input type="color" formControlName="cor" style="width: 100px"></ion-input>
+
+                <div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
+                  Escolha uma cor
+                </div>
+
+                <ion-item>
+                  <ion-label position="floating">Título da mensagem</ion-label>
+                  <ion-input type="text" formControlName="titulo"></ion-input>
+
+                  <div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
+                    Digite um título
+                  </div>
+
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Descrição das mensagem</ion-label>
+                  <ion-textarea fill="outline" type="textarea" formControlName="descricao"></ion-textarea>
+
+                  <div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
+                    Digite uma descrição
+                  </div>
+
+                </ion-item>
+              </form> -->
+            </ion-card-content>
+            <ion-card-content class="ion-text-center">
+              <ion-col size="8">
+                <ion-button form="AddForm" type="submit" expand="block">
+                  <ion-text>
+                    Criar
+                  </ion-text>
+                </ion-button>
+              </ion-col>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
     </ion-row>
   </ion-content>
+
+  <!-- </ion-row>
+  </ion-content> -->
 </div>
