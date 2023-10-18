@@ -15,6 +15,10 @@ export const environment = {
   // url do pc paleolítico da etec:
   // baseApiUrl: 'http://localhost/aula/php/admin/',
   // baseApiUrlLogin: 'http://localhost/aula/php/'
+
+  // url do codeSpace de Marlon:
+  // baseApiUrl: 'http://localhost/arquivosdaaulaapi/php/admin/',
+  // baseApiUrlLogin: 'http://localhost/arquivosdaaulaapi/php/'
 };
 
 /*

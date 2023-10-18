@@ -50,7 +50,6 @@ export class FaturamentoComponent implements OnInit {
             '#45C0A4',
             '#034C8C',
             '#D90D43'
-
           ],
           borderWidth: 1
         }]

@@ -16,7 +16,8 @@ export class AdminPermicaoGuard {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.login.statusLogin().pipe(
+    // return true
+      return this.login.statusLogin().pipe(
       map((data: any) => {
         console.log(data);
         if (data.success == '1') {

@@ -14,7 +14,7 @@ export class FaturamentosService {
   metodos: boolean = false;
   servicos: boolean = false;
   faturamentos: boolean = false;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   verficar() {
     this.isLoading = (this.metodos && this.servicos && this.faturamentos) ? false : true;
