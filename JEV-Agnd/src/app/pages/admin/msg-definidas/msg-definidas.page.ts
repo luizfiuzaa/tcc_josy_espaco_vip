@@ -12,54 +12,48 @@ import { MsgDefinidasService } from 'src/app/services/mensagens/msg-definidas.se
 })
 export class MsgDefinidasPage implements OnInit {
 
-  Mensagens: Mensagem[] = [];
+  mensagens: Mensagem[] = [];
   mensagensExibidas: Mensagem[] = [];
 
   constructor(private msgDefinidasService: MsgDefinidasService) {
     this.list_mensagens();
+    this.create_message();
   }
 
+  //Arrumar depois
+  color = `background:blue`
+
   list_mensagens() {
-
-    // Fazer *ngIf lá no html
-
     this.msgDefinidasService.list().subscribe((dados: any) => {
-      this.Mensagens = dados.mensagens;
+      this.mensagens = dados.mensagens;
       if (!dados.success || dados.success != 1) {
-        this.Mensagens = [];
+        this.mensagens = [];
       }
-      console.log(this.mensagensExibidas)
-      this.mensagensExibidas = this.Mensagens;
+      console.log(this.mensagens)
     })
   }
 
-  select_message() {
-
-  }
-  mensagemSelecionada: any = null
-
-
-  redirect_add() {
-    this.mensagemSelecionada = 0
+  create_message() {
+    console.log('criando mensagem')
+    this.mensagensExibidas = [];
     this.createFormAdd();
   }
 
-  redirect_message(id: any) {
-    console.log(id);
-
-    this.mensagemSelecionada = this.mensagensExibidas.find((element: any) => element.id_mensagem == id)
-    console.log(this.mensagemSelecionada);
+  select_message(id: any) {
+    this.mensagensExibidas = this.mensagens.filter((element: any) => element.id_mensagem == id)
+    this.createFormAdd();
+    console.log(this.mensagensExibidas);
   }
+  cor = '#fff'
 
-  // criando mensagens novas
   AddForm!: FormGroup;
   createFormAdd() {
     this.AddForm = new FormGroup({
-      cor: new FormControl('', Validators.compose([
+      cor: new FormControl(this.mensagensExibidas[0]?.cor ? this.mensagensExibidas[0]?.cor : '', Validators.compose([
         Validators.required])),
-      titulo: new FormControl('', Validators.compose([
+      titulo: new FormControl(this.mensagensExibidas[0]?.titulo ? this.mensagensExibidas[0]?.titulo : '', Validators.compose([
         Validators.required])),
-      descricao: new FormControl('', Validators.compose([
+      descricao: new FormControl(this.mensagensExibidas[0]?.descricao ? this.mensagensExibidas[0]?.descricao : '', Validators.compose([
         Validators.required]))
     });
   }
@@ -77,17 +71,16 @@ export class MsgDefinidasPage implements OnInit {
   submit_add() {
     console.log(this.AddForm.value)
     if (this.AddForm.valid) {
-      let mensagem = [];
 
-      mensagem[0] = {
-        cor: this.AddForm.value.cor,
+      let mensagem = {
         titulo: this.AddForm.value.titulo,
         descricao: this.AddForm.value.descricao,
+        cor: this.AddForm.value.cor,
       }
 
       console.log(mensagem);
 
-      this.msgDefinidasService.create(this.AddForm.value).subscribe(() => {
+      this.msgDefinidasService.create(mensagem).subscribe(() => {
         this.list_mensagens();
       });
       console.log('Formulario De Adição Valido')
@@ -103,15 +96,6 @@ export class MsgDefinidasPage implements OnInit {
   ngOnInit() {
   }
 
-  // separador
-
-  // create_mensagens() {
-
-  // }
-  // update_mensagens() {
-
-  // }
-
   // numeroTelefone = '15988360435'; // Número de telefone no formato internacional
   // mensagem = 'Olá, mundo!'; // Sua mensagem
 
@@ -122,26 +106,5 @@ export class MsgDefinidasPage implements OnInit {
   // }
 
   // // window.open(this.whatsappUrl())
-
-  // compartilhar(mensagem: String) {
-  //   console.log(mensagem)
-  // }
-
-  // modalOpenConfirm = false;
-  // setOpenConfirm(isOpenConfirm: boolean) {
-  //   this.modalOpenConfirm = isOpenConfirm;
-  // }
-  // modalOpenReagen = false;
-  // setOpenReagen(isOpenReagen: boolean) {
-  //   this.modalOpenReagen = isOpenReagen;
-  // }
-  // modalOpenCancel = false;
-  // setOpenCancel(isOpenCancel: boolean) {
-  //   this.modalOpenCancel = isOpenCancel;
-  // }
-  // modalOpenCobrar = false;
-  // setOpenCobrar(isOpenCobrar: boolean) {
-  //   this.modalOpenCobrar = isOpenCobrar;
-  // }
 }
 
