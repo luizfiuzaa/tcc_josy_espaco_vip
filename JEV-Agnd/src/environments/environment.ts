@@ -7,7 +7,7 @@ export const environment = {
   baseApiUrl: 'http://localhost/aula/php/admin/',
   baseApiUrlLogin: 'http://localhost/aula/php/'
   // baseApiUrl: 'http://localhost/aula/php/admin/'
-};
+}; 
 
 /*
  * For easier debugging in development mode, you can import the following file
