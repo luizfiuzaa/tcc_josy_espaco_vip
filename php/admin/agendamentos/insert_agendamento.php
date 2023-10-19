@@ -140,7 +140,7 @@ try {
         ) 
         VALUES(
             :horarioLembrete,
-            horario,
+            :horario,
             :dataLembrete,
             :conteudoLembrete
         )";

@@ -13,7 +13,7 @@
       <ion-col size="12" sizeLg="4" class="body">
 
         <ion-card class="custom-card scroll-container" *ngFor="let mensagem of this.mensagens"
-          (click)="select_message(mensagem.id_mensagem)" [style]="this.cor">
+          (click)="select_message(mensagem.id_mensagem)" [style.background-color]="mensagem.cor">
           <ion-card-header>
             <ion-card-title>
               {{mensagem.titulo}}
@@ -36,7 +36,8 @@
       </ion-col>
 
       <ion-col size="12" sizeLg="8">
-        <div style="position: relative;" *ngIf="this.mensagensExibidas && this.mensagensExibidas.length == 0; else noMensagem"
+        <div style="position: relative;"
+          *ngIf="this.mensagensExibidas && this.mensagensExibidas.length == 0; else noMensagem"
           class="message-container">
           <ion-card class="message-container-card">
             <ion-card-header class="ion-text-center">
@@ -136,6 +137,28 @@
         </ng-template>
       </ion-col>
     </ion-row>
+
+<ion-popover [isOpen]="MensagensModal" [dismissOnSelect]="true">
+  <ng-template>
+    <ion-content>
+      <ion-list>
+        <ion-item [button]="true" [detail]="false">Option 1</ion-item>
+        <ion-item [button]="true" [detail]="false">Option 2</ion-item>
+        <ion-item [button]="true" id="nested-trigger">More options...</ion-item>
+
+        <ion-popover trigger="nested-trigger" [dismissOnSelect]="true" side="end">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+                <ion-item [button]="true" [detail]="false">Nested option</ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
   </ion-content>
 
   <!-- </ion-row>

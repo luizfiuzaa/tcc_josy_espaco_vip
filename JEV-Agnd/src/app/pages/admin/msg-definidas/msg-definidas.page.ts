@@ -20,9 +20,6 @@ export class MsgDefinidasPage implements OnInit {
     this.create_message();
   }
 
-  //Arrumar depois
-  color = `background:blue`
-
   list_mensagens() {
     this.msgDefinidasService.list().subscribe((dados: any) => {
       this.mensagens = dados.mensagens;
@@ -91,6 +88,11 @@ export class MsgDefinidasPage implements OnInit {
     console.log('Formulario De Adição Invalido')
     // this.message = 'Falha ao agendar!!'
     // this.ExibirMessage(false);
+  }
+
+  MensagensModal: boolean = false;
+  openMensagensModal(isOpen: boolean) {
+    this.MensagensModal = isOpen;
   }
 
   ngOnInit() {

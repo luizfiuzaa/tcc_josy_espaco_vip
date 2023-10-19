@@ -21,22 +21,29 @@ $data = json_decode(file_get_contents("php://input"));
 
 try {
 
-    $tipo = htmlspecialchars(trim($data->tipo));
+    $titulo = htmlspecialchars(trim($data->titulo));
     $descricao = htmlspecialchars(trim($data->descricao));
+    $cor = htmlspecialchars(trim($data->cor));
 
     $insert = "INSERT INTO `mensagem` (
-            tipo,
-            desc_Msg
+            titulo,
+            descricao,
+            cor,
+            icon
             ) 
             VALUES (
-            :tipo,
-            :descricao
+            :titulo,
+            :descricao,
+            :cor,
+            :icon
             )";
 
     $stmt = $connection->prepare($insert);
 
-    $stmt->bindValue(':tipo', $tipo, PDO::PARAM_STR);
+    $stmt->bindValue(':titulo', $titulo, PDO::PARAM_STR);
     $stmt->bindValue(':descricao', $descricao, PDO::PARAM_STR);
+    $stmt->bindValue(':cor', $cor, PDO::PARAM_STR);
+    $stmt->bindValue(':icon', 'icone', PDO::PARAM_STR);
 
     if ($stmt->execute()) {
         http_response_code(201);
