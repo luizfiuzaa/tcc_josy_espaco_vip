@@ -7,18 +7,102 @@ import { MsgDefinidasService } from 'src/app/services/mensagens/msg-definidas.se
 
 @Component({
   selector: 'app-msg-definidas',
-  templateUrl:'./msg-definidas.page.html',
+  templateUrl: './msg-definidas.page.html',
   styleUrls: ['./msg-definidas.page.scss'],
 })
-export class MsgDefinidasPage implements OnInit {  
+export class MsgDefinidasPage implements OnInit {
+
+  Mensagens: Mensagem[] = [];
+  mensagensExibidas: Mensagem[] = [];
 
   constructor(private msgDefinidasService: MsgDefinidasService) {
     this.list_mensagens();
   }
 
+  list_mensagens() {
+
+// Fazer *ngIf lá no html
+
+    this.msgDefinidasService.list().subscribe((dados: any) => {
+      this.Mensagens = dados.mensagens;
+      if (!dados.success || dados.success != 1) {
+        this.Mensagens = [];
+      }
+      this.mensagensExibidas = this.Mensagens;
+    })
+  }
+
+  select_message() {
+
+  }
+  mensagemSelecionada: any = null
+
+
+  redirect_add() {
+    this.mensagemSelecionada = 0
+    this.createFormAdd();
+  }
+
+  redirect_message(id: any) {
+    console.log(id);
+
+    this.mensagemSelecionada = this.mensagensExibidas.find((element: any) => element.id_mensagem == id)
+    console.log(this.mensagemSelecionada);
+  }
+
+  // criando mensagens novas
+  AddForm!: FormGroup;
+  createFormAdd() {
+    this.AddForm = new FormGroup({
+      cor: new FormControl('', Validators.compose([
+        Validators.required])),
+      titulo: new FormControl('', Validators.compose([
+        Validators.required])),
+      descricao: new FormControl('', Validators.compose([
+        Validators.required]))
+    });
+  }
+
+  get cor_add() {
+    return this.AddForm.get('cor')!;
+  }
+  get titulo_add() {
+    return this.AddForm.get('titulo')!;
+  }
+  get descricao_add() {
+    return this.AddForm.get('descricao')!;
+  }
+
+  submit_add() {
+    console.log(this.AddForm.value)
+    if (this.AddForm.valid) {
+      let mensagem = [];
+
+      mensagem[0] = {
+        cor: this.AddForm.value.cor,
+        titulo: this.AddForm.value.titulo,
+        descricao: this.AddForm.value.descricao,
+      }
+
+      console.log(mensagem);
+
+      this.msgDefinidasService.create(this.AddForm.value).subscribe(() => {
+        this.list_mensagens();
+      });
+      console.log('Formulario De Adição Valido')
+      // this.message = 'Agendado com sucesso!!'
+      // this.ExibirMessage(true);
+      return;
+    }
+    console.log('Formulario De Adição Invalido')
+    // this.message = 'Falha ao agendar!!'
+    // this.ExibirMessage(false);
+  }
+
   ngOnInit() {
   }
 
+  // separador
 
   // create_mensagens() {
 
@@ -58,98 +142,5 @@ export class MsgDefinidasPage implements OnInit {
   // setOpenCobrar(isOpenCobrar: boolean) {
   //   this.modalOpenCobrar = isOpenCobrar;
   // }
-
-
-// separador
-
-Mensagens: Mensagem[] = [];
-mensagensExibidas: Mensagem[] = [];
-
-
-list_mensagens() {
-  this.msgDefinidasService.list().subscribe((dados:any) => {
-    this.Mensagens = dados.mensagens;
-    console.log(dados.mensagens);
-    console.log(this.Mensagens);
-        if (!dados.success || dados.success == '0') {
-          this.Mensagens = [];
-        }
-        this.mensagensExibidas = this.Mensagens;
-  })
-  // console.log(this.Mensagens);
-
-
-  // console.log(this.Mensagens);
-}
-
-select_message(){
-
-}
-
-
-  mensagemSelecionada: any = null
-
-
-  redirect_add(){
-    this.mensagemSelecionada = 0
-    this.createFormAdd();
-  }
-
-  redirect_message(id:any){
-    console.log(id);
-
-    this.mensagemSelecionada = this.mensagensExibidas.find((element: any)=> element.id_mensagem == id)
-    console.log(this.mensagemSelecionada);
-  }
-
-  // criando mensagens novas
-  AddForm!: FormGroup;
-  createFormAdd() {
-    this.AddForm = new FormGroup({
-      cor: new FormControl('', Validators.compose([
-        Validators.required])),
-      titulo: new FormControl('', Validators.compose([
-        Validators.required])),
-      descricao: new FormControl('', Validators.compose([
-        Validators.required]))
-    });
-  }
-
-  get cor_add() {
-    return this.AddForm.get('cor')!;
-  }
-  get titulo_add() {
-    return this.AddForm.get('titulo')!;
-  }
-  get descricao_add() {
-    return this.AddForm.get('descricao')!;
-  }
-
-  submit_add(){
-    console.log(this.AddForm.value)
-    if (this.AddForm.valid) {
-      let mensagem = [];
-
-      mensagem[0] = {
-        cor: this.AddForm.value.cor,
-        titulo: this.AddForm.value.titulo,
-        descricao: this.AddForm.value.descricao,
-      }
-
-      console.log(mensagem);
-
-      this.msgDefinidasService.create(this.AddForm.value).subscribe(() => {
-        this.list_mensagens();
-      });
-      console.log('Formulario De Adição Valido')
-      // this.message = 'Agendado com sucesso!!'
-      // this.ExibirMessage(true);
-      return;
-    }
-    console.log('Formulario De Adição Invalido')
-    // this.message = 'Falha ao agendar!!'
-    // this.ExibirMessage(false);
-  }
-
 }
 

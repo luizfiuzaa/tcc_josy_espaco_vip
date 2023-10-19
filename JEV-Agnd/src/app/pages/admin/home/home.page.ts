@@ -30,17 +30,30 @@ export class HomePage {
   Clientes: Clientes[] = []
   Servicos: Servicos[] = []
   Servicos_comanda: Comanda[] = []
-  Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
+  Agendamentos_exibidos: Agendamentos[] = [];
   isLoading = false;
   // Pega os dados da API
   listAgendamentos(filter: any) {
     this.isLoading = true;
     this.agendamentosService.list().subscribe((dados: any) => {
       this.isLoading = false;
-      this.Agendamentos = dados.agendamentos;
+      this.Agendamentos = dados.agendamentos.map((dados: any) => {
+        var data: any = dados.data_agend.split("-");
+        data = `${data[2]}/${data[1]}/${data[0]}`;
+        return { ...dados, data_agend: data };
+      });
       if (!dados.success || dados.success != 1) {
         this.Agendamentos = [];
       }
+
+      this.Agendamentos_exibidos = this.Agendamentos.map((dados) => {
+        let data: any = dados.data_agend.split("/");
+        data = `${data[2]}-${data[1]}-${data[0]}`;
+        return { ...dados, data_agend: data };
+      });
+
+      console.log(this.Agendamentos)
+      console.log(this.Agendamentos_exibidos)
       this.atualizarDados(filter);
     })
   }
@@ -65,7 +78,9 @@ export class HomePage {
   // Atualiza os agendametnos do dia de hoje
   atualizarDados(filter: any) {
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
-      return agendamento.data_agend.includes(filter);
+      let data: any = agendamento.data_agend.split("/");
+      data = `${data[2]}-${data[1]}-${data[0]}`;
+      return data.includes(filter);
     });
   }
 
@@ -92,10 +107,12 @@ export class HomePage {
         this.verificarEstado(estado);
         return;
       }
-      if (agendamento.data_agend.includes(value[0])) {
+      let dataAgendameto: any = agendamento.data_agend.split("/");
+      dataAgendameto = `${dataAgendameto[2]}-${dataAgendameto[1]}-${dataAgendameto[0]}`
+      if (dataAgendameto.includes(value[0])) {
         estado = true;
+        return dataAgendameto.includes(value[0]);
       }
-      return agendamento.data_agend.includes(value[0]);
     });
   }
   highlightedDates: any[] = [];
@@ -104,8 +121,10 @@ export class HomePage {
     let datas: any[] = [];
     let datasFrequencia: any[] = [];
     this.Agendamentos.forEach(element => {
-      let data = new Date(element.data_agend);
-      if (this.date <= data) { datas.push(element.data_agend) }
+      let dataAgendameto: any = element.data_agend.split("/");
+      dataAgendameto = `${dataAgendameto[2]}-${dataAgendameto[1]}-${dataAgendameto[0]}`;
+      let data = new Date(dataAgendameto);
+      if (this.date <= data) { datas.push(dataAgendameto) }
     });
     let media = datas.length;
     datas.forEach(() => {
@@ -148,7 +167,7 @@ export class HomePage {
   calendario_open: boolean = false;
   open_calendario(isOpen: boolean) {
     this.calendario_open = isOpen;
-    if (isOpen) {
+    if (isOpen == true) {
       this.diasAgendados();
     }
   }
@@ -192,9 +211,9 @@ export class HomePage {
       this.agendamentosService.create(agendamento).subscribe((dados: any) => {
         if (dados.success == '1') {
           this.message = dados.message
+          this.setOpenAdd('submit');
           this.ExibirMessage(true);
           this.listAgendamentos(dia_hora[0]);
-          this.setOpenAdd('submit');
           return;
         }
         this.message = dados.message;
@@ -215,7 +234,7 @@ export class HomePage {
       }, 1)
       return;
     }
-    if (isOpen == false) {
+    if (!isOpen) {
       this.modalOpenAdd = isOpen;
       return;
     }
@@ -274,7 +293,7 @@ export class HomePage {
       this.createFormEdit();
       return;
     }
-    if (isOpen == false) {
+    if (!isOpen) {
       this.modalOpenEdit = isOpen;
       return;
     }
@@ -398,7 +417,7 @@ export class HomePage {
       }, 1)
       return;
     }
-    if (isOpen == false) {
+    if (!isOpen) {
       this.modalOpenComanda = isOpen;
       return;
     }
@@ -409,7 +428,7 @@ export class HomePage {
   gerarComanda(indice: any) {
     this.indiceComanda = indice;
     this.setOpenComanda(true);
-    this.agendamentosService.comandaGenerate(this.indiceComanda).subscribe((dados:any)=>{
+    this.agendamentosService.comandaGenerate(this.indiceComanda).subscribe((dados: any) => {
       this.Servicos_comanda = dados.servicos;
       this.valorTotal = (dados.total).toFixed(2);
     });

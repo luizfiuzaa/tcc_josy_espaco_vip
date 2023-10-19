@@ -36,23 +36,22 @@ CREATE TABLE `servico`(
 
 DROP TABLE IF EXISTS `mensagem`;
 
-
 CREATE TABLE `mensagem` (
-	`id_mensagem` INT NOT NULL AUTO_INCREMENT,
-	`titulo` VARCHAR(30) NOT NULL,
+	`tipo` VARCHAR(20) NOT NULL,
 	`descricao` VARCHAR(255) NOT NUll,
 	`cor` VARCHAR(20) NOT NUll,
 	`icon` VARCHAR(255),
-	PRIMARY KEY (`id_mensagem`)
+	PRIMARY KEY (`tipo`)
 );
 
 DROP TABLE IF EXISTS `lembretes`;
 
 CREATE TABLE `lembretes` (
-	`id` VARCHAR(20) NOT NULL,
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`horario` TIME NOT NUll,
 	`horarioLembrete` TIME NOT NUll,
 	`dataLembrete` DATE,
-	`conteudoLembrete` TIME NOT NUll,
+	`conteudoLembrete` VARCHAR(255) NOT NUll,
 	PRIMARY KEY (`id`)
 );
 
