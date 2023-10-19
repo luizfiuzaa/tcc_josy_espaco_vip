@@ -21,13 +21,14 @@ export class MsgDefinidasPage implements OnInit {
 
   list_mensagens() {
 
-// Fazer *ngIf lá no html
+    // Fazer *ngIf lá no html
 
     this.msgDefinidasService.list().subscribe((dados: any) => {
       this.Mensagens = dados.mensagens;
       if (!dados.success || dados.success != 1) {
         this.Mensagens = [];
       }
+      console.log(this.mensagensExibidas)
       this.mensagensExibidas = this.Mensagens;
     })
   }
