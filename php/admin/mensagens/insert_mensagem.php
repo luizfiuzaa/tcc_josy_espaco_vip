@@ -18,32 +18,25 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $data = json_decode(file_get_contents("php://input"));
+
 try {
 
-    $titulo = htmlspecialchars(trim($data->titulo));
+    $tipo = htmlspecialchars(trim($data->tipo));
     $descricao = htmlspecialchars(trim($data->descricao));
-    $cor = htmlspecialchars(trim($data->cor));
-    $icon = "icone";
 
     $insert = "INSERT INTO `mensagem` (
-            titulo,
-            descricao,
-            cor,
-            icon
+            tipo,
+            desc_Msg
             ) 
             VALUES (
-            :titulo,
-            :descricao,
-            :cor,
-            :icon
+            :tipo,
+            :descricao
             )";
 
     $stmt = $connection->prepare($insert);
 
-    $stmt->bindValue(':titulo', $titulo, PDO::PARAM_STR);
+    $stmt->bindValue(':tipo', $tipo, PDO::PARAM_STR);
     $stmt->bindValue(':descricao', $descricao, PDO::PARAM_STR);
-    $stmt->bindValue(':cor', $cor, PDO::PARAM_STR);
-    $stmt->bindValue(':icon', $icon, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
         http_response_code(201);
