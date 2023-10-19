@@ -20,23 +20,30 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
 $data = json_decode(file_get_contents("php://input"));
 
 try {
-    $tipo = $data->tipo;
-    $select = "SELECT `descricao` FROM `mensagem` WHERE tipo=:tipo";
+    $id_mensagem = $data->id_mensagem;
+
+    $select = "SELECT `descricao` FROM `mensagem` WHERE id_mensagem=:id_mensagem";
     $stmt = $connection->prepare($select);
-    $stmt->bindValue(':tipo', $tipo, PDO::PARAM_INT);
+    $stmt->bindValue(':id_mensagem', $id_mensagem, PDO::PARAM_INT);
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
 
         $dados_existentes = $stmt->fetch(PDO::FETCH_ASSOC);
+        $titulo = isset($data->titulo) ? $data->titulo : $dados_existentes['titulo'];
         $descricao = isset($data->descricao) ? $data->descricao : $dados_existentes['descricao'];
+        $cor = isset($data->cor) ? $data->cor : $dados_existentes['cor'];
+        $icon = isset($data->icon) ? $data->icon : $dados_existentes['icon'];
 
-        $update_serv = "UPDATE `mensagem` SET descricao = :descricao
-        WHERE tipo = :tipo";
+        $update_serv = "UPDATE `mensagem` SET titulo = :titulo descricao = :descricao, cor = :cor, icon = :icon
+        WHERE id_mensagem = :id_mensagem";
 
         $update = $connection->prepare($update);
 
+        $update->bindValue(':titulo', $titulo, PDO::PARAM_STR);
         $update->bindValue(':descricao', $descricao, PDO::PARAM_STR);
+        $update->bindValue(':cor', $cor, PDO::PARAM_STR);
+        $update->bindValue(':icon', $icon, PDO::PARAM_STR);
 
         if ($update->execute()) {
             http_response_code(201);

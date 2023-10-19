@@ -12,10 +12,9 @@
     <ion-row class="main ion-justify-content-center">
       <ion-col size="12" sizeLg="4" class="body">
 
-        <ion-card class="custom-card scroll-container" *ngFor="let mensagem of mensagensExibidas" (click)="redirect_message(mensagem.id_mensagem)">
+        <ion-card class="custom-card scroll-container" *ngFor="let mensagem of mensagensExibidas">
           <ion-card-header>
             <ion-card-title>
-              {{mensagem.titulo}}
             </ion-card-title>
           </ion-card-header>
         </ion-card>
