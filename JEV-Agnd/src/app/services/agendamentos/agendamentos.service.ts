@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Agendamentos } from 'src/app/models/agendamentos';
@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class AgendamentosService {
 
-  // private readonly API = 'http://localhost/aula/php/admin/agendamentos/';
   private readonly API = environment.baseApiUrl;
 
   constructor(private httpClient: HttpClient) { }
@@ -24,8 +23,18 @@ export class AgendamentosService {
     return this.httpClient.delete(this.API + 'agendamentos/remover_agendamento.php?id=' + id);
   }
 
-  create(agendamento: any){
+  create(agendamento: any) {
     console.log(agendamento)
     return this.httpClient.post(this.API + 'agendamentos/insert_agendamento.php', agendamento);
+  }
+
+  update(agendamento: any) {
+    console.log(agendamento[0].id)
+    return this.httpClient.put<FormData>(this.API + 'agendamentos/update_agendamento.php', agendamento[0]);
+  }
+
+  comandaGenerate(id: any) {
+    console.log(id);
+    return this.httpClient.get(this.API + 'agendamentos/gerarComanda.php?id=' + id);
   }
 }

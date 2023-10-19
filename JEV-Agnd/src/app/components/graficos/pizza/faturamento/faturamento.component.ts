@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { Metodos } from 'src/app/models/metodos';
+import { FaturamentosService } from 'src/app/services/faturamentos/faturamentos.service';
+
 Chart.register(...registerables);
 
 @Component({
@@ -9,15 +12,25 @@ Chart.register(...registerables);
 })
 export class FaturamentoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private FaturamentosService: FaturamentosService) { }
+
+  metodos: Metodos[] = [];
+  isLoading: boolean = true;
 
   ngOnInit() {
-    this.gerarGraficoFormasPagamento()
+    this.getDados()
   }
 
-  pix: number = 2
-  dinheiro: number = 10
-  cartao: number = 10
+  getDados() {
+    this.isLoading = true;
+    this.FaturamentosService.listMetodos().subscribe((dados: any) => {
+      this.metodos = dados.data;
+      this.isLoading = false;
+      setTimeout(() => {
+        this.gerarGraficoFormasPagamento();
+      }, 100)
+    })
+  }
 
   gerarGraficoFormasPagamento() {
     var myChart = new Chart("faturamento", {
@@ -26,7 +39,7 @@ export class FaturamentoComponent implements OnInit {
         labels: ['Pix', 'Dinheiro', 'Cartão'],
         datasets: [{
           label: 'Quantia',
-          data: [this.pix, this.dinheiro, this.cartao],
+          data: [this.metodos[0].pix, this.metodos[0].dinheiro, this.metodos[0].cartao],
           backgroundColor: [
             '#45C0A4',
             '#034C8C',
@@ -37,7 +50,6 @@ export class FaturamentoComponent implements OnInit {
             '#45C0A4',
             '#034C8C',
             '#D90D43'
-
           ],
           borderWidth: 1
         }]

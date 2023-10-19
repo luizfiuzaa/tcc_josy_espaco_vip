@@ -18,18 +18,21 @@ export class ServicosPage implements OnInit {
   @Input() Card_Dados: Servicos[] = [];
   Servicos: Servicos[] = [];
   Servicos_exibidos: Servicos[] = [];
+  isLoading: boolean = false;
 
   constructor(private servicoService: ServicosService) {
     this.listServicos();
   }
 
   listServicos() {
+    this.isLoading = true;
     this.servicoService.list().subscribe((dados: any) => {
-      this.Servicos = dados.servicos;
-      if (!dados.success || dados.success != 1) {
-        this.Servicos = [];
-      }
-      this.Servicos_exibidos = this.Servicos;
+        this.isLoading = false;
+        this.Servicos = dados.servicos;
+        if (!dados.success || dados.success != 1) {
+          this.Servicos = [];
+        }
+        this.Servicos_exibidos = this.Servicos;
     })
   }
 
@@ -101,6 +104,20 @@ export class ServicosPage implements OnInit {
   editFormValue: any = [];
   modalOpenEdit = false;
   modalCloseEdit = false;
+  async createHandlerEdit(event: any) {
+    if (this.EditForm.invalid) {
+      return;
+    }
+
+    console.log('Deus é fiel!!!');
+    const formData = new FormData();
+
+    formData.append("titulo", this.EditForm.value.titulo_edit);
+    formData.append("descricao", this.EditForm.value.descricao_edit);
+    formData.append("duracao", this.EditForm.value.duracao_edit);
+    formData.append("preco", this.EditForm.value.preco_edit);
+  }
+
   createFormEdit() {
     this.EditForm = new FormGroup({
       id_edit: new FormControl(this.editFormValue ? this.editFormValue[0].idCard : ''),
@@ -123,17 +140,34 @@ export class ServicosPage implements OnInit {
     return this.EditForm.get('preco_edit')!;
   }
   submit_edit() {
-    if (this.EditForm.invalid) {
-      console.log('Formulario De Edição Invalido')
-      return;
+
+    if (this.EditForm.valid) {
+      // console.log(this.EditForm.value)
+      let servico = []
+      servico[0] = {
+        id: this.EditForm.value.id_edit,
+        titulo: this.EditForm.value.titulo_edit.toLocaleLowerCase(),
+        descricao: this.EditForm.value.descricao_edit,
+        duracao: this.EditForm.value.duracao_edit,
+        preco: this.EditForm.value.preco_edit.replace('R$', '').replace(/\s/g, '')
+      }
+      console.log(servico[0]);
+      this.servicoService.update(servico).subscribe(() => {
+        this.listServicos();
+      })
     }
-    console.log('Formulario De Edição Concluído')
-    this.Servicos[this.EditForm.value.id_edit] = {
-      titulo_servico: this.EditForm.value.titulo_edit,
-      desc_servico: this.EditForm.value.descricao_edit,
-      duracao_servico: this.EditForm.value.duracao_edit,
-      preco_servico: this.EditForm.value.preco_edit,
-    };
+
+    // if (this.EditForm.invalid) {
+    //   console.log('Formulario De Edição Invalido')
+    //   return;
+    // }
+    // console.log('Formulario De Edição Concluído')
+    // this.Servicos[this.EditForm.value.id_edit] = {
+    //   titulo_servico: this.EditForm.value.titulo_edit,
+    //   desc_servico: this.EditForm.value.descricao_edit,
+    //   duracao_servico: this.EditForm.value.duracao_edit,
+    //   preco_servico: this.EditForm.value.preco_edit,
+    // };
   }
   setOpenEdit(isOpen: any) {
     if (isOpen == true || this.EditForm.invalid && isOpen == false || this.EditForm.valid && isOpen == false) {
@@ -201,11 +235,11 @@ export class ServicosPage implements OnInit {
     // console.log(value)
 
     this.Servicos_exibidos = this.Servicos.filter((servico) => {
-      if (servico.titulo_servico.includes(value.toLocaleLowerCase())) {
+      if (servico.titulo_servico.toLocaleLowerCase().includes(value.toLocaleLowerCase())) {
         estado = true;
       }
       console.log(value)
-      return servico.titulo_servico.includes(value.toLocaleLowerCase());
+      return servico.titulo_servico.toLocaleLowerCase().includes(value.toLocaleLowerCase());
     });
     this.verificarEstado(estado);
   }

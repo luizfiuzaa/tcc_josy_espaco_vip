@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Clientes } from 'src/app/models/clientes';
+import { InfoClientes } from 'src/app/models/infoClientes';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -17,6 +18,12 @@ export class ClientesService {
   list() {
     return this.httpClient.get<Clientes[]>(this.API+'clientes/listar_clientes.php').pipe(
       tap(clientes => console.log(clientes))
+    );
+  }
+
+  listInfomacoes(id: any) {
+    return this.httpClient.get<InfoClientes[]>(this.API+'clientes/listar_infoClientes.php?id='+ id).pipe(
+      tap(dados => console.log(dados))
     );
   }
 

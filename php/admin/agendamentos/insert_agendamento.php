@@ -45,7 +45,6 @@ try {
         $stmt->execute();
         $duracao += $result['duracao_servico'];
     }
-
     $hora = new DateTime(substr(htmlspecialchars(trim($data->hora_inicio_agendamento)), 0, 5));
     $minutos = new DateInterval('PT' . $duracao . 'M');
     $hora->add($minutos);
@@ -58,6 +57,31 @@ try {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $cliente = $result['cliente_nome'];
 
+    $data_agend = $data->data_agend;
+    $hora_inicio_novo = strtotime($data->hora_inicio_agendamento);
+    $hora_fim_novo = strtotime($hora->format('H:i:s'));
+
+    $sql = "SELECT `hora_inicio_agendamento`, `hora_fim_agendamento` FROM `agendamento` WHERE data_agend=:data_agend";
+    $stmt = $connection->prepare($sql);
+    $stmt->bindValue(':data_agend', $data_agend, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($result as $agendamento) {
+        $hora_inicio_existente = strtotime($agendamento['hora_inicio_agendamento']);
+        $hora_fim_existente = strtotime($agendamento['hora_fim_agendamento']);
+
+        if (
+            ($hora_inicio_novo >= $hora_inicio_existente && $hora_inicio_novo < $hora_fim_existente) ||
+            ($hora_fim_novo > $hora_inicio_existente && $hora_fim_novo <= $hora_fim_existente)
+        ) {
+            echo json_encode([
+                'success' => 0,
+                'message' => 'Horário em uso... :('
+            ]);
+            exit;
+        }
+    }
     $hora_inicio_agendamento = trim($data->hora_inicio_agendamento);
     $hora_fim_agendamento = $hora->format('H:i:s');
     $data_agend = htmlspecialchars(trim($data->data_agend));
@@ -69,7 +93,7 @@ try {
     $fk_id_cliente = $data->cli_agendamento;
     $fk_id_servico = $servicos_list[1];
 
-    $query = "INSERT INTO `agendamento`(
+    $insert = "INSERT INTO `agendamento`(
         hora_inicio_agendamento,
         hora_fim_agendamento,
         data_agend,
@@ -94,7 +118,7 @@ try {
         :fk_id_servico
     )";
 
-    $stmt = $connection->prepare($query);
+    $stmt = $connection->prepare($insert);
 
     $stmt->bindValue(':hora_inicio_agendamento', $hora_inicio_agendamento, PDO::PARAM_STR);
     $stmt->bindValue(':hora_fim_agendamento', $hora_fim_agendamento, PDO::PARAM_STR);
@@ -108,17 +132,41 @@ try {
     $stmt->bindValue(':fk_id_servico', $fk_id_servico, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
+        $insert = "INSERT INTO `lembretes`(
+            horarioLembrete,
+            horario,
+            dataLembrete,
+            conteudoLembrete
+        ) 
+        VALUES(
+            :horarioLembrete,
+            horario,
+            :dataLembrete,
+            :conteudoLembrete
+        )";
+        
+        $stmt = $connection->prepare($insert);
+        $horarioAtual = date('H:i');
+        
+        $stmt->bindValue(':horarioLembrete', $horarioAtual , PDO::PARAM_STR);
+        $stmt->bindValue(':horario', $hora_inicio_agendamento , PDO::PARAM_STR);
+        $stmt->bindValue(':dataLembrete', $data_agend, PDO::PARAM_STR);
+        $stmt->bindValue(':conteudoLembrete', $cli_agendamento .' agendou esses servicos: '. $serv_agendamento , PDO::PARAM_STR);
+
+        $stmt->execute();
+        
+
         http_response_code(201);
         echo json_encode([
             'success' => 1,
-            'message' => 'Data inserida com sucesso'
+            'message' => 'Agendamento agendado com sucesso!!! :)'
         ]);
         exit;
     }
 
     echo json_encode([
         'success' => 0,
-        'message' => 'Há algum problema na inserção de dados'
+        'message' => 'Aconteceu algum problema com os dados... :('
     ]);
     exit;
 

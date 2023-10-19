@@ -2,46 +2,46 @@
 include '../../cors.php';
 include '../../conn.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'GET'){
-    http_response_code(405);
-    echo json_encode([
-        'success' => 0,
-        'message' => 'Bad Reqeust Detected! Only get method is allowed',
-    ]);
-    exit;
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+	http_response_code(405);
+	echo json_encode([
+		'success' => 0,
+		'message' => 'Bad Reqeust Detected! Only get method is allowed',
+	]);
+	exit;
 }
 
 try {
-    $sql = "SELECT * FROM agendamento";
+	$sql = "SELECT * FROM agendamento";
 
-    $stmt = $connection->prepare($sql);
+	$stmt = $connection->prepare($sql);
 
-    $stmt->execute();
+	$stmt->execute();
 
-    if ($stmt->rowCount() > 0) {
+	if ($stmt->rowCount() > 0) {
 
-        $agendamentos = [];
+		$agendamentos = [];
 
-        $agendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$agendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        echo json_encode([
-            'success' => 1,
-            'agendamentos' => $agendamentos,
-        ]);
+		echo json_encode([
+			'success' => 1,
+			'agendamentos' => $agendamentos,
+		]);
 
-    } else {
+	} else {
 
-        echo json_encode([
-            'success' => 0,
-            'agendamentos' => 'Sem agendamentos...',
-        ]);
-    }
+		echo json_encode([
+			'success' => 0,
+			'agendamentos' => 'Sem agendamentos...',
+		]);
+	}
 } catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode([
-        'success' => 0,
-        'message' => $e->getMessage()
-    ]);
-    exit;
+	http_response_code(500);
+	echo json_encode([
+		'success' => 0,
+		'message' => $e->getMessage()
+	]);
+	exit;
 }
 ?>

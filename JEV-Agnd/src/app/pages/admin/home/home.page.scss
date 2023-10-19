@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
 ion-toolbar {
   --color: var(--ion-color-primary);
   --background: #FFF;
@@ -18,6 +20,16 @@ ion-menu-button {
   justify-content: space-between;
 }
 
+.edit {
+  color: #FFF;
+}
+
+.tab ion-icon,
+.edit ion-icon {
+  padding-right: 5px;
+}
+
+
 @media only screen and (min-width:770px) {
 
   .form_modalAdd,
@@ -26,10 +38,6 @@ ion-menu-button {
   }
 }
 
-.edit,
-.info {
-  color: #FFF;
-}
 
 @media only screen and (max-width: 500px) {
   input {
@@ -158,26 +166,33 @@ ion-datetime {
   max-width: 100%;
 }
 
-ion-spinner {
-  height: 70px !important;
-  width: 70px !important;
-}
-
-.spinner_cont {
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .card__names {
   text-transform: capitalize;
 }
 
-@media only screen and (max-width:900px) {
-  .header__search {
-    flex-direction: column;
+@media only screen and (max-width:700px) {
+  .calendarButton {
+    right: 7% !important;
   }
+
+  .cont_search {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
+}
+
+@media only screen and (max-width:500px) {
+  .calendarButton span {
+    display: none;
+  }
+}
+
+.calendarButton {
+  background: white;
+  height: 29px;
+  position: absolute;
+  right: 4%;
+  top: calc(100% - 48px);
 }
 
 .header__search div {
@@ -186,17 +201,11 @@ ion-spinner {
   align-items: center;
 }
 
-.searchBar {
-  margin: 0;
-  padding: 0;
-}
-
 .item__searchBar {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.5%;
 }
 
 .header__search {
@@ -204,7 +213,6 @@ ion-spinner {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 4%;
 }
 
 .calendar__filter {
@@ -242,4 +250,110 @@ h3 {
 .tituloPreco {
   min-width: 80px;
   margin: 0 10px 0 0;
+}
+
+// Modal comanda
+
+.comandaModal {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left: 1px solid #000;
+  }
+}
+
+.comanda_title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
+  color: var(--ion-color-primary);
+}
+
+.tabelaComandaTop {
+  border-bottom: 1px solid #000;
+}
+
+.title-precos ion-text,
+.title-servicos ion-text,
+.total ion-text {
+  font-family: 'Dancing Script', cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+}
+
+.total ion-text {
+  color: var(--ion-color-primary);
+}
+
+.unidade_preco {
+  font-size: 0.8em;
+  font-family: 'Dancing Script', cursive;
+}
+
+.total span.preco {
+  font-family: var(--text);
+  font-size: .9em;
+  color: #000;
+}
+
+.col-precos ion-text,
+.col-servicos ion-text {
+  font-size: 1.3em;
+}
+
+.header,
+.comanda-footer {
+  z-index: 2;
+  background: white;
+}
+
+.comanda-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 56px;
+  padding-right: 10px;
+}
+
+.content_total {
+  position: fixed;
+  bottom: 56px;
+  right: 0;
+  padding: 0 5px;
+  width: 50%;
+  text-align: center;
+}
+
+.content_total ion-text {
+  width: 100%;
+}
+
+.content_principal {
+  text-transform: capitalize;
+}
+
+.comanda-footer ion-button ion-label.button_modal {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8em;
+  text-transform: capitalize;
+}
+
+.comandaModal {
+  padding: 0 10px;
+  height: 100%;
+}
+
+.comandaModal ion-item {
+  --padding-start: 0px;
+  --inner-padding-end: 0px;
+}
+
+.comanda-main {
+  border-top: 1px solid black;
 }

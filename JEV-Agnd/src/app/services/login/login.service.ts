@@ -26,7 +26,7 @@ export class LoginService {
 
   statusLogin() {
     let token = localStorage.getItem('token');
-    return this.httpClient.post(this.API + 'login/verificarlogin.php', token);
+    return this.httpClient.post(this.API + 'login/verificarlogin.php', { 'token': token });
   }
 
   verificar(login: any[]) {

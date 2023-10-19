@@ -26,14 +26,11 @@
                   <ion-card>
                     <ion-card-header>
                       <ion-card-title>
-                        <ion-text class="list__horario">{{Lembretes.horarioLembrete}}</ion-text>
+                        <ion-text class="list__horario">{{Lembretes.horario}} - {{Lembretes.dataLembrete}}</ion-text>
                       </ion-card-title>
-                      <ion-card-subtitle>
-                        <ion-text class="list__data">{{Lembretes.dataLembrete}}</ion-text>
-                      </ion-card-subtitle>
                     </ion-card-header>
                     <ion-card-content>
-                      <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}</ion-text>
+                      <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}.</ion-text>
                     </ion-card-content>
                   </ion-card>
                 </ion-item>
@@ -43,10 +40,10 @@
         </div>
       </ion-col>
       <ng-template #noCards>
-        <ion-col size-lg="10" size-md="10" size="12" class="container_col" *ngIf="Lembretes && Lembretes.length == 0">
-          <ion-col class="ion-text-center">
-            <ion-text>Não há lembretes no momento...</ion-text>
-          </ion-col>
+        <ion-col size="12" class="container_col" *ngIf="Lembretes && Lembretes.length == 0">
+          <ion-text class="ion-text-center">
+            <p>Não há lembretes no momento...</p>
+          </ion-text>
         </ion-col>
       </ng-template>
     </ion-row>

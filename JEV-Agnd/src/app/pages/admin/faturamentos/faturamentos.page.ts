@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FaturamentosService } from 'src/app/services/faturamentos/faturamentos.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,16 +8,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./faturamentos.page.scss'],
 })
 export class FaturamentosPage implements OnInit {
-
-  @ViewChild('formDir') formDir!: NgForm;
-
-  constructor() { }
-
-  ngOnInit() {
+  
+  constructor(private Faturamentos: FaturamentosService) { 
+    
   }
 
-  submit_add() {
-    console.log(this.formDir.form.value);
+  ngOnInit() {
   }
 
 }

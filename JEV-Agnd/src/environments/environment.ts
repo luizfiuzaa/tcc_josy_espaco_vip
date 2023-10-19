@@ -4,10 +4,23 @@
 
 export const environment = {
   production: false,
+  // url do Jão:
+  // baseApiUrl: 'http://localhost/aula/php/admin/',
+  // baseApiUrlLogin: 'http://localhost/aula/php/',
+
+  // url do Marlon:
+  // baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
+  // baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
+
+  // url do pc paleolítico da etec:
   baseApiUrl: 'http://localhost/aula/php/admin/',
   baseApiUrlLogin: 'http://localhost/aula/php/'
-  // baseApiUrl: 'http://localhost/aula/php/admin/'
-}; 
+
+  // url do codeSpace de Marlon:
+  // baseApiUrl: 'http://localhost/arquivosdaaulaapi/php/admin/',
+  // baseApiUrlLogin: 'http://localhost/arquivosdaaulaapi/php/'
+
+};
 
 /*
  * For easier debugging in development mode, you can import the following file

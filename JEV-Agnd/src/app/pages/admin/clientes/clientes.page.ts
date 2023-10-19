@@ -5,6 +5,8 @@ import { timestamp } from 'rxjs';
 import { Clientes } from 'src/app/models/clientes';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
+import { InfoClientes } from 'src/app/models/infoClientes';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,19 +19,18 @@ export class ClientesPage implements OnInit {
   cliente: any;
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
+  Info_Clientes: InfoClientes[] = [];
 
   filterClienteName(e: Event) {
     let estado: boolean = false;
-    const target = e.target as HTMLInputElement;
-    const value = target.value;
-    // console.log(value)
+    const value = (e.target as HTMLInputElement).value;
 
     this.clientes_Exibidos = this.ClienteCad.filter((cliente) => {
-      if (cliente.cliente_nome.includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value)) {
+      if (cliente.cliente_nome.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value)) {
         estado = true;
       }
       console.log(value)
-      return cliente.cliente_nome.includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value);
+      return cliente.cliente_nome.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || cliente.cliente_email.includes(value);
     });
     this.verificarEstado(estado);
   }
@@ -42,20 +43,24 @@ export class ClientesPage implements OnInit {
     }
   }
 
-  constructor(private clientesService: ClientesService) {
-    this.cad_cli()
+  constructor(private clientesService: ClientesService, private router: Router) {
+    this.list_cli()
   }
-  isLoading = false;
-  cad_cli() {
+  isLoading: boolean = false;
+  list_cli() {
     this.isLoading = true;
     this.clientesService.list().subscribe((dados: any) => {
       this.isLoading = false;
+      console.log(dados)
+      console.log(dados.clientes)
       this.ClienteCad = dados.clientes;
-      if(!dados.success || dados.success != 1){
+      if (!dados.success || dados.success != 1) {
         this.ClienteCad = [];
       }
-      this.clientes_Exibidos = this.ClienteCad;
-
+      this.clientes_Exibidos = this.ClienteCad.map((dados: any) => {
+        var numero = '(' + dados.cliente_tel.substr(0, 2) + ') ' + dados.cliente_tel.substr(2, 5) + '-' + dados.cliente_tel.substr(7, 4);
+        return { ...dados, cliente_tel: numero };
+      });
     })
   }
   indiceDel: any
@@ -91,7 +96,6 @@ export class ClientesPage implements OnInit {
     }
   }
 
-
   // modal
   EditForm!: FormGroup;
   modalOpenEdit = false;
@@ -113,20 +117,23 @@ export class ClientesPage implements OnInit {
     if (isOpen == true || isOpen == false || this.EditForm.valid && isOpen == 'submit') {
       this.modalOpenEdit = isOpen == 'submit' ? false : isOpen;
     }
+    if (isOpen == true) {
+      this.createFormEdit();
+    }
   }
 
-  createFormEdit(cliente: any) {
+  createFormEdit() {
     this.EditForm = new FormGroup({
-      idCli: new FormControl(''),
-      nomeCli: new FormControl(cliente.nomeCli, Validators.compose([
+      idCli_edit: new FormControl(''),
+      nomeCli_edit: new FormControl(Validators.compose([
         Validators.maxLength(70),
         Validators.minLength(3),
         Validators.required])),
-      telCli: new FormControl(cliente.telCli, Validators.compose([
+      telCli_edit: new FormControl(Validators.compose([
         Validators.maxLength(15),
         Validators.minLength(15),
         Validators.required])),
-      emailCli: new FormControl(cliente.emailCli, Validators.compose([
+      emailCli_edit: new FormControl(Validators.compose([
         Validators.maxLength(70),
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
         Validators.required])),
@@ -149,7 +156,7 @@ export class ClientesPage implements OnInit {
   submit_add() {
     console.log(this.AddForm.value)
     if (this.AddForm.valid) {
-      let  cliente = [];
+      let cliente = [];
 
       cliente[0] = {
         nomeCli: this.AddForm.value.nomeCli.toLocaleLowerCase(),
@@ -158,7 +165,7 @@ export class ClientesPage implements OnInit {
       }
 
       this.clientesService.create(cliente).subscribe(() => {
-        this.cad_cli();
+        this.list_cli();
       });
       console.log('Formulario De Adição Valido')
       // this.message = 'Agendado com sucesso!!'
@@ -196,7 +203,7 @@ export class ClientesPage implements OnInit {
     });
   }
 
-  editarCliente(cliente: Clientes){
+  editarCliente(cliente: Clientes) {
     this.EditForm.patchValue({
       id: this.cliente.id,
       nomeCli: this.cliente.nomeCli,
@@ -204,7 +211,7 @@ export class ClientesPage implements OnInit {
       emailCli: this.cliente.emailCli
     })
 
-    this.createFormEdit(cliente);
+    this.createFormEdit();
   }
 
   get nomeCli_add() {
@@ -216,6 +223,38 @@ export class ClientesPage implements OnInit {
   get emailCli_add() {
     return this.AddForm.get('emailCli')!;
   }
+
+  modalOpenInfo: boolean = false;
+  setOpenInfo(isOpen: any) {
+    this.modalOpenInfo = isOpen;
+  }
+
+  agendar() {
+    this.setOpenInfo(false);
+    setTimeout(() => {
+      this.router.navigate(['/home'])
+    }, 100)
+  }
+
+  listInformacoes(id: any) {
+    this.Info_Clientes = [];
+    this.clientesService.listInfomacoes(id).subscribe((dados: any) => {
+      if (dados.success == '1') {
+        this.Info_Clientes = dados.data;
+
+        this.Info_Clientes.sort((a, b) => {
+          let dataA = new Date(a.data_agend + " " + a.hora_inicio_agendamento);
+          let dataB = new Date(b.data_agend + " " + b.hora_inicio_agendamento);
+
+          return dataB.getTime() - dataA.getTime();
+        });
+        console.log(this.Info_Clientes);
+      }
+    })
+
+    this.setOpenInfo(true)
+  }
+
   ngOnInit() { }
 
   readonly phoneMask: MaskitoOptions = {

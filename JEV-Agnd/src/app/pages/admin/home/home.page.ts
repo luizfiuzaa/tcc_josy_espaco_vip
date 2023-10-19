@@ -4,9 +4,10 @@ import { elements } from 'chart.js';
 import { Agendamentos } from 'src/app/models/agendamentos';
 import { Clientes } from 'src/app/models/clientes';
 import { Servicos } from 'src/app/models/servico';
-import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
 import { ServicosService } from 'src/app/services/servicos/servicos.service';
+import { Comanda } from 'src/app/models/comanda';
+import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
 
 @Component({
   selector: 'app-home',
@@ -17,9 +18,9 @@ export class HomePage {
   agendamento: any;
   // Iniciando a service no constructor
   constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService, private servicosSercice: ServicosService) {
-    this.getAgendamentos();
-    this.getClientes();
-    this.getServicos();
+    this.listAgendamentos(this.hoje);
+    this.listClientes();
+    this.listServicos();
   }
   // Executa após o carregamento da página
   ngAfterViewInit() {
@@ -28,22 +29,36 @@ export class HomePage {
   Agendamentos: Agendamentos[] = []
   Clientes: Clientes[] = []
   Servicos: Servicos[] = []
-  Agendamentos_exibidos: Agendamentos[] = this.Agendamentos;
+  Servicos_comanda: Comanda[] = []
+  Agendamentos_exibidos: Agendamentos[] = [];
   isLoading = false;
   // Pega os dados da API
-  getAgendamentos() {
+  listAgendamentos(filter: any) {
     this.isLoading = true;
     this.agendamentosService.list().subscribe((dados: any) => {
       this.isLoading = false;
-      this.Agendamentos = dados.agendamentos;
+      this.Agendamentos = dados.agendamentos.map((dados: any) => {
+        var data: any = dados.data_agend.split("-");
+        data = `${data[2]}/${data[1]}/${data[0]}`;
+        return { ...dados, data_agend: data };
+      });
       if (!dados.success || dados.success != 1) {
         this.Agendamentos = [];
       }
-      this.atualizarDados();
+
+      this.Agendamentos_exibidos = this.Agendamentos.map((dados) => {
+        let data: any = dados.data_agend.split("/");
+        data = `${data[2]}-${data[1]}-${data[0]}`;
+        return { ...dados, data_agend: data };
+      });
+
+      console.log(this.Agendamentos)
+      console.log(this.Agendamentos_exibidos)
+      this.atualizarDados(filter);
     })
   }
   // Pega os dados da API
-  getClientes() {
+  listClientes() {
     this.clientesSercice.list().subscribe((dados: any) => {
       this.Clientes = dados.clientes;
       if (!dados.success || dados.success != 1) {
@@ -52,7 +67,7 @@ export class HomePage {
     })
   }
   // Pega os dados da API
-  getServicos() {
+  listServicos() {
     this.servicosSercice.list().subscribe((dados: any) => {
       this.Servicos = dados.servicos;
       if (!dados.success || dados.success != 1) {
@@ -61,9 +76,11 @@ export class HomePage {
     })
   }
   // Atualiza os agendametnos do dia de hoje
-  atualizarDados() {
+  atualizarDados(filter: any) {
     this.Agendamentos_exibidos = this.Agendamentos.filter((agendamento) => {
-      return agendamento.data_agend.includes(this.hoje);
+      let data: any = agendamento.data_agend.split("/");
+      data = `${data[2]}-${data[1]}-${data[0]}`;
+      return data.includes(filter);
     });
   }
 
@@ -90,10 +107,12 @@ export class HomePage {
         this.verificarEstado(estado);
         return;
       }
-      if (agendamento.data_agend.includes(value[0])) {
+      let dataAgendameto: any = agendamento.data_agend.split("/");
+      dataAgendameto = `${dataAgendameto[2]}-${dataAgendameto[1]}-${dataAgendameto[0]}`
+      if (dataAgendameto.includes(value[0])) {
         estado = true;
+        return dataAgendameto.includes(value[0]);
       }
-      return agendamento.data_agend.includes(value[0]);
     });
   }
   highlightedDates: any[] = [];
@@ -102,8 +121,10 @@ export class HomePage {
     let datas: any[] = [];
     let datasFrequencia: any[] = [];
     this.Agendamentos.forEach(element => {
-      let data = new Date(element.data_agend);
-      if (this.date <= data) { datas.push(element.data_agend) }
+      let dataAgendameto: any = element.data_agend.split("/");
+      dataAgendameto = `${dataAgendameto[2]}-${dataAgendameto[1]}-${dataAgendameto[0]}`;
+      let data = new Date(dataAgendameto);
+      if (this.date <= data) { datas.push(dataAgendameto) }
     });
     let media = datas.length;
     datas.forEach(() => {
@@ -146,7 +167,7 @@ export class HomePage {
   calendario_open: boolean = false;
   open_calendario(isOpen: boolean) {
     this.calendario_open = isOpen;
-    if (isOpen) {
+    if (isOpen == true) {
       this.diasAgendados();
     }
   }
@@ -187,16 +208,20 @@ export class HomePage {
         preco_agend: this.precoAgend,
         data_agend: dia_hora[0],
       }
-      this.agendamentosService.create(agendamento).subscribe(() => {
-        this.getAgendamentos();
+      this.agendamentosService.create(agendamento).subscribe((dados: any) => {
+        if (dados.success == '1') {
+          this.message = dados.message
+          this.setOpenAdd('submit');
+          this.ExibirMessage(true);
+          this.listAgendamentos(dia_hora[0]);
+          return;
+        }
+        this.message = dados.message;
+        this.ExibirMessage(false);
       })
-      console.log('Formulario De Adição Valido')
-      this.message = 'Agendado com sucesso!!'
-      this.ExibirMessage(true);
       return;
     }
-    console.log('Formulario De Adição Invalido')
-    this.message = 'Falha ao agendar!!'
+    this.message = 'Falha ao agendar... :('
     this.ExibirMessage(false);
   }
   // Modal de edição
@@ -209,11 +234,11 @@ export class HomePage {
       }, 1)
       return;
     }
-    if (isOpen == false) {
+    if (!isOpen) {
       this.modalOpenAdd = isOpen;
       return;
     }
-    if (isOpen == 'submit' && this.AddForm.valid) {
+    if (isOpen == 'submit') {
       setTimeout(() => {
         this.modalOpenAdd = false;
       }, 100);
@@ -268,7 +293,7 @@ export class HomePage {
       this.createFormEdit();
       return;
     }
-    if (isOpen == false) {
+    if (!isOpen) {
       this.modalOpenEdit = isOpen;
       return;
     }
@@ -333,7 +358,7 @@ export class HomePage {
   verificarEstado(estado: boolean) {
     if (!estado) {
       setTimeout(() => {
-        this.atualizarDados();
+        this.atualizarDados(this.hoje);
         this.diaValido = true;
       }, 1000)
     }
@@ -384,4 +409,28 @@ export class HomePage {
     this.precoAgend = preco;
   }
 
+  modalOpenComanda = false;
+  setOpenComanda(isOpen: any) {
+    if (isOpen == true) {
+      this.modalOpenComanda = isOpen;
+      setTimeout(() => {
+      }, 1)
+      return;
+    }
+    if (!isOpen) {
+      this.modalOpenComanda = isOpen;
+      return;
+    }
+  }
+
+  indiceComanda: any
+  valorTotal: Number = 0;
+  gerarComanda(indice: any) {
+    this.indiceComanda = indice;
+    this.setOpenComanda(true);
+    this.agendamentosService.comandaGenerate(this.indiceComanda).subscribe((dados: any) => {
+      this.Servicos_comanda = dados.servicos;
+      this.valorTotal = (dados.total).toFixed(2);
+    });
+  }
 }
