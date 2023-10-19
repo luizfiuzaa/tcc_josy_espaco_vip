@@ -15,6 +15,7 @@ export const environment = {
   // url do codeSpace de Marlon:
   // baseApiUrl: 'http://localhost/arquivosdaaulaapi/php/admin/',
   // baseApiUrlLogin: 'http://localhost/arquivosdaaulaapi/php/'
+
 };
 
 /*

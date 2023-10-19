@@ -24,7 +24,6 @@ try {
     $titulo = htmlspecialchars(trim($data->titulo));
     $descricao = htmlspecialchars(trim($data->descricao));
     $cor = htmlspecialchars(trim($data->cor));
-    $icon = 'icone';
 
     $insert = "INSERT INTO `mensagem` (
             titulo,
@@ -44,7 +43,7 @@ try {
     $stmt->bindValue(':titulo', $titulo, PDO::PARAM_STR);
     $stmt->bindValue(':descricao', $descricao, PDO::PARAM_STR);
     $stmt->bindValue(':cor', $cor, PDO::PARAM_STR);
-    $stmt->bindValue(':icon', $icon, PDO::PARAM_STR);
+    $stmt->bindValue(':icon', 'icone', PDO::PARAM_STR);
 
     if ($stmt->execute()) {
         http_response_code(201);

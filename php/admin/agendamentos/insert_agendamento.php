@@ -133,25 +133,28 @@ try {
 
     if ($stmt->execute()) {
         $insert = "INSERT INTO `lembretes`(
-            hora_inicio_agendamento,
-            data_agend,
-            cli_agendamento,
-            serv_agendamento
+            horarioLembrete,
+            horario,
+            dataLembrete,
+            conteudoLembrete
         ) 
         VALUES(
-            :hora_inicio_agendamento,
-            :data_agend,
-            :cli_agendamento,
-            :serv_agendamento
+            :horarioLembrete,
+            :horario,
+            :dataLembrete,
+            :conteudoLembrete
         )";
-
+        
         $stmt = $connection->prepare($insert);
-
-        $stmt->bindValue(':horarioLembrete', $hora_inicio_agendamento, PDO::PARAM_STR);
+        $horarioAtual = date('H:i');
+        
+        $stmt->bindValue(':horarioLembrete', $horarioAtual , PDO::PARAM_STR);
+        $stmt->bindValue(':horario', $hora_inicio_agendamento , PDO::PARAM_STR);
         $stmt->bindValue(':dataLembrete', $data_agend, PDO::PARAM_STR);
-        $stmt->bindValue(':conteudoLembrete', $cli_agendamento . ' agendou ', PDO::PARAM_STR);
+        $stmt->bindValue(':conteudoLembrete', $cli_agendamento .' agendou esses servicos: '. $serv_agendamento , PDO::PARAM_STR);
 
         $stmt->execute();
+        
 
         http_response_code(201);
         echo json_encode([

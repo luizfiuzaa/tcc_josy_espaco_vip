@@ -57,8 +57,10 @@ export class ClientesPage implements OnInit {
       if (!dados.success || dados.success != 1) {
         this.ClienteCad = [];
       }
-      this.clientes_Exibidos = this.ClienteCad;
-
+      this.clientes_Exibidos = this.ClienteCad.map((dados: any) => {
+        var numero = '(' + dados.cliente_tel.substr(0, 2) + ') ' + dados.cliente_tel.substr(2, 5) + '-' + dados.cliente_tel.substr(7, 4);
+        return { ...dados, cliente_tel: numero };
+      });
     })
   }
   indiceDel: any
@@ -93,7 +95,6 @@ export class ClientesPage implements OnInit {
       });
     }
   }
-
 
   // modal
   EditForm!: FormGroup;

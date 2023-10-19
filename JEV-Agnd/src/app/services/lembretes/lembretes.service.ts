@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { Lembretes } from 'src/app/models/lembretes';
-import { InfoClientes } from 'src/app/models/infoClientes';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
