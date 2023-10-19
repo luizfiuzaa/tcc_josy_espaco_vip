@@ -20,7 +20,11 @@ export class LembretesPage implements OnInit {
   list_lembretes() {
     this.LembretesService.list().subscribe((dados: any) => {
       if (dados.success == '1') {
-        this.Lembretes = dados.lembretes;
+        this.Lembretes = dados.lembretes.map((dados: any) => {
+          var data: any = dados.dataLembrete.split("-");
+          data = `${data[2]}/${data[1]}/${data[0]}`;
+          return { ...dados, dataLembrete: data };
+        });
         console.log(this.Lembretes)
         return;
       }
