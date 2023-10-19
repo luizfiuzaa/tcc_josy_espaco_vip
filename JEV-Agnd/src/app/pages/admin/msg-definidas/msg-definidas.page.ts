@@ -11,7 +11,7 @@ import { MsgDefinidasService } from 'src/app/services/mensagens/msg-definidas.se
   styleUrls: ['./msg-definidas.page.scss'],
 })
 export class MsgDefinidasPage implements OnInit {
-  
+
   Mensagens: Mensagem[] = [];
   mensagensExibidas: Mensagem[] = [];
 
@@ -20,10 +20,11 @@ export class MsgDefinidasPage implements OnInit {
   }
 
   list_mensagens() {
+
+// Fazer *ngIf lá no html
+
     this.msgDefinidasService.list().subscribe((dados: any) => {
       this.Mensagens = dados.mensagens;
-      console.log(dados.mensagens);
-      console.log(this.Mensagens);
       if (!dados.success || dados.success != 1) {
         this.Mensagens = [];
       }
