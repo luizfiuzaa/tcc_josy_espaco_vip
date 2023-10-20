@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { LoginService } from 'src/app/services/login/login.service';
+import { LembretesService } from 'src/app/services/lembretes/lembretes.service';
 
 @Component({
   selector: 'app-header-menu',
@@ -8,7 +9,11 @@ import { LoginService } from 'src/app/services/login/login.service';
   styleUrls: ['./header-menu.component.scss'],
 })
 export class HeaderMenuComponent implements OnInit {
-  constructor(private menu: MenuController, private login: LoginService){}
+  numeroLembretes: Number = 0;
+
+  constructor(private menu: MenuController, private login: LoginService, private lembretesService: LembretesService){
+    this.numeroLembretes = this.lembretesService.contadorLembretes;
+  }
 
   menuClose(){
     this.menu.close();

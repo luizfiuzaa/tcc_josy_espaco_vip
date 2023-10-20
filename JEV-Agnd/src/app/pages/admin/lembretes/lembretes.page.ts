@@ -25,10 +25,12 @@ export class LembretesPage implements OnInit {
           data = `${data[2]}/${data[1]}/${data[0]}`;
           return { ...dados, dataLembrete: data };
         });
+        this.LembretesService.contadorLembretes = this.Lembretes.length;
         console.log(this.Lembretes)
         return;
       }
       this.Lembretes = [];
+      this.LembretesService.contadorLembretes = this.Lembretes.length;
     })
   }
 
