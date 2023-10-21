@@ -9,16 +9,16 @@ export const environment = {
   // baseApiUrlLogin: 'http://localhost/aula/php/',
 
   // url do Marlon:
-  // baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
-  // baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
+  baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
+  baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
 
   // url do pc paleolítico da etec:
   // baseApiUrl: 'http://localhost/aula/php/admin/',
   // baseApiUrlLogin: 'http://localhost/aula/php/'
 
   // url 000webHost
-  baseApiUrl: 'https://tcc-josy-espaco-vip.000webhostapp.com/admin/',
-  baseApiUrlLogin: 'https://tcc-josy-espaco-vip.000webhostapp.com/'
+  // baseApiUrl: 'https://tcc-josy-espaco-vip.000webhostapp.com/admin/',
+  // baseApiUrlLogin: 'https://tcc-josy-espaco-vip.000webhostapp.com/'
   
   // url do codeSpace de Marlon:
   // baseApiUrl: 'http://localhost/arquivosdaaulaapi/php/admin/',
