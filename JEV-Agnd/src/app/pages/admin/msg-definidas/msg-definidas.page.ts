@@ -78,11 +78,12 @@ export class MsgDefinidasPage implements OnInit {
   return this.AddForm.get('descricao')!;
  }
 
- submit_add() {
+ submit_add(id?: String) {
   console.log(this.AddForm.value)
   if (this.AddForm.valid) {
 
    let mensagem = {
+    id_mensagem: id ? id : '',
     titulo: this.AddForm.value.titulo,
     descricao: this.AddForm.value.descricao,
     cor: this.AddForm.value.cor,
@@ -90,10 +91,16 @@ export class MsgDefinidasPage implements OnInit {
 
    console.log(mensagem);
 
+   console.log('Formulario De Adição Valido')
+   if (id) {
+    this.msgDefinidasService.update(mensagem).subscribe(() => {
+     this.list_mensagens();
+    });
+    return;
+   }
    this.msgDefinidasService.create(mensagem).subscribe(() => {
     this.list_mensagens();
    });
-   console.log('Formulario De Adição Valido')
    // this.message = 'Agendado com sucesso!!'
    // this.ExibirMessage(true);
    return;
