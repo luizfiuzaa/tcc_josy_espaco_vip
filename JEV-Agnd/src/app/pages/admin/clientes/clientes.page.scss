@@ -1,5 +1,21 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: fit-content;
+  padding: 30px 0;
+}
+
 ion-card {
-  width: 100vw;
+  width: 45%;
+  min-width: 45%;
+  height: 200px;
+  border-radius: 15px;
+  margin-bottom: 2.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
 
   .delete {
     --color: var(--ion-color-primary);
@@ -18,6 +34,19 @@ ion-card {
   .info {
     color: #fff;
   }
+}
+
+@media only screen and (max-width:900px) {
+  ion-card {
+    width: 100%;
+  }
+}
+
+ion-card ion-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.34em;
 }
 
 .button_add {
@@ -135,7 +164,7 @@ ion-card {
 
 //  Btn mensagens do cliente
 
-.btn_mensagens_cLi{
+.btn_mensagens_cLi {
   height: 27.3px;
   display: flex;
   align-items: center;

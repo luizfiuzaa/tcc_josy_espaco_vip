@@ -1,239 +1,251 @@
 <div class="ion-page" id="main-content">
-  <ion-header mode="ios">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Serviços</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content [fullscreen]="true">
+	<ion-header mode="ios">
+		<ion-toolbar>
+			<ion-buttons slot="start">
+				<ion-menu-button></ion-menu-button>
+			</ion-buttons>
+			<ion-title>Serviços</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content [fullscreen]="true">
 
-    <ion-row class="ion-justify-content-center">
-      <!-- Search Bar -->
-      <ion-item>
-        <ion-col size="12">
-          <form action="GET" method="get">
-            <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar servico"
-              (input)="filterServicoTitle($event)"></ion-searchbar>
-          </form>
-        </ion-col>
-      </ion-item>
-      <ion-col class="container" size="12" *ngIf="Servicos_exibidos && Servicos_exibidos.length > 0; else noCards">
-        <ion-card *ngFor="let card of Servicos_exibidos;" class="card">
-          <abbr>
-            <ion-card-content class="icon_card">
-              <ion-row>
-                <ion-col class="icon__editar" (click)="editService(card.id_servico)" id="open-modal-edit">
-                  <ion-icon title="Editar" name="settings-outline" class="edit_icon"></ion-icon>
-                </ion-col>
-                <ion-col class="icon__apagar" (click)="apagarService(card.id_servico)">
-                  <ion-icon title="Apagar" name="trash-outline" class="edit_icon"></ion-icon>
-                </ion-col>
-              </ion-row>
+		<ion-row class="ion-justify-content-center">
+			<ion-col size-lg="10" size-md="10" size="12">
+				<ion-item>
+					<ion-col size="12">
+						<form action="GET" method="get">
+							<ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar servico"
+								(input)="filterServicoTitle($event)"></ion-searchbar>
+						</form>
+					</ion-col>
+				</ion-item>
+				
+				<ion-col class="container" size="12"
+					*ngIf="Servicos_exibidos && Servicos_exibidos.length > 0; else noCards">
+					<ion-card *ngFor="let card of Servicos_exibidos;" class="card">
+						<abbr>
+							<ion-card-content class="icon_card">
+								<ion-row>
+									<ion-col class="icon__editar" (click)="editService(card.id_servico)"
+										id="open-modal-edit">
+										<ion-icon title="Editar" name="settings-outline" class="edit_icon"></ion-icon>
+									</ion-col>
+									<ion-col class="icon__apagar" (click)="apagarService(card.id_servico)">
+										<ion-icon title="Apagar" name="trash-outline" class="edit_icon"></ion-icon>
+									</ion-col>
+								</ion-row>
+							</ion-card-content>
+						</abbr>
+						<ion-card-content class="card_context">
+							<ion-card-title class="title">{{card.titulo_servico}}</ion-card-title>
+							<p>Descrição: {{card.desc_servico}}</p>
+							<p>Duração: {{card.duracao_servico}} minutos</p>
+							<p>Preço (R$): {{card.preco_servico}}</p>
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
 
-            </ion-card-content>
-          </abbr>
+				<ng-template #noCards>
+					<ion-col class="container" size="12" *ngIf="Servicos_exibidos.length == 0 && !this.isLoading">
+						<ion-text>
+							<p>Os seus serviços serão exibidos neste local.</p>
+							<ion-buttons class="button_add">
+								<abbr title="Agendar">
+									<ion-button (click)="setOpenAdd(true)">
+										Criar serviço
+									</ion-button></abbr>
+							</ion-buttons>
+						</ion-text>
+					</ion-col>
+				</ng-template>
+				<ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.isLoading">
+					<ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
+				</ion-col>
+			</ion-col>
+			<!-- Search Bar -->
 
-          <ion-card-content class="card_context">
-            <ion-card-title class="title">{{card.titulo_servico}}</ion-card-title>
-            <p>Descrição: {{card.desc_servico}}</p>
-            <p>Duração: {{card.duracao_servico}} minutos</p>
-            <p>Preço (R$): {{card.preco_servico}}</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+		</ion-row>
+		<!-- Fab Button -->
+		<ion-fab id="open-modal" class="button_fab" horizontal="end" vertical="bottom" slot="fixed"
+			(click)="setOpenAdd(true)">
+			<abbr title="Adicionar">
+				<ion-fab-button>
+					<ion-icon id="add" name="cut-outline" expand="block"></ion-icon>
+				</ion-fab-button>
+			</abbr>
+		</ion-fab>
+		<!-- Modal Add -->
+		<ion-modal #modal mode="ios" class="modal-header modal" backdropDismiss="false" [canDismiss]='modalCloseAdd'
+			[isOpen]="modalOpenAdd">
+			<ion-col>
+				<ng-template class="block">
+					<ion-header>
+						<ion-toolbar>
+							<ion-title></ion-title>
+							<ion-buttons slot="start">
+								<ion-button (click)="setOpenAdd(false)">Cancelar</ion-button>
+							</ion-buttons>
+						</ion-toolbar>
+					</ion-header>
+					<ion-content>
+						<form mode="md" action="" class="form ion-padding"
+							(ngSubmit)="submit_add(); createHandler($event)" [formGroup]="AddForm" #formDir="ngForm">
+							<div class="form__inputs">
+								<div class="inputs__context">
+									<div class="input_item">
+										<ion-input formControlName="titulo" label="Título:" label-placement="floating"
+											fill="outline" id="title" placeholder="Digite o título" [clearInput]="true"
+											required>
+										</ion-input>
+									</div>
+								</div>
+								<div class="message-alert" *ngIf="titulo.invalid && formDir.submitted">
+									Título invalido!
+								</div>
+							</div>
+							<div class="form__inputs">
+								<div class="inputs__context">
+									<div class="input_item">
+										<ion-textarea [autoGrow]="true" formControlName="descricao" label="Descrição:"
+											label-placement="floating" fill="outline" id="descricao"
+											placeholder="Digite a descrição" required>
+										</ion-textarea>
+									</div>
+								</div>
+								<div class="message-alert" *ngIf="descricao.invalid && formDir.submitted">
+									Descrição invalida!
+								</div>
+							</div>
+							<div class="form__inputs">
+								<div class="inputs__context">
+									<div class="input_item">
+										<ion-input formControlName="duracao" label="Duração(mins):"
+											label-placement="floating" fill="outline" id="duracao"
+											placeholder="Digite a duração" [clearInput]="true" required></ion-input>
+									</div>
+								</div>
+								<div class="message-alert" *ngIf="duracao.invalid && formDir.submitted">
+									Duração invalida!
+								</div>
+							</div>
+							<div class="form__inputs">
+								<div class="inputs__context">
+									<div class="input_item">
+										<ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate"
+											formControlName="preco" label="Preço:" label-placement="floating"
+											fill="outline" id="preco" class="input4" placeholder="Digite o preço"
+											[clearInput]="true" required></ion-input>
+									</div>
+								</div>
+								<div class="message-alert" *ngIf="preco.invalid && formDir.submitted">
+									Preço invalido!
+								</div>
+							</div>
+							<div class="form__buttons">
+								<div *ngIf="AddForm.invalid; else buttonConfirm">
+									<ion-button type="submit" expand="block" color="primary"
+										style="opacity: 0.7;">Adicionar</ion-button>
+								</div>
+								<ng-template #buttonConfirm>
+									<ion-button (click)="setOpenAdd(false)" type="submit" expand="block"
+										color="primary">
+										Adicionar
+									</ion-button>
+								</ng-template>
+							</div>
+						</form>
+					</ion-content>
+				</ng-template>
+			</ion-col>
+		</ion-modal>
+		<!-- Modal Edit -->
+		<ion-modal #modal mode="ios" class="modal-header modal" [canDismiss]="modalCloseEdit" [isOpen]="modalOpenEdit"
+			backdropDismiss="false">
+			<ion-col>
+				<ng-template class="block">
+					<ion-header>
+						<ion-toolbar>
+							<ion-title></ion-title>
+							<ion-buttons slot="start">
+								<ion-button (click)="setOpenEdit(false)">Cancelar</ion-button>
+							</ion-buttons>
+						</ion-toolbar>
+					</ion-header>
+					<ion-content>
+						<form mode="md" action="" class="form ion-padding"
+							(ngSubmit)="submit_edit(); createHandlerEdit($event)" [formGroup]="EditForm"
+							#formDir="ngForm">
+							<div class="form__inputs">
+								<div class="inputs__context">
+									<div class="input_item">
+										<ion-input formControlName="titulo_edit" id="titulo_edit" label="Título:"
+											label-placement="floating" fill="outline" minlength="2" maxlength="50"
+											placeholder="Digite o título" [clearInput]="true" required>
+										</ion-input>
+									</div>
+								</div>
+								<div class="message-alert" *ngIf="titulo_edit.invalid && formDir.submitted">
+									Título invalido!
+								</div>
+							</div>
+							<div class="form__inputs">
+								<div class="inputs__context">
+									<div class="input_item">
+										<ion-textarea [autoGrow]="true" formControlName="descricao_edit"
+											id="descricao_edit" label="Descrição:" label-placement="floating"
+											fill="outline" minlength="10" maxlength="160"
+											placeholder="Digite a descrição" required>
+										</ion-textarea>
+									</div>
+								</div>
+								<div class="message-alert" *ngIf="descricao_edit.invalid && formDir.submitted">
+									Descrição invalida!
+								</div>
+							</div>
+							<div class="form__inputs">
+								<div class="inputs__context">
+									<div class="input_item">
+										<ion-input formControlName="duracao_edit" label="Duração(minutos):"
+											label-placement="floating" fill="outline" id="duracao_edit"
+											placeholder="Digite a duração" minlength="1" maxlength="5"
+											[clearInput]="true" required>
+										</ion-input>
+									</div>
+								</div>
+								<div class="message-alert" *ngIf="duracao_edit.invalid && formDir.submitted">
+									Duração invalida!
+								</div>
+							</div>
+							<div class="form__inputs">
+								<div class="inputs__context">
+									<div class="input_item">
+										<ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate"
+											formControlName="preco_edit" label="Preço:" label-placement="floating"
+											fill="outline" id="preco_edit" class="input4" placeholder="Digite o preco"
+											minlength="2" maxlength="14" [clearInput]="true" required></ion-input>
+									</div>
+								</div>
+								<div class="message-alert" *ngIf="preco_edit.invalid && formDir.submitted">
+									Preço invalido!
+								</div>
+							</div>
+							<div class="form__buttons">
+								<div *ngIf="EditForm.invalid; else buttonConfirmEdit">
+									<ion-button type="submit" expand="block" color="primary"
+										style="opacity: 0.7;">Editar</ion-button>
+								</div>
+								<ng-template #buttonConfirmEdit>
+									<ion-button (click)="setOpenEdit(false)" type="submit" expand="block"
+										color="primary">Editar</ion-button>
+								</ng-template>
+							</div>
+						</form>
+					</ion-content>
+				</ng-template>
+			</ion-col>
+		</ion-modal>
 
-      <ng-template #noCards>
-        <ion-col class="container" size="12" *ngIf="Servicos_exibidos.length == 0 && !this.isLoading">
-          <ion-text>
-            <p>Os seus serviços serão exibidos neste local.</p>
-            <ion-buttons class="button_add">
-              <abbr title="Agendar">
-                <ion-button (click)="setOpenAdd(true)">
-                  Criar serviço
-                </ion-button></abbr>
-            </ion-buttons>
-          </ion-text>
-        </ion-col>
-      </ng-template>
-      <ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.isLoading">
-        <ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
-      </ion-col>
-    </ion-row>
-    <!-- Fab Button -->
-    <ion-fab id="open-modal" class="button_fab" horizontal="end" vertical="bottom" slot="fixed"
-      (click)="setOpenAdd(true)">
-      <abbr title="Adicionar">
-        <ion-fab-button>
-          <ion-icon id="add" name="cut-outline" expand="block"></ion-icon>
-        </ion-fab-button>
-      </abbr>
-    </ion-fab>
-    <!-- Modal Add -->
-    <ion-modal #modal mode="ios" class="modal-header modal" backdropDismiss="false" [canDismiss]='modalCloseAdd'
-      [isOpen]="modalOpenAdd">
-      <ion-col>
-        <ng-template class="block">
-          <ion-header>
-            <ion-toolbar>
-              <ion-title></ion-title>
-              <ion-buttons slot="start">
-                <ion-button (click)="setOpenAdd(false)">Cancelar</ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content>
-            <form mode="md" action="" class="form ion-padding" (ngSubmit)="submit_add(); createHandler($event)"
-              [formGroup]="AddForm" #formDir="ngForm">
-              <div class="form__inputs">
-                <div class="inputs__context">
-                  <div class="input_item">
-                    <ion-input formControlName="titulo" label="Título:" label-placement="floating" fill="outline"
-                      id="title" placeholder="Digite o título" [clearInput]="true" required>
-                    </ion-input>
-                  </div>
-                </div>
-                <div class="message-alert" *ngIf="titulo.invalid && formDir.submitted">
-                  Título invalido!
-                </div>
-              </div>
-              <div class="form__inputs">
-                <div class="inputs__context">
-                  <div class="input_item">
-                    <ion-textarea [autoGrow]="true" formControlName="descricao" label="Descrição:"
-                      label-placement="floating" fill="outline" id="descricao" placeholder="Digite a descrição"
-                      required>
-                    </ion-textarea>
-                  </div>
-                </div>
-                <div class="message-alert" *ngIf="descricao.invalid && formDir.submitted">
-                  Descrição invalida!
-                </div>
-              </div>
-              <div class="form__inputs">
-                <div class="inputs__context">
-                  <div class="input_item">
-                    <ion-input formControlName="duracao" label="Duração(mins):" label-placement="floating"
-                      fill="outline" id="duracao" placeholder="Digite a duração" [clearInput]="true"
-                      required></ion-input>
-                  </div>
-                </div>
-                <div class="message-alert" *ngIf="duracao.invalid && formDir.submitted">
-                  Duração invalida!
-                </div>
-              </div>
-              <div class="form__inputs">
-                <div class="inputs__context">
-                  <div class="input_item">
-                    <ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate" formControlName="preco"
-                      label="Preço:" label-placement="floating" fill="outline" id="preco" class="input4"
-                      placeholder="Digite o preço" [clearInput]="true" required></ion-input>
-                  </div>
-                </div>
-                <div class="message-alert" *ngIf="preco.invalid && formDir.submitted">
-                  Preço invalido!
-                </div>
-              </div>
-              <div class="form__buttons">
-                <div *ngIf="AddForm.invalid; else buttonConfirm">
-                  <ion-button type="submit" expand="block" color="primary" style="opacity: 0.7;">Adicionar</ion-button>
-                </div>
-                <ng-template #buttonConfirm>
-                  <ion-button (click)="setOpenAdd(false)" type="submit" expand="block" color="primary">
-                    Adicionar
-                  </ion-button>
-                </ng-template>
-              </div>
-            </form>
-          </ion-content>
-        </ng-template>
-      </ion-col>
-    </ion-modal>
-    <!-- Modal Edit -->
-    <ion-modal #modal mode="ios" class="modal-header modal" [canDismiss]="modalCloseEdit" [isOpen]="modalOpenEdit"
-      backdropDismiss="false">
-      <ion-col>
-        <ng-template class="block">
-          <ion-header>
-            <ion-toolbar>
-              <ion-title></ion-title>
-              <ion-buttons slot="start">
-                <ion-button (click)="setOpenEdit(false)">Cancelar</ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content>
-            <form mode="md" action="" class="form ion-padding" (ngSubmit)="submit_edit(); createHandlerEdit($event)"
-              [formGroup]="EditForm" #formDir="ngForm">
-              <div class="form__inputs">
-                <div class="inputs__context">
-                  <div class="input_item">
-                    <ion-input formControlName="titulo_edit" id="titulo_edit" label="Título:" label-placement="floating"
-                      fill="outline" minlength="2" maxlength="50" placeholder="Digite o título" [clearInput]="true"
-                      required>
-                    </ion-input>
-                  </div>
-                </div>
-                <div class="message-alert" *ngIf="titulo_edit.invalid && formDir.submitted">
-                  Título invalido!
-                </div>
-              </div>
-              <div class="form__inputs">
-                <div class="inputs__context">
-                  <div class="input_item">
-                    <ion-textarea [autoGrow]="true" formControlName="descricao_edit" id="descricao_edit"
-                      label="Descrição:" label-placement="floating" fill="outline" minlength="10" maxlength="160"
-                      placeholder="Digite a descrição" required>
-                    </ion-textarea>
-                  </div>
-                </div>
-                <div class="message-alert" *ngIf="descricao_edit.invalid && formDir.submitted">
-                  Descrição invalida!
-                </div>
-              </div>
-              <div class="form__inputs">
-                <div class="inputs__context">
-                  <div class="input_item">
-                    <ion-input formControlName="duracao_edit" label="Duração(minutos):" label-placement="floating"
-                      fill="outline" id="duracao_edit" placeholder="Digite a duração" minlength="1" maxlength="5"
-                      [clearInput]="true" required>
-                    </ion-input>
-                  </div>
-                </div>
-                <div class="message-alert" *ngIf="duracao_edit.invalid && formDir.submitted">
-                  Duração invalida!
-                </div>
-              </div>
-              <div class="form__inputs">
-                <div class="inputs__context">
-                  <div class="input_item">
-                    <ion-input [maskito]="decimalMask" [maskitoElement]="maskPredicate" formControlName="preco_edit"
-                      label="Preço:" label-placement="floating" fill="outline" id="preco_edit" class="input4"
-                      placeholder="Digite o preco" minlength="2" maxlength="14" [clearInput]="true"
-                      required></ion-input>
-                  </div>
-                </div>
-                <div class="message-alert" *ngIf="preco_edit.invalid && formDir.submitted">
-                  Preço invalido!
-                </div>
-              </div>
-              <div class="form__buttons">
-                <div *ngIf="EditForm.invalid; else buttonConfirmEdit">
-                  <ion-button type="submit" expand="block" color="primary" style="opacity: 0.7;">Editar</ion-button>
-                </div>
-                <ng-template #buttonConfirmEdit>
-                  <ion-button (click)="setOpenEdit(false)" type="submit" expand="block"
-                    color="primary">Editar</ion-button>
-                </ng-template>
-              </div>
-            </form>
-          </ion-content>
-        </ng-template>
-      </ion-col>
-    </ion-modal>
-
-    <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
-      [isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
-  </ion-content>
+		<ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
+			[isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
+	</ion-content>
 </div>

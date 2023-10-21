@@ -402,7 +402,7 @@ export class HomePage {
     id.forEach((currentId: number) => {
       let servico = this.Servicos.find((element: any) => element.id_servico == currentId);
       if (servico) {
-        preco += Number(servico.preco_servico);
+        preco += Number((servico.preco_servico));
       }
     });
 
