@@ -44,10 +44,10 @@ export class ClientesPage implements OnInit {
   }
 
   constructor(private clientesService: ClientesService, private router: Router) {
-    this.list_cli()
+    this.list_clientes()
   }
   isLoading: boolean = false;
-  list_cli() {
+  list_clientes() {
     this.isLoading = true;
     this.clientesService.list().subscribe((dados: any) => {
       this.isLoading = false;
@@ -102,38 +102,50 @@ export class ClientesPage implements OnInit {
 
   submit_edit() {
     console.log(this.EditForm.value)
-    if (this.EditForm.invalid) {
-      console.log('Formulario De Edição Invalido')
-      // this.message = 'Falha ao agendar!!'
-      // this.ExibirMessage(false);
+    if (this.EditForm.valid) {
+      console.log('Formulario De Edição Valido')
+      if (this.EditForm.valid) {
+        let cliente = {
+          id: this.EditForm.value.idCli_edit,
+          nome: this.EditForm.value.nomeCli_edit.toLocaleLowerCase(),
+          telefone: this.EditForm.value.telCli_edit.replace('(', '').replace(')', '').replace(' ', '').replace('-', ''),
+          email: this.EditForm.value.emailCli_edit,
+        }
+        this.clientesService.update(cliente).subscribe(() => {
+          this.list_clientes();
+        })
+      }
+      // this.message = 'Agendado com sucesso!!'
+      // this.ExibirMessage(true);
       return;
     }
-    console.log('Formulario De Edição Valido')
-    // this.message = 'Agendado com sucesso!!'
-    // this.ExibirMessage(true);
+    console.log('Formulario De Edição Invalido')
+    // this.message = 'Falha ao agendar!!'
+    // this.ExibirMessage(false);
   }
 
   setOpenEdit(isOpen: any) {
     if (isOpen == true || isOpen == false || this.EditForm.valid && isOpen == 'submit') {
       this.modalOpenEdit = isOpen == 'submit' ? false : isOpen;
     }
-    if (isOpen == true) {
-      this.createFormEdit();
-    }
+  }
+  editarCliente(cliente: Clientes) {
+    this.createFormEdit(cliente);
+    this.setOpenEdit(true);
   }
 
-  createFormEdit() {
+  createFormEdit(cliente: Clientes) {
     this.EditForm = new FormGroup({
-      idCli_edit: new FormControl(''),
-      nomeCli_edit: new FormControl(Validators.compose([
+      idCli_edit: new FormControl(cliente.id_cliente),
+      nomeCli_edit: new FormControl(cliente.cliente_nome, Validators.compose([
         Validators.maxLength(70),
         Validators.minLength(3),
         Validators.required])),
-      telCli_edit: new FormControl(Validators.compose([
+      telCli_edit: new FormControl(cliente.cliente_tel, Validators.compose([
         Validators.maxLength(15),
         Validators.minLength(15),
         Validators.required])),
-      emailCli_edit: new FormControl(Validators.compose([
+      emailCli_edit: new FormControl(cliente.cliente_email, Validators.compose([
         Validators.maxLength(70),
         Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
         Validators.required])),
@@ -141,13 +153,13 @@ export class ClientesPage implements OnInit {
   }
 
   get nomeCli_edit() {
-    return this.EditForm.get('nomeCli')!;
+    return this.EditForm.get('nomeCli_edit')!;
   }
   get telCli_edit() {
-    return this.EditForm.get('telCli')!;
+    return this.EditForm.get('telCli_edit')!;
   }
   get emailCli_edit() {
-    return this.EditForm.get('emailCli')!;
+    return this.EditForm.get('emailCli_edit')!;
   }
   // modal
   AddForm!: FormGroup;
@@ -165,7 +177,7 @@ export class ClientesPage implements OnInit {
       }
 
       this.clientesService.create(cliente).subscribe(() => {
-        this.list_cli();
+        this.list_clientes();
       });
       console.log('Formulario De Adição Valido')
       // this.message = 'Agendado com sucesso!!'
@@ -203,17 +215,6 @@ export class ClientesPage implements OnInit {
     });
   }
 
-  editarCliente(cliente: Clientes) {
-    this.EditForm.patchValue({
-      id: this.cliente.id,
-      nomeCli: this.cliente.nomeCli,
-      telCli: this.cliente.telCli,
-      emailCli: this.cliente.emailCli
-    })
-
-    this.createFormEdit();
-  }
-
   get nomeCli_add() {
     return this.AddForm.get('nomeCli')!;
   }
@@ -245,8 +246,15 @@ export class ClientesPage implements OnInit {
         this.Info_Clientes.sort((a, b) => {
           let dataA = new Date(a.data_agend + " " + a.hora_inicio_agendamento);
           let dataB = new Date(b.data_agend + " " + b.hora_inicio_agendamento);
-
           return dataB.getTime() - dataA.getTime();
+        });
+        console.log(this.Info_Clientes);
+        this.Info_Clientes = this.Info_Clientes.map((dados: any) => {
+          var data: any = dados.data_agend.split("-");
+          data = `${data[2]}/${data[1]}/${data[0]}`
+
+          var horario: any = dados.hora_inicio_agendamento.substr(0, 5);
+          return { ...dados, data_agend: data, hora_inicio_agendamento: horario };
         });
         console.log(this.Info_Clientes);
       }

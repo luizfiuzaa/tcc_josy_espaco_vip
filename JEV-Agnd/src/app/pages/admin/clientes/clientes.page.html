@@ -1,255 +1,255 @@
 <div class="ion-page" id="main-content">
-  <ion-header mode="ios">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Clientes</ion-title>
-    </ion-toolbar>
-  </ion-header>
+	<ion-header mode="ios">
+		<ion-toolbar>
+			<ion-buttons slot="start">
+				<ion-menu-button></ion-menu-button>
+			</ion-buttons>
+			<ion-title>Clientes</ion-title>
+		</ion-toolbar>
+	</ion-header>
 
-  <ion-content [fullscreen]="true">
-    <ion-row class="ion-justify-content-center">
-      <ion-col class="col_content" size-lg="10" size-md="10" size="12">
-        <!-- Search Bar -->
-        <ion-item>
-          <ion-col size="12">
-            <form action="GET" method="get">
-              <ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"
-                (input)="filterClienteName($event)"></ion-searchbar>
-            </form>
-          </ion-col>
-        </ion-item>
-        <!-- Se tiver algum Cliente -->
-        <div class="content" *ngIf="ClienteCad && ClienteCad.length > 0; else noClientes">
-          <ion-list lines="none">
+	<ion-content [fullscreen]="true" mode="md">
+		<ion-row class="ion-justify-content-center">
+			<ion-col size-lg="10" size-md="10" size="12">
+				<!-- Search Bar -->
+				<ion-item>
+					<ion-col size="12">
+						<form action="GET" method="get">
+							<ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar cliente"
+								(input)="filterClienteName($event)"></ion-searchbar>
+						</form>
+					</ion-col>
+				</ion-item>
+				<!-- Se tiver algum Cliente -->
+				<ion-col class="container" *ngIf="ClienteCad && ClienteCad.length > 0; else noClientes">
+					<!-- Card dos Clientes -->
+					<ion-card *ngFor="let Clientes of clientes_Exibidos">
+						<!-- Clientes: Nome e Telefone -->
+						<ion-card-header>
+							<ion-card-title>
+								<ion-text class="main__nome">
+									<ion-icon name="person-sharp"></ion-icon>
+									{{Clientes.cliente_nome}}
+								</ion-text>
+							</ion-card-title>
+							<ion-card-subtitle>
+								<ion-text class="main__email">
+									<ion-icon name="logo-whatsapp"></ion-icon>
+									{{Clientes.cliente_tel}}
+								</ion-text>
+							</ion-card-subtitle>
+						</ion-card-header>
+
+						<!-- Botões de Exclusão, Edição e Visualização de dados -->
+						<ion-card-content class="buttons_container">
+							<ion-button class="delete apagar_cli" fill="outline"
+								(click)="apagarService(Clientes.id_cliente)">
+								<ion-icon name="trash"></ion-icon>
+								Excluir
+							</ion-button>
+							<ion-button class="edit" (click)="editarCliente(Clientes)">
+								<ion-icon name="create-outline"></ion-icon>
+								Editar
+							</ion-button>
+							<ion-button class="info" (click)="listInformacoes(Clientes.id_cliente)">
+								<ion-icon name="information-circle-outline"></ion-icon>
+							</ion-button>
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
+				<ng-template #noClientes>
+					<ion-col size="12" class="noClientes" *ngIf="clientes_Exibidos.length == 0 && !this.isLoading">
+						<ion-text class="ion-text-center">
+							<p>Os seus clientes serão exibidos neste local.</p>
+							<ion-buttons class="button_add">
+								<abbr title="Cadastrar">
+									<ion-button (click)="setOpenAdd(true)">
+										Cadastrar cliente
+									</ion-button></abbr>
+							</ion-buttons>
+						</ion-text>
+					</ion-col>
+				</ng-template>
+			</ion-col>
+			<ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.isLoading">
+				<ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
+			</ion-col>
+		</ion-row>
+
+		<ion-modal #modal [isOpen]="modalOpenAdd" backdropDismiss="false">
+			<ng-template>
+				<div class="wrapper modalCont">
+					<div class="modal_title">
+						<ion-header>
+							<ion-toolbar>
+								<ion-buttons slot="start">
+									<ion-button (click)="setOpenAdd(false)">Cancelar</ion-button>
+								</ion-buttons>
+							</ion-toolbar>
+						</ion-header>
+
+						<!-- form cliente -->
+						<form action="" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm"
+							#formDir="ngForm">
+							<ion-list lines="none" class="list-content">
+								<div class="item_form">
+									<ion-input placeholder="Digite o nome" label="Nome do Cliente"
+										label-placement="floating" fill="outline" formControlName="nomeCli"></ion-input>
+									<div class="message-alert" *ngIf="nomeCli_add.invalid && formDir.submitted">
+										Digite um nome
+									</div>
+								</div>
+
+								<div class="item_form">
+									<ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate"
+										placeholder="Digite o telefone" label="Telefone do Cliente" type="tel"
+										label-placement="floating" fill="outline" formControlName="telCli"
+										minlength="15" maxlength="15"></ion-input>
+									<div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
+										Digite um Telefone
+									</div>
+								</div>
+
+								<div class="item_form">
+									<ion-input placeholder="Digite o email" label="E-mail do Cliente" type="email"
+										label-placement="floating" fill="outline"
+										formControlName="emailCli"></ion-input>
+									<div class="message-alert" *ngIf="emailCli_add.invalid && formDir.submitted">
+										Digite um email
+									</div>
+								</div>
+							</ion-list>
+							<ion-button type="submit" (click)="setOpenAdd('submit')">Cadastrar</ion-button>
+						</form>
+
+					</div>
+				</div>
+
+			</ng-template>
+		</ion-modal>
+
+		<ion-modal #modal [isOpen]="modalOpenEdit" backdropDismiss="false">
+			<ng-template>
+				<div class="wrapper modalCont">
+					<div class="modal_title">
+						<ion-header>
+							<ion-toolbar>
+								<ion-buttons slot="start">
+									<ion-button (click)="setOpenEdit(false)">Cancelar</ion-button>
+								</ion-buttons>
+							</ion-toolbar>
+						</ion-header>
+
+						<!-- form cliente -->
+						<form action="" class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm"
+							#formDir="ngForm">
+							<ion-list lines="none" class="list-content">
+								<div class="item_form">
+									<ion-input placeholder="Digite o nome" label="Nome do Cliente"
+										label-placement="floating" fill="outline"
+										formControlName="nomeCli_edit"></ion-input>
+									<div class="message-alert" *ngIf="nomeCli_edit.invalid && formDir.submitted">
+										Digite um nome
+									</div>
+								</div>
+
+								<div class="item_form">
+									<ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate"
+										placeholder="Digite o telefone" label="Telefone do Cliente" type="tel"
+										label-placement="floating" fill="outline" formControlName="telCli_edit"
+										minlength="15" maxlength="15"></ion-input>
+									<div class="message-alert" *ngIf="telCli_edit.invalid && formDir.submitted">
+										Digite um Telefone
+									</div>
+								</div>
+
+								<div class="item_form">
+									<ion-input placeholder="Digite o email" label="E-mail do Cliente" type="email"
+										label-placement="floating" fill="outline"
+										formControlName="emailCli_edit"></ion-input>
+									<div class="message-alert" *ngIf="emailCli_edit.invalid && formDir.submitted">
+										Digite um email
+									</div>
+								</div>
+							</ion-list>
+							<ion-button type="submit" (click)="setOpenEdit('submit')">Cadastrar</ion-button>
+						</form>
+
+					</div>
+				</div>
+
+			</ng-template>
+		</ion-modal>
+
+		<ion-modal #modal [isOpen]="modalOpenInfo" backdropDismiss="false">
+			<ng-template>
+				<div class="wrapper modalCont" *ngIf="Info_Clientes && Info_Clientes.length > 0; else noInfos">
+					<div class="modal_title">
+						<ion-header style="position: fixed;">
+							<ion-toolbar>
+								<ion-buttons slot="start">
+									<ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
+								</ion-buttons>
+							</ion-toolbar>
+						</ion-header>
+						<div class="info_main" style="padding-top: 56px;">
+							<ion-list *ngFor="let info_clientes of Info_Clientes">
+								<ion-item>
+									<ion-text style="text-transform: capitalize;">
+										<strong>
+											{{info_clientes.serv_agendamento}}
+										</strong>
+									</ion-text>
+								</ion-item>
+								<ion-item>
+									<ion-text>
+										{{info_clientes.hora_inicio_agendamento}} -
+										{{info_clientes.hora_fim_agendamento}} -
+										{{info_clientes.data_agend}}
+									</ion-text>
+								</ion-item>
+							</ion-list>
+						</div>
+					</div>
+				</div>
+				<ng-template #noInfos>
+					<div class="wrapper modalCont">
+						<div class="modal_title">
+							<ion-header>
+								<ion-toolbar>
+									<ion-buttons slot="start">
+										<ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
+									</ion-buttons>
+								</ion-toolbar>
+							</ion-header>
+							<div class="info_main">
+								<ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
+									<ion-col class="ion-text-center">
+										<ion-text>Esse cliente ainda não fez nenhum agendamento...</ion-text>
+										<ion-buttons class="button_add" (click)="agendar()">
+											<ion-button style="font-size: 1em; padding: 10px;">
+												Agendar
+											</ion-button>
+										</ion-buttons>
+									</ion-col>
+								</ion-row>
+							</div>
+						</div>
+					</div>
+				</ng-template>
+			</ng-template>
 
 
-            <div class="cliente__main" *ngFor="let Clientes of clientes_Exibidos">
-              <ion-item>
-                <!-- Card dos Clientes -->
-                <ion-card>
-                  <!-- Clientes: Nome e Telefone -->
-                  <ion-card-header>
-                    <ion-card-title>
-                      <ion-text class="main__nome">
-                        <ion-icon name="person-sharp"></ion-icon>
-                        {{Clientes.cliente_nome}}
-                      </ion-text>
-                    </ion-card-title>
-                    <ion-card-subtitle>
-                      <ion-text class="main__email">
-                        <ion-icon name="logo-whatsapp"></ion-icon>
-                        {{Clientes.cliente_tel}}
-                      </ion-text>
-                    </ion-card-subtitle>
-                  </ion-card-header>
+		</ion-modal>
 
-                  <!-- Botões de Exclusão, Edição e Visualização de dados -->
-                  <ion-card-content class="buttons_container">
-                      <ion-button class="delete apagar_cli" fill="outline" (click)="apagarService(Clientes.id_cliente)">
-                        <ion-icon name="trash"></ion-icon>
-                        Excluir
-                      </ion-button>
-                      <ion-button class="edit" (click)="setOpenEdit(true)">
-                        <ion-icon name="create-outline"></ion-icon>
-                        Editar
-                      </ion-button>
-                      <ion-button class="info" (click)="listInformacoes(Clientes.id_cliente)">
-                        <ion-icon name="information-circle-outline"></ion-icon>
-                      </ion-button>
-                  </ion-card-content>
-                </ion-card>
-              </ion-item>
-            </div>
-          </ion-list>
-        </div>
-        <ng-template #noClientes>
-          <ion-col size="12" class="noClientes" *ngIf="clientes_Exibidos.length == 0 && !this.isLoading">
-            <ion-text class="ion-text-center">
-              <p>Os seus clientes serão exibidos neste local.</p>
-              <ion-buttons class="button_add">
-                <abbr title="Cadastrar">
-                  <ion-button (click)="setOpenAdd(true)">
-                    Cadastrar cliente
-                  </ion-button></abbr>
-              </ion-buttons>
-            </ion-text>
-          </ion-col>
-        </ng-template>
-      </ion-col>
-      <ion-col class="ion-text-center spinner_cont" size="12" *ngIf="this.isLoading">
-        <ion-spinner class="spinner" color="danger" name="dots"></ion-spinner>
-      </ion-col>
-    </ion-row>
+		<!-- Btn para adicionar um novo cliente -->
+		<ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
+			<ion-fab-button>
+				<ion-icon id="add" name="person-add" expand="block"></ion-icon>
+			</ion-fab-button>
+		</ion-fab>
 
-    <ion-modal #modal [isOpen]="modalOpenAdd" backdropDismiss="false">
-      <ng-template>
-        <div class="wrapper modalCont">
-          <div class="modal_title">
-            <ion-header>
-              <ion-toolbar>
-                <ion-buttons slot="start">
-                  <ion-button (click)="setOpenAdd(false)">Cancelar</ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-header>
-
-            <!-- form cliente -->
-            <form action="" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm" #formDir="ngForm">
-              <ion-list lines="none" class="list-content">
-                <div class="item_form">
-                  <ion-input placeholder="Digite o nome" label="Nome do Cliente" label-placement="floating"
-                    fill="outline" formControlName="nomeCli"></ion-input>
-                  <div class="message-alert" *ngIf="nomeCli_add.invalid && formDir.submitted">
-                    Digite um nome
-                  </div>
-                </div>
-
-                <div class="item_form">
-                  <ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate" placeholder="Digite o telefone"
-                    label="Telefone do Cliente" type="tel" label-placement="floating" fill="outline"
-                    formControlName="telCli" minlength="15" maxlength="15"></ion-input>
-                  <div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
-                    Digite um Telefone
-                  </div>
-                </div>
-
-                <div class="item_form">
-                  <ion-input placeholder="Digite o email" label="E-mail do Cliente" type="email"
-                    label-placement="floating" fill="outline" formControlName="emailCli"></ion-input>
-                  <div class="message-alert" *ngIf="emailCli_add.invalid && formDir.submitted">
-                    Digite um email
-                  </div>
-                </div>
-              </ion-list>
-              <ion-button type="submit" (click)="setOpenAdd('submit')">Cadastrar</ion-button>
-            </form>
-
-          </div>
-        </div>
-
-      </ng-template>
-    </ion-modal>
-
-    <ion-modal #modal [isOpen]="modalOpenEdit" backdropDismiss="false">
-      <ng-template>
-        <div class="wrapper modalCont">
-          <div class="modal_title">
-            <ion-header>
-              <ion-toolbar>
-                <ion-buttons slot="start">
-                  <ion-button (click)="setOpenEdit(false)">Cancelar</ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-header>
-
-            <!-- form cliente -->
-            <form action="" class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm" #formDir="ngForm">
-              <ion-list lines="none" class="list-content">
-                <div class="item_form">
-                  <ion-input placeholder="Digite o nome" label="Nome do Cliente" label-placement="floating"
-                    fill="outline" formControlName="nomeCli"></ion-input>
-                  <div class="message-alert" *ngIf="nomeCli_edit.invalid && formDir.submitted">
-                    Digite um nome
-                  </div>
-                </div>
-
-                <div class="item_form">
-                  <ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate" placeholder="Digite o telefone"
-                    label="Telefone do Cliente" label-placement="floating" fill="outline" formControlName="telCli"
-                    minlength="15" maxlength="15"></ion-input>
-                  <div class="message-alert" *ngIf="telCli_edit.invalid && formDir.submitted">
-                    Digite um Telefone
-                  </div>
-                </div>
-
-                <div class="item_form">
-                  <ion-input placeholder="Digite o email" label="E-mail do Cliente" label-placement="floating"
-                    fill="outline" formControlName="emailCli"></ion-input>
-                  <div class="message-alert" *ngIf="emailCli_edit.invalid && formDir.submitted">
-                    Digite um email
-                  </div>
-                </div>
-              </ion-list>
-              <ion-button type="submit" (click)="setOpenEdit('submit')">Editar</ion-button>
-            </form>
-
-          </div>
-        </div>
-
-      </ng-template>
-    </ion-modal>
-
-    <ion-modal #modal [isOpen]="modalOpenInfo" backdropDismiss="false">
-      <ng-template>
-        <div class="wrapper modalCont" *ngIf="Info_Clientes && Info_Clientes.length > 0; else noInfos">
-          <div class="modal_title">
-            <ion-header style="position: fixed;">
-              <ion-toolbar>
-                <ion-buttons slot="start">
-                  <ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-header>
-            <div class="info_main" style="padding-top: 56px;">
-              <ion-list *ngFor="let info_clientes of Info_Clientes">
-                <ion-item>
-                  <ion-text style="text-transform: capitalize;">
-                    <strong>
-                      {{info_clientes.serv_agendamento}}
-                    </strong>
-                  </ion-text>
-                </ion-item>
-                <ion-item>
-                  <ion-text>
-                    {{info_clientes.hora_inicio_agendamento}} -
-                    {{info_clientes.hora_fim_agendamento}} -
-                    {{info_clientes.data_agend}}
-                  </ion-text>
-                </ion-item>
-              </ion-list>
-            </div>
-          </div>
-        </div>
-        <ng-template #noInfos>
-          <div class="wrapper modalCont">
-            <div class="modal_title">
-              <ion-header>
-                <ion-toolbar>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <div class="info_main">
-                <ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
-                  <ion-col class="ion-text-center">
-                    <ion-text>Esse cliente ainda não fez nenhum agendamento...</ion-text>
-                    <ion-buttons class="button_add" (click)="agendar()">
-                      <ion-button style="font-size: 1em; padding: 10px;">
-                        Agendar
-                      </ion-button>
-                    </ion-buttons>
-                  </ion-col>
-                </ion-row>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </ng-template>
-
-
-    </ion-modal>
-
-    <!-- Btn para adicionar um novo cliente -->
-    <ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
-      <ion-fab-button>
-        <ion-icon id="add" name="person-add" expand="block"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
-    <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
-      [isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
-  </ion-content>
+		<ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
+			[isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
+	</ion-content>
 </div>

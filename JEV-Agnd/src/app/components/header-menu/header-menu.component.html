@@ -30,7 +30,7 @@
           <ion-item [routerLink]="['/lembretes']" routerLinkActive="Link"><ion-icon
               name="notifications"></ion-icon>
             <p>Lembretes</p>
-            <ion-badge slot="end">1</ion-badge>
+            <ion-badge *ngIf="!(this.numeroLembretes == 0)" slot="end">{{this.numeroLembretes}}</ion-badge>
           </ion-item>
           <ion-item [routerLink]="['/faturamentos']" routerLinkActive="Link"><ion-icon
               name="bar-chart-sharp"></ion-icon>
