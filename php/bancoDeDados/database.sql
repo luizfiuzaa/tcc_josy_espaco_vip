@@ -40,7 +40,8 @@ CREATE TABLE `mensagem` (
 	`id_mensagem` INT NOT NULL AUTO_INCREMENT,
 	`titulo` VARCHAR(30) NOT NULL,
 	`descricao` VARCHAR(255) NOT NUll,
-	`cor` VARCHAR(20) NOT NUll PRIMARY KEY (`id_mensagem`)
+	`cor` VARCHAR(20) NOT NUll,
+	PRIMARY KEY (`id_mensagem`)
 );
 
 DROP TABLE IF EXISTS `lembretes`;
@@ -289,8 +290,7 @@ INSERT INTO
 VALUES
 	(
 		'Cobrança',
-		'Você vai fazer isso mesmo? 🔫🤭
-		 Me pague é viva... Hahahaha',
+		'Você vai fazer isso mesmo? 🔫🤭. Me pague é viva... Hahahaha',
 		'#000000'
 	);
 
@@ -300,7 +300,7 @@ VALUES
 	(
 		'Agendamento',
 		'Tudo pronto só vir ficar lindo 👏😉',
-		'#2DE17A'
+		'#e91ccd'
 	);
 INSERT INTO
 	`mensagem`(titulo, descricao, cor)
@@ -308,5 +308,5 @@ VALUES
 	(
 		'Lembrete',
 		'Olha o seu grande dia já esta ás portas ❤️😎',
-		'#118CD9'
+		'#2DE17A'
 	);
