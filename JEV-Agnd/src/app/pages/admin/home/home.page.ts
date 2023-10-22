@@ -46,11 +46,7 @@ export class HomePage {
         this.Agendamentos = [];
       }
 
-      this.Agendamentos_exibidos = this.Agendamentos.map((dados) => {
-        let data: any = dados.data_agend.split("/");
-        data = `${data[2]}-${data[1]}-${data[0]}`;
-        return { ...dados, data_agend: data };
-      });
+      this.Agendamentos_exibidos = this.Agendamentos;
 
       console.log(this.Agendamentos)
       console.log(this.Agendamentos_exibidos)
@@ -81,6 +77,12 @@ export class HomePage {
       let data: any = agendamento.data_agend.split("/");
       data = `${data[2]}-${data[1]}-${data[0]}`;
       return data.includes(filter);
+    });
+
+    this.Agendamentos_exibidos = this.Agendamentos_exibidos.map((dados: any) => {
+      let horario_inicio: any = dados.hora_inicio_agendamento.substr(0, 5);
+      let horario_fim: any = dados.hora_fim_agendamento.substr(0, 5);
+      return { ...dados, hora_inicio_agendamento: horario_inicio, hora_fim_agendamento: horario_fim };
     });
   }
 

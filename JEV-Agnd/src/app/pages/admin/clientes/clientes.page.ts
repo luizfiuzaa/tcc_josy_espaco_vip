@@ -250,11 +250,12 @@ export class ClientesPage implements OnInit {
         });
         console.log(this.Info_Clientes);
         this.Info_Clientes = this.Info_Clientes.map((dados: any) => {
-          var data: any = dados.data_agend.split("-");
+          let data: any = dados.data_agend.split("-");
           data = `${data[2]}/${data[1]}/${data[0]}`
 
-          var horario: any = dados.hora_inicio_agendamento.substr(0, 5);
-          return { ...dados, data_agend: data, hora_inicio_agendamento: horario };
+          let horario_inicio: any = dados.hora_inicio_agendamento.substr(0, 5);
+          let horario_fim: any = dados.hora_fim_agendamento.substr(0, 5);
+          return { ...dados, data_agend: data, hora_inicio_agendamento: horario_inicio, hora_fim_agendamento: horario_fim };
         });
         console.log(this.Info_Clientes);
       }

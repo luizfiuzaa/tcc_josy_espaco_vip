@@ -13,6 +13,7 @@ export class ClientesService {
   // private readonly API = 'http://localhost/aula/php/admin/clientes/';
   private readonly API = environment.baseApiUrl;
 
+
   constructor(private httpClient: HttpClient) { }
 
   list() {
@@ -31,12 +32,11 @@ export class ClientesService {
     return this.httpClient.delete(this.API + 'clientes/remover_clientes.php?id=' + id);
   }
 
-  create(cliente: any[]) {
+  create(cliente: any) {
     return this.httpClient.post(this.API + 'clientes/insert_clientes.php', cliente[0]);
   }
 
   update(cliente: any) {
-    console.log(cliente)
     return this.httpClient.put(this.API + 'clientes/update_clientes.php', cliente);
   }
 }

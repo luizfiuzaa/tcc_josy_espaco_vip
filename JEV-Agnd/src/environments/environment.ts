@@ -5,16 +5,16 @@
 export const environment = {
   production: false,
   // url do Marlon:
-  // baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
-  // baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
+  baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
+  baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
 
   // url do pc paleolítico da etec:
   // baseApiUrl: 'http://localhost/aula/php/admin/',
   // baseApiUrlLogin: 'http://localhost/aula/php/'
 
   // url 000webHost
-  baseApiUrl: 'https://tcc-josy-espaco-vip.000webhostapp.com/api/admin/',
-  baseApiUrlLogin: 'https://tcc-josy-espaco-vip.000webhostapp.com/api/'
+  // baseApiUrl: 'https://tcc-josy-espaco-vip.000webhostapp.com/api/admin/',
+  // baseApiUrlLogin: 'https://tcc-josy-espaco-vip.000webhostapp.com/api/'
   
   // url do codeSpace de Marlon:
   // baseApiUrl: 'http://localhost/arquivosdaaulaapi/php/admin/',

@@ -23,7 +23,9 @@ export class LembretesPage implements OnInit {
         this.Lembretes = dados.lembretes.map((dados: any) => {
           var data: any = dados.dataLembrete.split("-");
           data = `${data[2]}/${data[1]}/${data[0]}`;
-          return { ...dados, dataLembrete: data };
+          let horario: any = dados.horario.substr(0, 5);
+          let horario_lembrete: any = dados.horarioLembrete.substr(0, 5);
+          return { ...dados, dataLembrete: data, horario: horario, horarioLembrete: horario_lembrete };
         });
         this.LembretesService.contadorLembretes = this.Lembretes.length;
         console.log(this.Lembretes)
