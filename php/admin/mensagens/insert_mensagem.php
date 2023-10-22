@@ -28,14 +28,12 @@ try {
     $insert = "INSERT INTO `mensagem` (
             titulo,
             descricao,
-            cor,
-            icon
+            cor
             ) 
             VALUES (
             :titulo,
             :descricao,
-            :cor,
-            :icon
+            :cor
             )";
 
     $stmt = $connection->prepare($insert);
@@ -43,7 +41,6 @@ try {
     $stmt->bindValue(':titulo', $titulo, PDO::PARAM_STR);
     $stmt->bindValue(':descricao', $descricao, PDO::PARAM_STR);
     $stmt->bindValue(':cor', $cor, PDO::PARAM_STR);
-    $stmt->bindValue(':icon', 'icone', PDO::PARAM_STR);
 
     if ($stmt->execute()) {
         http_response_code(201);

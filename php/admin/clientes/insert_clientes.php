@@ -8,7 +8,7 @@ if ($method == "OPTIONS") {
     die();
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode([
         'success' => 0,
@@ -20,6 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
 $data = json_decode(file_get_contents("php://input"));
 
 try {
+    echo json_encode('[' . $data . ']');
+    exit();
+
     $cliente_nome = htmlspecialchars(trim($data->nomeCli));
     $cliente_email = htmlspecialchars(trim($data->emailCli));
     $cliente_tel = htmlspecialchars(trim($data->telCli));
@@ -61,7 +64,7 @@ try {
     echo json_encode([
         'success' => 0,
         'message' => $e->getMessage()
-]);
+    ]);
     exit;
 }
 ?>

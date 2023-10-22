@@ -20,32 +20,33 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
 $data = json_decode(file_get_contents("php://input"));
 
 try {
-    $id_mensagem = $data->id_mensagem;
+    $id_mensagem = htmlspecialchars(trim($data->id_mensagem));
+    $titulo = htmlspecialchars(trim($data->titulo));
+    $descricao = htmlspecialchars(trim($data->descricao));
+    $cor = htmlspecialchars(trim($data->cor));
 
-    $select = "SELECT `descricao` FROM `mensagem` WHERE id_mensagem=:id_mensagem";
+    $select = "SELECT * FROM `mensagem` WHERE id_mensagem=:id_mensagem";
     $stmt = $connection->prepare($select);
     $stmt->bindValue(':id_mensagem', $id_mensagem, PDO::PARAM_INT);
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
 
-        $dados_existentes = $stmt->fetch(PDO::FETCH_ASSOC);
-        $titulo = isset($data->titulo) ? $data->titulo : $dados_existentes['titulo'];
-        $descricao = isset($data->descricao) ? $data->descricao : $dados_existentes['descricao'];
-        $cor = isset($data->cor) ? $data->cor : $dados_existentes['cor'];
-        $icon = isset($data->icon) ? $data->icon : $dados_existentes['icon'];
-
-        $update_serv = "UPDATE `mensagem` SET titulo = :titulo descricao = :descricao, cor = :cor, icon = :icon
+        $update_mensagem = "UPDATE `mensagem` SET
+        titulo = :titulo,
+        descricao = :descricao,
+        cor = :cor
         WHERE id_mensagem = :id_mensagem";
 
-        $update = $connection->prepare($update);
+        $stmt = $connection->prepare($update_mensagem);
 
-        $update->bindValue(':titulo', $titulo, PDO::PARAM_STR);
-        $update->bindValue(':descricao', $descricao, PDO::PARAM_STR);
-        $update->bindValue(':cor', $cor, PDO::PARAM_STR);
-        $update->bindValue(':icon', $icon, PDO::PARAM_STR);
+        $stmt->bindValue(':titulo', $titulo, PDO::PARAM_STR);
+        $stmt->bindValue(':descricao', $descricao, PDO::PARAM_STR);
+        $stmt->bindValue(':cor', $cor, PDO::PARAM_STR);
+        $stmt->bindValue(':id_mensagem', $id_mensagem, PDO::PARAM_INT);
 
-        if ($update->execute()) {
+
+        if ($stmt->execute()) {
             http_response_code(201);
             echo json_encode([
                 'success' => 1,

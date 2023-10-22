@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS `josy_espaco_vip` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `id21424056_josy_espaco_vip` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-USE `josy_espaco_vip`;
+USE `id21424056_josy_espaco_vip`;
 
 DROP TABLE IF EXISTS `admin`;
 
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `servico`;
 
 CREATE TABLE `servico`(
 	`id_servico` INT NOT NULL AUTO_INCREMENT,
-	`titulo_servico` VARCHAR(70) NOT NULL,
+	`titulo_servico` VARCHAR(50) NOT NULL,
 	`desc_servico` VARCHAR(150) NOT NULL,
 	`duracao_servico` INT NOT NULL,
 	`preco_servico` DECIMAL(10, 2) NOT NULL,
@@ -37,12 +37,10 @@ CREATE TABLE `servico`(
 DROP TABLE IF EXISTS `mensagem`;
 
 CREATE TABLE `mensagem` (
-    `id_mensagem` INT NOT NULL AUTO_INCREMENT,
-	`titulo` VARCHAR(20) NOT NULL,
+	`id_mensagem` INT NOT NULL AUTO_INCREMENT,
+	`titulo` VARCHAR(30) NOT NULL,
 	`descricao` VARCHAR(255) NOT NUll,
-	`cor` VARCHAR(20) NOT NUll,
-	`icon` VARCHAR(255),
-	PRIMARY KEY (`id_mensagem`)
+	`cor` VARCHAR(20) NOT NUll PRIMARY KEY (`id_mensagem`)
 );
 
 DROP TABLE IF EXISTS `lembretes`;
@@ -265,4 +263,50 @@ VALUES
 		'Servico de exemplo',
 		1,
 		'1'
+	);
+
+INSERT INTO
+	`mensagem`(titulo, descricao, cor)
+VALUES
+	(
+		'Reagendamento',
+		'Faz tempo que não te vejo por aqui 🤔
+		Bora ficar lindo novamente?',
+		'#118CD9'
+	);
+
+INSERT INTO
+	`mensagem`(titulo, descricao, cor)
+VALUES
+	(
+		'Cancelamento',
+		'Tudo esta terminado entre nós 🥹😭',
+		'#DB3616'
+	);
+
+INSERT INTO
+	`mensagem`(titulo, descricao, cor)
+VALUES
+	(
+		'Cobrança',
+		'Você vai fazer isso mesmo? 🔫🤭
+		 Me pague é viva... Hahahaha',
+		'#000000'
+	);
+
+INSERT INTO
+	`mensagem`(titulo, descricao, cor)
+VALUES
+	(
+		'Agendamento',
+		'Tudo pronto só vir ficar lindo 👏😉',
+		'#2DE17A'
+	);
+INSERT INTO
+	`mensagem`(titulo, descricao, cor)
+VALUES
+	(
+		'Lembrete',
+		'Olha o seu grande dia já esta ás portas ❤️😎',
+		'#118CD9'
 	);
