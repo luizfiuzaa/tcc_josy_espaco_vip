@@ -20,9 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $data = json_decode(file_get_contents("php://input"));
 
 try {
-    echo json_encode('[' . $data . ']');
-    exit();
-
     $cliente_nome = htmlspecialchars(trim($data->nomeCli));
     $cliente_email = htmlspecialchars(trim($data->emailCli));
     $cliente_tel = htmlspecialchars(trim($data->telCli));
