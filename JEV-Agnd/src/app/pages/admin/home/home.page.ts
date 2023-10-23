@@ -270,16 +270,34 @@ export class HomePage {
         return this.EditForm.get('formaDePagamento_edit')!;
     }
     submit_edit() {
-        console.log(this.EditForm.value)
-        if (this.EditForm.invalid) {
-            console.log('Formulario De Edição Invalido')
-            this.message = 'Falha ao alterar!!'
-            this.ExibirMessage(false);
+        console.log(this.EditForm.value);
+        if (this.EditForm.valid) {
+            let dia_hora = ((this.EditForm.value.calendario_edit).replace('.000Z', '')).split('T');
+            let agendamento = {
+                id_agendamento: this.indiceEdit,
+                status_agendamento: 'e',
+                hora_inicio_agendamento: dia_hora[1]+':00',
+                cli_agendamento: this.EditForm.value.cliente_edit,
+                serv_agendamento: this.EditForm.value.servicos_edit,
+                metodo_de_pagamento: this.EditForm.value.formaDePagamento_edit,
+                preco_agend: this.precoAgend,
+                data_agend: dia_hora[0],
+            }
+            this.agendamentosService.update(agendamento).subscribe((dados: any) => {
+                if (dados.success == '1') {
+                    this.message = dados.message
+                    this.setOpenEdit('submit');
+                    this.ExibirMessage(true);
+                    this.listAgendamentos(dia_hora[0]);
+                    return;
+                }
+                this.message = dados.message;
+                this.ExibirMessage(false);
+            })
             return;
         }
-        console.log('Formulario De Edição Valido')
-        this.message = 'Alterado com sucesso!!'
-        this.ExibirMessage(true);
+        this.message = 'Falha ao alterar... :('
+        this.ExibirMessage(false);
     }
 
     myDateEdit: any = '';
@@ -306,17 +324,18 @@ export class HomePage {
     // Modal de Edição
     modalOpenEdit = false;
     setOpenEdit(isOpen: any) {
-        this.agendamento = this.Agendamentos[this.indiceEdit];
         if (isOpen == true) {
             this.modalOpenEdit = isOpen;
             this.createFormEdit();
+            setTimeout(() => {
+            }, 1)
             return;
         }
         if (!isOpen) {
             this.modalOpenEdit = isOpen;
             return;
         }
-        if (isOpen == 'submit' && this.EditForm.valid) {
+        if (isOpen == 'submit') {
             setTimeout(() => {
                 this.modalOpenEdit = false;
             }, 100);
