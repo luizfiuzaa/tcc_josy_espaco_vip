@@ -1,5 +1,47 @@
-.custom-card, .add-card{
+.custom-card,
+.add-card {
   cursor: pointer;
   font-size: 1.3em;
 }
 
+.modalCont {
+  min-height: 100%;
+  overflow: auto;
+}
+
+/* width */
+.modalCont::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.modalCont::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.modalCont::-webkit-scrollbar-thumb {
+  background: #ffc6c6;
+  border-radius: 5px;
+}
+
+.card_context {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text_card {
+  width: 100%;
+  text-transform: capitalize;
+  color: black;
+}
+
+.user_icon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 1.8em;
+  color: black;
+}
