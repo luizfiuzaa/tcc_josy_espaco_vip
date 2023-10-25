@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { elements } from 'chart.js';
 import { Agendamentos } from 'src/app/models/agendamentos';
@@ -14,14 +14,18 @@ import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
     agendamento: any;
     // Iniciando a service no constructor
-    constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService, private servicosSercice: ServicosService) {
+    constructor(private agendamentosService: AgendamentosService, private clientesSercice: ClientesService, private servicosSercice: ServicosService) { }
+
+    ngOnInit() {
         this.listAgendamentos(this.hoje);
         this.listClientes();
         this.listServicos();
+        console.log('Jesus e santo ❤️🙌')
     }
+
     // Executa após o carregamento da página
     ngAfterViewInit() {
         this.toast = document.querySelector('#message') as HTMLElement;
@@ -276,7 +280,7 @@ export class HomePage {
             let agendamento = {
                 id_agendamento: this.indiceEdit,
                 status_agendamento: 'e',
-                hora_inicio_agendamento: dia_hora[1]+':00',
+                hora_inicio_agendamento: dia_hora[1] + ':00',
                 cli_agendamento: this.EditForm.value.cliente_edit,
                 serv_agendamento: this.EditForm.value.servicos_edit,
                 metodo_de_pagamento: this.EditForm.value.formaDePagamento_edit,
@@ -315,7 +319,7 @@ export class HomePage {
         this.inputClienteEdit = cliente?.id_cliente;
         let servico = this.Servicos.filter((dados: any) => agendamento.serv_agendamento.includes(dados.titulo_servico));
         servico.forEach((element: any) => {
-        this.inputServicosEdit.push(element.id_servico);
+            this.inputServicosEdit.push(element.id_servico);
         });
         this.inputMetodoPagamentoEdit = agendamento.metodo_de_pagamento;
         this.precoAgend = parseFloat(agendamento.preco_agend);

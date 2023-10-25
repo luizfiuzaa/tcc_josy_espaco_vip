@@ -14,25 +14,27 @@ import decimalMask from '../../../masks/decimalMask'
   styleUrls: ['./servicos.page.scss'],
 })
 export class ServicosPage implements OnInit {
-  ngOnInit(): void { }
+
   @Input() Card_Dados: Servicos[] = [];
   Servicos: Servicos[] = [];
   Servicos_exibidos: Servicos[] = [];
   isLoading: boolean = false;
 
-  constructor(private servicoService: ServicosService) {
+  constructor(private servicoService: ServicosService) {}
+
+  ngOnInit() {
     this.listServicos();
   }
 
   listServicos() {
     this.isLoading = true;
     this.servicoService.list().subscribe((dados: any) => {
-        this.isLoading = false;
-        this.Servicos = dados.servicos;
-        if (!dados.success || dados.success != 1) {
-          this.Servicos = [];
-        }
-        this.Servicos_exibidos = this.Servicos;
+      this.isLoading = false;
+      this.Servicos = dados.servicos;
+      if (!dados.success || dados.success != 1) {
+        this.Servicos = [];
+      }
+      this.Servicos_exibidos = this.Servicos;
     })
   }
 
