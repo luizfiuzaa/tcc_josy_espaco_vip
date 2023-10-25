@@ -9,7 +9,7 @@ CREATE TABLE `admin`(
 	`email_admin` VARCHAR(50) NOT NULL,
 	`senha_admin` VARCHAR(50) NOT NULL,
 	PRIMARY KEY (`id_admin`)
-);
+)DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `cliente`;
 
@@ -19,7 +19,7 @@ CREATE TABLE `cliente` (
 	`cliente_tel` VARCHAR(12) NOT NUll,
 	`cliente_email` VARCHAR(50) NOT NUll,
 	PRIMARY KEY (`id_cliente`)
-);
+)DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `servico`;
 
@@ -32,7 +32,7 @@ CREATE TABLE `servico`(
 	`cor` VARCHAR(30) NOT NULL,
 	`frequencia` INT NOT NULL,
 	PRIMARY KEY (`id_servico`)
-);
+)DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `mensagem`;
 
@@ -42,7 +42,7 @@ CREATE TABLE `mensagem` (
 	`descricao` VARCHAR(255) NOT NUll,
 	`cor` VARCHAR(20) NOT NUll,
 	PRIMARY KEY (`id_mensagem`)
-);
+)DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `lembretes`;
 
@@ -53,7 +53,7 @@ CREATE TABLE `lembretes` (
 	`dataLembrete` DATE,
 	`conteudoLembrete` VARCHAR(255) NOT NUll,
 	PRIMARY KEY (`id`)
-);
+)DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `agendamento`;
 
@@ -71,7 +71,7 @@ CREATE TABLE `agendamento`(
 	`serv_agendamento` VARCHAR(255) NOT NULL,
 	CONSTRAINT `fk_id_cliente` FOREIGN KEY (`fk_id_cliente`) REFERENCES `cliente` (`id_cliente`),
 	PRIMARY KEY (`id_agendamento`)
-);
+)DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `agendamento_servicos`;
 
@@ -82,7 +82,7 @@ CREATE TABLE `agendamento_servicos`(
 	CONSTRAINT `fk_id_servico_agend` FOREIGN KEY (`fk_id_servico_agend`) REFERENCES `servico` (`id_servico`),
 	CONSTRAINT `fk_id_agendamento` FOREIGN KEY (`fk_id_agendamento`) REFERENCES `agendamento` (`id_agendamento`),
 	PRIMARY KEY (`id_agend_servico`)
-);
+)DEFAULT CHARSET=latin1;
 
 INSERT INTO
 	`admin`(email_admin, senha_admin)
