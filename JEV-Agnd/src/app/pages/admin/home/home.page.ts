@@ -475,4 +475,9 @@ export class HomePage implements OnInit {
             this.valorTotal = (dados.total).toFixed(2);
         });
     }
+
+// função para imprimir a comanda selecionada
+    imprimirComanda(){
+        window.print();
+    }
 }

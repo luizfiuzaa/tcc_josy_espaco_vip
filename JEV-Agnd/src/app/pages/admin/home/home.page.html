@@ -331,10 +331,16 @@
 
           <ion-footer class="comanda-footer">
             <ion-toolbar>
-              <ion-buttons>
+              <ion-buttons style="display: flex; justify-content: space-between;">
                 <ion-button (click)="setOpenComanda(false)">
                   <ion-label class="button_modal">
                     Fechar
+                  </ion-label>
+                </ion-button>
+
+                <ion-button (click)="imprimirComanda()">
+                  <ion-label class="button_modal">
+                    Imprimir
                   </ion-label>
                 </ion-button>
               </ion-buttons>
