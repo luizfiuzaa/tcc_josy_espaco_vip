@@ -72,7 +72,7 @@ ion-card {
   }
 }
 
-.container_buttons{
+.container_buttons {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -80,13 +80,18 @@ ion-card {
 }
 
 @media only screen and (max-width:500px) {
-  .container_buttons .delete, .container_buttons .edit{
+
+  .container_buttons .delete,
+  .container_buttons .edit {
     width: calc(49% - 10px);
   }
-  .container_buttons .tab{
-    width: calc(98% - 13px);;
+
+  .container_buttons .tab {
+    width: calc(98% - 13px);
+    ;
   }
-  .container_buttons{
+
+  .container_buttons {
     justify-content: center;
   }
 }
@@ -101,13 +106,6 @@ ion-card {
   text-transform: uppercase;
   cursor: pointer;
   color: var(--ion-color-primary);
-}
-
-.calendario_modal {
-  width: 100%;
-  margin: 0 auto;
-  border: 1px solid rgb(59, 59, 59);
-  border-radius: 10px;
 }
 
 .form_modalAdd,
@@ -232,6 +230,18 @@ ion-datetime {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+.modalFormAdd{
+  --height: auto;
+}
+
+.calendario_modal {
+  width: 100%;
+  --height: auto;
+  margin: 0 auto;
+  border: 1px solid rgb(59, 59, 59);
+  border-radius: 10px;
+  background: white;
 }
 
 .calendar__filter {
