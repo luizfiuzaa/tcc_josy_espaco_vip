@@ -12,13 +12,17 @@ export class ClientesService {
 
   // private readonly API = 'http://localhost/aula/php/admin/clientes/';
   private readonly API = environment.baseApiUrl;
-
+  
+  clientes: Clientes[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
   list() {
     return this.httpClient.get<Clientes[]>(this.API + 'clientes/listar_clientes.php').pipe(
-      tap(clientes => console.log(clientes))
+      tap(clientes => {
+        console.log(clientes);
+        this.clientes = clientes;
+      })
     );
   }
 

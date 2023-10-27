@@ -43,9 +43,13 @@ export class ClientesPage implements OnInit {
     }
   }
 
-  constructor(private clientesService: ClientesService, private router: Router) {
+  constructor(private clientesService: ClientesService, private router: Router) {}
+
+
+  ngOnInit() {
     this.list_clientes()
   }
+
   isLoading: boolean = false;
   list_clientes() {
     this.isLoading = true;
@@ -263,8 +267,6 @@ export class ClientesPage implements OnInit {
 
     this.setOpenInfo(true)
   }
-
-  ngOnInit() { }
 
   readonly phoneMask: MaskitoOptions = {
     mask: ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],

@@ -1,179 +1,175 @@
 <div class="ion-page" id="main-content">
-	<ion-header mode="ios">
-		<ion-toolbar>
-			<ion-buttons slot="start">
-				<ion-menu-button></ion-menu-button>
-			</ion-buttons>
-			<ion-title>Mensagens</ion-title>
-		</ion-toolbar>
-	</ion-header>
+ <ion-header mode="ios">
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+   </ion-buttons>
+   <ion-title>Mensagens</ion-title>
+  </ion-toolbar>
+ </ion-header>
 
-	<ion-content class="custom-content" scrollY="true">
-		<ion-row class="main ion-justify-content-center">
-			<ion-col size="12" sizeLg="4" class="body">
+ <ion-content class="custom-content" scrollY="true">
+  <ion-row class="main ion-justify-content-center">
+   <ion-col size="12" sizeLg="4" class="body">
+    <ion-card class="custom-card scroll-container" *ngFor="let mensagem of this.mensagens"
+     (click)="select_message(mensagem.id_mensagem)">
+     <ion-card-header>
+      <ion-card-title class="ion-text-start">
+       {{mensagem.titulo}}
+       <ion-icon class="ion-float-end" style="font-size: 28px;" name="radio-button-on-outline"
+        [style.color]="mensagem.cor"></ion-icon>
+      </ion-card-title>
+     </ion-card-header>
+    </ion-card>
 
-				<ion-card class="custom-card scroll-container" *ngFor="let mensagem of this.mensagens"
-					(click)="select_message(mensagem.id_mensagem)">
-					<ion-card-header>
-						<ion-card-title class="ion-text-start">
-							{{mensagem.titulo}}
-							<ion-icon class="ion-float-end" style="font-size: 28px;" name="radio-button-on-outline"
-								[style.color]="mensagem.cor"></ion-icon>
-						</ion-card-title>
-					</ion-card-header>
-				</ion-card>
+    <ion-card class="add-card" color="primary" (click)="create_message()">
+     <ion-card-content>
+      <ion-card-header>
+       <ion-card-title>
+        <ion-text>
+         <ion-icon name="add"></ion-icon>
+         criar mensagem
+        </ion-text>
+       </ion-card-title>
+      </ion-card-header>
+     </ion-card-content>
+    </ion-card>
+   </ion-col>
 
-				<ion-card class="add-card" color="primary" (click)="create_message()">
-					<ion-card-content>
-						<ion-card-header>
-							<ion-card-title>
-								<ion-text>
-									<ion-icon name="add"></ion-icon>
-									criar mensagem
-								</ion-text>
-							</ion-card-title>
-						</ion-card-header>
-					</ion-card-content>
-				</ion-card>
-			</ion-col>
+   <ion-col size="12" sizeLg="8">
+    <div style="position: relative;"
+     *ngIf="this.mensagensExibidas && this.mensagensExibidas.length == 0; else noMensagem" class="message-container">
+     <ion-card class="message-container-card">
+      <ion-card-header class="ion-text-center">
+       <ion-title color="dark">Criar Nova Mensagem</ion-title>
+      </ion-card-header>
+      <ion-card-content>
+       <form id="AddForm" action="" (ngSubmit)="submit_add();" [formGroup]="AddForm" #formDir=ngForm>
+        <ion-label style="margin-left: 20px" position="floating">
+         Cor
+        </ion-label>
+        <ion-input value="#FFF" type="color" formControlName="cor" style="width: 100px"></ion-input>
+        <div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
+         Escolha uma cor
+        </div>
 
-			<ion-col size="12" sizeLg="8">
-				<div style="position: relative;"
-					*ngIf="this.mensagensExibidas && this.mensagensExibidas.length == 0; else noMensagem"
-					class="message-container">
-					<ion-card class="message-container-card">
-						<ion-card-header class="ion-text-center">
-							<ion-title color="dark">Criar Nova Mensagem</ion-title>
-						</ion-card-header>
-						<ion-card-content>
-							<form id="AddForm" action="" (ngSubmit)="submit_add();" [formGroup]="AddForm"
-								#formDir=ngForm>
-								<ion-label style="margin-left: 20px" position="floating">
-									Cor
-								</ion-label>
-								<ion-input value="#FFF" type="color" formControlName="cor"
-									style="width: 100px"></ion-input>
-								<div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
-									Escolha uma cor
-								</div>
+        <ion-item>
+         <ion-label position="floating">Título da mensagem</ion-label>
+         <ion-input type="text" formControlName="titulo" maxlength="50"></ion-input>
+        </ion-item>
+        <div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
+         Digite um título
+        </div>
+        <ion-item>
+         <ion-label position="floating">Descrição das mensagem</ion-label>
+         <ion-textarea [autoGrow]="true" maxlength="255" fill="outline" type="textarea"
+          formControlName="descricao"></ion-textarea>
+        </ion-item>
+        <div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
+         Digite uma descrição
+        </div>
+       </form>
+      </ion-card-content>
+      <ion-card-content class="ion-text-center">
+       <ion-col size="8">
+        <ion-button form="AddForm" type="submit" expand="block">
+         <ion-text>
+          Criar
+         </ion-text>
+        </ion-button>
+       </ion-col>
+      </ion-card-content>
+     </ion-card>
+    </div>
 
-								<ion-item>
-									<ion-label position="floating">Título da mensagem</ion-label>
-									<ion-input type="text" formControlName="titulo" maxlength="50"></ion-input>
-								</ion-item>
-								<div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
-									Digite um título
-								</div>
-								<ion-item>
-									<ion-label position="floating">Descrição das mensagem</ion-label>
-									<ion-textarea [autoGrow]="true" maxlength="255" fill="outline" type="textarea"
-										formControlName="descricao"></ion-textarea>
-								</ion-item>
-								<div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
-									Digite uma descrição
-								</div>
-							</form>
-						</ion-card-content>
-						<ion-card-content class="ion-text-center">
-							<ion-col size="8">
-								<ion-button form="AddForm" type="submit" expand="block">
-									<ion-text>
-										Criar
-									</ion-text>
-								</ion-button>
-							</ion-col>
-						</ion-card-content>
-					</ion-card>
-				</div>
+    <!-- cada mensagem -->
+    <ng-template #noMensagem>
+     <div style="position: relative;" class="message-container">
+      <ion-card class="message-container-card">
+       <ion-card-header class="ion-text-center">
+        <ion-title color="dark">{{this.mensagensExibidas[0].titulo}}</ion-title>
+       </ion-card-header>
+       <ion-card-content>
+        <form id="AddForm" action="" (ngSubmit)="submit_add(this.mensagensExibidas[0].id_mensagem);"
+         [formGroup]="AddForm" #formDir=ngForm>
+         <ion-label style="margin-left: 20px" position="floating">
+          Cor
+         </ion-label>
+         <ion-input type="color" formControlName="cor" style="width: 100px"></ion-input>
+         <div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
+          Escolha uma cor
+         </div>
 
-				<!-- cada mensagem -->
-				<ng-template #noMensagem>
-					<div style="position: relative;" class="message-container">
-						<ion-card class="message-container-card">
-							<ion-card-header class="ion-text-center">
-								<ion-title color="dark">{{this.mensagensExibidas[0].titulo}}</ion-title>
-							</ion-card-header>
-							<ion-card-content>
-								<form id="AddForm" action="" (ngSubmit)="submit_add(this.mensagensExibidas[0].id_mensagem);" [formGroup]="AddForm"
-									#formDir=ngForm>
-									<ion-label style="margin-left: 20px" position="floating">
-										Cor
-									</ion-label>
-									<ion-input type="color" formControlName="cor" style="width: 100px"></ion-input>
-									<div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
-										Escolha uma cor
-									</div>
+         <ion-item>
+          <ion-label position="floating">Título da mensagem</ion-label>
+          <ion-input type="text" formControlName="titulo" maxlength="30"></ion-input>
+         </ion-item>
+         <div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
+          Digite um título
+         </div>
+         <ion-item>
+          <ion-label position="floating">Descrição das mensagem</ion-label>
+          <ion-textarea [autoGrow]="true" maxlength="255" fill="outline" type="textarea"
+           formControlName="descricao"></ion-textarea>
+         </ion-item>
+         <div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
+          Digite uma descrição
+         </div>
+        </form>
+       </ion-card-content>
+       <ion-card-content class="ion-text-center">
+        <ion-col size="8">
+         <ion-button form="AddForm" type="submit" expand="block">
+          <ion-text>
+           Salvar
+          </ion-text>
+         </ion-button>
+         <ion-button (click)="setOpenEnviarMensagem(true)" expand="block">
+          <ion-text>
+           Enviar
+          </ion-text>
+         </ion-button>
+        </ion-col>
+       </ion-card-content>
+      </ion-card>
+     </div>
+    </ng-template>
+   </ion-col>
+  </ion-row>
 
-									<ion-item>
-										<ion-label position="floating">Título da mensagem</ion-label>
-										<ion-input type="text" formControlName="titulo" maxlength="30"></ion-input>
-									</ion-item>
-									<div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
-										Digite um título
-									</div>
-									<ion-item>
-										<ion-label position="floating">Descrição das mensagem</ion-label>
-										<ion-textarea [autoGrow]="true" maxlength="255" fill="outline" type="textarea"
-											formControlName="descricao"></ion-textarea>
-									</ion-item>
-									<div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
-										Digite uma descrição
-									</div>
-								</form>
-							</ion-card-content>
-							<ion-card-content class="ion-text-center">
-								<ion-col size="8">
-									<ion-button form="AddForm" type="submit" expand="block">
-										<ion-text>
-											Salvar
-										</ion-text>
-									</ion-button>
-									<ion-button (click)="setOpenEnviarMensagem(true)" expand="block">
-										<ion-text>
-											Enviar
-										</ion-text>
-									</ion-button>
-								</ion-col>
-							</ion-card-content>
-						</ion-card>
-					</div>
-				</ng-template>
-			</ion-col>
-		</ion-row>
-
-		<ion-modal #modal [isOpen]="modalEnviarMensagem" backdropDismiss="false">
-			<ng-template>
-				<div class="wrapper modalCont">
-					<div class="modal_title">
-						<ion-header style="position: fixed;">
-							<ion-toolbar>
-								<ion-buttons slot="start">
-									<ion-button (click)="setOpenEnviarMensagem(false)">Cancelar</ion-button>
-								</ion-buttons>
-							</ion-toolbar>
-						</ion-header>
-						<div class="info_main" style="padding-top: 56px;">
-							<ion-list *ngFor="let cliente of clientes" style="padding: 0;">
-								<ion-card (click)="enviarMensagem(cliente.cliente_tel)" style="cursor: pointer;">
-									<ion-card-content class="ion-text-center">
-										<ion-text style="text-transform: capitalize; color:black;"
-											class="ion-text-center">
-											<strong>
-												{{cliente.cliente_nome}}
-											</strong>
-										</ion-text>
-									</ion-card-content>
-								</ion-card>
-							</ion-list>
-						</div>
-					</div>
-				</div>
-			</ng-template>
+  <ion-modal #modal [isOpen]="modalEnviarMensagem" backdropDismiss="false">
+   <ng-template>
+    <div class="wrapper modalCont">
+     <div class="modal_title">
+      <ion-header style="position: fixed;">
+       <ion-toolbar>
+        <ion-buttons slot="start">
+         <ion-button (click)="setOpenEnviarMensagem(false)">Cancelar</ion-button>
+        </ion-buttons>
+       </ion-toolbar>
+      </ion-header>
+      <div class="info_main" style="padding-top: 56px;">
+       <ion-list *ngFor="let cliente of clientes" style="padding: 0;">
+        <ion-card (click)="enviarMensagem(cliente.cliente_tel)" style="cursor: pointer;">
+         <ion-card-content class="ion-text-center card_context">
+          <ion-icon name="person-outline" class="user_icon"></ion-icon>
+          <ion-text class="ion-text-center text_card">
+           <strong>
+            {{cliente.cliente_nome}}
+           </strong>
+          </ion-text>
+         </ion-card-content>
+        </ion-card>
+       </ion-list>
+      </div>
+     </div>
+    </div>
+   </ng-template>
 
 
-		</ion-modal>
-	</ion-content>
+  </ion-modal>
+ </ion-content>
 
-	<!-- </ion-row>
+ <!-- </ion-row>
   </ion-content> -->
 </div>

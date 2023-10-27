@@ -9,9 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class FaturamentosPage implements OnInit {
   
-  constructor(private Faturamentos: FaturamentosService) { 
-    
-  }
+  constructor(private Faturamentos: FaturamentosService) { }
 
   ngOnInit() {
   }

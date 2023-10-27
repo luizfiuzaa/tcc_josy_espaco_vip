@@ -292,15 +292,17 @@
 			</ng-template>
 		</ion-modal>
 
-		<!-- modal para comanda -->
-		<ion-modal #modal [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
-			<ng-template>
-				<div class="comandaModal">
-					<ion-header class="ion-text-center ion-padding header">
-						<ion-text class="comanda_title">
-							Comanda
-						</ion-text>
-					</ion-header>
+    <!-- modal para comanda -->
+    <ion-modal #modal [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
+      <ng-template>
+        <div class="comandaModal">
+          <ion-header class="ion-text-center ion-padding header">
+            <ion-buttons slot="start">
+            </ion-buttons>
+            <ion-text class="comanda_title">
+              Comanda
+            </ion-text>
+          </ion-header>
 
 					<div class="comanda-main">
 						<ion-list class="content_principal">
@@ -340,20 +342,26 @@
 						</ion-item>
 					</ion-list>
 
-					<ion-footer class="comanda-footer">
-						<ion-toolbar>
-							<ion-buttons>
-								<ion-button (click)="setOpenComanda(false)">
-									<ion-label class="button_modal">
-										Fechar
-									</ion-label>
-								</ion-button>
-							</ion-buttons>
-						</ion-toolbar>
-					</ion-footer>
-				</div>
-			</ng-template>
-		</ion-modal>
+          <ion-footer class="comanda-footer">
+            <ion-toolbar>
+              <ion-buttons style="display: flex; justify-content: space-between;">
+                <ion-button (click)="setOpenComanda(false)">
+                  <ion-label class="button_modal">
+                    Fechar
+                  </ion-label>
+                </ion-button>
+
+                <ion-button (click)="imprimirComanda()">
+                  <ion-label class="button_modal">
+                    Imprimir
+                  </ion-label>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-footer>
+        </div>
+      </ng-template>
+    </ion-modal>
 
 
 		<ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
