@@ -28,4 +28,8 @@ export class MsgDefinidasService {
   update(mensagem: any){
     return this.httpClient.put(this.API+'mensagens/update_mensagem.php', mensagem);
   }
+
+  delete(id: any){
+    return this.httpClient.delete(this.API+'mensagens/remover_mensagem.php', id);
+  }
 }
