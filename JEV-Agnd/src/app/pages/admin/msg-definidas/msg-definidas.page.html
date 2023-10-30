@@ -8,9 +8,10 @@
   </ion-toolbar>
  </ion-header>
 
- <ion-content class="custom-content" scrollY="true">
+ <ion-content class="custom-content" scrollY="true" mode="md">
   <ion-row class="main ion-justify-content-center">
    <ion-col size="12" sizeLg="4" class="body">
+
     <ion-card class="custom-card scroll-container" *ngFor="let mensagem of this.mensagens"
      (click)="select_message(mensagem.id_mensagem)">
      <ion-card-header>
@@ -34,9 +35,11 @@
       </ion-card-header>
      </ion-card-content>
     </ion-card>
+
    </ion-col>
 
    <ion-col size="12" sizeLg="8">
+
     <div style="position: relative;"
      *ngIf="this.mensagensExibidas && this.mensagensExibidas.length == 0; else noMensagem" class="message-container">
      <ion-card class="message-container-card">
@@ -134,7 +137,8 @@
       </ion-card>
      </div>
     </ng-template>
-   </ion-col>
+   
+  </ion-col>
   </ion-row>
 
   <ion-modal #modal [isOpen]="modalEnviarMensagem" backdropDismiss="false">
