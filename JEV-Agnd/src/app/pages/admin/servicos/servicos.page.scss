@@ -95,7 +95,9 @@ ion-card {
 
 .title {
     margin-bottom: 10px;
-    text-transform: capitalize;
+}
+.title::first-letter {
+    text-transform: uppercase;
 }
 
 // Forms
