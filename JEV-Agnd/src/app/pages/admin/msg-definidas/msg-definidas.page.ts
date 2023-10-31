@@ -46,6 +46,42 @@ export class MsgDefinidasPage implements OnInit {
   this.createFormAdd();
  }
 
+ indiceDel: any
+ delete_message(indice: any) {
+   this.indiceDel = indice
+   this.setOpenDelete(true);
+ }
+
+ // Modal de delete confirm
+ modalOpenDelete = false;
+ 
+ setOpenDelete(isOpen: any) {
+   this.modalOpenDelete = isOpen;
+ }
+ public alertButtons = [
+   {
+     text: 'Não',
+     role: 'cancel',
+   },
+   {
+     text: 'Sim',
+     role: 'confirm',
+   },
+ ];
+ setResult(ev: any) {
+   // O role pode ser confirm or cancel
+   console.log(ev.detail.role);
+   this.setOpenDelete(false);
+   if (ev.detail.role == 'confirm') {
+    this.msgDefinidasService.delete(this.indiceDel).subscribe((_)=>{
+      this.mensagensExibidas = [];
+      this.createFormAdd();
+      this.list_mensagens();
+    });
+   }
+ }
+
+
  mensagemSelecionada: String = '';
  numeroTelefone: String = '';
  select_message(id: any) {

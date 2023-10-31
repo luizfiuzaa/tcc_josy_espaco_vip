@@ -30,6 +30,7 @@ export class MsgDefinidasService {
   }
 
   delete(id: any){
-    return this.httpClient.delete(this.API+'mensagens/remover_mensagem.php', id);
+    console.log(id)
+    return this.httpClient.delete(this.API+'mensagens/remover_mensagem.php?id='+ id);
   }
 }

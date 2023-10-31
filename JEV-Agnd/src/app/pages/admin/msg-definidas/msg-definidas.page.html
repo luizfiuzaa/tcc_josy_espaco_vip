@@ -132,7 +132,7 @@
            Enviar
           </ion-text>
          </ion-button>
-         <ion-button color="danger" fill="outline" expand="block" >
+         <ion-button color="danger" fill="outline" expand="block" (click)="delete_message(mensagensExibidas[0].id_mensagem)">
           <ion-text>
             Excluir
           </ion-text>
@@ -177,6 +177,10 @@
 
 
   </ion-modal>
+
+  <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
+  [isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
+  
  </ion-content>
 
  <!-- </ion-row>
