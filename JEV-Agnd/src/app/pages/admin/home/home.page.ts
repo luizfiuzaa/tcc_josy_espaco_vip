@@ -229,7 +229,7 @@ export class HomePage implements OnInit {
 			let agendamento = {
 				status_agendamento: 'e',
 				hora_inicio_agendamento: dia_hora[1],
-				cli_agendamento: this.AddForm.value.cliente,
+				cli_agendamento: this.AddForm.value.cliente.id_cliente,
 				serv_agendamento: this.AddForm.value.servicos,
 				metodo_de_pagamento: this.AddForm.value.formaDePagamento,
 				preco_agend: this.precoAgend,

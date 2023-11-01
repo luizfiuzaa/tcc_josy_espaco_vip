@@ -195,6 +195,8 @@ ion-datetime {
 		--padding-start: 0;
 		--inner-padding-end: 0;
 	}
+
+
 }
 
 @media only screen and (max-width:500px) {
@@ -233,6 +235,13 @@ ion-datetime {
 
 .modalFormAdd {
 	--height: auto;
+}
+
+@media only screen and (max-width:770px){
+	.modalFormAdd{
+		--height:100%;
+		--width:100%;
+	}
 }
 
 .calendario_modal {
