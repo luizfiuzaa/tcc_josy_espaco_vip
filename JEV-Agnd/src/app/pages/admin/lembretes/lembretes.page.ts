@@ -9,6 +9,7 @@ import { LembretesService } from 'src/app/services/lembretes/lembretes.service';
 })
 export class LembretesPage implements OnInit {
   Lembretes: Lembretes[] = [];
+  Lembretes_exibidos: Lembretes[] = [];
 
   ngOnInit() {
   };
@@ -27,12 +28,11 @@ export class LembretesPage implements OnInit {
           let horario_lembrete: any = dados.horarioLembrete.substr(0, 5);
           return { ...dados, dataLembrete: data, horario: horario, horarioLembrete: horario_lembrete };
         });
-        this.LembretesService.contadorLembretes = this.Lembretes.length;
+        this.Lembretes_exibidos = this.Lembretes;
         console.log(this.Lembretes)
         return;
       }
       this.Lembretes = [];
-      this.LembretesService.contadorLembretes = this.Lembretes.length;
     })
   }
 
