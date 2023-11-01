@@ -23,7 +23,7 @@
 				<ion-list mode="md">
 					<div class="item_form">
 						<ion-input helperText="Insira um email válido" errorText="Email inválido" name="email"
-							label="Email:" type="email" email ngModel="josy.admin@gmail.com" [counter]="true" maxlength="70"
+							label="Email:" type="email" email ngModel [counter]="true" maxlength="70"
 							labelPlacement="floating" fill="fixed" placeholder="usuario@exemplo.com"
 							required ></ion-input>
 						<div class="div_input_icon">
@@ -32,7 +32,7 @@
 					</div>
 					<div class="item_form">
 						<ion-input helperText="Insira uma senha válida" errorText="Senha inválida" name="password"
-							label="Senha:" [type]="passwordType" ngModel="12345678" minlength="8" labelPlacement="floating"
+							label="Senha:" [type]="passwordType" ngModel minlength="8" labelPlacement="floating"
 							fill="fixed" required></ion-input>
 						<div class="div_input_icon">
 							<ion-button fill="outline" id="passPreview" (click)="hideShowPassword()">

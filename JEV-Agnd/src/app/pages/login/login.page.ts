@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class LoginPage implements OnInit {
 
   constructor(private router: Router, private loginService: LoginService) { }
-  version: any = '2023.10.22.EPA';
+  version: any = '2023.10.31.dev';
   isModalOpen = false;
 
   setOpen(isOpen: boolean) {

@@ -271,9 +271,15 @@ h3 {
 	align-items: center;
 }
 
-.precoAgend {
+.precoAgend{
 	display: flex;
 	align-items: center;
+	font-size: 1.3em;
+}
+
+.precoAgend p{
+	margin: 0;
+	padding: 0;
 }
 
 .tituloPreco {
@@ -385,4 +391,12 @@ h3 {
 
 .comanda-main {
 	border-top: 1px solid black;
+}
+
+.container_calendario{
+	margin-bottom: 22px;
+}
+
+.optionClientes{
+	text-transform: capitalize;
 }
