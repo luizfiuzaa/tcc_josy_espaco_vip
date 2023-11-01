@@ -8,9 +8,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" class="container__principal">
     <ion-row class="ion-justify-content-center">
-      <ion-col size-lg="10" size-md="10" size="12" *ngIf="Lembretes && Lembretes.length > 0; else noCards">
+      <ion-col size-lg="10" size-md="10" size="12" *ngIf="Lembretes_exibidos && Lembretes_exibidos.length > 0; else noCards">
         <div class="list">
           <div>
             <ion-text class="list__itemTitle ion-text-center">
@@ -21,16 +21,16 @@
           </div>
           <div>
             <ion-list id="list" lines="none">
-              <div *ngFor="let Lembretes of Lembretes" class="content_list">
+              <div *ngFor="let lembrete of Lembretes_exibidos" class="content_list">
                 <ion-item>
                   <ion-card>
                     <ion-card-header>
                       <ion-card-title>
-                        <ion-text class="list__horario">{{Lembretes.horario}} - {{Lembretes.dataLembrete}}</ion-text>
+                        <ion-text class="list__horario">{{lembrete.horario}} - {{lembrete.dataLembrete}}</ion-text>
                       </ion-card-title>
                     </ion-card-header>
                     <ion-card-content>
-                      <ion-text class="list__conteudo">{{Lembretes.conteudoLembrete}}.</ion-text>
+                      <ion-text class="list__conteudo">{{lembrete.conteudoLembrete}}.</ion-text>
                     </ion-card-content>
                   </ion-card>
                 </ion-item>
@@ -40,7 +40,7 @@
         </div>
       </ion-col>
       <ng-template #noCards>
-        <ion-col size="12" class="container_col" *ngIf="Lembretes && Lembretes.length == 0">
+        <ion-col size="12" class="container_col" *ngIf="Lembretes_exibidos && Lembretes_exibidos.length == 0">
           <ion-text class="ion-text-center">
             <p>Não há lembretes no momento...</p>
           </ion-text>

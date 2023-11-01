@@ -11,20 +11,28 @@ import { LembretesService } from 'src/app/services/lembretes/lembretes.service';
 export class HeaderMenuComponent implements OnInit {
   numeroLembretes: Number = 0;
 
-  constructor(private menu: MenuController, private login: LoginService, private lembretesService: LembretesService){
-    this.numeroLembretes = this.lembretesService.contadorLembretes;
+  constructor(private menu: MenuController, private login: LoginService, private lembretesService: LembretesService) {
+    this.lembretesService.list().subscribe((dados: any) => {
+      if (dados.success == 1) {
+        this.numeroLembretes = dados.lembretes.length;
+        console.log(dados.lembretes.length)
+      } else {
+        this.numeroLembretes = 0;
+      }
+    });
+    console.log(this.numeroLembretes);
   }
 
-  menuClose(){
+  menuClose() {
     this.menu.close();
   }
 
-  deslogar(){
+  deslogar() {
     this.login.deslogar();
   }
 
   ngOnInit(): void {
-    
+
   }
 
   // refresh (): void { window.location.reload (); }

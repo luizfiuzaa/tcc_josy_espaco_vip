@@ -9,8 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class LembretesService {
 
-  contadorLembretes: Number = 0;
-
   // private readonly API = 'http://localhost/aula/php/admin/clientes/';
   private readonly API = environment.baseApiUrl;
 

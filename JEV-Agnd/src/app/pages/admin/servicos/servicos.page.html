@@ -7,19 +7,19 @@
 			<ion-title>Serviços</ion-title>
 		</ion-toolbar>
 	</ion-header>
-	<ion-content [fullscreen]="true">
+	<ion-content [fullscreen]="true" class="container__principal">
 
 		<ion-row class="ion-justify-content-center">
 			<ion-col size-lg="10" size-md="10" size="12">
 				<ion-item>
 					<ion-col size="12">
 						<form action="GET" method="get">
-							<ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar servico"
+							<ion-searchbar style="margin-top: 1.5%;" class="searchBar" placeholder="Buscar serviço"
 								(input)="filterServicoTitle($event)"></ion-searchbar>
 						</form>
 					</ion-col>
 				</ion-item>
-				
+
 				<ion-col class="container" size="12"
 					*ngIf="Servicos_exibidos && Servicos_exibidos.length > 0; else noCards">
 					<ion-card *ngFor="let card of Servicos_exibidos;" class="card">
