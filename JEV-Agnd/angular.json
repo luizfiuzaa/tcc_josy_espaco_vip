@@ -117,7 +117,7 @@
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/theme/variables.scss",
               "src/global.scss"
             ],
