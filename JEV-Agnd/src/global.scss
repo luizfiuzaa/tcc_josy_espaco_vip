@@ -11,6 +11,7 @@
 
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 
 /* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
@@ -66,12 +67,24 @@
     margin-top: 5px;
   }
 
-  ion-card{
+  ion-card {
     box-shadow: 2px 2px 5px rgba(95, 95, 95, 0.699);
   }
 
-  p{
+  p {
     margin: 0;
     padding: 0;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled),
+  div.mat-mdc-select-panel {
+    background-color: #efefef;
+  }
+
+  mat-label,
+  .mat-mdc-select-arrow,
+  .mdc-text-field__input,
+  .mat-mdc-select {
+    color: #575757 !important;
   }
 }
