@@ -42,7 +42,6 @@ export class HomePage implements OnInit {
 	}
 
 	ngOnInit() {
-		this.setOpenAdd(true);
 		this.listAgendamentos(this.hoje);
 		this.listClientes();
 		this.listServicos();

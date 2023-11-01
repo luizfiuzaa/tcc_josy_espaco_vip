@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   // url do Marlon:
-  // baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
-  // baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
+  baseApiUrl: 'http://arquivosdaaulaapi/php/admin/',
+  baseApiUrlLogin: 'http://arquivosdaaulaapi/php/'
 
   // url do pc paleolítico da etec:
   // baseApiUrl: 'http://localhost/aula/php/admin/',

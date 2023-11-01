@@ -128,248 +128,238 @@
       </ion-toolbar>
      </div>
 
-					<form class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm" #formAdd="ngForm">
+     <form class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm" #formAdd="ngForm">
 
-						<ion-list lines="none" class="list-content" mode="md">
-							<div class="container_form">
-								<div class="container_calendario">
-									<ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate"
-										formControlName="calendario" minuteValues="0,15,30,45" class="calendario_modal"
-										mode="ios">
-										<span slot="time-label">
-											<ion-text class="time_title">
-												<ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
-												Horário
-											</ion-text>
-										</span>
-									</ion-datetime>
-									<div class="message-alert" *ngIf="calendario_add.invalid && formAdd.submitted">
-										Selecione um dia e Horario.
-									</div>
-								</div>
-								<div class="item_form">
-									<mat-form-field>
-										<mat-label>Cliente</mat-label>
-										<input type="text" (input)="digitou($event)" matInput [matAutocomplete]="auto"
-											formControlName="cliente">
-										<mat-autocomplete #auto="matAutocomplete" [displayWith]="clienteSecionado">
-											<mat-option *ngFor="let cliente of clientesFiltrados" [value]="cliente" class="optionClientes">
-												{{cliente.cliente_nome}}
-											</mat-option>
-										</mat-autocomplete>
-									</mat-form-field>
-									<div class="message-alert" *ngIf="cliente_add.invalid && formAdd.submitted">
-										Selecione um cliente.
-									</div>
-								</div>
+      <ion-list lines="none" class="list-content" mode="md">
+       <div class="container_form">
+        <div class="container_calendario">
+         <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate" formControlName="calendario"
+          minuteValues="0,15,30,45" class="calendario_modal" mode="ios">
+          <span slot="time-label">
+           <ion-text class="time_title">
+            <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
+            Horário
+           </ion-text>
+          </span>
+         </ion-datetime>
+         <div class="message-alert" *ngIf="calendario_add.invalid && formAdd.submitted">
+          Selecione um dia e Horario.
+         </div>
+        </div>
+        <div class="item_form">
+         <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <input type="text" (input)="digitou($event)" matInput [matAutocomplete]="auto" formControlName="cliente">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="clienteSecionado">
+           <mat-option *ngFor="let cliente of clientesFiltrados" [value]="cliente" class="optionClientes">
+            {{cliente.cliente_nome}}
+           </mat-option>
+          </mat-autocomplete>
+         </mat-form-field>
+         <div class="message-alert" *ngIf="cliente_add.invalid && formAdd.submitted">
+          Selecione um cliente.
+         </div>
+        </div>
 
-								<!-- Serviços -->
-								<div class="item_form">
-									<mat-form-field>
-										<mat-label>Serviço(s)</mat-label>
-										<mat-select formControlName="servicos" multiple
-											(selectionChange)="this.precoAgendamento($event)">
-											<mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
-												{{ servicos.titulo_servico }}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-									<div class="message-alert" *ngIf="servicos_add.invalid && formAdd.submitted">
-										Selecione o(s) serviço(s).
-									</div>
-								</div>
+        <!-- Serviços -->
+        <div class="item_form">
+         <mat-form-field>
+          <mat-label>Serviço(s)</mat-label>
+          <mat-select formControlName="servicos" multiple (selectionChange)="this.precoAgendamento($event)">
+           <mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico" >
+            <p class="optionServicos">{{ servicos.titulo_servico }}</p>
+           </mat-option>
+          </mat-select>
+         </mat-form-field>
+         <div class="message-alert" *ngIf="servicos_add.invalid && formAdd.submitted">
+          Selecione o(s) serviço(s).
+         </div>
+        </div>
 
-								<!-- Pagamento -->
-								<div class="item_form">
-									<mat-form-field>
-										<mat-label>Método de Pagamento</mat-label>
-										<mat-select formControlName="formaDePagamento">
-											<mat-option value="pix">Pix</mat-option>
-											<mat-option value="dinheiro">Dinheiro</mat-option>
-											<mat-option value="debito">Débito</mat-option>
-											<mat-option value="credito">Crédito</mat-option>
-										</mat-select>
-									</mat-form-field>
-									<div class="message-alert"
-										*ngIf="formaDePagamento_add.invalid && formAdd.submitted">
-										Forma de pagamento inválida
-									</div>
-								</div>
-								<!-- Preço -->
-								<div class="precoAgend">
-									<p class="tituloPreco">Preço (R$): </p>
-									<p>{{this.precoAgend}}</p>
-								</div>
-							</div>
+        <!-- Pagamento -->
+        <div class="item_form">
+         <mat-form-field>
+          <mat-label>Método de Pagamento</mat-label>
+          <mat-select formControlName="formaDePagamento">
+           <mat-option value="pix">Pix</mat-option>
+           <mat-option value="dinheiro">Dinheiro</mat-option>
+           <mat-option value="debito">Débito</mat-option>
+           <mat-option value="credito">Crédito</mat-option>
+          </mat-select>
+         </mat-form-field>
+         <div class="message-alert" *ngIf="formaDePagamento_add.invalid && formAdd.submitted">
+          Forma de pagamento inválida
+         </div>
+        </div>
+        <!-- Preço -->
+        <div class="precoAgend">
+         <p class="tituloPreco">Preço (R$): </p>
+         <p>{{this.precoAgend}}</p>
+        </div>
+       </div>
 
-						</ion-list>
-						<input type="submit" id="AddFormSubmit" style="display: none" />
-					</form>
-				</div>
-			</ng-template>
-		</ion-modal>
+      </ion-list>
+      <input type="submit" id="AddFormSubmit" style="display: none" />
+     </form>
+    </div>
+   </ng-template>
+  </ion-modal>
 
-		<ion-modal #modalEdit [isOpen]="modalOpenEdit" backdropDismiss="false" mode="ios">
-			<ng-template>
-				<div class="wrapper modalCont">
-					<div class="modal_title">
-						<ion-toolbar>
-							<ion-buttons slot="start">
-								<ion-button (click)="setOpenEdit(false)">
-									<ion-label class="button_modal">Cancelar</ion-label>
-								</ion-button>
-							</ion-buttons>
-							<ion-buttons slot="end">
-								<ion-button>
-									<label class="button_modal" for="EditFormSubmit">Agendar</label>
-								</ion-button>
-							</ion-buttons>
-						</ion-toolbar>
-					</div>
+  <ion-modal #modalEdit [isOpen]="modalOpenEdit" backdropDismiss="false" mode="ios">
+   <ng-template>
+    <div class="wrapper modalCont">
+     <div class="modal_title">
+      <ion-toolbar>
+       <ion-buttons slot="start">
+        <ion-button (click)="setOpenEdit(false)">
+         <ion-label class="button_modal">Cancelar</ion-label>
+        </ion-button>
+       </ion-buttons>
+       <ion-buttons slot="end">
+        <ion-button>
+         <label class="button_modal" for="EditFormSubmit">Agendar</label>
+        </ion-button>
+       </ion-buttons>
+      </ion-toolbar>
+     </div>
 
-					<form class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm" #formEdit="ngForm">
-						<ion-list lines="none" class="list-content" mode="md">
-							<div class="container_form">
-								<ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDateEdit"
-									formControlName="calendario_edit" minuteValues="0,15,30,45" class="calendario_modal"
-									mode="md">
-									<span slot="time-label">
-										<ion-text class="time_title">
-											<ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
-											Horário
-										</ion-text>
-									</span>
-								</ion-datetime>
-								<div class="message-alert" *ngIf="calendario_edit.invalid && formEdit.submitted">
-									Selecione um dia e Horario.
-								</div>
-								<!-- Clientes -->
-								<div class="item_form">
-									<ion-select [(ngModel)]="inputClienteEdit" label="Cliente"
-										label-placement="floating" interface="popover" formControlName="cliente_edit">
-										<!-- Opções de clientes -->
-										<ion-select-option *ngFor="let cliente of Clientes"
-											[value]="cliente.id_cliente">{{
-											cliente.cliente_nome }}</ion-select-option>
-									</ion-select>
-									<div class="message-alert" *ngIf="cliente_edit.invalid && formEdit.submitted">
-										Selecione um cliente.
-									</div>
-								</div>
-								<!-- Serviços -->
-								<div class="item_form">
-									<ion-select [(ngModel)]="inputServicosEdit" label="Serviço(s):"
-										label-placement="floating" placeholder="Selecione o(s) serviço(s)"
-										[multiple]="true" interface="popover" formControlName="servicos_edit"
-										(ionChange)="precoAgendamento($event)">
-										<ion-select-option *ngFor="let servicos of Servicos"
-											[value]="servicos.id_servico">
-											{{ servicos.titulo_servico }}
-										</ion-select-option>
-									</ion-select>
-									<div class="message-alert" *ngIf="servicos_edit.invalid && formEdit.submitted">
-										Selecione o(s) serviço(s).
-									</div>
-								</div>
-								<!-- Pagamento -->
-								<div class="item_form">
-									<ion-select [(ngModel)]="inputMetodoPagamentoEdit" label="Método de Pagamento"
-										label-placement="floating" interface="popover"
-										formControlName="formaDePagamento_edit">
-										<!-- Opções de pagamento -->
-										<ion-select-option value="pix">Pix</ion-select-option>
-										<ion-select-option value="dinheiro">Dinheiro</ion-select-option>
-										<ion-select-option value="debito">Débito</ion-select-option>
-										<ion-select-option value="credito">Crédito</ion-select-option>
-									</ion-select>
-									<div class="message-alert"
-										*ngIf="formaDePagamento_edit.invalid && formEdit.submitted">
-										Selecione uma forma de pagamento.
-									</div>
-								</div>
-								<!-- Preço -->
-								<div class="precoAgend">
-									<p class="tituloPreco">Preço (R$): </p>
-									<p>{{this.precoAgend}}</p>
-								</div>
-							</div>
-						</ion-list>
-						<input type="submit" id="EditFormSubmit" style="display: none" />
-					</form>
-				</div>
-			</ng-template>
-		</ion-modal>
+     <form class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm" #formEdit="ngForm">
+      <ion-list lines="none" class="list-content" mode="md">
+       <div class="container_form">
+        <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDateEdit" formControlName="calendario_edit"
+         minuteValues="0,15,30,45" class="calendario_modal" mode="md">
+         <span slot="time-label">
+          <ion-text class="time_title">
+           <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
+           Horário
+          </ion-text>
+         </span>
+        </ion-datetime>
+        <div class="message-alert" *ngIf="calendario_edit.invalid && formEdit.submitted">
+         Selecione um dia e Horario.
+        </div>
+        <!-- Clientes -->
+        <div class="item_form">
+         <ion-select [(ngModel)]="inputClienteEdit" label="Cliente" label-placement="floating" interface="popover"
+          formControlName="cliente_edit">
+          <!-- Opções de clientes -->
+          <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{
+           cliente.cliente_nome }}</ion-select-option>
+         </ion-select>
+         <div class="message-alert" *ngIf="cliente_edit.invalid && formEdit.submitted">
+          Selecione um cliente.
+         </div>
+        </div>
+        <!-- Serviços -->
+        <div class="item_form">
+         <ion-select [(ngModel)]="inputServicosEdit" label="Serviço(s):" label-placement="floating"
+          placeholder="Selecione o(s) serviço(s)" [multiple]="true" interface="popover" formControlName="servicos_edit"
+          (ionChange)="precoAgendamento($event)">
+          <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
+           {{ servicos.titulo_servico }}
+          </ion-select-option>
+         </ion-select>
+         <div class="message-alert" *ngIf="servicos_edit.invalid && formEdit.submitted">
+          Selecione o(s) serviço(s).
+         </div>
+        </div>
+        <!-- Pagamento -->
+        <div class="item_form">
+         <ion-select [(ngModel)]="inputMetodoPagamentoEdit" label="Método de Pagamento" label-placement="floating"
+          interface="popover" formControlName="formaDePagamento_edit">
+          <!-- Opções de pagamento -->
+          <ion-select-option value="pix">Pix</ion-select-option>
+          <ion-select-option value="dinheiro">Dinheiro</ion-select-option>
+          <ion-select-option value="debito">Débito</ion-select-option>
+          <ion-select-option value="credito">Crédito</ion-select-option>
+         </ion-select>
+         <div class="message-alert" *ngIf="formaDePagamento_edit.invalid && formEdit.submitted">
+          Selecione uma forma de pagamento.
+         </div>
+        </div>
+        <!-- Preço -->
+        <div class="precoAgend">
+         <p class="tituloPreco">Preço (R$): </p>
+         <p>{{this.precoAgend}}</p>
+        </div>
+       </div>
+      </ion-list>
+      <input type="submit" id="EditFormSubmit" style="display: none" />
+     </form>
+    </div>
+   </ng-template>
+  </ion-modal>
 
-		<!-- modal para comanda -->
-		<ion-modal #modal [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
-			<ng-template>
-				<div class="comandaModal">
-					<ion-header class="ion-text-center ion-padding header">
-						<ion-buttons slot="start">
-						</ion-buttons>
-						<ion-text class="comanda_title">
-							Comanda
-						</ion-text>
-					</ion-header>
+  <!-- modal para comanda -->
+  <ion-modal #modal [isOpen]="modalOpenComanda" backdropDismiss="false" mode="ios">
+   <ng-template>
+    <div class="comandaModal">
+     <ion-header class="ion-text-center ion-padding header">
+      <ion-buttons slot="start">
+      </ion-buttons>
+      <ion-text class="comanda_title">
+       Comanda
+      </ion-text>
+     </ion-header>
 
-					<div class="comanda-main">
-						<ion-list class="content_principal">
-							<ion-item class="tabelaComandaTop">
-								<ion-col size="6" class="title-servicos">
-									<ion-text>
-										Serviços
-									</ion-text>
-								</ion-col>
-								<ion-col size="6" class="title-precos">
-									<ion-text>
-										Preços
-									</ion-text>
-								</ion-col>
-							</ion-item>
-							<ion-item *ngFor="let comanda of Servicos_comanda">
-								<ion-col size="6" class="col-servicos">
-									<ion-text>
-										{{comanda.titulo_servico}}
-									</ion-text>
-								</ion-col>
-								<ion-col size="6" class="col-precos ion-text-center">
-									<ion-text>
-										{{comanda.preco_servico}}
-									</ion-text>
-								</ion-col>
-							</ion-item>
-						</ion-list>
-					</div>
+     <div class="comanda-main">
+      <ion-list class="content_principal">
+       <ion-item class="tabelaComandaTop">
+        <ion-col size="6" class="title-servicos">
+         <ion-text>
+          Serviços
+         </ion-text>
+        </ion-col>
+        <ion-col size="6" class="title-precos">
+         <ion-text>
+          Preços
+         </ion-text>
+        </ion-col>
+       </ion-item>
+       <ion-item *ngFor="let comanda of Servicos_comanda">
+        <ion-col size="6" class="col-servicos">
+         <ion-text>
+          {{comanda.titulo_servico}}
+         </ion-text>
+        </ion-col>
+        <ion-col size="6" class="col-precos ion-text-center">
+         <ion-text>
+          {{comanda.preco_servico}}
+         </ion-text>
+        </ion-col>
+       </ion-item>
+      </ion-list>
+     </div>
 
-					<ion-list class="content_total" lines="none">
-						<ion-item class="total">
-							<ion-text class="ion-text-center">
-								Total(<span class="unidade_preco">R$</span>):<span class="preco">
-									{{this.valorTotal}}</span>
-							</ion-text>
-						</ion-item>
-					</ion-list>
+     <ion-list class="content_total" lines="none">
+      <ion-item class="total">
+       <ion-text class="ion-text-center">
+        Total(<span class="unidade_preco">R$</span>):<span class="preco">
+         {{this.valorTotal}}</span>
+       </ion-text>
+      </ion-item>
+     </ion-list>
 
-					<ion-footer class="comanda-footer">
-						<ion-toolbar>
-							<ion-buttons style="display: flex; justify-content: space-between;">
-								<ion-button (click)="setOpenComanda(false)">
-									<ion-label class="button_modal">
-										Fechar
-									</ion-label>
-								</ion-button>
+     <ion-footer class="comanda-footer">
+      <ion-toolbar>
+       <ion-buttons style="display: flex; justify-content: space-between;">
+        <ion-button (click)="setOpenComanda(false)">
+         <ion-label class="button_modal">
+          Fechar
+         </ion-label>
+        </ion-button>
 
-								<ion-button (click)="imprimirComanda()">
-									<ion-label class="button_modal">
-										Imprimir
-									</ion-label>
-								</ion-button>
-							</ion-buttons>
-						</ion-toolbar>
-					</ion-footer>
-				</div>
-			</ng-template>
-		</ion-modal>
+        <ion-button (click)="imprimirComanda()">
+         <ion-label class="button_modal">
+          Imprimir
+         </ion-label>
+        </ion-button>
+       </ion-buttons>
+      </ion-toolbar>
+     </ion-footer>
+    </div>
+   </ng-template>
+  </ion-modal>
 
 
   <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
