@@ -33,35 +33,25 @@
        <ion-item>
         <ion-card>
          <ion-card-header>
-          <div *ngIf="agendamentos.status_agendamento == 'c'; else otherStatus">
-           <ion-card-title class="status ok">
-            <div class="ok">
-             <ion-icon name="checkmark-circle"></ion-icon>
-             <ion-text> Confirmado </ion-text>
-            </div>
-           </ion-card-title>
-          </div>
-          <ng-template #otherStatus>
-           <ion-card-title class="status waiting">
-            <div class="ok">
-             <ion-icon name="time"></ion-icon>
-             <ion-text> Esperando confirmação </ion-text>
-            </div>
-           </ion-card-title>
-          </ng-template>
-
+          <ion-card-title color="medium" id="data">
+           {{agendamentos.data_agend}}
+          </ion-card-title>
           <ion-card-title id="horario">
            {{agendamentos.hora_inicio_agendamento}} -
-           {{agendamentos.hora_fim_agendamento}} - {{agendamentos.data_agend}}
+           {{agendamentos.hora_fim_agendamento}}
           </ion-card-title>
 
           <ion-card-subtitle class="card__names">
-           {{agendamentos.cli_agendamento}}
+           Cliente: {{agendamentos.cli_agendamento}}
           </ion-card-subtitle>
          </ion-card-header>
 
          <ion-card-content class="card__names">
-          {{agendamentos.serv_agendamento}}
+          Serviço(s): {{agendamentos.serv_agendamento}}
+         </ion-card-content>
+
+         <ion-card-content class="card__names">
+          Preço: R$ {{agendamentos.preco_agend}} ({{agendamentos.metodo_de_pagamento}})
          </ion-card-content>
 
          <ion-card-content class="container_buttons">
@@ -193,7 +183,8 @@
         </div>
         <!-- Preço -->
         <div class="precoAgend">
-         <p class="tituloPreco">Preço (R$): {{this.precoAgend}}</p>
+         <p class="tituloPreco">Preço (R$): </p>
+         <p>{{this.precoAgend}}</p>
         </div>
        </div>
 
