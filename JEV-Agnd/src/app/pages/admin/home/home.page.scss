@@ -272,13 +272,13 @@ h3 {
 	align-items: center;
 }
 
-.precoAgend{
+.precoAgend {
 	display: flex;
 	align-items: center;
 	font-size: 1.3em;
 }
 
-.precoAgend p{
+.precoAgend p {
 	margin: 0;
 	padding: 0;
 }
@@ -394,10 +394,19 @@ h3 {
 	border-top: 1px solid black;
 }
 
-.container_calendario{
+.container_calendario {
 	margin-bottom: 22px;
 }
 
-.optionClientes{
+.optionClientes {
 	text-transform: capitalize;
+}
+
+.optionServicos::first-letter{
+	text-transform: uppercase;
+}
+
+p.optionServicos{
+	margin: 0;
+	padding: 0;
 }
