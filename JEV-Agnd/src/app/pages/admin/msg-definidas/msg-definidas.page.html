@@ -23,7 +23,7 @@
           </ion-card-header>
         </ion-card>
 
-        <ion-button class="add-card ion-padding" color="primary" (click)="create_message()">
+        <ion-button class="add-card" color="primary" (click)="create_message()">
           <ion-text>
             nova mensagem
           </ion-text>
@@ -128,7 +128,6 @@
                       Enviar <ion-icon name="send"></ion-icon>
                     </ion-text>
                   </ion-button>
-                  <ion-text>ou</ion-text>
                   <ion-button color="danger" fill="outline" expand="block"
                     (click)="delete_message(mensagensExibidas[0].id_mensagem)">
                     <ion-text>

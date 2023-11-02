@@ -4,6 +4,11 @@
   font-size: 1.3em;
 }
 
+.add-card{
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
 .modalCont {
   min-height: 100%;
   overflow: auto;
@@ -50,6 +55,11 @@
   .main{
   padding-bottom: 10px;
   flex-direction: column-reverse;
+  }
+
+  .add-card{
+    padding: 0 10px 5px 10px;
+    margin-bottom: 5px;
   }
 
   .body{
