@@ -200,6 +200,7 @@ export class HomePage implements OnInit {
 	}
 	// Form de adição
 	AddForm!: FormGroup;
+	mostrarCondicionais = false;
 	createFormAdd() {
 		this.precoAgend = '0.00';
 		this.AddForm = new FormGroup({
