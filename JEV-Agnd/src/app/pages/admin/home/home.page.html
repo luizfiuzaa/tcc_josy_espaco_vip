@@ -101,7 +101,7 @@
     </ion-row>
 
     <ion-modal #modalAdd [isOpen]="modalOpenAdd" backdropDismiss="false" mode="ios" class="modalFormAdd">
-      <ng-template>
+      <ng-template class="modalFormAdd-content">
         <div class="wrapper modalCont">
           <div class="modal_title">
             <ion-toolbar>
@@ -216,7 +216,7 @@
       </ng-template>
     </ion-modal>
 
-    <ion-modal #modalEdit [isOpen]="modalOpenEdit" backdropDismiss="false" mode="ios">
+    <ion-modal #modalEdit [isOpen]="modalOpenEdit" backdropDismiss="false" mode="ios" class="modalFormEdit">
       <ng-template>
         <div class="wrapper modalCont">
           <div class="modal_title">

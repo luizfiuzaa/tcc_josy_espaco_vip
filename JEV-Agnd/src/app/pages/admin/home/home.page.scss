@@ -29,7 +29,6 @@ ion-menu-button {
 	padding-right: 5px;
 }
 
-
 @media only screen and (min-width:770px) {
 
 	.form_modalAdd,
@@ -147,6 +146,7 @@ ion-card {
 }
 
 .list-content {
+	margin-top: -1em;
 	width: 90%;
 }
 
@@ -234,11 +234,24 @@ ion-datetime {
 }
 
 .modalFormAdd {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	--height: 100%;
+}
+.modalFormEdit {
 	--height: auto;
+}
+
+.modalFormAdd-content{
+	overflow-y: auto;
 }
 
 @media only screen and (max-width:770px){
 	.modalFormAdd{
+		--height:100%;
+		--width:100%;
+	}
+	.modalFormEdit{
 		--height:100%;
 		--width:100%;
 	}
