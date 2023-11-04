@@ -503,9 +503,9 @@ export class HomePage implements OnInit {
 				console.log("all")
 
 				this.agendamentosService.deleteCascata(this.indiceCascata).subscribe(() => {
-					this.Agendamentos = this.Agendamentos.filter((agendamento: any) => agendamento.id_agendamento !== this.indiceDel);
+					this.Agendamentos = this.Agendamentos.filter((agendamento: any) => agendamento.id_cascata !== this.indiceCascata);
 					console.log(this.Agendamentos);
-					this.Agendamentos_exibidos = this.Agendamentos_exibidos.filter((agendamento: any) => agendamento.id_agendamento !== this.indiceDel);
+					this.Agendamentos_exibidos = this.Agendamentos_exibidos.filter((agendamento: any) => agendamento.id_cascata !== this.indiceCascata);
 					console.log(this.Agendamentos_exibidos);
 				})
 			}
