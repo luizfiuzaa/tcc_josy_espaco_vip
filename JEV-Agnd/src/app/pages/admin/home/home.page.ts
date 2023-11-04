@@ -203,7 +203,6 @@ export class HomePage implements OnInit {
 	}
 	// Form de adição
 	AddForm!: FormGroup;
-	mostrarCondicionais = false;
 	createFormAdd() {
 		this.precoAgend = '0.00';
 		this.AddForm = new FormGroup({
@@ -211,9 +210,20 @@ export class HomePage implements OnInit {
 			cliente: new FormControl(this.controlClientes, [Validators.required]),
 			calendario: new FormControl('', [Validators.required]),
 			servicos: new FormControl('', [Validators.required]),
-			formaDePagamento: new FormControl('', [Validators.required])
+			formaDePagamento: new FormControl('', [Validators.required]),
+
+			// se repetir = true
+			quantidade: new FormControl(''),
+			intervalo: new FormControl(''),
 		});
 	}
+
+	mostrarCondicionais = false;
+
+
+
+
+
 	get cliente_add() {
 		return this.AddForm.get('cliente')!;
 	}
@@ -230,27 +240,72 @@ export class HomePage implements OnInit {
 		console.log(this.AddForm.value)
 		if (this.AddForm.valid) {
 			let dia_hora = ((this.AddForm.value.calendario).replace('.000Z', '')).split('T');
-			let agendamento = {
-				status_agendamento: 'e',
-				hora_inicio_agendamento: dia_hora[1],
-				cli_agendamento: this.AddForm.value.cliente.id_cliente,
-				serv_agendamento: this.AddForm.value.servicos,
-				metodo_de_pagamento: this.AddForm.value.formaDePagamento,
-				preco_agend: this.precoAgend,
-				data_agend: dia_hora[0],
-			}
-			this.agendamentosService.create(agendamento).subscribe((dados: any) => {
-				if (dados.success == '1') {
-					this.message = dados.message
-					this.setOpenAdd('submit');
-					this.ExibirMessage(true);
-					this.listAgendamentos(dia_hora[0]);
-					return;
+			let agendamento: any;
+
+			if (this.mostrarCondicionais == false) {
+				agendamento = {
+					status_agendamento: 'e',
+					hora_inicio_agendamento: dia_hora[1],
+					cli_agendamento: this.AddForm.value.cliente.id_cliente,
+					serv_agendamento: this.AddForm.value.servicos,
+					metodo_de_pagamento: this.AddForm.value.formaDePagamento,
+					preco_agend: this.precoAgend,
+					data_agend: dia_hora[0],
 				}
-				this.message = dados.message;
-				this.ExibirMessage(false);
-			})
-			return;
+
+				this.agendamentosService.create(agendamento).subscribe((dados: any) => {
+					if (dados.success == '1') {
+						this.message = dados.message;
+						this.setOpenAdd('submit');
+						this.ExibirMessage(true);
+						this.listAgendamentos(dia_hora[0]);
+					} else {
+						this.message = dados.message;
+						this.ExibirMessage(false);
+					}
+				});
+			}
+			if (this.mostrarCondicionais == true) {
+				let dataAgendamento = new Date(dia_hora[0]); // Converte a data para um objeto Date
+			
+				for (let i = 0; i < this.AddForm.value.quantidade; i++) {
+					console.log("asd123");
+			
+					// Formate a data de agendamento no formato desejado
+					const dataFormatada = dataAgendamento.toISOString().replace('.000Z', '').split('T')[0];
+			
+					agendamento = {
+						status_agendamento: 'e',
+						hora_inicio_agendamento: dia_hora[1],
+						cli_agendamento: this.AddForm.value.cliente.id_cliente,
+						serv_agendamento: this.AddForm.value.servicos,
+						metodo_de_pagamento: this.AddForm.value.formaDePagamento,
+						preco_agend: this.precoAgend,
+						data_agend: dataFormatada, // Use a data formatada
+					};
+			
+					// Adicione o intervalo (em dias) à data de agendamento
+					dataAgendamento.setDate(dataAgendamento.getDate() + this.AddForm.value.intervalo);
+					console.log(agendamento.data_agend);
+			
+					this.agendamentosService.create(agendamento).subscribe((dados: any) => {
+						if (dados.success == '1') {
+							this.message = dados.message;
+							this.setOpenAdd('submit');
+							this.ExibirMessage(true);
+							this.listAgendamentos(dia_hora[0]);
+						} else {
+							this.message = dados.message;
+							this.ExibirMessage(false);
+						}
+					});
+				}
+				return;
+			}
+			
+
+
+			
 		}
 		this.message = 'Falha ao agendar... :('
 		this.ExibirMessage(false);
@@ -258,6 +313,7 @@ export class HomePage implements OnInit {
 	// Modal de edição
 	modalOpenAdd = false;
 	setOpenAdd(isOpen: any) {
+		this.mostrarCondicionais = false;
 		this.clientesFiltrados = this.options;
 		if (isOpen == true) {
 			this.modalOpenAdd = isOpen;
