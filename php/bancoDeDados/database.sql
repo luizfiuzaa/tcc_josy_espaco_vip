@@ -52,6 +52,7 @@ CREATE TABLE `lembretes` (
 	`horarioLembrete` TIME NOT NULL,
 	`dataLembrete` DATE,
 	`conteudoLembrete` VARCHAR(255) NOT NULL,
+	`idAgendamento` INT,
 	PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -69,6 +70,7 @@ CREATE TABLE `agendamento`(
 	`metodo_de_pagamento` VARCHAR(20) NOT NULL,
 	`cli_agendamento` VARCHAR(70) NOT NULL,
 	`serv_agendamento` VARCHAR(255) NOT NULL,
+	`id_cascata` VARCHAR(255),
 	CONSTRAINT `fk_id_cliente` FOREIGN KEY (`fk_id_cliente`) REFERENCES `cliente` (`id_cliente`),
 	PRIMARY KEY (`id_agendamento`)
 ) DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;

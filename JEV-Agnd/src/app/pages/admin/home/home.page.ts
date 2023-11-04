@@ -10,7 +10,7 @@ import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.
 import { Observable, map, startWith } from 'rxjs';
 import numberMask from 'src/app/masks/numberMask';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Component({
@@ -222,6 +222,9 @@ export class HomePage implements OnInit {
  AlterIntervalo(e: any) {
   this.intervalo = (e.target as HTMLInputElement).value;
  }
+ generateCascadeId() {
+  return 'cascade_' + uuidv4();
+ }
 
  get cliente_add() {
   return this.AddForm.get('cliente')!;
@@ -265,6 +268,7 @@ export class HomePage implements OnInit {
     });
    }
    if (this.mostrarCondicionais == true) {
+    let cascadeId = this.generateCascadeId();
     let dataAgendamento = new Date(dia_hora[0]); // Converte a data para um objeto Date
 
     for (let i = 0; i < Number(this.quantidade); i++) {
@@ -278,7 +282,8 @@ export class HomePage implements OnInit {
       serv_agendamento: this.AddForm.value.servicos,
       metodo_de_pagamento: this.AddForm.value.formaDePagamento,
       preco_agend: this.precoAgend,
-      data_agend: dataFormatada, // Use a data formatada
+      data_agend: dataFormatada,
+      cascadeId: cascadeId
      };
 
      // Adicione o intervalo (em dias) à data de agendamento
@@ -299,7 +304,7 @@ export class HomePage implements OnInit {
     return;
    }
   }
-  this.message = 'Falha ao agendar... :('
+  this.message = 'Falhad ao agendar... :('
   this.ExibirMessage(false);
  }
  // Modal de edição
