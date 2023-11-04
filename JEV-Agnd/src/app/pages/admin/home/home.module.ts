@@ -9,6 +9,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MaskitoModule } from '@maskito/angular';
+
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -24,7 +26,8 @@ import { HomePageRoutingModule } from './home-routing.module';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MaskitoModule
   ],
   declarations: [
     HomePage

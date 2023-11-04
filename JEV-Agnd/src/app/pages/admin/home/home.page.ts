@@ -8,6 +8,9 @@ import { ServicosService } from 'src/app/services/servicos/servicos.service';
 import { Comanda } from 'src/app/models/comanda';
 import { AgendamentosService } from 'src/app/services/agendamentos/agendamentos.service';
 import { Observable, map, startWith } from 'rxjs';
+import numberMask from 'src/app/masks/numberMask';
+import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
+
 
 
 @Component({
@@ -504,4 +507,7 @@ export class HomePage implements OnInit {
 	imprimirComanda() {
 		window.print();
 	}
+
+	readonly numberMask: MaskitoOptions = numberMask;
+	readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 }
