@@ -122,7 +122,7 @@ ion-card {
 
 .modalCont {
  min-height: 100%;
- overflow: auto;
+ overflow-y: auto;
 }
 
 /* width */
@@ -242,7 +242,8 @@ ion-datetime {
 }
 
 .modalFormAdd-content {
- overflow-y: auto;
+  --height: 100%;
+  overflow-y: auto;
 }
 
 @media only screen and (max-width:770px) {

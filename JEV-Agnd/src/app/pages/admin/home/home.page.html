@@ -59,10 +59,17 @@
                   </ion-card-content>
 
                   <ion-card-content class="container_buttons">
-                    <ion-button (click)="apagarService(agendamentos.id_agendamento)" color="primary"
+
+                    <ion-button *ngIf="agendamentos.id_cascata == ''" (click)="apagarService(agendamentos.id_agendamento, agendamentos.id_cascata)" color="primary"
                       class="delete icon__apagar" fill="outline" (click)="setOpenDelete(true);">
                       <ion-icon name="close-circle-outline"></ion-icon>
-                      <ion-text>Desmarcar</ion-text>
+                      <ion-text>Desmarcar normal</ion-text>
+                    </ion-button>
+                    
+                    <ion-button *ngIf="agendamentos.id_cascata !== ''" (click)="apagarService(agendamentos.id_agendamento, agendamentos.id_cascata)" color="primary"
+                      class="delete icon__apagar" fill="outline" (click)="setOpenDeleteCascata(true);">
+                      <ion-icon name="close-circle-outline"></ion-icon>
+                      <ion-text>Desmarcar cascata</ion-text>
                     </ion-button>
 
 
@@ -373,9 +380,14 @@
       </ng-template>
     </ion-modal>
 
-
+    <!-- se não tiver nenhum agendamento em cascata -->
     <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
       [isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
+
+      <!-- se tiver -->
+    <ion-alert header="Como deseja desmarcar?" [inputs]="alertInputs" [buttons]="alertButtons" (didDismiss)="setResultCascata($event)" mode="ios"
+      [isOpen]="modalOpenDeleteCascata" backdropDismiss="false"></ion-alert>
+    
 
     <!-- Modal calendario -->
     <ion-modal [isOpen]="calendario_open" backdropDismiss="false">
