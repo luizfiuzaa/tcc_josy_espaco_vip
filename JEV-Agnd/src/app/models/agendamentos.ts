@@ -8,4 +8,5 @@ export interface Agendamentos {
     metodo_de_pagamento: string;
     preco_agend: string;
     data_agend: string;
+    id_cascata: string
 }

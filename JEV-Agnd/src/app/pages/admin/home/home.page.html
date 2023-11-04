@@ -54,7 +54,7 @@
                     Preço: R$ {{agendamentos.preco_agend}} ({{agendamentos.metodo_de_pagamento}})
                   </ion-card-content>
 
-                  <ion-card-content class="card__names">
+                  <ion-card-content class="card__names" *ngIf="!(agendamentos.id_cascata == '')">
                     <ion-icon name="repeat-outline"></ion-icon> Repetindo
                   </ion-card-content>
 
@@ -179,7 +179,7 @@
                   <mat-form-field>
                     <mat-label>Serviço(s)</mat-label>
                     <mat-select  formControlName="servicos" multiple
-                      (selectionChange)="this.precoAgendamento($event)" [disabled]="true">
+                      (selectionChange)="this.precoAgendamento($event)">
                       <mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
                         <p class="optionServicos">{{ servicos.titulo_servico }}</p>
                       </mat-option>

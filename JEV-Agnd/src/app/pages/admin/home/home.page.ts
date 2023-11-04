@@ -552,7 +552,6 @@ export class HomePage implements OnInit {
   this.agendamentosService.comandaGenerate(this.indiceComanda).subscribe((dados: any) => {
    this.Servicos_comanda = dados.servicos;
    this.valorTotal = dados.total.toFixed(2);
-
   });
  }
 
