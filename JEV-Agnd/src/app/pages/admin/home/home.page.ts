@@ -64,19 +64,18 @@ export class HomePage implements OnInit {
 		this.isLoading = true;
 		this.agendamentosService.list().subscribe((dados: any) => {
 			this.isLoading = false;
-			this.Agendamentos = dados.agendamentos.map((dados: any) => {
-				var data: any = dados.data_agend.split("-");
-				data = `${data[2]}/${data[1]}/${data[0]}`;
-				return { ...dados, data_agend: data };
-			});
-			if (!dados.success || dados.success != 1) {
+			if (dados.success == 1) {
+				this.Agendamentos = dados.agendamentos.map((dados: any) => {
+					var data: any = dados.data_agend.split("-");
+					data = `${data[2]}/${data[1]}/${data[0]}`;
+					return { ...dados, data_agend: data };
+				});
+			}
+			if (dados.success == 0) {
 				this.Agendamentos = [];
 			}
 
 			this.Agendamentos_exibidos = this.Agendamentos;
-
-			console.log(this.Agendamentos)
-			console.log(this.Agendamentos_exibidos)
 			this.atualizarDados(filter);
 		})
 	}
@@ -211,18 +210,18 @@ export class HomePage implements OnInit {
 			calendario: new FormControl('', [Validators.required]),
 			servicos: new FormControl('', [Validators.required]),
 			formaDePagamento: new FormControl('', [Validators.required]),
-
-			// se repetir = true
-			quantidade: new FormControl(''),
-			intervalo: new FormControl(''),
 		});
 	}
 
 	mostrarCondicionais = false;
-
-
-
-
+	quantidade = '';
+	AlterQuantidade(e: any) {
+		this.quantidade = (e.target as HTMLInputElement).value;
+	}
+	intervalo = '';
+	AlterIntervalo(e: any) {
+		this.intervalo = (e.target as HTMLInputElement).value;
+	}
 
 	get cliente_add() {
 		return this.AddForm.get('cliente')!;
@@ -236,6 +235,7 @@ export class HomePage implements OnInit {
 	get formaDePagamento_add() {
 		return this.AddForm.get('formaDePagamento')!;
 	}
+
 	submit_add() {
 		console.log(this.AddForm.value)
 		if (this.AddForm.valid) {
@@ -252,7 +252,6 @@ export class HomePage implements OnInit {
 					preco_agend: this.precoAgend,
 					data_agend: dia_hora[0],
 				}
-
 				this.agendamentosService.create(agendamento).subscribe((dados: any) => {
 					if (dados.success == '1') {
 						this.message = dados.message;
@@ -267,13 +266,11 @@ export class HomePage implements OnInit {
 			}
 			if (this.mostrarCondicionais == true) {
 				let dataAgendamento = new Date(dia_hora[0]); // Converte a data para um objeto Date
-			
-				for (let i = 0; i < this.AddForm.value.quantidade; i++) {
-					console.log("asd123");
-			
-					// Formate a data de agendamento no formato desejado
+
+				for (let i = 0; i < Number(this.quantidade); i++) {
+
 					const dataFormatada = dataAgendamento.toISOString().replace('.000Z', '').split('T')[0];
-			
+
 					agendamento = {
 						status_agendamento: 'e',
 						hora_inicio_agendamento: dia_hora[1],
@@ -283,11 +280,10 @@ export class HomePage implements OnInit {
 						preco_agend: this.precoAgend,
 						data_agend: dataFormatada, // Use a data formatada
 					};
-			
+
 					// Adicione o intervalo (em dias) à data de agendamento
-					dataAgendamento.setDate(dataAgendamento.getDate() + this.AddForm.value.intervalo);
+					dataAgendamento.setDate(dataAgendamento.getDate() + Number(this.intervalo));
 					console.log(agendamento.data_agend);
-			
 					this.agendamentosService.create(agendamento).subscribe((dados: any) => {
 						if (dados.success == '1') {
 							this.message = dados.message;
@@ -302,10 +298,6 @@ export class HomePage implements OnInit {
 				}
 				return;
 			}
-			
-
-
-			
 		}
 		this.message = 'Falha ao agendar... :('
 		this.ExibirMessage(false);
