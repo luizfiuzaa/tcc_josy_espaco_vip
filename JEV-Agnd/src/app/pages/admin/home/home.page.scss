@@ -14,6 +14,7 @@ ion-menu-button {
  border-radius: 5px;
 }
 
+
 .formFilter {
  display: flex;
  align-items: center;
@@ -247,7 +248,6 @@ ion-datetime {
 }
 
 @media only screen and (max-width:770px) {
-
  .modalFormAdd,
  .modalFormEdit {
   --height: 100vh;
