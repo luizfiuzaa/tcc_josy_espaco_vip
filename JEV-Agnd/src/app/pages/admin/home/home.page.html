@@ -65,13 +65,13 @@
                     <ion-button *ngIf="agendamentos.id_cascata == ''" (click)="apagarService(agendamentos.id_agendamento, agendamentos.id_cascata)" color="primary"
                       class="delete icon__apagar" fill="outline" (click)="setOpenDelete(true);">
                       <ion-icon name="close-circle-outline"></ion-icon>
-                      <ion-text>Desmarcar normal</ion-text>
+                      <ion-text>Desmarcar</ion-text>
                     </ion-button>
                     
                     <ion-button *ngIf="agendamentos.id_cascata !== ''" (click)="apagarService(agendamentos.id_agendamento, agendamentos.id_cascata)" color="primary"
                       class="delete icon__apagar" fill="outline" (click)="setOpenDeleteCascata(true);">
                       <ion-icon name="close-circle-outline"></ion-icon>
-                      <ion-text>Desmarcar cascata</ion-text>
+                      <ion-text>Desmarcar</ion-text>
                     </ion-button>
 
                     <ion-button class="edit" id="editar" (click)="EditAgendamento(agendamentos)">
