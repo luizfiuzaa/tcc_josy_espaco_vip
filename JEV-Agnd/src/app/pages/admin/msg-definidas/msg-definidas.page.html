@@ -34,51 +34,46 @@
 
       <ion-col size="12" sizeLg="8">
 
-        <div style="position: relative;"
-          *ngIf="this.mensagensExibidas && this.mensagensExibidas.length == 0; else noMensagem"
-          class="message-container">
-          <ion-card class="message-container-card">
-            <ion-card-header class="ion-text-center">
-              <ion-title color="dark">Criar Nova Mensagem</ion-title>
-            </ion-card-header>
-            <ion-card-content>
-              <form id="AddForm" action="" (ngSubmit)="submit_add();" [formGroup]="AddForm" #formDir=ngForm>
-                <ion-label style="margin-left: 20px" position="floating">
-                  Cor
-                </ion-label>
-                <ion-input value="#FFF" type="color" formControlName="cor" style="width: 100px"></ion-input>
-                <div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
-                  Escolha uma cor
-                </div>
-
-                <ion-item>
-                  <ion-label position="floating">Título da mensagem</ion-label>
-                  <ion-input type="text" formControlName="titulo" maxlength="50"></ion-input>
-                </ion-item>
-                <div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
-                  Digite um título
-                </div>
-                <ion-item>
-                  <ion-label position="floating">Descrição das mensagem</ion-label>
-                  <ion-textarea [autoGrow]="true" maxlength="255" fill="outline" type="textarea"
-                    formControlName="descricao"></ion-textarea>
-                </ion-item>
-                <div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
-                  Digite uma descrição
-                </div>
-              </form>
-            </ion-card-content>
-            <ion-card-content class="ion-text-center">
-              <ion-col size="8">
-                <ion-button fill="outline" form="AddForm" type="submit" expand="block">
-                  <ion-text color="primary">
-                    Criar
-                  </ion-text>
-                </ion-button>
-              </ion-col>
-            </ion-card-content>
-          </ion-card>
+        <div style="position: relative;" *ngIf="this.mensagensExibidas && this.mensagensExibidas.length == 0; else noMensagem"
+  class="message-container">
+  <ion-card class="message-container-card">
+    <ion-card-header class="ion-text-center">
+      <ion-title color="dark">Criar Nova Mensagem</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form id="AddForm" action="" (ngSubmit)="submit_add();" [formGroup]="AddForm" #formDir="ngForm">
+        <ion-label style="margin-left: 20px" position="floating">
+          Cor
+        </ion-label>
+        <ion-input value="#FFF" type="color" formControlName="cor" style="width: 100px"></ion-input>
+        <div class="message-alert" *ngIf="cor_add.invalid && formDir.submitted">
+          Escolha uma cor
         </div>
+
+        <ion-item>
+          <ion-label position="floating">Título da mensagem</ion-label>
+          <ion-input type="text" formControlName="titulo" maxlength="50"></ion-input>
+        </ion-item>
+        <div class="message-alert" *ngIf="titulo_add.invalid && formDir.submitted">
+          Digite um título
+        </div>
+        <ion-item>
+          <ion-label position="floating">Descrição das mensagem</ion-label>
+          <ion-textarea [autoGrow]="true" maxlength="255" fill="outline" type="textarea"
+            formControlName="descricao"></ion-textarea>
+        </ion-item>
+        <div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
+          Digite uma descrição
+        </div>
+        <ion-button fill="outline" type="submit" expand="block">
+          <ion-text color="primary">
+            Criar
+          </ion-text>
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>
 
         <!-- cada mensagem -->
         <ng-template #noMensagem>
@@ -113,29 +108,32 @@
                   <div class="message-alert" *ngIf="descricao_add.invalid && formDir.submitted">
                     Digite uma descrição
                   </div>
+
+                  <ion-card-content class="ion-text-center">
+                    <ion-col size="8">
+                      <ion-button color="success" type="submit" expand="block">
+                        <ion-text>
+                          Salvar <ion-icon name="save"></ion-icon>
+                        </ion-text>
+                      </ion-button>
+                      <ion-button (click)="setOpenEnviarMensagem(true)" expand="block">
+                        <ion-text>
+                          Enviar <ion-icon name="send"></ion-icon>
+                        </ion-text>
+                      </ion-button>
+                      <ion-text>ou</ion-text>
+                      <ion-button color="danger" fill="outline" expand="block"
+                        (click)="delete_message(mensagensExibidas[0].id_mensagem)">
+                        <ion-text>
+                          Excluir <ion-icon name="trash"></ion-icon>
+                        </ion-text>
+                      </ion-button>
+                    </ion-col>
+                  </ion-card-content>
+
                 </form>
               </ion-card-content>
-              <ion-card-content class="ion-text-center">
-                <ion-col size="8">
-                  <ion-button color="success" form="AddForm" type="submit" expand="block">
-                    <ion-text>
-                      Salvar <ion-icon name="save"></ion-icon>
-                    </ion-text>
-                  </ion-button>
-                  <ion-button (click)="setOpenEnviarMensagem(true)" expand="block">
-                    <ion-text>
-                      Enviar <ion-icon name="send"></ion-icon>
-                    </ion-text>
-                  </ion-button>
-                  <ion-text>ou</ion-text>
-                  <ion-button color="danger" fill="outline" expand="block"
-                    (click)="delete_message(mensagensExibidas[0].id_mensagem)">
-                    <ion-text>
-                      Excluir <ion-icon name="trash"></ion-icon>
-                    </ion-text>
-                  </ion-button>
-                </ion-col>
-              </ion-card-content>
+              
             </ion-card>
           </div>
         </ng-template>
