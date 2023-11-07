@@ -31,6 +31,8 @@
 									<ion-icon name="person-sharp"></ion-icon>
 									{{Clientes.cliente_nome}}
 								</ion-text>
+
+								
 							</ion-card-title>
 							<ion-card-subtitle>
 								<ion-text class="main__email">
@@ -183,64 +185,68 @@
 
 		<ion-modal #modal [isOpen]="modalOpenInfo" backdropDismiss="false">
 			<ng-template>
-				<div class="wrapper modalCont" *ngIf="Info_Clientes && Info_Clientes.length > 0; else noInfos">
-					<div class="modal_title">
-						<ion-header style="position: fixed;">
-							<ion-toolbar>
-								<ion-buttons slot="start">
-									<ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
-								</ion-buttons>
-							</ion-toolbar>
-						</ion-header>
-						<div class="info_main" style="padding-top: 56px;">
-							<ion-list *ngFor="let info_clientes of Info_Clientes">
-								<ion-item>
-									<ion-text style="text-transform: capitalize;">
-										<strong>
-											{{info_clientes.serv_agendamento}}
-										</strong>
-									</ion-text>
-								</ion-item>
-								<ion-item>
-									<ion-text>
-										{{info_clientes.hora_inicio_agendamento}} -
-										{{info_clientes.hora_fim_agendamento}} -
-										{{info_clientes.data_agend}}
-									</ion-text>
-								</ion-item>
-							</ion-list>
-						</div>
-					</div>
+			  <div class="wrapper modalCont">
+				<div class="modal_title">
+				  <ion-header  style="margin-bottom: 100px;" style="position: fixed;">
+					<ion-toolbar>
+					  <ion-buttons slot="start">
+						<ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
+					  </ion-buttons>
+					</ion-toolbar>
+				  </ion-header>
+				  <div class="info_main" style="padding-top: 56px;">
+					<ion-segment [(ngModel)]="segmentValue">
+						<ion-segment-button value="agendamentos">
+						  Agendamentos
+						</ion-segment-button>
+						<ion-segment-button value="inadimplencias">
+						  Não pagos
+						</ion-segment-button>
+					  </ion-segment>
+					<ng-container *ngIf="segmentValue === 'agendamentos'; else noAgendamentos">
+					  <ion-list *ngFor="let info_clientes of Info_Clientes">
+						<ion-item>
+						  <ion-text style="text-transform: capitalize;">
+							<strong>{{info_clientes.serv_agendamento}}</strong>
+						  </ion-text>
+						</ion-item>
+						<ion-item>
+						  <ion-text>
+							{{info_clientes.hora_inicio_agendamento}} -
+							{{info_clientes.hora_fim_agendamento}} -
+							{{info_clientes.data_agend}}
+						  </ion-text>
+						</ion-item>
+					  </ion-list>
+					</ng-container>
+					<ng-template #noAgendamentos>
+					  <ng-container *ngIf="segmentValue === 'inadimplencias'; else noInadimplencias">
+						<ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
+						  <ion-col class="ion-text-center">
+							<ion-text>Nenhuma cobrança necessária</ion-text>
+						  </ion-col>
+						</ion-row>
+					  </ng-container>
+					</ng-template>
+					<ng-template #noInadimplencias>
+					  <ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
+						<ion-col class="ion-text-center">
+						  <ion-text>Esse cliente ainda não fez nenhum agendamento...</ion-text>
+						  <ion-buttons class="button_add" (click)="agendar()">
+							<ion-button style="font-size: 1em; padding: 10px;">
+							  Agendar
+							</ion-button>
+						  </ion-buttons>
+						</ion-col>
+					  </ion-row>
+					</ng-template>
+				  </div>
 				</div>
-				<ng-template #noInfos>
-					<div class="wrapper modalCont">
-						<div class="modal_title">
-							<ion-header>
-								<ion-toolbar>
-									<ion-buttons slot="start">
-										<ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
-									</ion-buttons>
-								</ion-toolbar>
-							</ion-header>
-							<div class="info_main">
-								<ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
-									<ion-col class="ion-text-center">
-										<ion-text>Esse cliente ainda não fez nenhum agendamento...</ion-text>
-										<ion-buttons class="button_add" (click)="agendar()">
-											<ion-button style="font-size: 1em; padding: 10px;">
-												Agendar
-											</ion-button>
-										</ion-buttons>
-									</ion-col>
-								</ion-row>
-							</div>
-						</div>
-					</div>
-				</ng-template>
+			  </div>
 			</ng-template>
-
-
-		</ion-modal>
+		  </ion-modal>
+		  
+		  
 
 		<!-- Btn para adicionar um novo cliente -->
 		<ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
