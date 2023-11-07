@@ -234,6 +234,13 @@ export class ClientesPage implements OnInit {
     this.modalOpenInfo = isOpen;
   }
 
+  segmentValue: string = 'agendamentos'; // Valor padrão
+
+  // Função chamada quando a seleção do ion-segment muda
+  segmentChanged(event: CustomEvent) {
+    this.segmentValue = event.detail.value;
+  }
+
   agendar() {
     this.setOpenInfo(false);
     setTimeout(() => {

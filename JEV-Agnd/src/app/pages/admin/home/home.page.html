@@ -188,7 +188,9 @@
                     <mat-select  formControlName="servicos" multiple
                       (selectionChange)="this.precoAgendamento($event)">
                       <mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
-                        <p class="optionServicos">{{ servicos.titulo_servico }}</p>
+                        <span class="optionServicos">{{ servicos.titulo_servico }}</span>
+                        |
+                        <span> R$ {{ servicos.preco_servico }}</span>
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -226,7 +228,7 @@
     </ion-modal>
 
     <ion-modal #modalEdit [isOpen]="modalOpenEdit" backdropDismiss="false" mode="ios" class="modalFormEdit">
-      <ng-template>
+      <ng-template class="modalFormEdit-content">
         <div class="wrapper modalCont">
           <div class="modal_title">
             <ion-toolbar>
@@ -343,7 +345,7 @@
                 </ion-col>
                 <ion-col size="6" class="col-precos ion-text-center">
                   <ion-text>
-                    {{comanda.preco_servico}}
+                    R$ {{comanda.preco_servico}}
                   </ion-text>
                 </ion-col>
               </ion-item>
