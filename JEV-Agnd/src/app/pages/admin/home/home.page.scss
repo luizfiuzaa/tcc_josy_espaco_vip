@@ -238,13 +238,21 @@ ion-datetime {
 .modalFormEdit {
  padding-top: 1em;
  padding-bottom: 1em;
- --height: 100%;
+ --height: auto;
+ --max-heigth: 100vh;
  transition: all 0.5s ease;
 }
 
 .modalFormAdd-content, .modalFormEdit-content {
   // overflow-y: 0;
 }
+
+@media only screen and (max-height:865px) {
+  .modalFormAdd,
+  .modalFormEdit {
+   --height: 100vh;
+  }
+ }
 
 @media only screen and (max-width:770px) {
  .modalFormAdd,
