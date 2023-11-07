@@ -62,13 +62,15 @@
 
                   <ion-card-content class="container_buttons">
 
-                    <ion-button *ngIf="agendamentos.id_cascata == ''" (click)="apagarService(agendamentos.id_agendamento, agendamentos.id_cascata)" color="primary"
+                    <ion-button *ngIf="agendamentos.id_cascata == ''"
+                      (click)="apagarService(agendamentos.id_agendamento, agendamentos.id_cascata)" color="primary"
                       class="delete icon__apagar" fill="outline" (click)="setOpenDelete(true);">
                       <ion-icon name="close-circle-outline"></ion-icon>
                       <ion-text>Desmarcar</ion-text>
                     </ion-button>
-                    
-                    <ion-button *ngIf="agendamentos.id_cascata !== ''" (click)="apagarService(agendamentos.id_agendamento, agendamentos.id_cascata)" color="primary"
+
+                    <ion-button *ngIf="agendamentos.id_cascata !== ''"
+                      (click)="apagarService(agendamentos.id_agendamento, agendamentos.id_cascata)" color="primary"
                       class="delete icon__apagar" fill="outline" (click)="setOpenDeleteCascata(true);">
                       <ion-icon name="close-circle-outline"></ion-icon>
                       <ion-text>Desmarcar</ion-text>
@@ -133,8 +135,8 @@
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
                 <div class="container_calendario">
-                  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate" formControlName="calendario"
-                    minuteValues="0,15,30,45" class="calendario_modal" mode="ios">
+                  <ion-datetime displayFormat="MMM DD, h:mm A" [min]="this.hoje" [(ngModel)]="myDate"
+                    formControlName="calendario" minuteValues="0,15,30,45" class="calendario_modal" mode="ios">
                     <span slot="time-label">
                       <ion-text class="time_title">
                         <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
@@ -185,8 +187,7 @@
                 <div class="item_form">
                   <mat-form-field>
                     <mat-label>Serviço(s)</mat-label>
-                    <mat-select  formControlName="servicos" multiple
-                      (selectionChange)="this.precoAgendamento($event)">
+                    <mat-select formControlName="servicos" multiple (selectionChange)="this.precoAgendamento($event)">
                       <mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
                         <p class="optionServicos">{{ servicos.titulo_servico }}</p>
                       </mat-option>
@@ -384,10 +385,11 @@
     <ion-alert header="Tem certeza?" [buttons]="alertButtons" (didDismiss)="setResult($event)" mode="ios"
       [isOpen]="modalOpenDelete" backdropDismiss="false"></ion-alert>
 
-      <!-- se tiver -->
-    <ion-alert header="Como deseja desmarcar?" [inputs]="alertInputs" [buttons]="alertButtons" (didDismiss)="setResultCascata($event)" mode="ios"
-      [isOpen]="modalOpenDeleteCascata" backdropDismiss="false"></ion-alert>
-    
+    <!-- se tiver -->
+    <ion-alert header="Como deseja desmarcar?" [inputs]="alertInputs" [buttons]="alertButtons"
+      (didDismiss)="setResultCascata($event)" mode="ios" [isOpen]="modalOpenDeleteCascata"
+      backdropDismiss="false"></ion-alert>
+
 
     <!-- Modal calendario -->
     <ion-modal [isOpen]="calendario_open" backdropDismiss="false">

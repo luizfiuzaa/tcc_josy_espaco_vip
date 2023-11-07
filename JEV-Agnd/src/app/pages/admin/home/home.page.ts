@@ -12,6 +12,11 @@ import numberMask from 'src/app/masks/numberMask';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { v4 as uuidv4 } from 'uuid';
 
+interface Appointment {
+	start: string;
+	end: string;
+}
+
 
 @Component({
 	selector: 'app-home',
@@ -617,4 +622,52 @@ export class HomePage implements OnInit {
 
 	readonly numberMask: MaskitoOptions = numberMask;
 	readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
+
+	// horasDisponiveis: any[] = [];
+	// minutosDisponiveis: any[] = [];
+
+	// mudarHoras() {
+	// 	let horaIndisponiveis: Appointment[] = [];
+	// 	this.Agendamentos.filter((agendamento: any) => {
+	// 		let dataSelecionada: any = this.myDate.split("T")[0].split('-');
+	// 		dataSelecionada = `${dataSelecionada[2]}/${dataSelecionada[1]}/${dataSelecionada[0]}`;
+
+	// 		if (agendamento.data_agend == dataSelecionada) {
+	// 			horaIndisponiveis.push({
+	// 				start: agendamento.hora_inicio_agendamento,
+	// 				end: agendamento.hora_fim_agendamento
+	// 			});
+	// 		}
+	// 	})
+
+	// 	this.horasDisponiveis = this.getAvailableTimes(horaIndisponiveis);
+
+	// 	console.log(this.horasDisponiveis);
+	// }
+
+	// generateTimes(): string[] {
+	// 	const times: string[] = [];
+	// 	for (let h = 0; h < 24; h++) {
+	// 		for (let m = 0; m < 60; m += 15) {
+	// 			const hours = h.toString().padStart(2, '0');
+	// 			const minutes = m.toString().padStart(2, '0');
+	// 			times.push(`${hours}:${minutes}`);
+	// 		}
+	// 	}
+	// 	return times;
+	// }
+
+	// getAvailableTimes(appointments: Appointment[]): string[] {
+	// 	const times = this.generateTimes();
+	// 	const bookedTimes = appointments.flatMap(appointment => {
+	// 		const startIndex = times.indexOf(appointment.start);
+	// 		const endIndex = times.indexOf(appointment.end);
+	// 		if (startIndex === -1 || endIndex === -1) {
+	// 			console.error('Horário de início ou fim não encontrado na lista de horários gerados');
+	// 			return [];
+	// 		}
+	// 		return times.slice(startIndex, endIndex);
+	// 	});
+	// 	return times.filter(time => !bookedTimes.includes(time);
+	// }
 }

@@ -1,431 +1,434 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
 
 ion-toolbar {
- --color: var(--ion-color-primary);
- --background: #FFF;
+  --color: var(--ion-color-primary);
+  --background: #FFF;
 }
 
 ion-button,
 ion-menu-button {
- --color: white;
+  --color: white;
 }
 
 .toolbar {
- border-radius: 5px;
+  border-radius: 5px;
 }
 
 
 .formFilter {
- display: flex;
- align-items: center;
- justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .edit {
- color: #FFF;
+  color: #FFF;
 }
 
 .tab ion-icon,
 .edit ion-icon {
- padding-right: 5px;
+  padding-right: 5px;
 }
 
 @media only screen and (min-width:770px) {
 
- .form_modalAdd,
- .form_modalEdit {
-  padding: 0px 40px 0px 40px;
- }
+  .form_modalAdd,
+  .form_modalEdit {
+    padding: 0px 40px 0px 40px;
+  }
 }
 
 
 @media only screen and (max-width: 500px) {
- input {
-  font-size: 1.05em;
- }
+  input {
+    font-size: 1.05em;
+  }
 }
 
 // agendamentos
 ion-card {
- width: 100vw;
+  width: 100vw;
 
- .ok {
-  --color: var(--ion-color-success);
- }
+  .ok {
+    --color: var(--ion-color-success);
+  }
 
- .waiting {
-  --color: var(--ion-color-warning);
- }
+  .waiting {
+    --color: var(--ion-color-warning);
+  }
 
- #horario,
- #data {
-  --color: var(--ion-color-primary);
- }
+  #horario,
+  #data {
+    --color: var(--ion-color-primary);
+  }
 
- ion-card-subtitle {
-  font-size: 1.3em;
- }
+  ion-card-subtitle {
+    font-size: 1.3em;
+  }
 
- ion-card-subtitle,
- ion-card-content {
-  color: #000;
- }
+  ion-card-subtitle,
+  ion-card-content {
+    color: #000;
+  }
 }
 
 .container_buttons {
- display: flex;
- align-items: center;
- justify-content: flex-start;
- flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 @media only screen and (max-width:500px) {
 
- .container_buttons .delete,
- .container_buttons .edit {
-  width: calc(49% - 10px);
- }
+  .container_buttons .delete,
+  .container_buttons .edit {
+    width: calc(50% - 9px);
+  }
 
- .container_buttons .tab {
-  width: calc(98% - 13px);
- }
+  .container_buttons .tab {
+    width: calc(100% - 16px);
+  }
 
- .container_buttons {
-  justify-content: center;
- }
+  .container_buttons {
+    justify-content: center;
+  }
 }
 
 .button_add {
- justify-content: center;
+  justify-content: center;
 }
 
 .button_modal,
 .button_add {
- margin-right: 15px;
- text-transform: uppercase;
- cursor: pointer;
- color: var(--ion-color-primary);
+  margin-right: 15px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ion-color-primary);
 }
 
 .form_modalAdd,
 .form_modalEdit {
- display: flex;
- align-items: center;
- flex-direction: column;
- height: 100%;
- margin-top: 20px;
- padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 20px;
+  padding-bottom: 10px;
 }
 
 .header_form {
- width: 100%;
+  width: 100%;
 }
 
 .modalCont {
- min-height: 100%;
- overflow-y: auto;
+  min-height: 100%;
+  overflow-y: auto;
 }
 
 /* width */
 .modalCont::-webkit-scrollbar {
- width: 10px;
+  width: 10px;
 }
 
 /* Track */
 .modalCont::-webkit-scrollbar-track {
- background: #f1f1f1;
+  background: #f1f1f1;
 }
 
 /* Handle */
 .modalCont::-webkit-scrollbar-thumb {
- background: #ffc6c6;
- border-radius: 5px;
+  background: #ffc6c6;
+  border-radius: 5px;
 }
 
 #add_area {
- margin-right: 15px;
+  margin-right: 15px;
 }
 
 .list-content {
- margin-top: -1em;
- width: 90%;
+  margin-top: -1em;
+  width: 90%;
 }
 
 .time_title {
- display: flex;
- justify-content: center;
- align-items: center;
- gap: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
 }
 
 .message-alert {
- text-align: left;
- width: 100%;
- color: red;
- padding-left: 10px;
- border-left: 2px solid red;
+  text-align: left;
+  width: 100%;
+  color: red;
+  padding-left: 10px;
+  border-left: 2px solid red;
 }
 
 #message.success {
- --background: #65dd61;
+  --background: #65dd61;
 }
 
 #message.fail {
- --background: #f75656;
+  --background: #f75656;
 }
 
 .item_form {
- display: flex;
- flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 ion-datetime {
- max-width: 100%;
+  max-width: 100%;
 }
 
 .card__names {
- text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 @media only screen and (max-width:700px) {
- .calendarButton {
-  right: 7% !important;
- }
+  .calendarButton {
+    right: 7% !important;
+  }
 
- .cont_search {
-  --padding-start: 0;
-  --inner-padding-end: 0;
- }
+  .cont_search {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
 
 
 }
 
 @media only screen and (max-width:500px) {
- .calendarButton span {
-  display: none;
- }
+  .calendarButton span {
+    display: none;
+  }
 }
 
 .calendarButton {
- background: white;
- height: 29px;
- position: absolute;
- right: 4%;
- top: calc(100% - 48px);
+  background: white;
+  height: 29px;
+  position: absolute;
+  right: 4%;
+  top: calc(100% - 48px);
 }
 
 .header__search div {
- display: flex;
- justify-content: center;
- align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .item__searchBar {
- width: 100%;
- display: flex;
- justify-content: center;
- align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header__search {
- display: flex;
- align-items: center;
- justify-content: space-between;
- width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .modalFormAdd,
 .modalFormEdit {
- padding-top: 1em;
- padding-bottom: 1em;
- --height: 100%;
- transition: all 0.5s ease;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  --height: 100%;
+  //  --height: auto;
+  transition: all 0.5s ease;
 }
 
-.modalFormAdd-content, .modalFormEdit-content {
+.modalFormAdd-content,
+.modalFormEdit-content {
   // overflow-y: 0;
 }
 
 @media only screen and (max-width:770px) {
- .modalFormAdd,
- .modalFormEdit {
-  --height: 100vh;
-  --width: 100%;
- }
+
+  .modalFormAdd,
+  .modalFormEdit {
+    --height: 100vh;
+    --width: 100%;
+  }
 }
 
 .calendario_modal {
- width: 100%;
- --height: auto;
- margin: 0 auto;
- border: 1px solid rgb(59, 59, 59);
- border-radius: 10px;
- background: white;
+  width: 100%;
+  --height: auto;
+  margin: 0 auto;
+  border: 1px solid rgb(59, 59, 59);
+  border-radius: 10px;
+  background: white;
 }
 
 .calendar__filter {
- background: white;
- width: 90%;
- max-height: 100%;
- height: 450px;
- margin: auto;
- border: 1px solid black;
- border-radius: 10px;
+  background: white;
+  width: 90%;
+  max-height: 100%;
+  height: 450px;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .calendar__filter__title {
- color: var(--ion-color-primary);
+  color: var(--ion-color-primary);
 }
 
 .calendar__toolbar {
- display: flex;
- justify-content: center;
- align-items: center;
- margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
 }
 
 h3 {
- display: flex;
- justify-content: center;
- align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .precoAgend {
-	display: flex;
-	align-items: center;
-	font-size: 1.3em;
-	margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+  margin-bottom: 1em;
 }
 
 .precoAgend p {
- margin: 0;
- padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .tituloPreco {
- min-width: 80px;
- margin: 0 10px 0 0;
+  min-width: 80px;
+  margin: 0 10px 0 0;
 }
 
 // Modal comanda
 
 .comandaModal {
- position: relative;
+  position: relative;
 
- &::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  border-left: 1px solid #000;
- }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left: 1px solid #000;
+  }
 }
 
 .comanda_title {
- font-family: 'Dancing Script', cursive;
- font-size: 2.5em;
- color: var(--ion-color-primary);
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
+  color: var(--ion-color-primary);
 }
 
 .tabelaComandaTop {
- border-bottom: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 .title-precos ion-text,
 .title-servicos ion-text,
 .total ion-text {
- font-family: 'Dancing Script', cursive;
- display: flex;
- align-items: center;
- justify-content: center;
- font-size: 2em;
+  font-family: 'Dancing Script', cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
 }
 
 .total ion-text {
- color: var(--ion-color-primary);
+  color: var(--ion-color-primary);
 }
 
 .unidade_preco {
- font-size: 0.8em;
- font-family: 'Dancing Script', cursive;
+  font-size: 0.8em;
+  font-family: 'Dancing Script', cursive;
 }
 
 .total span.preco {
- font-family: var(--text);
- font-size: .9em;
- color: #000;
+  font-family: var(--text);
+  font-size: .9em;
+  color: #000;
 }
 
 .col-precos ion-text,
 .col-servicos ion-text {
- font-size: 1.3em;
+  font-size: 1.3em;
 }
 
 .header,
 .comanda-footer {
- z-index: 2;
- background: white;
+  z-index: 2;
+  background: white;
 }
 
 .comanda-footer {
- position: fixed;
- bottom: 0;
- width: 100%;
- min-height: 56px;
- padding-right: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 56px;
+  padding-right: 10px;
 }
 
 .content_total {
- position: fixed;
- bottom: 56px;
- right: 0;
- padding: 0 5px;
- width: 50%;
- text-align: center;
+  position: fixed;
+  bottom: 56px;
+  right: 0;
+  padding: 0 5px;
+  width: 50%;
+  text-align: center;
 }
 
 .content_total ion-text {
- width: 100%;
+  width: 100%;
 }
 
 .content_principal {
- text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .comanda-footer ion-button ion-label.button_modal {
- font-family: 'Dancing Script', cursive;
- font-size: 1.8em;
- text-transform: capitalize;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8em;
+  text-transform: capitalize;
 }
 
 .comandaModal {
- padding: 0 10px;
- height: 100%;
+  padding: 0 10px;
+  height: 100%;
 }
 
 .comandaModal ion-item {
- --padding-start: 0px;
- --inner-padding-end: 0px;
+  --padding-start: 0px;
+  --inner-padding-end: 0px;
 }
 
 .comanda-main {
- border-top: 1px solid black;
+  border-top: 1px solid black;
 }
 
 .container_calendario {
- margin-bottom: 22px;
+  margin-bottom: 22px;
 }
 
 .optionClientes {
- text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .optionServicos::first-letter {
- text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 p.optionServicos {
- margin: 0;
- padding: 0;
+  margin: 0;
+  padding: 0;
 }
