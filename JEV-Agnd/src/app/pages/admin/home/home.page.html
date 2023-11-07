@@ -134,7 +134,7 @@
               <div class="container_form">
                 <div class="container_calendario">
                   <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate" formControlName="calendario"
-                    minuteValues="0,15,30,45" class="calendario_modal" mode="ios">
+                    minuteValues="0,15,30,45" class="calendario_modal" mode="ios" [min]="this.hoje">
                     <span slot="time-label">
                       <ion-text class="time_title">
                         <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
