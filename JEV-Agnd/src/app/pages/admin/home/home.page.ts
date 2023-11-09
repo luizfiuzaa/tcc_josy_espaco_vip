@@ -91,13 +91,14 @@ export class HomePage implements OnInit {
 			if (!dados.success || dados.success != 1) {
 				this.Clientes = [];
 			}
-			this.clientesFiltrados = this.options = this.Clientes;
+			this.clientesFiltrados = this.options = this.Clientes.sort((a, b) => a.cliente_nome.localeCompare(b.cliente_nome));
 		})
 	}
 	// Pega os dados da API
 	listServicos() {
 		this.servicosSercice.list().subscribe((dados: any) => {
 			this.Servicos = dados.servicos;
+			this.Servicos = this.Servicos.sort((a, b) => a.titulo_servico.localeCompare(b.titulo_servico));
 			if (!dados.success || dados.success != 1) {
 				this.Servicos = [];
 			}
@@ -116,6 +117,12 @@ export class HomePage implements OnInit {
 			let horario_fim: any = dados.hora_fim_agendamento.substr(0, 5);
 			return { ...dados, hora_inicio_agendamento: horario_inicio, hora_fim_agendamento: horario_fim };
 		});
+
+		this.Agendamentos_exibidos = this.Agendamentos_exibidos.sort((a, b) => {
+			let dataA = new Date(a.data_agend + " " + a.hora_inicio_agendamento);
+			let dataB = new Date(b.data_agend + " " + b.hora_inicio_agendamento);
+			return dataA.getTime() - dataB.getTime();
+		  });
 	}
 
 	date = new Date();
