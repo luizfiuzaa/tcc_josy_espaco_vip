@@ -7,6 +7,7 @@ import { ClientesService } from 'src/app/services/clientes/clientes.service';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 import { InfoClientes } from 'src/app/models/infoClientes';
 import { Router } from '@angular/router';
+import { NaoPagos } from 'src/app/models/naoPago';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class ClientesPage implements OnInit {
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
   Info_Clientes: InfoClientes[] = [];
+  NaoPagos: NaoPagos[] = [];
 
   filterClienteName(e: Event) {
     let estado: boolean = false;
@@ -237,8 +239,18 @@ export class ClientesPage implements OnInit {
   segmentValue: string = 'agendamentos'; // Valor padrão
 
   // Função chamada quando a seleção do ion-segment muda
-  segmentChanged(event: CustomEvent) {
-    this.segmentValue = event.detail.value;
+  segmentChanged(event: any) {
+    this.segmentValue = (event.detail as any).value;
+    console.log(this.segmentValue);
+
+    // Adicione lógica para mostrar a tela correspondente ao segmento selecionado
+    if (this.segmentValue === 'agendamentos') {
+      // Lógica para mostrar a tela de agendamentos
+      console.log('Mostrar tela de agendamentos');
+    } else if (this.segmentValue === 'inadimplencias') {
+      // Lógica para mostrar a tela de inadimplências
+      console.log('Mostrar tela de inadimplências');
+    }
   }
 
   agendar() {
@@ -248,8 +260,10 @@ export class ClientesPage implements OnInit {
     }, 100)
   }
 
+  id_selected: any;
   listInformacoes(id: any) {
     this.Info_Clientes = [];
+    this.id_selected = id;
     this.clientesService.listInfomacoes(id).subscribe((dados: any) => {
       if (dados.success == '1') {
         this.Info_Clientes = dados.data;
@@ -272,7 +286,47 @@ export class ClientesPage implements OnInit {
       }
     })
 
+    this.NaoPagos = [];
+    this.clientesService.listNaoPagos(id).subscribe((dados: any) => {
+      if (dados.success == '1') {
+        this.NaoPagos = dados.data;
+
+        this.NaoPagos.sort((a, b) => {
+          let dataA = new Date(a.data_agend + " " + a.hora_inicio_agendamento);
+          let dataB = new Date(b.data_agend + " " + b.hora_inicio_agendamento);
+          return dataB.getTime() - dataA.getTime();
+        });
+        console.log(this.NaoPagos);
+        this.NaoPagos = this.NaoPagos.map((dados: any) => {
+          let data: any = dados.data_agend.split("-");
+          data = `${data[2]}/${data[1]}/${data[0]}`
+
+          let horario_inicio: any = dados.hora_inicio_agendamento.substr(0, 5);
+          let horario_fim: any = dados.hora_fim_agendamento.substr(0, 5);
+          return { ...dados, data_agend: data, hora_inicio_agendamento: horario_inicio, hora_fim_agendamento: horario_fim };
+        });
+        console.log(this.NaoPagos);
+      }
+    })
+
     this.setOpenInfo(true)
+  }
+
+  checkboxChanged(event: any, id:any) {
+    // A lógica que você deseja executar quando o checkbox é alterado
+    if (event.detail.checked) {
+      console.log(id);
+      // Execute sua função aqui...
+      this.clientesService.updatePagar(id).subscribe((dados: any) =>{
+        this.listInformacoes(this.id_selected);
+        if(dados.message == 'success'){
+          
+        }
+      });
+    } else {
+      console.log('Checkbox desselecionado!');
+      // Execute sua função quando o checkbox é desselecionado...
+    }
   }
 
   readonly phoneMask: MaskitoOptions = {

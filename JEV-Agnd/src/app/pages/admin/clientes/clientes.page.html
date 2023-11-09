@@ -32,7 +32,7 @@
 									{{Clientes.cliente_nome}}
 								</ion-text>
 
-								
+
 							</ion-card-title>
 							<ion-card-subtitle>
 								<ion-text class="main__email">
@@ -44,8 +44,7 @@
 
 						<!-- Botões de Exclusão, Edição e Visualização de dados -->
 						<ion-card-content class="buttons_container">
-							<ion-button class="delete apagar_cli" fill="outline"
-								(click)="apagarService(Clientes.id_cliente)">
+							<ion-button class="delete apagar_cli" fill="outline" (click)="apagarService(Clientes.id_cliente)">
 								<ion-icon name="trash"></ion-icon>
 								Excluir
 							</ion-button>
@@ -91,22 +90,20 @@
 						</ion-header>
 
 						<!-- form cliente -->
-						<form action="" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm"
-							#formDir="ngForm">
+						<form action="" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm" #formDir="ngForm">
 							<ion-list lines="none" class="list-content">
 								<div class="item_form">
-									<ion-input placeholder="Digite o nome" label="Nome do Cliente"
-										label-placement="floating" fill="outline" formControlName="nomeCli"></ion-input>
+									<ion-input placeholder="Digite o nome" label="Nome do Cliente" label-placement="floating"
+										fill="outline" formControlName="nomeCli"></ion-input>
 									<div class="message-alert" *ngIf="nomeCli_add.invalid && formDir.submitted">
 										Digite um nome
 									</div>
 								</div>
 
 								<div class="item_form">
-									<ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate"
-										placeholder="Digite o telefone" label="Telefone do Cliente" type="tel"
-										label-placement="floating" fill="outline" formControlName="telCli"
-										minlength="15" maxlength="15"></ion-input>
+									<ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate" placeholder="Digite o telefone"
+										label="Telefone do Cliente" type="tel" label-placement="floating" fill="outline"
+										formControlName="telCli" minlength="15" maxlength="15"></ion-input>
 									<div class="message-alert" *ngIf="telCli_add.invalid && formDir.submitted">
 										Digite um Telefone
 									</div>
@@ -114,8 +111,7 @@
 
 								<div class="item_form">
 									<ion-input placeholder="Digite o email" label="E-mail do Cliente" type="email"
-										label-placement="floating" fill="outline"
-										formControlName="emailCli"></ion-input>
+										label-placement="floating" fill="outline" formControlName="emailCli"></ion-input>
 									<div class="message-alert" *ngIf="emailCli_add.invalid && formDir.submitted">
 										Digite um email
 									</div>
@@ -143,23 +139,20 @@
 						</ion-header>
 
 						<!-- form cliente -->
-						<form action="" class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm"
-							#formDir="ngForm">
+						<form action="" class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm" #formDir="ngForm">
 							<ion-list lines="none" class="list-content">
 								<div class="item_form">
-									<ion-input placeholder="Digite o nome" label="Nome do Cliente"
-										label-placement="floating" fill="outline"
-										formControlName="nomeCli_edit"></ion-input>
+									<ion-input placeholder="Digite o nome" label="Nome do Cliente" label-placement="floating"
+										fill="outline" formControlName="nomeCli_edit"></ion-input>
 									<div class="message-alert" *ngIf="nomeCli_edit.invalid && formDir.submitted">
 										Digite um nome
 									</div>
 								</div>
 
 								<div class="item_form">
-									<ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate"
-										placeholder="Digite o telefone" label="Telefone do Cliente" type="tel"
-										label-placement="floating" fill="outline" formControlName="telCli_edit"
-										minlength="15" maxlength="15"></ion-input>
+									<ion-input [maskito]="phoneMask" [maskitoElement]="maskPredicate" placeholder="Digite o telefone"
+										label="Telefone do Cliente" type="tel" label-placement="floating" fill="outline"
+										formControlName="telCli_edit" minlength="15" maxlength="15"></ion-input>
 									<div class="message-alert" *ngIf="telCli_edit.invalid && formDir.submitted">
 										Digite um Telefone
 									</div>
@@ -167,8 +160,7 @@
 
 								<div class="item_form">
 									<ion-input placeholder="Digite o email" label="E-mail do Cliente" type="email"
-										label-placement="floating" fill="outline"
-										formControlName="emailCli_edit"></ion-input>
+										label-placement="floating" fill="outline" formControlName="emailCli_edit"></ion-input>
 									<div class="message-alert" *ngIf="emailCli_edit.invalid && formDir.submitted">
 										Digite um email
 									</div>
@@ -185,68 +177,93 @@
 
 		<ion-modal #modal [isOpen]="modalOpenInfo" backdropDismiss="false">
 			<ng-template>
-			  <div class="wrapper modalCont">
-				<div class="modal_title">
-				  <ion-header  style="margin-bottom: 100px;" style="position: fixed;">
-					<ion-toolbar>
-					  <ion-buttons slot="start">
-						<ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
-					  </ion-buttons>
-					</ion-toolbar>
-				  </ion-header>
-				  <div class="info_main" style="padding-top: 56px;">
-					<ion-segment [(ngModel)]="segmentValue">
-						<ion-segment-button value="agendamentos">
-						  Agendamentos
-						</ion-segment-button>
-						<ion-segment-button value="inadimplencias">
-						  Não pagos
-						</ion-segment-button>
-					  </ion-segment>
-					<ng-container *ngIf="segmentValue === 'agendamentos'; else noAgendamentos">
-					  <ion-list *ngFor="let info_clientes of Info_Clientes">
-						<ion-item>
-						  <ion-text style="text-transform: capitalize;">
-							<strong>{{info_clientes.serv_agendamento}}</strong>
-						  </ion-text>
-						</ion-item>
-						<ion-item>
-						  <ion-text>
-							{{info_clientes.hora_inicio_agendamento}} -
-							{{info_clientes.hora_fim_agendamento}} -
-							{{info_clientes.data_agend}}
-						  </ion-text>
-						</ion-item>
-					  </ion-list>
-					</ng-container>
-					<ng-template #noAgendamentos>
-					  <ng-container *ngIf="segmentValue === 'inadimplencias'; else noInadimplencias">
-						<ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
-						  <ion-col class="ion-text-center">
-							<ion-text>Nenhuma cobrança necessária</ion-text>
-						  </ion-col>
-						</ion-row>
-					  </ng-container>
-					</ng-template>
-					<ng-template #noInadimplencias>
-					  <ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
-						<ion-col class="ion-text-center">
-						  <ion-text>Esse cliente ainda não fez nenhum agendamento...</ion-text>
-						  <ion-buttons class="button_add" (click)="agendar()">
-							<ion-button style="font-size: 1em; padding: 10px;">
-							  Agendar
-							</ion-button>
-						  </ion-buttons>
-						</ion-col>
-					  </ion-row>
-					</ng-template>
-				  </div>
+				<div class="wrapper modalCont">
+					<div class="modal_title">
+						<ion-header style="margin-bottom: 100px;" style="position: fixed;">
+							<ion-toolbar>
+								<ion-buttons slot="start">
+									<ion-button (click)="setOpenInfo(false)">Cancelar</ion-button>
+								</ion-buttons>
+							</ion-toolbar>
+						</ion-header>
+						<div class="info_main" style="padding-top: 56px;">
+							<ion-segment [(ngModel)]="segmentValue" (ionChange)="segmentChanged($event)">
+								<ion-segment-button value="agendamentos">
+									Agendamentos
+								</ion-segment-button>
+								<ion-segment-button value="inadimplencias">
+									Não pagos
+								</ion-segment-button>
+							</ion-segment>
+
+							<ng-container *ngIf="segmentValue === 'agendamentos' && Info_Clientes.length > 0;">
+								<ion-list *ngFor="let info_clientes of Info_Clientes">
+									<ion-item>
+										<ion-text style="text-transform: capitalize;">
+											<strong>{{info_clientes.serv_agendamento}}</strong>
+										</ion-text>
+									</ion-item>
+									<ion-item>
+										<ion-text>
+											{{info_clientes.hora_inicio_agendamento}} -
+											{{info_clientes.hora_fim_agendamento}} -
+											{{info_clientes.data_agend}}
+										</ion-text>
+									</ion-item>
+								</ion-list>
+							</ng-container>
+
+							<ng-template *ngIf="Info_Clientes.length <= 0 || !Info_Clientes && segmentValue == 'agendamentos';">
+								<ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
+									<ion-col class="ion-text-center">
+										<ion-text>Esse cliente ainda não fez nenhum agendamento...</ion-text>
+										<ion-buttons class="button_add" (click)="agendar()">
+											<ion-button style="font-size: 1em; padding: 10px;">
+												Agendar
+											</ion-button>
+										</ion-buttons>
+									</ion-col>
+								</ion-row>
+							</ng-template>
+
+							<ng-container *ngIf="segmentValue === 'inadimplencias' && NaoPagos.length > 0;">
+								<ion-list *ngFor="let nao_pagos of NaoPagos">
+									<ion-item>
+										<ion-text style="text-transform: capitalize;">
+											<strong>{{nao_pagos.serv_agendamento}}</strong>
+										</ion-text>
+									</ion-item>
+									<ion-item>
+										<ion-text>
+											{{nao_pagos.hora_inicio_agendamento}} -
+											{{nao_pagos.hora_fim_agendamento}} -
+											{{nao_pagos.data_agend}}
+										</ion-text>
+										<ion-checkbox slot="end" (ionChange)="checkboxChanged($event, nao_pagos.id_agendamento)">
+											<ion-label>Pago</ion-label>
+										</ion-checkbox>
+
+									</ion-item>
+								</ion-list>
+							</ng-container>
+
+							<ng-template *ngIf="NaoPagos.length == 0 || !NaoPagos && segmentValue == 'inadimplencias';">
+								<ng-container>
+									<ion-row class="ion-justify-content-center" style="padding: 40px 0; font-size: 1.3em;">
+										<ion-col class="ion-text-center">
+											<ion-text>Nenhuma cobrança necessária</ion-text>
+										</ion-col>
+									</ion-row>
+								</ng-container>
+							</ng-template>
+
+						</div>
+					</div>
 				</div>
-			  </div>
 			</ng-template>
-		  </ion-modal>
-		  
-		  
+		</ion-modal>
+
+
 
 		<!-- Btn para adicionar um novo cliente -->
 		<ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">

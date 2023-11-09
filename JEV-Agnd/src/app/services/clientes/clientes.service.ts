@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Clientes } from 'src/app/models/clientes';
 import { InfoClientes } from 'src/app/models/infoClientes';
+import { NaoPagos } from 'src/app/models/naoPago';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -32,6 +33,12 @@ export class ClientesService {
     );
   }
 
+  listNaoPagos(id: any) {
+    return this.httpClient.get<NaoPagos[]>(this.API + 'clientes/listar_naoPagos.php?id=' + id).pipe(
+      tap(dados => console.log(dados))
+    );
+  }
+
   delete(id: any) {
     return this.httpClient.delete(this.API + 'clientes/remover_clientes.php?id=' + id);
   }
@@ -42,5 +49,9 @@ export class ClientesService {
 
   update(cliente: any) {
     return this.httpClient.put(this.API + 'clientes/update_clientes.php', cliente);
+  }
+
+  updatePagar(id: any) {
+    return this.httpClient.put(this.API + 'clientes/update_pagar.php', id);
   }
 }
