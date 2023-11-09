@@ -318,10 +318,9 @@ export class ClientesPage implements OnInit {
       console.log(id);
       // Execute sua função aqui...
       this.clientesService.updatePagar(id).subscribe((dados: any) =>{
-        this.listInformacoes(this.id_selected);
-        if(dados.message == 'success'){
-          
-        }
+        setTimeout(() => {
+          this.listInformacoes(this.id_selected); // Substitua 'suaFuncao' pelo nome da sua função
+        }, 500);
       });
     } else {
       console.log('Checkbox desselecionado!');
