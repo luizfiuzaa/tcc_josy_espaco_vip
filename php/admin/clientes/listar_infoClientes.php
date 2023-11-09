@@ -7,7 +7,7 @@ $data = json_decode(file_get_contents("php://input"));
 try {
     $id = $_GET['id'];
 
-    $sql = "SELECT `hora_inicio_agendamento`,`hora_fim_agendamento`,`data_agend`,`serv_agendamento` FROM `agendamento` WHERE fk_id_cliente = :fk_id_cliente";
+    $sql = "SELECT `hora_inicio_agendamento`,`hora_fim_agendamento`,`data_agend`,`serv_agendamento`,`preco_agend` FROM `agendamento` WHERE fk_id_cliente = :fk_id_cliente";
 
     $stmt = $connection->prepare($sql);
     $stmt->bindValue(':fk_id_cliente', $id, PDO::PARAM_INT);

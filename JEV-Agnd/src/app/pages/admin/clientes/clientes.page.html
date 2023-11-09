@@ -206,15 +206,12 @@
 					<ng-container *ngIf="segmentValue === 'agendamentos'; else noAgendamentos">
 					  <ion-list *ngFor="let info_clientes of Info_Clientes">
 						<ion-item>
-						  <ion-text style="text-transform: capitalize;">
-							<strong>{{info_clientes.serv_agendamento}}</strong>
-						  </ion-text>
-						</ion-item>
-						<ion-item>
-						  <ion-text>
-							{{info_clientes.hora_inicio_agendamento}} -
-							{{info_clientes.hora_fim_agendamento}} -
-							{{info_clientes.data_agend}}
+						  <ion-text class="ion-margin" style="text-transform: capitalize;">
+								<strong>({{info_clientes.data_agend}})</strong>
+								<p>{{info_clientes.hora_inicio_agendamento}} - {{info_clientes.hora_fim_agendamento}}</p>
+								<p>{{info_clientes.serv_agendamento}}</p>
+								<p>R$: {{info_clientes.preco_agend}}</p>
+							
 						  </ion-text>
 						</ion-item>
 					  </ion-list>
