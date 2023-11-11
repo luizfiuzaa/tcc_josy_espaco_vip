@@ -21,6 +21,7 @@ export class ClientesPage implements OnInit {
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
   Info_Clientes: InfoClientes[] = [];
+  Info_Clientes_inadiplentes: InfoClientes[] = [];
   NaoPagos: NaoPagos[] = [];
 
   filterClienteName(e: Event) {
@@ -236,12 +237,15 @@ export class ClientesPage implements OnInit {
     this.modalOpenInfo = isOpen;
   }
 
+  infoCliSegment: boolean = true;
   segmentValue: string = 'agendamentos'; // Valor padrão
 
   // Função chamada quando a seleção do ion-segment muda
   segmentChanged(event: any) {
     this.segmentValue = (event.detail as any).value;
     console.log(this.segmentValue);
+    this.infoCliSegment = (this.segmentValue == 'agendamentos') ? true : false; 
+    console.log(this.infoCliSegment)
 
     // Adicione lógica para mostrar a tela correspondente ao segmento selecionado
     if (this.segmentValue === 'agendamentos') {
@@ -263,26 +267,15 @@ export class ClientesPage implements OnInit {
   id_selected: any;
   listInformacoes(id: any) {
     this.Info_Clientes = [];
+    this.Info_Clientes_inadiplentes = [];
     this.id_selected = id;
     this.clientesService.listInfomacoes(id).subscribe((dados: any) => {
       if (dados.success == '1') {
-        this.Info_Clientes = dados.data;
+        this.Info_Clientes = dados.data.filter((agendamento:any)=> agendamento.status_agendamento == 'p');
+        this.Info_Clientes_inadiplentes = dados.data.filter((agendamento:any)=> agendamento.status_agendamento == 'i');
 
-        this.Info_Clientes.sort((a, b) => {
-          let dataA = new Date(a.data_agend + " " + a.hora_inicio_agendamento);
-          let dataB = new Date(b.data_agend + " " + b.hora_inicio_agendamento);
-          return dataB.getTime() - dataA.getTime();
-        });
         console.log(this.Info_Clientes);
-        this.Info_Clientes = this.Info_Clientes.map((dados: any) => {
-          let data: any = dados.data_agend.split("-");
-          data = `${data[2]}/${data[1]}/${data[0]}`
-
-          let horario_inicio: any = dados.hora_inicio_agendamento.substr(0, 5);
-          let horario_fim: any = dados.hora_fim_agendamento.substr(0, 5);
-          return { ...dados, data_agend: data, hora_inicio_agendamento: horario_inicio, hora_fim_agendamento: horario_fim };
-        });
-        console.log(this.Info_Clientes);
+        console.log(this.Info_Clientes_inadiplentes);
       }
     })
 
