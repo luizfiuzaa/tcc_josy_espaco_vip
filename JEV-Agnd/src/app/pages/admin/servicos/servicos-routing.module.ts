@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ServicosPage
+  },
+  {
+    path: 'servicos',
+    component: ServicosPage
   }
 ];
 

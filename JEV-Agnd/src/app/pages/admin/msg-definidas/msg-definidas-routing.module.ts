@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: MsgDefinidasPage
+  },
+  {
+    path: 'msg-definidas',
+    component: MsgDefinidasPage
   }
 ];
 

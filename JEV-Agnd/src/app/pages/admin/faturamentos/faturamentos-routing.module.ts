@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: FaturamentosPage
+  },
+  {
+    path: 'faturamentos',
+    component: FaturamentosPage
   }
 ];
 

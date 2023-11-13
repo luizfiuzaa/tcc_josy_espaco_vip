@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: LandingPage
+  },
+  {
+    path: 'landing',
+    component: LandingPage
   }
 ];
 

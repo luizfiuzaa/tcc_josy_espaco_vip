@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: SignupPage
+  },
+  {
+    path: 'signup',
+    component: SignupPage
   }
 ];
 

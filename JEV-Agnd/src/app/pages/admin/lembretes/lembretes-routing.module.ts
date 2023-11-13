@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: LembretesPage
+  },
+  {
+    path: 'lembretes',
+    component: LembretesPage
   }
 ];
 
