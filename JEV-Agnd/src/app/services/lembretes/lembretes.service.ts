@@ -12,6 +12,13 @@ export class LembretesService {
   // private readonly API = 'http://localhost/aula/php/admin/clientes/';
   private readonly API = environment.baseApiUrl;
 
+  contador: number = 0;
+
+  atualizarContagem(dado: number){
+    this.contador = dado;
+    console.log(this.contador)
+  }
+
   constructor(private httpClient: HttpClient) { }
 
   list() {

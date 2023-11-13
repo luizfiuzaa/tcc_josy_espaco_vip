@@ -249,55 +249,86 @@
           <form class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm" #formEdit="ngForm">
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
-                <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDateEdit" formControlName="calendario_edit"
-                  minuteValues="0,15,30,45" class="calendario_modal" mode="md">
-                  <span slot="time-label">
-                    <ion-text class="time_title">
-                      <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
-                      Horário
-                    </ion-text>
-                  </span>
-                </ion-datetime>
-                <div class="message-alert" *ngIf="calendario_edit.invalid && formEdit.submitted">
-                  Selecione um dia e Horario.
+                <div class="container_calendario">
+                  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDateEdit" formControlName="calendario_edit"
+                    minuteValues="0,15,30,45" class="calendario_modal" mode="ios" [min]="this.hoje">
+                    <span slot="time-label">
+                      <ion-text class="time_title">
+                        <ion-icon style="font-size: 1rem" name="alarm-outline"></ion-icon>
+                        Horário
+                      </ion-text>
+                    </span>
+                  </ion-datetime>
+                  <div class="message-alert" *ngIf="calendario_edit.invalid && formEdit.submitted">
+                    Selecione um dia e Horario.
+                  </div>
                 </div>
-                <!-- Clientes -->
+
+
+                <div class="item_form" style="padding-bottom: 1em;">
+                  <ion-checkbox (ionChange)="mostrarCondicionais = !mostrarCondicionais">Repetir?</ion-checkbox>
+                </div>
+
+                <!-- quantidade de agendamentos -->
+                <div class="item_form" *ngIf="mostrarCondicionais">
+                  <ion-item>
+                    <ion-input (input)="AlterQuantidade($event)" [maskito]="numberMask" [maskitoElement]="maskPredicate"
+                      label="Quantidade:"></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-input (input)="AlterIntervalo($event)" [maskito]="numberMask" [maskitoElement]="maskPredicate"
+                      label="Intervalo(Dias):"></ion-input>
+                  </ion-item>
+                </div>
+
                 <div class="item_form">
-                  <ion-select [(ngModel)]="inputClienteEdit" label="Cliente" label-placement="floating"
-                    interface="popover" formControlName="cliente_edit">
-                    <!-- Opções de clientes -->
-                    <ion-select-option *ngFor="let cliente of Clientes" [value]="cliente.id_cliente">{{
-                      cliente.cliente_nome }}</ion-select-option>
-                  </ion-select>
+                  <mat-form-field>
+                    <mat-label>Cliente</mat-label>
+                    <input type="text" (input)="digitou($event)" matInput [matAutocomplete]="auto"
+                      formControlName="cliente_edit">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="clienteSecionado">
+                      <mat-option *ngFor="let cliente of clientesFiltrados" [value]="cliente" class="optionClientes">
+                        {{cliente.cliente_nome}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
                   <div class="message-alert" *ngIf="cliente_edit.invalid && formEdit.submitted">
                     Selecione um cliente.
                   </div>
                 </div>
+
                 <!-- Serviços -->
                 <div class="item_form">
-                  <ion-select [(ngModel)]="inputServicosEdit" label="Serviço(s):" label-placement="floating"
-                    placeholder="Selecione o(s) serviço(s)" [multiple]="true" interface="popover"
-                    formControlName="servicos_edit" (ionChange)="precoAgendamento($event)">
-                    <ion-select-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
-                      {{ servicos.titulo_servico }}
-                    </ion-select-option>
-                  </ion-select>
+                  <mat-form-field>
+                    <mat-label>Serviço(s)</mat-label>
+                    <mat-select formControlName="servicos_edit" multiple
+                      (selectionChange)="this.precoAgendamento($event)" [(ngModel)]="this.inputServicosEdit">
+                      <mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
+                        <span class="optionServicos">{{ servicos.titulo_servico }}</span>
+                        |
+                        <span> R$ {{ servicos.preco_servico }}</span>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                   <div class="message-alert" *ngIf="servicos_edit.invalid && formEdit.submitted">
                     Selecione o(s) serviço(s).
                   </div>
                 </div>
+
                 <!-- Pagamento -->
                 <div class="item_form">
-                  <ion-select [(ngModel)]="inputMetodoPagamentoEdit" label="Método de Pagamento"
-                    label-placement="floating" interface="popover" formControlName="formaDePagamento_edit">
-                    <!-- Opções de pagamento -->
-                    <ion-select-option value="pix">Pix</ion-select-option>
-                    <ion-select-option value="dinheiro">Dinheiro</ion-select-option>
-                    <ion-select-option value="debito">Débito</ion-select-option>
-                    <ion-select-option value="credito">Crédito</ion-select-option>
-                  </ion-select>
+                  <mat-form-field>
+                    <mat-label>Método de Pagamento</mat-label>
+                    <mat-select formControlName="formaDePagamento_edit" [(ngModel)]="inputMetodoPagamentoEdit">
+                      <mat-option value="pix">Pix</mat-option>
+                      <mat-option value="dinheiro">Dinheiro</mat-option>
+                      <mat-option value="debito">Débito</mat-option>
+                      <mat-option value="credito">Crédito</mat-option>
+                    </mat-select>
+                  </mat-form-field>
                   <div class="message-alert" *ngIf="formaDePagamento_edit.invalid && formEdit.submitted">
-                    Selecione uma forma de pagamento.
+                    Forma de pagamento inválida
                   </div>
                 </div>
                 <!-- Preço -->
