@@ -48,8 +48,8 @@ export class ClientesPage implements OnInit {
   }
 
   constructor(private clientesService: ClientesService, private router: Router) {
-    console.log(this.ionmenu);
-    this.ionmenu?.setOpen(false);
+    // console.log(this.ionmenu);
+    // this.ionmenu?.setOpen(false);
   }
 
 
