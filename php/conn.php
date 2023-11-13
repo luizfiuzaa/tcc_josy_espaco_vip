@@ -1,4 +1,7 @@
 <?php
+// Definição do timezone para São Paulo América do Sul.
+date_default_timezone_set('America/Sao_Paulo');
+
 $host = "localhost"; // endereço do servidor
 // $usuario = "id21424056_marlonvicctor"; // usuário do MySQL
 // $senha = "#grupoNota1000#"; // senha do MySQL
