@@ -26,17 +26,8 @@ export class HeaderMenuComponent implements OnInit {
           let dataLembrete = new Date(`${lembrete.dataLembrete}T${lembrete.horario}`);
           let duasHorasAntes = new Date(dataLembrete.getTime() - 2 * 60 * 60 * 1000);
           return dataAtual >= duasHorasAntes && dataAtual < dataLembrete
-        }).map((dados: any) => {
-          var data: any = dados.dataLembrete.split("-");
-          data = `${data[2]}/${data[1]}/${data[0]}`;
-          let horario: any = dados.horario.substr(0, 5);
-          let horario_lembrete: any = dados.horarioLembrete.substr(0, 5);
-          return { ...dados, dataLembrete: data, horario: horario, horarioLembrete: horario_lembrete };
-        });
-        console.log(this.Lembretes_exibidos)
-        console.log(this.Lembretes)
+        })
         this.numeroLembretes = this.Lembretes_exibidos.length;
-        console.log(this.numeroLembretes)
         this.lembretesService.atualizarContagem(this.Lembretes_exibidos.length);
         return;
       }
@@ -46,8 +37,6 @@ export class HeaderMenuComponent implements OnInit {
       console.log(this.numeroLembretes)
     })
     this.lembretesService.atualizarContagem(this.Lembretes_exibidos.length);
-
-
   }
 
   menuClose() {
