@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, IonMenu } from '@ionic/angular';
 import { timestamp } from 'rxjs';
 import { Clientes } from 'src/app/models/clientes';
 import { ClientesService } from 'src/app/services/clientes/clientes.service';
@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./clientes.page.scss'],
 })
 export class ClientesPage implements OnInit {
+  // @ViewChild('ionmenu') ionmenu: IonMenu | undefined;
 
   cliente: any;
   ClienteCad: Clientes[] = [];
@@ -43,7 +44,10 @@ export class ClientesPage implements OnInit {
     }
   }
 
-  constructor(private clientesService: ClientesService, private router: Router) {}
+  constructor(private clientesService: ClientesService, private router: Router) {
+    console.log(this.ionmenu);
+    this.ionmenu?.setOpen(false);
+  }
 
 
   ngOnInit() {

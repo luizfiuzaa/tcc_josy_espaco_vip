@@ -10,7 +10,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MaskitoModule } from '@maskito/angular';
-
+// import { HeaderMenuModule } from 'src/app/components/header-menu/header-menu.module';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -27,7 +27,8 @@ import { HomePageRoutingModule } from './home-routing.module';
     MatNativeDateModule,
     MatSelectModule,
     MatInputModule,
-    MaskitoModule
+    MaskitoModule,
+    // HeaderMenuModule
   ],
   declarations: [
     HomePage
