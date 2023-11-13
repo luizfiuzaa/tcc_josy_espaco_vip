@@ -84,7 +84,7 @@ try {
 	$hora_inicio_agendamento = trim($data->hora_inicio_agendamento);
 	$hora_fim_agendamento = $hora->format('H:i:s');
 	$data_agend = htmlspecialchars(trim($data->data_agend));
-	$status_agendamento = htmlspecialchars(trim($data->status_agendamento));
+	$status_agendamento = 0;
 	$preco_serv = htmlspecialchars(trim($data->preco_agend));
 	$metodo_pagamento = htmlspecialchars(trim($data->metodo_de_pagamento));
 	$cli_agendamento = $cliente;

@@ -21,8 +21,16 @@ export class LembretesPage implements OnInit {
 	list_lembretes() {
 		this.LembretesService.list().subscribe((dados: any) => {
 			if (dados.success == '1') {
+				let dataAtual = new Date();
+				let dataAmanha = new Date();
+				dataAmanha.setDate(dataAtual.getDate() + 1);
+				dataAmanha.setHours(0, 0, 0, 0);
 				this.Lembretes = dados.lembretes;
-				this.Lembretes_exibidos = this.Lembretes.filter((lembrete: any) => new Date(`${lembrete.dataLembrete}T${lembrete.horario}`) >= new Date()).map((dados: any) => {
+				this.Lembretes_exibidos = this.Lembretes.filter((lembrete: any) => {
+					let dataLembrete = new Date(`${lembrete.dataLembrete}T${lembrete.horario}`);
+					let duasHorasAntes = new Date(dataLembrete.getTime() - 2 * 60 * 60 * 1000);
+					return dataAtual >= duasHorasAntes && dataAtual < dataLembrete
+				}).map((dados: any) => {
 					var data: any = dados.dataLembrete.split("-");
 					data = `${data[2]}/${data[1]}/${data[0]}`;
 					let horario: any = dados.horario.substr(0, 5);
@@ -31,10 +39,12 @@ export class LembretesPage implements OnInit {
 				});
 				console.log(this.Lembretes_exibidos)
 				console.log(this.Lembretes)
+				this.LembretesService.atualizarContagem(this.Lembretes_exibidos.length);
 				return;
 			}
 			this.Lembretes = [];
 			this.Lembretes_exibidos = this.Lembretes;
+			this.LembretesService.atualizarContagem(this.Lembretes_exibidos.length);
 		})
 	}
 

@@ -65,7 +65,7 @@ CREATE TABLE `agendamento`(
 	`hora_inicio_agendamento` TIME NOT NULL,
 	`hora_fim_agendamento` TIME NOT NULL,
 	`data_agend` DATE NOT NULL,
-	`status_agendamento` CHAR(1) NOT NULL,
+	`status_agendamento` BOOLEAN NOT NULL,
 	`preco_agend` DECIMAL(10, 2) NOT NULL,
 	`metodo_de_pagamento` VARCHAR(20) NOT NULL,
 	`cli_agendamento` VARCHAR(70) NOT NULL,

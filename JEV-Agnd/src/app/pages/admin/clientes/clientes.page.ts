@@ -7,6 +7,7 @@ import { ClientesService } from 'src/app/services/clientes/clientes.service';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 import { InfoClientes } from 'src/app/models/infoClientes';
 import { Router } from '@angular/router';
+import { NaoPagos } from 'src/app/models/naoPago';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class ClientesPage implements OnInit {
   ClienteCad: Clientes[] = [];
   clientes_Exibidos: Clientes[] = [];
   Info_Clientes: InfoClientes[] = [];
+  Info_Clientes_inadiplentes: InfoClientes[] = [];
+  NaoPagos: NaoPagos[] = [];
 
   filterClienteName(e: Event) {
     let estado: boolean = false;
@@ -238,11 +241,24 @@ export class ClientesPage implements OnInit {
     this.modalOpenInfo = isOpen;
   }
 
+  infoCliSegment: boolean = true;
   segmentValue: string = 'agendamentos'; // Valor padrão
 
   // Função chamada quando a seleção do ion-segment muda
-  segmentChanged(event: CustomEvent) {
-    this.segmentValue = event.detail.value;
+  segmentChanged(event: any) {
+    this.segmentValue = (event.detail as any).value;
+    console.log(this.segmentValue);
+    this.infoCliSegment = (this.segmentValue == 'agendamentos') ? true : false; 
+    console.log(this.infoCliSegment)
+
+    // Adicione lógica para mostrar a tela correspondente ao segmento selecionado
+    if (this.segmentValue === 'agendamentos') {
+      // Lógica para mostrar a tela de agendamentos
+      console.log('Mostrar tela de agendamentos');
+    } else if (this.segmentValue === 'inadimplencias') {
+      // Lógica para mostrar a tela de inadimplências
+      console.log('Mostrar tela de inadimplências');
+    }
   }
 
   agendar() {
@@ -252,19 +268,33 @@ export class ClientesPage implements OnInit {
     }, 100)
   }
 
+  id_selected: any;
   listInformacoes(id: any) {
     this.Info_Clientes = [];
+    this.Info_Clientes_inadiplentes = [];
+    this.id_selected = id;
     this.clientesService.listInfomacoes(id).subscribe((dados: any) => {
       if (dados.success == '1') {
-        this.Info_Clientes = dados.data;
+        this.Info_Clientes = dados.data.filter((agendamento:any)=> agendamento.status_agendamento == 'p');
+        this.Info_Clientes_inadiplentes = dados.data.filter((agendamento:any)=> agendamento.status_agendamento == 'i');
 
-        this.Info_Clientes.sort((a, b) => {
+        console.log(this.Info_Clientes);
+        console.log(this.Info_Clientes_inadiplentes);
+      }
+    })
+
+    this.NaoPagos = [];
+    this.clientesService.listNaoPagos(id).subscribe((dados: any) => {
+      if (dados.success == '1') {
+        this.NaoPagos = dados.data;
+
+        this.NaoPagos.sort((a, b) => {
           let dataA = new Date(a.data_agend + " " + a.hora_inicio_agendamento);
           let dataB = new Date(b.data_agend + " " + b.hora_inicio_agendamento);
           return dataB.getTime() - dataA.getTime();
         });
-        console.log(this.Info_Clientes);
-        this.Info_Clientes = this.Info_Clientes.map((dados: any) => {
+        console.log(this.NaoPagos);
+        this.NaoPagos = this.NaoPagos.map((dados: any) => {
           let data: any = dados.data_agend.split("-");
           data = `${data[2]}/${data[1]}/${data[0]}`
 
@@ -272,11 +302,27 @@ export class ClientesPage implements OnInit {
           let horario_fim: any = dados.hora_fim_agendamento.substr(0, 5);
           return { ...dados, data_agend: data, hora_inicio_agendamento: horario_inicio, hora_fim_agendamento: horario_fim };
         });
-        console.log(this.Info_Clientes);
+        console.log(this.NaoPagos);
       }
     })
 
     this.setOpenInfo(true)
+  }
+
+  checkboxChanged(event: any, id:any) {
+    // A lógica que você deseja executar quando o checkbox é alterado
+    if (event.detail.checked) {
+      console.log(id);
+      // Execute sua função aqui...
+      this.clientesService.updatePagar(id).subscribe((dados: any) =>{
+        setTimeout(() => {
+          this.listInformacoes(this.id_selected); // Substitua 'suaFuncao' pelo nome da sua função
+        }, 500);
+      });
+    } else {
+      console.log('Checkbox desselecionado!');
+      // Execute sua função quando o checkbox é desselecionado...
+    }
   }
 
   readonly phoneMask: MaskitoOptions = {

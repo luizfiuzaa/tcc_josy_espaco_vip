@@ -122,7 +122,7 @@ export class HomePage implements OnInit {
 			let dataA = new Date(a.data_agend + " " + a.hora_inicio_agendamento);
 			let dataB = new Date(b.data_agend + " " + b.hora_inicio_agendamento);
 			return dataA.getTime() - dataB.getTime();
-		  });
+		});
 	}
 
 	date = new Date();
@@ -372,7 +372,7 @@ export class HomePage implements OnInit {
 				id_agendamento: this.indiceEdit,
 				status_agendamento: 'e',
 				hora_inicio_agendamento: dia_hora[1] + ':00',
-				cli_agendamento: this.EditForm.value.cliente_edit,
+				cli_agendamento: this.EditForm.value.cliente_edit.id_cliente,
 				serv_agendamento: this.EditForm.value.servicos_edit,
 				metodo_de_pagamento: this.EditForm.value.formaDePagamento_edit,
 				preco_agend: this.precoAgend,
@@ -407,7 +407,6 @@ export class HomePage implements OnInit {
 		let data = agendamento.data_agend.split('/');
 		this.myDateEdit = `${data[2]}-${data[1]}-${data[0]}T${agendamento.hora_inicio_agendamento}`;
 		let cliente = this.Clientes.find((dados: any) => dados.cliente_nome == agendamento.cli_agendamento);
-		this.inputClienteEdit = cliente?.id_cliente;
 		let servico = this.Servicos.filter((dados: any) => agendamento.serv_agendamento.includes(dados.titulo_servico));
 		servico.forEach((element: any) => {
 			this.inputServicosEdit.push(element.id_servico);
