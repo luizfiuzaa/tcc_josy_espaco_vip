@@ -52,6 +52,6 @@ export class ClientesService {
   }
 
   updatePagar(id: any) {
-    return this.httpClient.put(this.API + 'clientes/update_pagar.php', id);
+    return this.httpClient.put(this.API + 'clientes/update_pagar.php', {id: id});
   }
 }

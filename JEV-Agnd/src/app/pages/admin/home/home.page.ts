@@ -259,7 +259,7 @@ export class HomePage implements OnInit {
 
 			if (this.mostrarCondicionais == false) {
 				agendamento = {
-					status_agendamento: 'e',
+					status_agendamento: 'i',
 					hora_inicio_agendamento: dia_hora[1],
 					cli_agendamento: this.AddForm.value.cliente.id_cliente,
 					serv_agendamento: this.AddForm.value.servicos,

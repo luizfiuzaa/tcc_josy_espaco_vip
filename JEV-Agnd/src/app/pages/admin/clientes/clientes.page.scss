@@ -162,10 +162,30 @@ ion-card ion-text {
   justify-content: center;
 }
 
-.icon_angular{
-color: rgba(143, 143, 143, 0.185);
-font-size: 2em;
-position: absolute;
-right: 0;
-bottom: 0;
+.icon_angular {
+  color: rgba(143, 143, 143, 0.185);
+  font-size: 2em;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+ion-checkbox {
+  --size: 24px;
+}
+
+ion-checkbox::part(container) {
+  border-radius: 6px;
+}
+
+.agends_inadiplete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ion-checkbox {
+  width: fit-content;
+  font-size: 1em;
 }

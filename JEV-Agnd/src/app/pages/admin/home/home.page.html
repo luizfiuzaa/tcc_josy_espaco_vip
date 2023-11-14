@@ -191,8 +191,7 @@
                     <mat-select formControlName="servicos" multiple (selectionChange)="this.precoAgendamento($event)">
                       <mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
                         <span class="optionServicos">{{ servicos.titulo_servico }}</span>
-                        |
-                        <span> R$ {{ servicos.preco_servico }}</span>
+                        <span> ( R$ {{ servicos.preco_servico }} )</span>
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -307,8 +306,7 @@
                       (selectionChange)="this.precoAgendamento($event)" [(ngModel)]="this.inputServicosEdit">
                       <mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
                         <span class="optionServicos">{{ servicos.titulo_servico }}</span>
-                        |
-                        <span> R$ {{ servicos.preco_servico }}</span>
+                        <span> ( R$ {{ servicos.preco_servico }} )</span>
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

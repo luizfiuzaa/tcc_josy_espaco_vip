@@ -224,17 +224,27 @@
 								</ion-list>
 							</ng-container>
 							<ng-container
-								*ngIf="segmentValue == 'inadimplencias' && Info_Clientes.length > 0 && this.infoCliSegment == false; else noInadimplencias">
-								<ion-list *ngFor="let info_clientes of Info_Clientes">
+								*ngIf="segmentValue == 'inadimplencias' && Info_Clientes_inadiplentes.length > 0 && this.infoCliSegment == false; else noInadimplencias">
+								<ion-list *ngFor="let info_clientes of Info_Clientes_inadiplentes">
 									<ion-item>
-										<ion-text class="ion-margin" style="text-transform: capitalize;">
-											<strong>({{info_clientes.data_agend}})</strong>
-											<p>{{info_clientes.hora_inicio_agendamento}} -
-												{{info_clientes.hora_fim_agendamento}}</p>
-											<p>{{info_clientes.serv_agendamento}}</p>
-											<p>R$: {{info_clientes.preco_agend}}</p>
-										</ion-text>
+										<div class="agends_inadiplete">
+											<ion-text class="ion-margin" style="text-transform: capitalize;">
+												<strong>({{info_clientes.data_agend}})</strong>
+												<p>{{info_clientes.hora_inicio_agendamento}} -
+													{{info_clientes.hora_fim_agendamento}}</p>
+												<p>{{info_clientes.serv_agendamento}}</p>
+												<p>R$: {{info_clientes.preco_agend}}</p>
+											</ion-text>
+
+											<ion-checkbox class="ion-checkbox"
+												(ionChange)="checkboxChanged($event, info_clientes.id_agendamento)">
+												Pago
+											</ion-checkbox>
+										</div>
 									</ion-item>
+									<!-- <ion-item> -->
+
+									<!-- </ion-item> -->
 								</ion-list>
 
 							</ng-container>

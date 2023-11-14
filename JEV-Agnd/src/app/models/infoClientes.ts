@@ -4,4 +4,5 @@ export interface InfoClientes {
     serv_agendamento: string;
     data_agend: string;
     preco_agend: string;
+    id_agendamento: string;
 }
