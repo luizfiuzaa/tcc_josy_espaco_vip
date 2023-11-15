@@ -15,28 +15,10 @@ export class HeaderMenuComponent implements OnInit {
   Lembretes_exibidos: Lembretes[] = [];
 
   constructor(private menu: MenuController, private login: LoginService, private lembretesService: LembretesService) {
-    this.lembretesService.list().subscribe((dados: any) => {
-      if (dados.success == '1') {
-        let dataAtual = new Date();
-        let dataAmanha = new Date();
-        dataAmanha.setDate(dataAtual.getDate() + 1);
-        dataAmanha.setHours(0, 0, 0, 0);
-        this.Lembretes = dados.lembretes;
-        this.Lembretes_exibidos = this.Lembretes.filter((lembrete: any) => {
-          let dataLembrete = new Date(`${lembrete.dataLembrete}T${lembrete.horario}`);
-          let duasHorasAntes = new Date(dataLembrete.getTime() - 2 * 60 * 60 * 1000);
-          return dataAtual >= duasHorasAntes && dataAtual < dataLembrete
-        })
-        this.numeroLembretes = this.Lembretes_exibidos.length;
-        this.lembretesService.atualizarContagem(this.Lembretes_exibidos.length);
-        return;
-      }
-      this.Lembretes = [];
-      this.Lembretes_exibidos = this.Lembretes;
-      this.numeroLembretes = this.Lembretes_exibidos.length;
-      console.log(this.numeroLembretes)
+    this.lembretesService.contagem().subscribe((dados: any) => {
+      this.lembretesService.atualizarContagem(dados.contador);
+      this.numeroLembretes = dados.contador;
     })
-    this.lembretesService.atualizarContagem(this.Lembretes_exibidos.length);
   }
 
   menuClose() {
