@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
 try {
 
   $data = json_decode(file_get_contents("php://input"));
-  $id = $data;
+  $id = $data->id;
 
   $put = "SELECT * FROM `agendamento` WHERE id_agendamento=:id_agendamento";
   $stmt = $connection->prepare($put);
@@ -34,14 +34,14 @@ try {
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $status_agendamento = 1;
+    $status_agendamento = 'p';
 
     $update_agend = "UPDATE `agendamento` SET status_agendamento = :status_agendamento
         WHERE id_agendamento = :id_agendamento";
 
     $update_stmt = $connection->prepare($update_agend);
 
-    $update_stmt->bindValue(':status_agendamento', $status_agendamento, PDO::PARAM_BOOL);
+    $update_stmt->bindValue(':status_agendamento', $status_agendamento, PDO::PARAM_STR);
 
     $update_stmt->bindValue(':id_agendamento', $id, PDO::PARAM_INT);
 

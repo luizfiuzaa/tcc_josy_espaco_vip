@@ -288,7 +288,7 @@ export class HomePage implements OnInit {
 					const dataFormatada = dataAgendamento.toISOString().replace('.000Z', '').split('T')[0];
 
 					agendamento = {
-						status_agendamento: 'e',
+						status_agendamento: 'i',
 						hora_inicio_agendamento: dia_hora[1],
 						cli_agendamento: this.AddForm.value.cliente.id_cliente,
 						serv_agendamento: this.AddForm.value.servicos,
@@ -370,7 +370,7 @@ export class HomePage implements OnInit {
 			let dia_hora = ((this.EditForm.value.calendario_edit).replace('.000Z', '')).split('T');
 			let agendamento = {
 				id_agendamento: this.indiceEdit,
-				status_agendamento: 'e',
+				status_agendamento: 'i',
 				hora_inicio_agendamento: dia_hora[1] + ':00',
 				cli_agendamento: this.EditForm.value.cliente_edit.id_cliente,
 				serv_agendamento: this.EditForm.value.servicos_edit,
