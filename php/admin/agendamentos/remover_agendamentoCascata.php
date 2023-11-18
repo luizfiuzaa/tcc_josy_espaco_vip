@@ -8,7 +8,7 @@ if ($method == "OPTIONS") {
     die();
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'DELETE'){
+if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
     http_response_code(405);
     echo json_encode([
         'success' => 0,
@@ -27,12 +27,17 @@ if (!isset($id)) {
 
 try {
 
-    $fetch_post = "SELECT * FROM `agendamento` WHERE id_cascata=:id";
-    $fetch_stmt = $connection->prepare($fetch_post);
-    $fetch_stmt->bindValue(':id', $id, PDO::PARAM_STR);
-    $fetch_stmt->execute();
+    $select_post = "SELECT * FROM `agendamento` WHERE id_cascata=:id";
+    $select_stmt = $connection->prepare($select_post);
+    $select_stmt->bindValue(':id', $id, PDO::PARAM_STR);
+    $select_stmt->execute();
 
-    if ($fetch_stmt->rowCount() > 0) {
+    if ($select_stmt->rowCount() > 0) {
+
+        $delete_lembrete = "DELETE FROM `lembretes` WHERE idCascata=:id";
+        $delete_lembrete_stmt = $connection->prepare($delete_lembrete);
+        $delete_lembrete_stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        $delete_lembrete_stmt->execute();
 
         $delete_post = "DELETE FROM `agendamento` WHERE id_cascata=:id";
         $delete_post_stmt = $connection->prepare($delete_post);

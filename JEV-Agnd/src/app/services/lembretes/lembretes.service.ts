@@ -14,18 +14,25 @@ export class LembretesService {
 
   contador: number = 0;
 
+  constructor(private httpClient: HttpClient) { }
+
   atualizarContagem(dado: number) {
     this.contador = dado;
-    console.log(this.contador)  
+    console.log(this.contador)
   }
-
-  constructor(private httpClient: HttpClient) { }
 
   contagem() {
     return this.httpClient.get(this.API + 'lembretes/contador_de_lembretes.php').pipe(
       tap(contador => {
         console.log(contador);
       })
+    );
+  }
+
+  alterarStatus(lembretes: Lembretes[]) {
+    console.log('passei aqui')
+    return this.httpClient.put(this.API + 'lembretes/alterar_status.php', lembretes).pipe(
+      tap(mensagem => console.log(mensagem))
     );
   }
 

@@ -54,7 +54,7 @@ try {
                 'success' => 1,
                 'message' => 'Dado alterado com sucesso'
             ]);
-            exit;
+            exit();
         }
 
         echo json_encode([

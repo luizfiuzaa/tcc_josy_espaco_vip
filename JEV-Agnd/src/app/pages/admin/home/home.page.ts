@@ -371,7 +371,7 @@ export class HomePage implements OnInit {
 			let agendamento = {
 				id_agendamento: this.indiceEdit,
 				status_agendamento: 'i',
-				hora_inicio_agendamento: dia_hora[1] + ':00',
+				hora_inicio_agendamento: dia_hora[1],
 				cli_agendamento: this.EditForm.value.cliente_edit.id_cliente,
 				serv_agendamento: this.EditForm.value.servicos_edit,
 				metodo_de_pagamento: this.EditForm.value.formaDePagamento_edit,

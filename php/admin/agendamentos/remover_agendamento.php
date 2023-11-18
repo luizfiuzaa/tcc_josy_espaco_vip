@@ -34,6 +34,11 @@ try {
 
     if ($fetch_stmt->rowCount() > 0) {
 
+        $delete_lembrete = "DELETE FROM `lembretes` WHERE idAgendamento=:id";
+        $delete_lembrete_stmt = $connection->prepare($delete_lembrete);
+        $delete_lembrete_stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $delete_lembrete_stmt->execute();
+
         $delete_post = "DELETE FROM `agendamento` WHERE id_agendamento=:id";
         $delete_post_stmt = $connection->prepare($delete_post);
         $delete_post_stmt->bindValue(':id', $id, PDO::PARAM_INT);

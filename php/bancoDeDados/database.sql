@@ -46,15 +46,6 @@ CREATE TABLE `mensagem` (
 
 DROP TABLE IF EXISTS `lembretes`;
 
-CREATE TABLE `lembretes` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`horario` TIME NOT NULL,
-	`horarioLembrete` TIME NOT NULL,
-	`dataLembrete` DATE,
-	`conteudoLembrete` VARCHAR(255) NOT NULL,
-	`idAgendamento` INT,
-	PRIMARY KEY (`id`)
-) DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS `agendamento`;
 
@@ -73,6 +64,18 @@ CREATE TABLE `agendamento`(
 	`id_cascata` VARCHAR(255),
 	CONSTRAINT `fk_id_cliente` FOREIGN KEY (`fk_id_cliente`) REFERENCES `cliente` (`id_cliente`),
 	PRIMARY KEY (`id_agendamento`)
+) DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE `lembretes` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`horario` TIME NOT NULL,
+	`horarioLembrete` TIME NOT NULL,
+	`dataLembrete` DATE,
+	`conteudoLembrete` VARCHAR(255) NOT NULL,
+	`idAgendamento` VARCHAR(255) NOT NULL,
+	`idCascata` VARCHAR(255) NOT NULL,
+	`status` VARCHAR(5),
+	PRIMARY KEY (`id`)
 ) DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS `agendamento_servicos`;
@@ -209,49 +212,4 @@ VALUES
 		'Cobrança',
 		'Oi, Josy do salão! 💳 Lembrando que o pagamento do seu serviço está pendente. Por favor, entre em contato conosco para acertar os detalhes. Obrigado! 💖 - Josy',
 		'#f39c12'
-	);
-
-INSERT INTO
-	`cliente` (`cliente_nome`, `cliente_tel`, `cliente_email`)
-VALUES
-	(
-		'João Silva',
-		'11987654321',
-		'joao.silva@email.com'
-	);
-
-INSERT INTO
-	`cliente` (`cliente_nome`, `cliente_tel`, `cliente_email`)
-VALUES
-	(
-		'Marie Anges',
-		'11912345678',
-		'maria.anjos@email.com'
-	);
-
-INSERT INTO
-	`cliente` (`cliente_nome`, `cliente_tel`, `cliente_email`)
-VALUES
-	(
-		'Pedro Oliveira',
-		'11987651234',
-		'pedro.oliveira@email.com'
-	);
-
-INSERT INTO
-	`cliente` (`cliente_nome`, `cliente_tel`, `cliente_email`)
-VALUES
-	(
-		'Ana Souza',
-		'11912348765',
-		'ana.souza@email.com'
-	);
-
-INSERT INTO
-	`cliente` (`cliente_nome`, `cliente_tel`, `cliente_email`)
-VALUES
-	(
-		'Paulo Costa',
-		'11987659876',
-		'paulo.costa@email.com'
 	);

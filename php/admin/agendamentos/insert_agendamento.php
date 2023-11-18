@@ -1,6 +1,9 @@
 <?php
 include '../../cors.php';
 include '../../conn.php';
+include '../../functions/selecionar_servicos.php';
+include '../../functions/selecionar_clientes.php';
+include '../../functions/verificar_horario.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -21,66 +24,26 @@ $data = json_decode(file_get_contents("php://input"));
 
 try {
 	$servicos = $data->serv_agendamento;
-	$servicos_list = ['', ''];
-	$duracao = 0;
-	foreach ($servicos as $indice => $servico) {
-		$sql = "SELECT `titulo_servico`, `frequencia`, `duracao_servico` FROM `servico` WHERE id_servico=:id";
-		$stmt = $connection->prepare($sql);
-		$stmt->bindValue(':id', $servico, PDO::PARAM_INT);
-		$stmt->execute();
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		if ($indice > 0) {
-			$servicos_list[0] .= ', ' . $result['titulo_servico'];
-			$servicos_list[1] .= ', ' . $servico;
-		} else {
-			$servicos_list[0] .= $result['titulo_servico'];
-			$servicos_list[1] .= $servico;
-		}
-		$frequencia = $result['frequencia'] + 1;
-		$sql = "UPDATE `servico` SET frequencia=:frequencia WHERE id_servico=:id";
-		$stmt = $connection->prepare($sql);
-		$stmt->bindValue(':id', $servico, PDO::PARAM_INT);
-		$stmt->bindValue(':frequencia', $frequencia, PDO::PARAM_INT);
-		$stmt->execute();
-		$duracao += $result['duracao_servico'];
-	}
-	$hora = new DateTime(substr(htmlspecialchars(trim($data->hora_inicio_agendamento)), 0, 5));
-	$minutos = new DateInterval('PT' . $duracao . 'M');
-	$hora->add($minutos);
+	$servicos_list = selecionarServicos($servicos);
 
 	$cliente = $data->cli_agendamento;
-	$sql = "SELECT `cliente_nome` FROM `cliente` WHERE id_cliente=:id";
-	$stmt = $connection->prepare($sql);
-	$stmt->bindValue(':id', $cliente, PDO::PARAM_INT);
-	$stmt->execute();
-	$result = $stmt->fetch(PDO::FETCH_ASSOC);
-	$cliente = $result['cliente_nome'];
+	$cliente = selecionarClientes($cliente);
 
+	$hora = new DateTime(substr(htmlspecialchars(trim($data->hora_inicio_agendamento)), 0, 5));
+	$minutos = new DateInterval('PT' . $servicos_list[2] . 'M');
+	$hora->add($minutos);
 	$data_agend = $data->data_agend;
 	$hora_inicio_novo = strtotime($data->hora_inicio_agendamento);
 	$hora_fim_novo = strtotime($hora->format('H:i:s'));
 
-	$sql = "SELECT `hora_inicio_agendamento`, `hora_fim_agendamento` FROM `agendamento` WHERE data_agend=:data_agend";
-	$stmt = $connection->prepare($sql);
-	$stmt->bindValue(':data_agend', $data_agend, PDO::PARAM_STR);
-	$stmt->execute();
-	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	foreach ($result as $agendamento) {
-		$hora_inicio_existente = strtotime($agendamento['hora_inicio_agendamento']);
-		$hora_fim_existente = strtotime($agendamento['hora_fim_agendamento']);
-
-		if (
-			($hora_inicio_novo >= $hora_inicio_existente && $hora_inicio_novo < $hora_fim_existente) ||
-			($hora_fim_novo > $hora_inicio_existente && $hora_fim_novo <= $hora_fim_existente)
-		) {
-			echo json_encode([
-				'success' => 0,
-				'message' => 'Horário em uso... :('
-			]);
-			exit;
-		}
+	if (!verificarHorario($data_agend, $hora_inicio_novo, $hora_fim_novo)) {
+		echo json_encode([
+			'success' => 0,
+			'message' => 'Horário em uso... :('
+		]);
+		exit();
 	}
+
 	$hora_inicio_agendamento = trim($data->hora_inicio_agendamento);
 	$hora_fim_agendamento = $hora->format('H:i:s');
 	$data_agend = htmlspecialchars(trim($data->data_agend));
@@ -135,21 +98,26 @@ try {
 	$stmt->bindValue(':id_cascata', $id_cascata, PDO::PARAM_STR);
 
 	if ($stmt->execute()) {
-		// $idAgendamento = // id do agendamento;
+		$idAgendamento = $connection->lastInsertId();
+		$idCascata = !isset($data->cascadeId) ? '' : htmlspecialchars(trim($data->cascadeId));
 
 		$insert = "INSERT INTO `lembretes`(
             horarioLembrete,
             horario,
             dataLembrete,
-            conteudoLembrete
-            -- idAgendamento
+            conteudoLembrete,
+												status,
+            idAgendamento,
+												idCascata
         ) 
         VALUES(
             :horarioLembrete,
             :horario,
             :dataLembrete,
-            :conteudoLembrete
-            -- :idAgendamento
+            :conteudoLembrete,
+												:status,
+            :idAgendamento,
+												:idCascata
         )";
 
 		$stmt = $connection->prepare($insert);
@@ -159,7 +127,9 @@ try {
 		$stmt->bindValue(':horario', $hora_inicio_agendamento, PDO::PARAM_STR);
 		$stmt->bindValue(':dataLembrete', $data_agend, PDO::PARAM_STR);
 		$stmt->bindValue(':conteudoLembrete', $cli_agendamento . ' agendou esses servicos: ' . $serv_agendamento, PDO::PARAM_STR);
-		// $stmt->bindValue(':idAgendamento', $idAgendamento, PDO::PARAM_STR);
+		$stmt->bindValue(':status', 'novo', PDO::PARAM_STR);
+		$stmt->bindValue(':idAgendamento', $idAgendamento, PDO::PARAM_STR);
+		$stmt->bindValue(':idCascata', $idCascata, PDO::PARAM_STR);
 
 		$stmt->execute();
 

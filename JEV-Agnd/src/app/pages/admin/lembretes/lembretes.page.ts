@@ -15,7 +15,7 @@ export class LembretesPage implements OnInit {
 	};
 
 	constructor(private LembretesService: LembretesService) {
-		this.list_lembretes()
+		this.list_lembretes();
 	};
 
 	list_lembretes() {
@@ -37,14 +37,12 @@ export class LembretesPage implements OnInit {
 					let horario_lembrete: any = dados.horarioLembrete.substr(0, 5);
 					return { ...dados, dataLembrete: data, horario: horario, horarioLembrete: horario_lembrete };
 				});
-				console.log(this.Lembretes_exibidos)
-				console.log(this.Lembretes)
-				this.LembretesService.atualizarContagem(this.Lembretes_exibidos.length);
+				this.LembretesService.alterarStatus(this.Lembretes_exibidos).subscribe();
 				return;
 			}
 			this.Lembretes = [];
 			this.Lembretes_exibidos = this.Lembretes;
-			this.LembretesService.atualizarContagem(this.Lembretes_exibidos.length);
+			this.LembretesService.alterarStatus(this.Lembretes_exibidos).subscribe();
 		})
 	}
 

@@ -2,20 +2,20 @@
 include '../../cors.php';
 include '../../conn.php';
 
-$method = $_SERVER['REQUEST_METHOD'];
+    $method = $_SERVER['REQUEST_METHOD'];
 
-if ($method == "OPTIONS") {
-    die();
-}
+    if ($method == "OPTIONS") {
+        die();
+    }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'DELETE'){
-    http_response_code(405);
-    echo json_encode([
-        'success' => 0,
-        'message' => 'Bad Reqeust detected. HTTP method should be DELETE',
-    ]);
-    exit;
-}
+    if ($_SERVER['REQUEST_METHOD'] !== 'DELETE'){
+        http_response_code(405);
+        echo json_encode([
+            'success' => 0,
+            'message' => 'Bad Reqeust detected. HTTP method should be DELETE',
+        ]);
+        exit;
+    }
 
 $data = json_decode(file_get_contents("php://input"));
 $id = $_GET['id'];

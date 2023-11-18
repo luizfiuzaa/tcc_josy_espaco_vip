@@ -31,7 +31,7 @@ try {
             $dataLembrete = new DateTime($lembrete['dataLembrete'] . ' ' . $lembrete['horario']);
             $duasHorasAntes = clone $dataLembrete;
             $duasHorasAntes->modify('-2 hours');
-            return $dataAtual >= $duasHorasAntes && $dataAtual < $dataLembrete;
+            return $dataAtual >= $duasHorasAntes && $dataAtual < $dataLembrete && $lembrete['status'] == 'novo';
         });
 
         $numeroLembretes = count($Lembretes_exibidos);
