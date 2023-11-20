@@ -136,7 +136,7 @@
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
                 <div class="container_calendario">
-                  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDate" formControlName="calendario"
+                  <ion-datetime displayFormat="MMM DD, h:mm A"formControlName="calendario"
                     minuteValues="0,15,30,45" class="calendario_modal" mode="ios" [min]="this.hoje">
                     <span slot="time-label">
                       <ion-text class="time_title">
@@ -250,7 +250,7 @@
             <ion-list lines="none" class="list-content" mode="md">
               <div class="container_form">
                 <div class="container_calendario">
-                  <ion-datetime displayFormat="MMM DD, h:mm A" [(ngModel)]="myDateEdit" formControlName="calendario_edit"
+                  <ion-datetime displayFormat="MMM DD, h:mm A" formControlName="calendario_edit"
                     minuteValues="0,15,30,45" class="calendario_modal" mode="ios" [min]="this.hoje">
                     <span slot="time-label">
                       <ion-text class="time_title">
@@ -265,11 +265,10 @@
                 </div>
 
 
-                <div class="item_form" style="padding-bottom: 1em;">
+                <!-- <div class="item_form" style="padding-bottom: 1em;">
                   <ion-checkbox (ionChange)="mostrarCondicionais = !mostrarCondicionais">Repetir?</ion-checkbox>
                 </div>
 
-                <!-- quantidade de agendamentos -->
                 <div class="item_form" *ngIf="mostrarCondicionais">
                   <ion-item>
                     <ion-input (input)="AlterQuantidade($event)" [maskito]="numberMask" [maskitoElement]="maskPredicate"
@@ -280,7 +279,7 @@
                     <ion-input (input)="AlterIntervalo($event)" [maskito]="numberMask" [maskitoElement]="maskPredicate"
                       label="Intervalo(Dias):"></ion-input>
                   </ion-item>
-                </div>
+                </div> -->
 
                 <div class="item_form">
                   <mat-form-field>
@@ -303,7 +302,7 @@
                   <mat-form-field>
                     <mat-label>Serviço(s)</mat-label>
                     <mat-select formControlName="servicos_edit" multiple
-                      (selectionChange)="this.precoAgendamento($event)" [(ngModel)]="this.inputServicosEdit">
+                      (selectionChange)="this.precoAgendamento($event)">
                       <mat-option *ngFor="let servicos of Servicos" [value]="servicos.id_servico">
                         <span class="optionServicos">{{ servicos.titulo_servico }}</span>
                         <span> ( R$ {{ servicos.preco_servico }} )</span>
@@ -319,7 +318,7 @@
                 <div class="item_form">
                   <mat-form-field>
                     <mat-label>Método de Pagamento</mat-label>
-                    <mat-select formControlName="formaDePagamento_edit" [(ngModel)]="inputMetodoPagamentoEdit">
+                    <mat-select formControlName="formaDePagamento_edit">
                       <mat-option value="pix">Pix</mat-option>
                       <mat-option value="dinheiro">Dinheiro</mat-option>
                       <mat-option value="debito">Débito</mat-option>

@@ -219,7 +219,7 @@ export class HomePage implements OnInit {
 		this.AddForm = new FormGroup({
 			id: new FormControl(''),
 			cliente: new FormControl(this.controlClientes, [Validators.required]),
-			calendario: new FormControl('', [Validators.required]),
+			calendario: new FormControl(this.myDate, [Validators.required]),
 			servicos: new FormControl('', [Validators.required]),
 			formaDePagamento: new FormControl('', [Validators.required]),
 		});
@@ -346,10 +346,10 @@ export class HomePage implements OnInit {
 	createFormEdit() {
 		this.EditForm = new FormGroup({
 			id_edit: new FormControl(''),
-			cliente_edit: new FormControl('', [Validators.required]),
-			calendario_edit: new FormControl('', [Validators.required]),
-			servicos_edit: new FormControl('', [Validators.required]),
-			formaDePagamento_edit: new FormControl('', [Validators.required]),
+			cliente_edit: new FormControl(this.ClienteEdit, [Validators.required]),
+			calendario_edit: new FormControl(this.myDateEdit, [Validators.required]),
+			servicos_edit: new FormControl(this.inputServicosEdit, [Validators.required]),
+			formaDePagamento_edit: new FormControl(this.inputMetodoPagamentoEdit, [Validators.required]),
 		});
 	}
 	get cliente_edit() {
@@ -401,12 +401,13 @@ export class HomePage implements OnInit {
 	inputMetodoPagamentoEdit: any = '';
 
 	indiceEdit: any;
+	ClienteEdit: any;
 	EditAgendamento(agendamento: any) {
 		this.inputServicosEdit = [];
 		this.indiceEdit = agendamento.id_agendamento;
 		let data = agendamento.data_agend.split('/');
 		this.myDateEdit = `${data[2]}-${data[1]}-${data[0]}T${agendamento.hora_inicio_agendamento}`;
-		let cliente = this.Clientes.find((dados: any) => dados.cliente_nome == agendamento.cli_agendamento);
+		this.ClienteEdit = this.Clientes.find((dados: any) => dados.cliente_nome == agendamento.cli_agendamento);
 		let servico = this.Servicos.filter((dados: any) => agendamento.serv_agendamento.includes(dados.titulo_servico));
 		servico.forEach((element: any) => {
 			this.inputServicosEdit.push(element.id_servico);
