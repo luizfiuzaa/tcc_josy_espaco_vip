@@ -62,7 +62,7 @@ CREATE TABLE `agendamento`(
 	`cli_agendamento` VARCHAR(70) NOT NULL,
 	`serv_agendamento` VARCHAR(255) NOT NULL,
 	`id_cascata` VARCHAR(255),
-	CONSTRAINT `fk_id_cliente` FOREIGN KEY (`fk_id_cliente`) REFERENCES `cliente` (`id_cliente`),
+	CONSTRAINT `fk_id_cliente` FOREIGN KEY (`fk_id_cliente`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE, 
 	PRIMARY KEY (`id_agendamento`)
 ) DEFAULT CHARSET = utf8mb4 COLLATE utf8mb4_unicode_ci;
 
