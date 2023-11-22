@@ -8,8 +8,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ServicosService {
-
-  // private readonly API = 'http://localhost/aula/php/admin/servicos/';
   private readonly API = environment.baseApiUrl;
   
   servicos: Servicos[] = [];

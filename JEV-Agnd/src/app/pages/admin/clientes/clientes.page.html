@@ -1,4 +1,3 @@
-<!-- <app-header-menu #ionmenu></app-header-menu> -->
 <div class="ion-page" id="main-content">
 	<ion-header mode="ios">
 		<ion-toolbar>
@@ -25,7 +24,6 @@
 				<ion-col class="container" *ngIf="ClienteCad && ClienteCad.length > 0; else noClientes">
 					<!-- Card dos Clientes -->
 					<ion-card *ngFor="let Clientes of clientes_Exibidos">
-						<!-- Clientes: Nome e Telefone -->
 						<ion-card-header>
 							<ion-card-title>
 								<ion-text class="main__nome">
@@ -93,7 +91,6 @@
 							</ion-toolbar>
 						</ion-header>
 
-						<!-- form cliente -->
 						<form action="" class="form_modalAdd" (ngSubmit)="submit_add()" [formGroup]="AddForm"
 							#formDir="ngForm">
 							<ion-list lines="none" class="list-content">
@@ -146,7 +143,6 @@
 							</ion-toolbar>
 						</ion-header>
 
-						<!-- form cliente -->
 						<form action="" class="form_modalEdit" (ngSubmit)="submit_edit()" [formGroup]="EditForm"
 							#formDir="ngForm">
 							<ion-list lines="none" class="list-content">
@@ -242,9 +238,6 @@
 											</ion-checkbox>
 										</div>
 									</ion-item>
-									<!-- <ion-item> -->
-
-									<!-- </ion-item> -->
 								</ion-list>
 
 							</ng-container>
@@ -278,7 +271,6 @@
 
 
 
-		<!-- Btn para adicionar um novo cliente -->
 		<ion-fab id="add_area" horizontal="end" vertical="bottom" slot="fixed" (click)="setOpenAdd(true)">
 			<ion-fab-button>
 				<ion-icon id="add" name="person-add" expand="block"></ion-icon>

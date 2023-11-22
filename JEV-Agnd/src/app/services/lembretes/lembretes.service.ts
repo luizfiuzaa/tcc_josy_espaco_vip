@@ -8,8 +8,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LembretesService {
-
-  // private readonly API = 'http://localhost/aula/php/admin/clientes/';
   private readonly API = environment.baseApiUrl;
 
   contador: number = 0;

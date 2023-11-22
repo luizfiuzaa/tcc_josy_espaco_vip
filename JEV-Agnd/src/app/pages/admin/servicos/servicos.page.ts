@@ -144,7 +144,6 @@ export class ServicosPage implements OnInit {
   submit_edit() {
 
     if (this.EditForm.valid) {
-      // console.log(this.EditForm.value)
       let servico = []
       servico[0] = {
         id: this.EditForm.value.id_edit,
@@ -158,18 +157,6 @@ export class ServicosPage implements OnInit {
         this.listServicos();
       })
     }
-
-    // if (this.EditForm.invalid) {
-    //   console.log('Formulario De Edição Invalido')
-    //   return;
-    // }
-    // console.log('Formulario De Edição Concluído')
-    // this.Servicos[this.EditForm.value.id_edit] = {
-    //   titulo_servico: this.EditForm.value.titulo_edit,
-    //   desc_servico: this.EditForm.value.descricao_edit,
-    //   duracao_servico: this.EditForm.value.duracao_edit,
-    //   preco_servico: this.EditForm.value.preco_edit,
-    // };
   }
   setOpenEdit(isOpen: any) {
     if (isOpen == true || this.EditForm.invalid && isOpen == false || this.EditForm.valid && isOpen == false) {
@@ -219,7 +206,7 @@ export class ServicosPage implements OnInit {
   ];
 
   setResult(ev: any) {
-    // O role pode ser confirm or cancel
+    // O role pode ser confirm ou cancel
     console.log(ev.detail.role);
     this.setOpenDelete(false);
     if (ev.detail.role == 'confirm') {
@@ -234,7 +221,6 @@ export class ServicosPage implements OnInit {
     let estado: boolean = false;
     const target = e.target as HTMLInputElement;
     const value = target.value;
-    // console.log(value)
 
     this.Servicos_exibidos = this.Servicos.filter((servico) => {
       if (servico.titulo_servico.toLocaleLowerCase().includes(value.toLocaleLowerCase())) {

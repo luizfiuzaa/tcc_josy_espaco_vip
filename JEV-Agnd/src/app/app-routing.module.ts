@@ -18,14 +18,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'signup',
-    loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule)
-  },
-  {
-    path: 'landing',
-    loadChildren: () => import('./pages/user-common/landing/landing.module').then(m => m.LandingPageModule)
-  },
-  {
     path: 'servicos',
     loadChildren: () => import('./pages/admin/servicos/servicos.module').then(m => m.ServicosPageModule),
     canActivate: [AdminPermicaoGuard]

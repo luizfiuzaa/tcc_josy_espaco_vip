@@ -8,8 +8,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-
-  // private readonly API = 'http://localhost/aula/php/admin/logins/';
   private readonly API = environment.baseApiUrlLogin;
 
   constructor(private httpClient: HttpClient) { }

@@ -69,7 +69,7 @@ export class MsgDefinidasPage implements OnInit {
    },
  ];
  setResult(ev: any) {
-   // O role pode ser confirm or cancel
+   // O role pode ser confirm ou cancel
    console.log(ev.detail.role);
    this.setOpenDelete(false);
    if (ev.detail.role == 'confirm') {
@@ -137,13 +137,9 @@ export class MsgDefinidasPage implements OnInit {
    this.msgDefinidasService.create(mensagem).subscribe(() => {
     this.list_mensagens();
    });
-   // this.message = 'Agendado com sucesso!!'
-   // this.ExibirMessage(true);
    return;
   }
   console.log('Formulario De Adição Invalido')
-  // this.message = 'Falha ao agendar!!'
-  // this.ExibirMessage(false);
  }
 
  MensagensModal: boolean = false;

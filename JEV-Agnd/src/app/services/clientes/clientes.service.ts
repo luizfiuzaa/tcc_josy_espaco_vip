@@ -10,8 +10,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ClientesService {
-
-  // private readonly API = 'http://localhost/aula/php/admin/clientes/';
   private readonly API = environment.baseApiUrl;
   
   clientes: Clientes[] = [];
