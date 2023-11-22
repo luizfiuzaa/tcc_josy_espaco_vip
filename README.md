@@ -1,6 +1,24 @@
-# Sistema de Agendamento - Josy Espaço Vip
-Documentação do Trabalho de Conclusão de Curso sobre o Sistema de Agendamento para Josy Espaço Vip. O desenvolvimento do Trabalho de Conclusão de Curso tem como real inteção: exibir as habilidades sociais, colaborativas e profissionais dos membros do grupo de desenvolvimento do sistema; juntando todo o conhecimento sobre desenvolvimento, tabalho em equipe e conhecimentos gerais obtidos ao longo de 3 (três) anos estudando na turma de ETIM de Desenvolvimento de Sistemas na ETEC Sales Gomes, localizada em Tatuí-SP
+# Controle de Ferramentas
 
+Apresentamos um aplicativo para uma solução inovadora que tem o objetivo de atender às necessidades específicas do salão de beleza Josy Espaço VIP. Este sistema oferece meios para otimizar processos de agendamento de clientes. Possuindo somente o nível de acesso ADMIN.
 
-# Links:
-- Notion: https://www.notion.so/team/3c152f1f-eac8-451e-af21-6aebe7757ee1/join
+## Ferramentas e técnologias
+
+**FrontEnd:** Angular, Angular Materials, Chart.js, Maskito e Ionic.
+
+**BackEnd:** PHP, MySQL.
+
+## Contribuições
+
+Esse projeto tornou-se possível graças à colaboração e trabalho em equipe dos profissionais e estudantes da ETEC Sales Gomes.
+
+## Autores
+
+- [@João V. B. S. Marins](https://github.com/Kits93)
+- [@Laura Pereira](https://github.com/LauraaPereira)
+- [@Luiz F. B. Freitas](https://github.com/luizfiuzaa)
+- [@Marlon V. B. Passos](https://github.com/MarlonVBP)
+
+## Professor Orientador
+
+- [@Giovanni F. Guarnieri](https://github.com/gfguarnieri)
