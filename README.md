@@ -4,7 +4,7 @@ Apresentamos um aplicativo para uma solução inovadora que tem o objetivo de at
 
 ## Ferramentas e técnologias
 
-**FrontEnd:** Angular, Angular Materials,, Chart.js, Maskito e Ionic.
+**FrontEnd:** Angular, Angular Materials, Chart.js, Maskito e Ionic.
 
 **BackEnd:** PHP, MySQL.
 
