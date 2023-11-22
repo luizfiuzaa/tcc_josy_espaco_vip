@@ -1,6 +1,6 @@
 # Controle de Ferramentas
 
-Apresentamos uma aplicativo para uma solução inovadora que tem o objetivo para atender às necessidades específicas do salão de beleza Josy Espaço VIP. Este sistema oferece meios para otimizar processos de agendamento de clientes. Possuindo somente o nível de acesso ADMIN.
+Apresentamos um aplicativo para uma solução inovadora que tem o objetivo de atender às necessidades específicas do salão de beleza Josy Espaço VIP. Este sistema oferece meios para otimizar processos de agendamento de clientes. Possuindo somente o nível de acesso ADMIN.
 
 ## Ferramentas e técnologias
 
